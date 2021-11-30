@@ -43,92 +43,89 @@ public with sharing class RecordTypesTest {
 		);
 
 		/************
-		 * Test with Opportunity
+		 * Test with Account
 		 *************/
 
 		System.AssertEquals(
 			null,
-			RecordTypes.getRecordTypeIdFromName('Opportunity', 'Bogus')
+			RecordTypes.getRecordTypeIdFromName('Account', 'Bogus')
 		);
 
 		System.AssertEquals(
 			null,
-			RecordTypes.getRecordTypeDeveloperNameFromName('Opportunity', 'Bogus')
+			RecordTypes.getRecordTypeDeveloperNameFromName('Account', 'Bogus')
 		);
 
 		System.AssertEquals(
 			null,
-			RecordTypes.getRecordTypeNameFromDeveloperName('Opportunity', 'Bogus')
+			RecordTypes.getRecordTypeNameFromDeveloperName('Account', 'Bogus')
 		);
 		System.AssertEquals(
 			null,
-			RecordTypes.getRecordTypeIdFromDeveloperName('Opportunity', 'Bogus')
-		);
-
-		System.AssertEquals(
-			null,
-			RecordTypes.getRecordTypeNameFromId('Opportunity', null)
-		);
-		System.AssertEquals(
-			null,
-			RecordTypes.getRecordTypeDeveloperNameFromId('Opportunity', null)
+			RecordTypes.getRecordTypeIdFromDeveloperName('Account', 'Bogus')
 		);
 
 		System.AssertEquals(
 			null,
-			RecordTypes.getRecordTypeIdFromDeveloperName('Opportunity', 'Bogus')
+			RecordTypes.getRecordTypeNameFromId('Account', null)
 		);
 		System.AssertEquals(
 			null,
-			RecordTypes.getRecordTypeIdFromName('Opportunity', 'Bogus')
+			RecordTypes.getRecordTypeDeveloperNameFromId('Account', null)
+		);
+
+		System.AssertEquals(
+			null,
+			RecordTypes.getRecordTypeIdFromDeveloperName('Account', 'Bogus')
+		);
+		System.AssertEquals(
+			null,
+			RecordTypes.getRecordTypeIdFromName('Account', 'Bogus')
 		);
 
 		System.assert(RecordTypes.getRecordTypeDevNameIdMap('Bogus').isEmpty());
 		System.assert(RecordTypes.getRecordTypeNameIdMap('Bogus').isEmpty());
 
-		List<RecordType> opportunityRecordTypes = [
+		List<RecordType> accountRecordTypes = [
 			SELECT Id, Name, DeveloperName
 			FROM RecordType
-			WHERE IsActive = TRUE AND SObjectType = 'Opportunity'
+			WHERE IsActive = TRUE AND SObjectType = 'Account'
 		];
 
-		if (!opportunityRecordTypes.isEmpty()) {
-			RecordTypes.getRecordTypeNameIdMap('Opportunity');
-			clearMaps();
+		RecordTypes.getRecordTypeNameIdMap('Account');
+		clearMaps();
 
-			RecordTypes.getRecordTypeDevNameIdMap('Opportunity');
-			clearMaps();
+		RecordTypes.getRecordTypeDevNameIdMap('Account');
+		clearMaps();
 
-			RecordType activeRT = opportunityRecordTypes[0];
+		if (!accountRecordTypes.isEmpty()) {
+			RecordType activeRT = accountRecordTypes[0];
 
-			RecordTypes.getRecordType('Opportunity', activeRT.Id);
+			RecordTypes.getRecordType('Account', activeRT.Id);
 
 			System.AssertEquals(
 				activeRT.Id,
-				RecordTypes.getRecordTypeIdFromName('Opportunity', activeRt.Name)
+				RecordTypes.getRecordTypeIdFromName('Account', activeRt.Name)
 			);
 			clearMaps();
 
 			System.AssertEquals(
 				activeRT.DeveloperName,
-				RecordTypes.getRecordTypeDeveloperNameFromName(
-					'Opportunity',
-					activeRT.Name
-				)
+				RecordTypes.getRecordTypeDeveloperNameFromName('Account', activeRT.Name)
 			);
 			clearMaps();
 
 			System.AssertEquals(
 				activeRT.Name,
 				RecordTypes.getRecordTypeNameFromDeveloperName(
-					'Opportunity',
+					'Account',
 					activeRT.DeveloperName
 				)
 			);
 			System.AssertEquals(
 				activeRT.Id,
 				RecordTypes.getRecordTypeIdFromDeveloperName(
-					'Opportunity',
+					'Account',
 					activeRT.DeveloperName
 				)
 			);
@@ -136,43 +133,40 @@ public with sharing class RecordTypesTest {
 
 			System.AssertEquals(
 				activeRT.Name,
-				RecordTypes.getRecordTypeNameFromId('Opportunity', activeRT.Id)
+				RecordTypes.getRecordTypeNameFromId('Account', activeRT.Id)
 			);
 			clearMaps();
 
 			System.AssertEquals(
 				activeRT.DeveloperName,
-				RecordTypes.getRecordTypeDeveloperNameFromId('Opportunity', activeRT.Id)
+				RecordTypes.getRecordTypeDeveloperNameFromId('Account', activeRT.Id)
 			);
 			clearMaps();
 
 			Set<String> rtNames = new Set<String>();
 			Set<String> rtDevNames = new Set<String>();
-			for (RecordType rt : opportunityRecordTypes) {
+			for (RecordType rt : accountRecordTypes) {
 				rtNames.add(rt.Name);
 				rtDevNames.add(rt.DeveloperName);
 			}
 
-			Set<Id> oppRtSet = RecordTypes.getRecordTypeIdSetFromDevNames(
-				'Opportunity',
+			Set<Id> acctRtSet = RecordTypes.getRecordTypeIdSetFromDevNames(
+				'Account',
 				rtDevNames
 			);
 			clearMaps();
-
-			Map<String, Id> oppTypeMap = RecordTypes.getRecordTypeNameIdMap(
-				'Opportunity'
-			);
-			clearMaps();
-
-			List<SelectOption> rtOptions = RecordTypes.getRecordTypesForSelectList(
-				'Opportunity'
-			);
-			System.assertEquals(opportunityRecordTypes.size(), rtOptions.size());
-			clearMaps();
-
-			rtOptions = RecordTypes.getStringRecordTypesForSelectList('Opportunity');
-			System.assertEquals(opportunityRecordTypes.size(), rtOptions.size());
 		}
+		Map<String, Id> acctTypeMap = RecordTypes.getRecordTypeNameIdMap('Account');
+		clearMaps();
+
+		List<SelectOption> rtOptions = RecordTypes.getRecordTypesForSelectList(
+			'Account'
+		);
+		System.assertEquals(accountRecordTypes.size(), rtOptions.size());
+		clearMaps();
+
+		rtOptions = RecordTypes.getStringRecordTypesForSelectList('Account');
+		System.assertEquals(accountRecordTypes.size(), rtOptions.size());
 	}
 
 	private static void clearMaps() {

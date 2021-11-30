@@ -1,13 +1,18 @@
 {
 	"orgName": "David Schach Company",
 	"edition": "Developer",
-	"features": ["EnableSetPasswordInApi"],
+	"features": ["EnableSetPasswordInApi", "RecordTypes"],
 	"settings": {
 		"lightningExperienceSettings": {
 			"enableS1DesktopEnabled": true
 		},
 		"mobileSettings": {
 			"enableS1EncryptedStoragePref2": false
+		}
+	},
+	"objectSettings": {
+		"account": {
+			"defaultRecordType": "default"
 		}
 	}
 }
