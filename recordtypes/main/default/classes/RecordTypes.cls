@@ -20,12 +20,11 @@
  * be the same for all calls in a transaction, and by calling it statically we reduce the calls
  * that are made, making the total transaction more efficient.
  * <br>
- * Usage recommendation: Always use Developer Name instead of Name, as this is more likely to be
+ * Usage recommendation: Always use DeveloperName instead of Name, as this is more likely to be
  * hard-coded in places, while the Name is actually a label and may change (especially due to user language).
  * @author Evan Callahan
  * @since 2010
  * @author David Schach
- * @since 2021
  * @group RecordTypes
  * @see RecordTypesTest
  */
@@ -45,7 +44,7 @@ global class RecordTypes {
 	@testVisible
 	private static Map<String, Map<String, Schema.RecordTypeInfo>> recordTypesByName = new Map<String, Map<String, Schema.RecordTypeInfo>>();
 	/**
-	 * Map of Record Types by Object name, then by Developer Name
+	 * Map of Record Types by Object name, then by DeveloperName
 	 */
 	@testVisible
 	private static Map<String, Map<String, Schema.RecordTypeInfo>> recordTypesByDevName = new Map<String, Map<String, Schema.RecordTypeInfo>>();
@@ -96,7 +95,7 @@ global class RecordTypes {
 	 * @author David Schach
 	 * @param  objectName     SObject name
 	 * @param  recordTypeName Record Type Name (can include spaces)
-	 * @return                RecordTypeInfo object
+	 * @return                `Schema.RecordTypeInfo` RecordTypeInfo object
 	 */
 	global static Schema.RecordTypeInfo getRecordTypeFromName(String objectName, String recordTypeName) {
 		// make sure we have this object's record types mapped
@@ -145,10 +144,10 @@ global class RecordTypes {
 	//@return Id, Name, RecordType object
 
 	/**
-	 * @description Given an object and RT Developer Name, give the recordTypeId
+	 * @description Given an object and RT DeveloperName, give the recordTypeId
 	 * @author David Schach
 	 * @param  objectName     SObject name
-	 * @param  recordTypeName Record Type Developer Name (cannot include spaces)
+	 * @param  recordTypeName Record Type DeveloperName (cannot include spaces)
 	 * @return                `Schema.RecordTypeInfo` RecordTypeInfo object
 	 */
 	global static Schema.RecordTypeInfo getRecordTypeFromDeveloperName(String objectName, String recordTypeDeveloperName) {
@@ -167,10 +166,10 @@ global class RecordTypes {
 	}
 
 	/**
-	 * @description Given an object and RT Developer Name, give the Record Type Name
+	 * @description Given an object and RT DeveloperName, give the Record Type Name
 	 * @author David Schach
 	 * @param  objectName     SObject name
-	 * @param  recordTypeName Record Type Developer Name (cannot include spaces)
+	 * @param  recordTypeName Record Type DeveloperName (cannot include spaces)
 	 * @return                RecordType Name
 	 */
 	global static String getRecordTypeNameFromDeveloperName(String objectName, String recordTypeDeveloperName) {
@@ -179,11 +178,13 @@ global class RecordTypes {
 	}
 
 	/**
-	 * @description Given an object and RT Developer Name, give the recordTypeId
+	 * @description Given an object and RT DeveloperName, give the recordTypeId
 	 * @author David Schach
 	 * @param  objectName     SObject name
-	 * @param  recordTypeName Record Type Developer Name (cannot include spaces)
+	 * @param  recordTypeName Record Type DeveloperName (cannot include spaces)
 	 * @return                RecordType Id
+	 * @example
+	 * RecordTypes.getRecordTypeIdFromDeveloperName('Account','Person_Account')
 	 */
 	global static Id getRecordTypeIdFromDeveloperName(String objectName, String recordTypeDeveloperName) {
 		// prettier-ignore
@@ -234,7 +235,7 @@ global class RecordTypes {
 	 * @author David Schach
 	 * @param  objectName     SObject name
 	 * @param  recordTypeId   Record Type Id
-	 * @return                RecordType Developer Name
+	 * @return                RecordType DeveloperName
 	 */
 	global static String getRecordTypeDeveloperNameFromId(String objectName, Id recordTypeId) {
 		// prettier-ignore
@@ -246,7 +247,7 @@ global class RecordTypes {
 	 * @author David Schach
 	 * @param  objectName     SObject name
 	 * @param  recordTypeId   Record Type Id
-	 * @return                RecordTypeInfo object
+	 * @return                `Schema.RecordTypeInfo` RecordTypeInfo object
 	 */
 	global static Schema.RecordTypeInfo getRecordType(String objectName, Id recordTypeId) {
 		// make sure we have this object's record types mapped
@@ -264,11 +265,11 @@ global class RecordTypes {
 	}
 
 	/**
-	 * @description Gives a set of record type IDs from an object and a set of developernames
+	 * @description Gives a set of record type Ids from an object and a set of developernames
 	 * @author David Schach
 	 * @param  objectName        Object of interest
 	 * @param  RecordTypeNameSet Set of DeveloperNames
-	 * @return                   return Id set
+	 * @return                   `Set<Id>`
 	 */
 	global static Set<Id> getRecordTypeIdSetFromDevNames(String objectName, Set<String> recordTypeDevNameSet) {
 		Set<Id> recordTypeIds = new Set<Id>();
@@ -294,7 +295,7 @@ global class RecordTypes {
 	 * @description Gives a map of all record type IDs by developer name for an object
 	 * @author David Schach
 	 * @param  objectName     SObject name
-	 * @return                Map<RecordTypeDeveloperName, RecordTypeId>
+	 * @return                `Map<RecordTypeDeveloperName, RecordTypeId>`
 	 */
 	global static Map<String, Id> getRecordTypeDevNameIdMap(String objectName) {
 		Map<String, Id> recordTypeMap = new Map<String, Id>();
@@ -320,7 +321,7 @@ global class RecordTypes {
 	 * @description Gives a map of all record type IDs by name for an object
 	 * @author Evan Callahan
 	 * @param  objectName     SObject name
-	 * @return                Map<RecordType Name, RecordTypeId>
+	 * @return                `Map<RecordType Name, RecordTypeId>`
 	 */
 	global static Map<String, Id> getRecordTypeNameIdMap(String objectName) {
 		Map<String, Id> recordTypeMap = new Map<String, Id>();
@@ -345,7 +346,7 @@ global class RecordTypes {
 	 * @description Make a Visualforce picklist with the RT Name displayed and the RT Id as the value
 	 * @author Evan Callahan
 	 * @param  objectName Object name (with __c if custom, etc)
-	 * @return            Visualforce SelectOption list
+	 * @return            `List<SelectOption>` Visualforce SelectOption list
 	 */
 	global static List<SelectOption> getRecordTypesForSelectList(String objectName) {
 		List<SelectOption> recordTypesOptions = new List<SelectOption>();
@@ -363,7 +364,7 @@ global class RecordTypes {
 	 * @description Make a Visualforce picklist with the RT Name displayed and the RT Name as the value
 	 * @author Evan Callahan
 	 * @param  objectName Object name (with __c if custom, etc)
-	 * @return            Visualforce SelectOption list
+	 * @return            `List<SelectOption>` Visualforce SelectOption list
 	 */
 	global static List<SelectOption> getStringRecordTypesForSelectList(String objectName) {
 		List<SelectOption> recordTypesOptions = new List<SelectOption>();
