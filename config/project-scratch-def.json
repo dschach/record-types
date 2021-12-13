@@ -1,5 +1,5 @@
 {
-	"orgName": "David Schach Company",
+	"orgName": "David Schach Record Types",
 	"edition": "Developer",
 	"features": ["EnableSetPasswordInApi", "RecordTypes"],
 	"settings": {
