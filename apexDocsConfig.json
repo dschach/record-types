@@ -1,0 +1,10 @@
+{
+	"root": "https://github.com/dschach/record-types/wiki",
+	"sourceLanguage": "java",
+	"content": {
+		"startingHeadingLevel": 1,
+		"includeDate": true,
+		"includeAuthor": true
+	},
+	"defaultGrouName": "RecordTypes"
+}
