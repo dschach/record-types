@@ -8,7 +8,7 @@ I've updated the project (by pulling test code out of the main class - that's ho
 The included test class has 100% coverage, so pull this into your org and get cracking!
 
 # Documentation
-[ApexDocs](docs/index.md)
+[ApexDocs](https://dschach.github.io/record-types/)
 
 # Installation
 Clone this repository and run `scripts/orginit.sh` to set up a scratch org with the classes installed.
