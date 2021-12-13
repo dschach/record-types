@@ -14,18 +14,18 @@
 
 /**
  * This class is meant to allow for access to Record Type information from within other classes.
- *
+ * <br>
  * It is called statically, and therefore will supply the same information to all calls made from
  * within one transaction, or set of trigger calls. This is beneficial because this info should
  * be the same for all calls in a transaction, and by calling it statically we reduce the calls
  * that are made, making the total transaction more efficient.
- *
+ * <br>
  * Usage recommendation: Always use Developer Name instead of Name, as this is more likely to be
  * hard-coded in places, while the Name is actually a label and may change (especially due to user language).
  * @author Evan Callahan
- * @date 2010
+ * @since 2010
  * @author David Schach
- * @date 2021
+ * @since 2021
  * @group RecordTypes
  * @see RecordTypesTest
  */
