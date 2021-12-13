@@ -12,7 +12,7 @@ This class is meant to allow for access to Record Type information from within o
 
 ## Related
 
-[RecordTypesTest](https://github.com/dschach/record-types/wiki/RecordTypesTest.md)
+[RecordTypesTest](https://github.com/dschach/record-types/docs/RecordTypesTest.md)
 
 ---
 

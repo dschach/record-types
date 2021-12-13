@@ -10,7 +10,7 @@ Test class for RecordTypes.cls We test nonexistent object names, nonexistent rec
 
 ## Related
 
-[RecordTypes](https://github.com/dschach/record-types/wiki/RecordTypes.md)
+[RecordTypes](https://github.com/dschach/record-types/docs/RecordTypes.md)
 
 ---
 
