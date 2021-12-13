@@ -1,16 +1,18 @@
 /**
- * Test class for RecordTypes.cls
+ * @description Test class for RecordTypes.cls
  * We test nonexistent object names, nonexistent record type names, null values, and existing Account record type (if available)
  *
  * @author Evan Callahan
  * @since  2010
  * @author David Schach
- * @since 2021
+ * @group RecordTypes
  * @see RecordTypes
- * @group Tests
  */
 @IsTest
 public with sharing class RecordTypesTest {
+ /**
+  * @description Test various record types and names
+  */
 	@isTest
 	static void testRecTypes() {
 		//Test with Bogus object
@@ -48,7 +50,7 @@ public with sharing class RecordTypesTest {
 	}
 
 	/**
-	 * Separate method for checking if we have Account record type, and then testing that
+	 * @description Separate method for checking if we have Account record type, and then testing that
 	 * @author David Schach
 	 */
 	@IsTest
@@ -89,10 +91,10 @@ public with sharing class RecordTypesTest {
 				rtDevNames.add(rt.DeveloperName);
 			}
 
-			Set<Id> acctRtSet = RecordTypes.getRecordTypeIdSetFromDevNames('Account', rtDevNames);
+			RecordTypes.getRecordTypeIdSetFromDevNames('Account', rtDevNames);
 			clearMaps();
 		}
-		Map<String, Id> acctTypeMap = RecordTypes.getRecordTypeNameIdMap('Account');
+		RecordTypes.getRecordTypeNameIdMap('Account');
 		clearMaps();
 
 		List<SelectOption> rtOptions = RecordTypes.getRecordTypesForSelectList('Account');
@@ -104,7 +106,7 @@ public with sharing class RecordTypesTest {
 	}
 
 	/**
-	 * Clear all record type maps to enable using fewer methods
+	 * @description Clear all record type maps to enable using fewer methods
 	 * @author David Schach
 	 */
 	private static void clearMaps() {

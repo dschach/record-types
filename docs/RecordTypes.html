@@ -24,7 +24,7 @@
         </div>
         <img src="assets/logo.png" />
         <div class="subtitle">
-          Using ApexDox to document
+          Documentation for <a target="_blank" rel="noopener noreferrer" href="https://github.com/dschach/record-types">RecordTypes Utility</a>
         </div>
       </div>
       <div id="search-wrapper">
@@ -46,14 +46,6 @@
               <li title="RecordTypes" id="item-RecordTypes" class="nav-item class " onclick="goToLocation('RecordTypes.html');">
                 <a tabindex="1" href="javascript:void(0)">RecordTypes</a>
               </li>
-            </ul>
-          </details>
-          <details id="Tests" class="group-name">
-            <summary id="header-Tests" class="nav-header">
-              <span>Tests</span>
-            </summary>
-            <ul>
-              <!-- menu items -->
               <li title="RecordTypesTest" id="item-RecordTypesTest" class="nav-item class " onclick="goToLocation('RecordTypesTest.html');">
                 <a tabindex="1" href="javascript:void(0)">RecordTypesTest</a>
               </li>
@@ -102,12 +94,12 @@
             <div class="class-container">
 
               <div class="class-description">
-                This class is meant to allow for access to Record Type information from within other classes. <br> It is called statically, and therefore will supply the same information to all calls made from within one transaction, or set of trigger calls. This is beneficial because this info should be the same for all calls in a transaction, and by calling it statically we reduce the calls that are made, making the total transaction more efficient. <br> Usage recommendation: Always use Developer Name instead of Name, as this is more likely to be hard-coded in places, while the Name is actually a label and may change (especially due to user language).
+                This class is meant to allow for access to Record Type information from within other classes. <br> It is called statically, and therefore will supply the same information to all calls made from within one transaction, or set of trigger calls. This is beneficial because this info should be the same for all calls in a transaction, and by calling it statically we reduce the calls that are made, making the total transaction more efficient. <br> Usage recommendation: Always use DeveloperName instead of Name, as this is more likely to be hard-coded in places, while the Name is actually a label and may change (especially due to user language).
               </div>
               <div class="class-subtitle">
                 Signature
               </div>
-
+              <div class="class-annotations">@SuppressWarnings('PMD.AvoidGlobalModifier')</div>
               <div class="class-signature">
                 global class RecordTypes
               </div>
@@ -116,7 +108,7 @@
               </div>
               <div class="class-subtitle-description">
                 <a href="javascript:void(0)" onclick="goToLocation('RecordTypesTest.html')">RecordTypesTest</a>
-              </div><br />Evan Callahan David Schach<br />2010 2021
+              </div><br />Evan Callahan David Schach<br />2010
             </div>
             <div class="subsection properties RecordTypes">
               <h3 class="subsection-title properties">RecordTypes Properties</h2>
@@ -195,7 +187,7 @@
                     </td>
 
                     <td class="attribute-description">
-                      Map of Record Types by Object name, then by Developer Name
+                      Map of Record Types by Object name, then by DeveloperName
                     </td>
                   </tr>
                   <tr class="property ">
@@ -237,7 +229,7 @@
                     </a>
 
                     <div class="methods-toc__description">
-                      Given an object and RT Name, give the RecordType object Note: Since Record Type Name is not unique, this section could give unpredicable results If possible, DO NOT USE these methods - use DeveloperName instead
+                      Given an object and RT Name, give the RecordType object <br>Note: Since Record Type Name is not unique, this section could give unpredicable results <br>If possible, DO NOT USE these methods - use DeveloperName instead
                     </div>
                   </li>
                   <li class="method global">
@@ -246,7 +238,7 @@
                     </a>
 
                     <div class="methods-toc__description">
-                      Given an object and RT Name, give the recordTypeId Note: Since Record Type Name is not unique, this could give unpredicable results
+                      Given an object and RT Name, give the recordTypeId <br>&lt;bNote: Since Record Type Name is not unique, this could give unpredicable results
                     </div>
                   </li>
                   <li class="method global">
@@ -255,7 +247,7 @@
                     </a>
 
                     <div class="methods-toc__description">
-                      Given an object and RT Name, give the recordTypeId Note: Since Record Type Name is not unique, this could give unpredicable results
+                      Given an object and RT Name, give the recordTypeId <br>Note: Since Record Type Name is not unique, this could give unpredicable results
                     </div>
                   </li>
                   <li class="method global">
@@ -264,7 +256,7 @@
                     </a>
 
                     <div class="methods-toc__description">
-                      Given an object and RT Developer Name, give the recordTypeId
+                      Given an object and RT DeveloperName, give the recordTypeId
                     </div>
                   </li>
                   <li class="method global">
@@ -273,7 +265,7 @@
                     </a>
 
                     <div class="methods-toc__description">
-                      Given an object and RT Developer Name, give the Record Type Name
+                      Given an object and RT DeveloperName, give the Record Type Name
                     </div>
                   </li>
                   <li class="method global">
@@ -282,7 +274,7 @@
                     </a>
 
                     <div class="methods-toc__description">
-                      Given an object and RT Developer Name, give the recordTypeId
+                      Given an object and RT DeveloperName, give the recordTypeId
                     </div>
                   </li>
                   <li class="method global">
@@ -327,7 +319,7 @@
                     </a>
 
                     <div class="methods-toc__description">
-                      Gives a set of record type IDs from an object and a set of developernames
+                      Gives a set of record type Ids from an object and a set of developernames
                     </div>
                   </li>
                   <li class="method global">
@@ -393,7 +385,7 @@
                     </a>
                   </h4>
                   <div class="method-description">
-                    Given an object and RT Name, give the RecordType object Note: Since Record Type Name is not unique, this section could give unpredicable results If possible, DO NOT USE these methods - use DeveloperName instead
+                    Given an object and RT Name, give the RecordType object <br>Note: Since Record Type Name is not unique, this section could give unpredicable results <br>If possible, DO NOT USE these methods - use DeveloperName instead
                   </div>
                   <div class="method-subtitle">
                     Signature
@@ -417,7 +409,7 @@
                     Returns
                   </div>
                   <div class="method-subtitle-description">
-                    RecordTypeInfo object
+                    <code class="code-inline">Schema.RecordTypeInfo</code> RecordTypeInfo object
                   </div>
                   <div class="method-subtitle">
                     Author
@@ -434,7 +426,7 @@
                     </a>
                   </h4>
                   <div class="method-description">
-                    Given an object and RT Name, give the recordTypeId Note: Since Record Type Name is not unique, this could give unpredicable results
+                    Given an object and RT Name, give the recordTypeId <br>&lt;bNote: Since Record Type Name is not unique, this could give unpredicable results
                   </div>
                   <div class="method-subtitle">
                     Signature
@@ -475,7 +467,7 @@
                     </a>
                   </h4>
                   <div class="method-description">
-                    Given an object and RT Name, give the recordTypeId Note: Since Record Type Name is not unique, this could give unpredicable results
+                    Given an object and RT Name, give the recordTypeId <br>Note: Since Record Type Name is not unique, this could give unpredicable results
                   </div>
                   <div class="method-subtitle">
                     Signature
@@ -516,7 +508,7 @@
                     </a>
                   </h4>
                   <div class="method-description">
-                    Given an object and RT Developer Name, give the recordTypeId
+                    Given an object and RT DeveloperName, give the recordTypeId
                   </div>
                   <div class="method-subtitle">
                     Signature
@@ -532,7 +524,7 @@
                   </div>
                   <div class="param-description"> SObject name</div>
                   <div class="param-name">recordTypeName</div>
-                  <div class="param-description">Record Type Developer Name (cannot include spaces)</div>
+                  <div class="param-description">Record Type DeveloperName (cannot include spaces)</div>
                   <div class="method-subtitle">
                     Returns
                   </div>
@@ -554,7 +546,7 @@
                     </a>
                   </h4>
                   <div class="method-description">
-                    Given an object and RT Developer Name, give the Record Type Name
+                    Given an object and RT DeveloperName, give the Record Type Name
                   </div>
                   <div class="method-subtitle">
                     Signature
@@ -570,7 +562,7 @@
                   </div>
                   <div class="param-description"> SObject name</div>
                   <div class="param-name">recordTypeName</div>
-                  <div class="param-description">Record Type Developer Name (cannot include spaces)</div>
+                  <div class="param-description">Record Type DeveloperName (cannot include spaces)</div>
                   <div class="method-subtitle">
                     Returns
                   </div>
@@ -587,12 +579,12 @@
                 <div class="method global">
                   <h4 class="method-title " id="RecordTypes.getRecordTypeIdFromDeveloperName">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/salesforce-trigger-framework/tree/main/force-app/main/default/classes/RecordTypes.cls#L188">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/salesforce-trigger-framework/tree/main/force-app/main/default/classes/RecordTypes.cls#L190">
                       getRecordTypeIdFromDeveloperName(objectName, recordTypeDeveloperName)
                     </a>
                   </h4>
                   <div class="method-description">
-                    Given an object and RT Developer Name, give the recordTypeId
+                    Given an object and RT DeveloperName, give the recordTypeId
                   </div>
                   <div class="method-subtitle">
                     Signature
@@ -608,7 +600,7 @@
                   </div>
                   <div class="param-description"> SObject name</div>
                   <div class="param-name">recordTypeName</div>
-                  <div class="param-description">Record Type Developer Name (cannot include spaces)</div>
+                  <div class="param-description">Record Type DeveloperName (cannot include spaces)</div>
                   <div class="method-subtitle">
                     Returns
                   </div>
@@ -621,11 +613,15 @@
                   <div class="method-subtitle-description">
                     David Schach
                   </div>
+                  <div class="method-subtitle">
+                    Example
+                  </div>
+                  <pre class="code-example"><code> RecordTypes.getRecordTypeIdFromDeveloperName(&#39;Account&#39;,&#39;Person_Account&#39;)</code></pre>
                 </div>
                 <div class="method global">
                   <h4 class="method-title " id="RecordTypes.getRecordTypeFromId">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/salesforce-trigger-framework/tree/main/force-app/main/default/classes/RecordTypes.cls#L205">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/salesforce-trigger-framework/tree/main/force-app/main/default/classes/RecordTypes.cls#L207">
                       getRecordTypeFromId(objectName, recordTypeId)
                     </a>
                   </h4>
@@ -666,7 +662,7 @@
                 <div class="method global">
                   <h4 class="method-title " id="RecordTypes.getRecordTypeNameFromId">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/salesforce-trigger-framework/tree/main/force-app/main/default/classes/RecordTypes.cls#L227">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/salesforce-trigger-framework/tree/main/force-app/main/default/classes/RecordTypes.cls#L229">
                       getRecordTypeNameFromId(objectName, recordTypeId)
                     </a>
                   </h4>
@@ -707,7 +703,7 @@
                 <div class="method global">
                   <h4 class="method-title " id="RecordTypes.getRecordTypeDeveloperNameFromId">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/salesforce-trigger-framework/tree/main/force-app/main/default/classes/RecordTypes.cls#L239">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/salesforce-trigger-framework/tree/main/force-app/main/default/classes/RecordTypes.cls#L241">
                       getRecordTypeDeveloperNameFromId(objectName, recordTypeId)
                     </a>
                   </h4>
@@ -736,7 +732,7 @@
                     Returns
                   </div>
                   <div class="method-subtitle-description">
-                    RecordType Developer Name
+                    RecordType DeveloperName
                   </div>
                   <div class="method-subtitle">
                     Author
@@ -748,7 +744,7 @@
                 <div class="method global">
                   <h4 class="method-title " id="RecordTypes.getRecordType">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/salesforce-trigger-framework/tree/main/force-app/main/default/classes/RecordTypes.cls#L251">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/salesforce-trigger-framework/tree/main/force-app/main/default/classes/RecordTypes.cls#L253">
                       getRecordType(objectName, recordTypeId)
                     </a>
                   </h4>
@@ -777,7 +773,7 @@
                     Returns
                   </div>
                   <div class="method-subtitle-description">
-                    RecordTypeInfo object
+                    <code class="code-inline">Schema.RecordTypeInfo</code> RecordTypeInfo object
                   </div>
                   <div class="method-subtitle">
                     Author
@@ -789,12 +785,12 @@
                 <div class="method global">
                   <h4 class="method-title " id="RecordTypes.getRecordTypeIdSetFromDevNames">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/salesforce-trigger-framework/tree/main/force-app/main/default/classes/RecordTypes.cls#L273">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/salesforce-trigger-framework/tree/main/force-app/main/default/classes/RecordTypes.cls#L275">
                       getRecordTypeIdSetFromDevNames(objectName, recordTypeDevNameSet)
                     </a>
                   </h4>
                   <div class="method-description">
-                    Gives a set of record type IDs from an object and a set of developernames
+                    Gives a set of record type Ids from an object and a set of developernames
                   </div>
                   <div class="method-subtitle">
                     Signature
@@ -815,7 +811,7 @@
                     Returns
                   </div>
                   <div class="method-subtitle-description">
-                    return Id set
+                    <code class="code-inline">Set&lt;Id&gt;</code>
                   </div>
                   <div class="method-subtitle">
                     Author
@@ -827,7 +823,7 @@
                 <div class="method global">
                   <h4 class="method-title " id="RecordTypes.getRecordTypeDevNameIdMap">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/salesforce-trigger-framework/tree/main/force-app/main/default/classes/RecordTypes.cls#L299">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/salesforce-trigger-framework/tree/main/force-app/main/default/classes/RecordTypes.cls#L301">
                       getRecordTypeDevNameIdMap(objectName)
                     </a>
                   </h4>
@@ -851,7 +847,7 @@
                     Returns
                   </div>
                   <div class="method-subtitle-description">
-                    Map&lt;RecordTypeDeveloperName, RecordTypeId&gt;
+                    <code class="code-inline">Map&lt;RecordTypeDeveloperName, RecordTypeId&gt;</code>
                   </div>
                   <div class="method-subtitle">
                     Author
@@ -863,7 +859,7 @@
                 <div class="method global">
                   <h4 class="method-title " id="RecordTypes.getRecordTypeNameIdMap">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/salesforce-trigger-framework/tree/main/force-app/main/default/classes/RecordTypes.cls#L325">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/salesforce-trigger-framework/tree/main/force-app/main/default/classes/RecordTypes.cls#L327">
                       getRecordTypeNameIdMap(objectName)
                     </a>
                   </h4>
@@ -887,7 +883,7 @@
                     Returns
                   </div>
                   <div class="method-subtitle-description">
-                    Map&lt;RecordType Name, RecordTypeId&gt;
+                    <code class="code-inline">Map&lt;RecordType Name, RecordTypeId&gt;</code>
                   </div>
                   <div class="method-subtitle">
                     Author
@@ -899,7 +895,7 @@
                 <div class="method global">
                   <h4 class="method-title " id="RecordTypes.getRecordTypesForSelectList">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/salesforce-trigger-framework/tree/main/force-app/main/default/classes/RecordTypes.cls#L350">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/salesforce-trigger-framework/tree/main/force-app/main/default/classes/RecordTypes.cls#L352">
                       getRecordTypesForSelectList(objectName)
                     </a>
                   </h4>
@@ -923,7 +919,7 @@
                     Returns
                   </div>
                   <div class="method-subtitle-description">
-                    Visualforce SelectOption list
+                    <code class="code-inline">List&lt;SelectOption&gt;</code> Visualforce SelectOption list
                   </div>
                   <div class="method-subtitle">
                     Author
@@ -935,7 +931,7 @@
                 <div class="method global">
                   <h4 class="method-title " id="RecordTypes.getStringRecordTypesForSelectList">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/salesforce-trigger-framework/tree/main/force-app/main/default/classes/RecordTypes.cls#L368">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/salesforce-trigger-framework/tree/main/force-app/main/default/classes/RecordTypes.cls#L370">
                       getStringRecordTypesForSelectList(objectName)
                     </a>
                   </h4>
@@ -959,7 +955,7 @@
                     Returns
                   </div>
                   <div class="method-subtitle-description">
-                    Visualforce SelectOption list
+                    <code class="code-inline">List&lt;SelectOption&gt;</code> Visualforce SelectOption list
                   </div>
                   <div class="method-subtitle">
                     Author

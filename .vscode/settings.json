@@ -5,5 +5,11 @@
     "**/.sfdx": true
 },
 "editor.insertSpaces": false,
-"editor.detectIndentation": false
+"editor.detectIndentation": false,
+"apexPMD.rulesets": [
+	"pmd/apexQuickStart.xml"
+],
+"apexPMD.runOnFileChange": true,
+"apexPMD.runOnFileOpen": true,
+"apexPMD.showStdOut": true
 }

@@ -1,3 +1,4 @@
+@SuppressWarnings('PMD.AvoidGlobalModifier')
 /*-----------------------------------------------------------------------------------------------
  * Written by Evan Callahan, copyright (c) 2010 Groundwire
  * This program is released under the GNU General Public License. http://www.gnu.org/licenses/
@@ -13,7 +14,7 @@
  -----------------------------------------------------------------------------------------------*/
 
 /**
- * This class is meant to allow for access to Record Type information from within other classes.
+ * @description This class is meant to allow for access to Record Type information from within other classes.
  * <br>
  * It is called statically, and therefore will supply the same information to all calls made from
  * within one transaction, or set of trigger calls. This is beneficial because this info should
@@ -30,26 +31,26 @@
  */
 global class RecordTypes {
 	/**
-	 * Global schema describe
+	 * @description Global schema describe
 	 */
 	private static Map<String, Schema.SObjectType> gd;
 	/**
-	 * Map of Record Types by Object name, then by Id
+	 * @description Map of Record Types by Object name, then by Id
 	 */
 	@testVisible
 	private static Map<String, Map<Id, Schema.RecordTypeInfo>> recordTypesById = new Map<String, Map<Id, Schema.RecordTypeInfo>>();
 	/**
-	 * Map of Record Types by Object name, then by Name
+	 * @description Map of Record Types by Object name, then by Name
 	 */
 	@testVisible
 	private static Map<String, Map<String, Schema.RecordTypeInfo>> recordTypesByName = new Map<String, Map<String, Schema.RecordTypeInfo>>();
 	/**
-	 * Map of Record Types by Object name, then by DeveloperName
+	 * @description Map of Record Types by Object name, then by DeveloperName
 	 */
 	@testVisible
 	private static Map<String, Map<String, Schema.RecordTypeInfo>> recordTypesByDevName = new Map<String, Map<String, Schema.RecordTypeInfo>>();
 	/**
-	 * Map of Record Types by Object name, then by
+	 * @description Map of Record Types by Object name, then by
 	 */
 	@testVisible
 	private static List<Schema.Recordtypeinfo> recordTypesList = new List<Schema.Recordtypeinfo>();
@@ -75,7 +76,7 @@ global class RecordTypes {
 			recordTypesByDevName.put(objectName, d.getRecordTypeInfosByDeveloperName());
 			recordTypesById.put(objectName, d.getRecordTypeInfosById());
 			recordTypesList = d.getRecordTypeInfos();
-			for (integer i = recordTypesList.size() - 1; i >= 0; i--) {
+			for (Integer i = recordTypesList.size() - 1; i >= 0; i--) {
 				if (recordTypesList[i].getName() == 'Master' || !recordTypesList[i].isAvailable()) {
 					recordTypesList.remove(i);
 				}
@@ -90,8 +91,8 @@ global class RecordTypes {
 
 	/**
 	 * @description Given an object and RT Name, give the RecordType object
-	 *              Note: Since Record Type Name is not unique, this section could give unpredicable results
-	 *              If possible, DO NOT USE these methods - use DeveloperName instead
+	 *              <br/>Note: Since Record Type Name is not unique, this section could give unpredicable results
+	 *              <br/>If possible, DO NOT USE these methods - use DeveloperName instead
 	 * @author David Schach
 	 * @param  objectName     SObject name
 	 * @param  recordTypeName Record Type Name (can include spaces)
@@ -114,7 +115,7 @@ global class RecordTypes {
 
 	/**
 	 * @description Given an object and RT Name, give the recordTypeId
-	 *              Note: Since Record Type Name is not unique, this could give unpredicable results
+	 *              <br/><bNote: Since Record Type Name is not unique, this could give unpredicable results
 	 * @author David Schach
 	 * @param  objectName     SObject name
 	 * @param  recordTypeName Record Type Name (can include spaces)
@@ -127,7 +128,7 @@ global class RecordTypes {
 
 	/**
 	 * @description Given an object and RT Name, give the recordTypeId
-	 *              Note: Since Record Type Name is not unique, this could give unpredicable results
+	 *              <br/>Note: Since Record Type Name is not unique, this could give unpredicable results
 	 * @author David Schach
 	 * @param  objectName     SObject name
 	 * @param  recordTypeName Record Type Name (can include spaces)
@@ -146,9 +147,9 @@ global class RecordTypes {
 	/**
 	 * @description Given an object and RT DeveloperName, give the recordTypeId
 	 * @author David Schach
-	 * @param  objectName     SObject name
-	 * @param  recordTypeName Record Type DeveloperName (cannot include spaces)
-	 * @return                `Schema.RecordTypeInfo` RecordTypeInfo object
+	 * @param  objectName              SObject name
+	 * @param  recordTypeDeveloperName Record Type DeveloperName (cannot include spaces)
+	 * @return                         `Schema.RecordTypeInfo` RecordTypeInfo object
 	 */
 	global static Schema.RecordTypeInfo getRecordTypeFromDeveloperName(String objectName, String recordTypeDeveloperName) {
 		// make sure we have this object's record types mapped
@@ -169,7 +170,7 @@ global class RecordTypes {
 	 * @description Given an object and RT DeveloperName, give the Record Type Name
 	 * @author David Schach
 	 * @param  objectName     SObject name
-	 * @param  recordTypeName Record Type DeveloperName (cannot include spaces)
+	 * @param  recordTypeDeveloperName Record Type DeveloperName (cannot include spaces)
 	 * @return                RecordType Name
 	 */
 	global static String getRecordTypeNameFromDeveloperName(String objectName, String recordTypeDeveloperName) {
@@ -180,9 +181,9 @@ global class RecordTypes {
 	/**
 	 * @description Given an object and RT DeveloperName, give the recordTypeId
 	 * @author David Schach
-	 * @param  objectName     SObject name
-	 * @param  recordTypeName Record Type DeveloperName (cannot include spaces)
-	 * @return                RecordType Id
+	 * @param  objectName              SObject name
+	 * @param  recordTypeDeveloperName Record Type DeveloperName (cannot include spaces)
+	 * @return                         RecordType Id
 	 * @example
 	 * RecordTypes.getRecordTypeIdFromDeveloperName('Account','Person_Account')
 	 */
@@ -267,9 +268,9 @@ global class RecordTypes {
 	/**
 	 * @description Gives a set of record type Ids from an object and a set of developernames
 	 * @author David Schach
-	 * @param  objectName        Object of interest
-	 * @param  RecordTypeNameSet Set of DeveloperNames
-	 * @return                   `Set<Id>`
+	 * @param  objectName           Object of interest
+	 * @param  recordTypeDevNameSet Set of DeveloperNames
+	 * @return                      `Set<Id>`
 	 */
 	global static Set<Id> getRecordTypeIdSetFromDevNames(String objectName, Set<String> recordTypeDevNameSet) {
 		Set<Id> recordTypeIds = new Set<Id>();
