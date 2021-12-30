@@ -1,6 +1,6 @@
 engine:
   source:
-    - path: "${workspaceFolder}/recordtypes/main/default/classes"
+    - path: "${workspaceFolder}/force-app/main/default/classes"
       sourceUrl: https://github.com/dschach/salesforce-trigger-framework/tree/main/force-app/main/default/classes
   targetDirectory: "${workspaceFolder}/docs"
   #excludes:
