@@ -1,7 +1,7 @@
 {
 	"packageDirectories": [
 		{
-			"path": "recordtypes",
+			"path": "force-app",
 			"default": true
 		}
 	],
