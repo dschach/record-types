@@ -1,6 +1,5 @@
 /**
  * @description Test class for RecordTypes.cls
- * We test nonexistent object names, nonexistent record type names, null values, and existing Account record type (if available)
  *
  * @author Evan Callahan
  * @since  2010
@@ -12,6 +11,7 @@
 public with sharing class RecordTypesTest {
  /**
   * @description Test various record types and names
+  * <br>We test nonexistent object names, nonexistent record type names, null values, and existing Account record type (if available)
   */
 	@isTest
 	static void testRecTypes() {
@@ -19,31 +19,31 @@ public with sharing class RecordTypesTest {
 
 		System.assertEquals(null, RecordTypes.getRecordType('Bogus', null));
 
-		System.AssertEquals(null, RecordTypes.getRecordTypeIdFromName('Bogust', 'Bogus'));
-		System.AssertEquals(null, RecordTypes.getRecordTypeDeveloperNameFromName('Bogust', 'Bogus'));
+		System.assertEquals(null, RecordTypes.getRecordTypeIdFromName('Bogust', 'Bogus'));
+		System.assertEquals(null, RecordTypes.getRecordTypeDeveloperNameFromName('Bogust', 'Bogus'));
 
-		System.AssertEquals(null, RecordTypes.getRecordTypeNameFromDeveloperName('Bogus', 'Bogus'));
-		System.AssertEquals(null, RecordTypes.getRecordTypeIdFromDeveloperName('Bogus', 'Bogus'));
+		System.assertEquals(null, RecordTypes.getRecordTypeNameFromDeveloperName('Bogus', 'Bogus'));
+		System.assertEquals(null, RecordTypes.getRecordTypeIdFromDeveloperName('Bogus', 'Bogus'));
 
-		System.AssertEquals(null, RecordTypes.getRecordTypeNameFromId('Bogus', null));
-		System.AssertEquals(null, RecordTypes.getRecordTypeDeveloperNameFromId('bogus', null));
+		System.assertEquals(null, RecordTypes.getRecordTypeNameFromId('Bogus', null));
+		System.assertEquals(null, RecordTypes.getRecordTypeDeveloperNameFromId('bogus', null));
 
-		System.AssertEquals(null, RecordTypes.getRecordTypeIdFromDeveloperName('Bogus', 'Bogus'));
-		System.AssertEquals(null, RecordTypes.getRecordTypeIdFromName('Bogus', 'Bogus'));
+		System.assertEquals(null, RecordTypes.getRecordTypeIdFromDeveloperName('Bogus', 'Bogus'));
+		System.assertEquals(null, RecordTypes.getRecordTypeIdFromName('Bogus', 'Bogus'));
 
 		//Test with Account
-		System.AssertEquals(null, RecordTypes.getRecordTypeIdFromName('Account', 'Bogus'));
+		System.assertEquals(null, RecordTypes.getRecordTypeIdFromName('Account', 'Bogus'));
 
-		System.AssertEquals(null, RecordTypes.getRecordTypeDeveloperNameFromName('Account', 'Bogus'));
+		System.assertEquals(null, RecordTypes.getRecordTypeDeveloperNameFromName('Account', 'Bogus'));
 
-		System.AssertEquals(null, RecordTypes.getRecordTypeNameFromDeveloperName('Account', 'Bogus'));
-		System.AssertEquals(null, RecordTypes.getRecordTypeIdFromDeveloperName('Account', 'Bogus'));
+		System.assertEquals(null, RecordTypes.getRecordTypeNameFromDeveloperName('Account', 'Bogus'));
+		System.assertEquals(null, RecordTypes.getRecordTypeIdFromDeveloperName('Account', 'Bogus'));
 
-		System.AssertEquals(null, RecordTypes.getRecordTypeNameFromId('Account', null));
-		System.AssertEquals(null, RecordTypes.getRecordTypeDeveloperNameFromId('Account', null));
+		System.assertEquals(null, RecordTypes.getRecordTypeNameFromId('Account', null));
+		System.assertEquals(null, RecordTypes.getRecordTypeDeveloperNameFromId('Account', null));
 
-		System.AssertEquals(null, RecordTypes.getRecordTypeIdFromDeveloperName('Account', 'Bogus'));
-		System.AssertEquals(null, RecordTypes.getRecordTypeIdFromName('Account', 'Bogus'));
+		System.assertEquals(null, RecordTypes.getRecordTypeIdFromDeveloperName('Account', 'Bogus'));
+		System.assertEquals(null, RecordTypes.getRecordTypeIdFromName('Account', 'Bogus'));
 
 		System.assert(RecordTypes.getRecordTypeDevNameIdMap('Bogus').isEmpty());
 		System.assert(RecordTypes.getRecordTypeNameIdMap('Bogus').isEmpty());
@@ -68,20 +68,20 @@ public with sharing class RecordTypesTest {
 
 			RecordTypes.getRecordType('Account', activeRT.Id);
 
-			System.AssertEquals(activeRT.Id, RecordTypes.getRecordTypeIdFromName('Account', activeRt.Name));
+			System.assertEquals(activeRT.Id, RecordTypes.getRecordTypeIdFromName('Account', activeRt.Name));
 			clearMaps();
 
-			System.AssertEquals(activeRT.DeveloperName, RecordTypes.getRecordTypeDeveloperNameFromName('Account', activeRT.Name));
+			System.assertEquals(activeRT.DeveloperName, RecordTypes.getRecordTypeDeveloperNameFromName('Account', activeRT.Name));
 			clearMaps();
 
-			System.AssertEquals(activeRT.Name, RecordTypes.getRecordTypeNameFromDeveloperName('Account', activeRT.DeveloperName));
-			System.AssertEquals(activeRT.Id, RecordTypes.getRecordTypeIdFromDeveloperName('Account', activeRT.DeveloperName));
+			System.assertEquals(activeRT.Name, RecordTypes.getRecordTypeNameFromDeveloperName('Account', activeRT.DeveloperName));
+			System.assertEquals(activeRT.Id, RecordTypes.getRecordTypeIdFromDeveloperName('Account', activeRT.DeveloperName));
 			clearMaps();
 
-			System.AssertEquals(activeRT.Name, RecordTypes.getRecordTypeNameFromId('Account', activeRT.Id));
+			System.assertEquals(activeRT.Name, RecordTypes.getRecordTypeNameFromId('Account', activeRT.Id));
 			clearMaps();
 
-			System.AssertEquals(activeRT.DeveloperName, RecordTypes.getRecordTypeDeveloperNameFromId('Account', activeRT.Id));
+			System.assertEquals(activeRT.DeveloperName, RecordTypes.getRecordTypeDeveloperNameFromId('Account', activeRT.Id));
 			clearMaps();
 
 			Set<String> rtNames = new Set<String>();

@@ -39,3 +39,4 @@ $RECYCLE.BIN/
 # Local environment variables
 .env
 .vscode/settings.json
+.pmdCache
