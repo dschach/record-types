@@ -50,7 +50,7 @@ global class RecordTypes {
 	@testVisible
 	private static Map<String, Map<String, Schema.RecordTypeInfo>> recordTypesByDevName = new Map<String, Map<String, Schema.RecordTypeInfo>>();
 	/**
-	 * @description Map of Record Types by Object name, then by
+	 * @description List of Record Type Info objects
 	 */
 	@testVisible
 	private static List<Schema.Recordtypeinfo> recordTypesList = new List<Schema.Recordtypeinfo>();
@@ -60,6 +60,7 @@ global class RecordTypes {
 	 ********************************************/
 	/**
 	 * @description Gets record type maps for a new object
+	 * <br>We check in each public method if the object has already been described so we do not eagerly load DescribeSObjectResult
 	 * @author David Schach
 	 * @param  objectName SObject name
 	 */
@@ -71,6 +72,7 @@ global class RecordTypes {
 
 		// get the object description
 		if (gd.containsKey(objectName)) {
+			@SuppressWarnings('PMD.EagerlyLoadedDescribeSObjectResult')
 			Schema.DescribeSObjectResult d = gd.get(objectName).getDescribe();
 			recordTypesByName.put(objectName, d.getRecordTypeInfosByName());
 			recordTypesByDevName.put(objectName, d.getRecordTypeInfosByDeveloperName());
@@ -92,7 +94,7 @@ global class RecordTypes {
 	/**
 	 * @description Given an object and RT Name, give the RecordType object
 	 *              <br/>Note: Since Record Type Name is not unique, this section could give unpredicable results
-	 *              <br/>If possible, DO NOT USE these methods - use DeveloperName instead
+	 *              <br/>If possible, DO NOT USE this method - use DeveloperName instead
 	 * @author David Schach
 	 * @param  objectName     SObject name
 	 * @param  recordTypeName Record Type Name (can include spaces)
@@ -116,6 +118,7 @@ global class RecordTypes {
 	/**
 	 * @description Given an object and RT Name, give the recordTypeId
 	 *              <br/><bNote: Since Record Type Name is not unique, this could give unpredicable results
+	 *              <br/>If possible, DO NOT USE this method - use DeveloperName instead
 	 * @author David Schach
 	 * @param  objectName     SObject name
 	 * @param  recordTypeName Record Type Name (can include spaces)

@@ -43,10 +43,10 @@
             </summary>
             <ul>
               <!-- menu items -->
-              <li title="RecordTypes" id="item-RecordTypes" class="nav-item class " onclick="goToLocation('RecordTypes.html');">
+              <li title="RecordTypes" id="item-RecordTypes" class="nav-item class global" onclick="goToLocation('RecordTypes.html');">
                 <a tabindex="1" href="javascript:void(0)">RecordTypes</a>
               </li>
-              <li title="RecordTypesTest" id="item-RecordTypesTest" class="nav-item class " onclick="goToLocation('RecordTypesTest.html');">
+              <li title="RecordTypesTest" id="item-RecordTypesTest" class="nav-item class public" onclick="goToLocation('RecordTypesTest.html');">
                 <a tabindex="1" href="javascript:void(0)">RecordTypesTest</a>
               </li>
             </ul>
@@ -87,7 +87,7 @@
 
             <h2 class="class-title top-level-type" id="RecordTypes">
 
-              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/salesforce-trigger-framework/tree/main/force-app/main/default/classes/RecordTypes.cls#L32">
+              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L32">
                 RecordTypes
               </a>
             </h2>
@@ -120,9 +120,9 @@
                     <th>Annotations</th>
                     <th>Description</th>
                   </tr>
-                  <tr class="property ">
+                  <tr class="property private">
                     <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/salesforce-trigger-framework/tree/main/force-app/main/default/classes/RecordTypes.cls#L36">
+                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L36">
                         gd
                       </a></td>
                     <td>
@@ -136,9 +136,9 @@
                       Global schema describe
                     </td>
                   </tr>
-                  <tr class="property ">
+                  <tr class="property private">
                     <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/salesforce-trigger-framework/tree/main/force-app/main/default/classes/RecordTypes.cls#L41">
+                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L41">
                         recordTypesById
                       </a></td>
                     <td>
@@ -154,9 +154,9 @@
                       Map of Record Types by Object name, then by Id
                     </td>
                   </tr>
-                  <tr class="property ">
+                  <tr class="property private">
                     <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/salesforce-trigger-framework/tree/main/force-app/main/default/classes/RecordTypes.cls#L46">
+                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L46">
                         recordTypesByName
                       </a></td>
                     <td>
@@ -172,9 +172,9 @@
                       Map of Record Types by Object name, then by Name
                     </td>
                   </tr>
-                  <tr class="property ">
+                  <tr class="property private">
                     <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/salesforce-trigger-framework/tree/main/force-app/main/default/classes/RecordTypes.cls#L51">
+                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L51">
                         recordTypesByDevName
                       </a></td>
                     <td>
@@ -190,9 +190,9 @@
                       Map of Record Types by Object name, then by DeveloperName
                     </td>
                   </tr>
-                  <tr class="property ">
+                  <tr class="property private">
                     <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/salesforce-trigger-framework/tree/main/force-app/main/default/classes/RecordTypes.cls#L56">
+                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L56">
                         recordTypesList
                       </a></td>
                     <td>
@@ -205,7 +205,7 @@
                     </td>
 
                     <td class="attribute-description">
-                      Map of Record Types by Object name, then by
+                      List of Record Type Info objects
                     </td>
                   </tr>
                 </table>
@@ -229,7 +229,7 @@
                     </a>
 
                     <div class="methods-toc__description">
-                      Given an object and RT Name, give the RecordType object <br>Note: Since Record Type Name is not unique, this section could give unpredicable results <br>If possible, DO NOT USE these methods - use DeveloperName instead
+                      Given an object and RT Name, give the RecordType object <br>Note: Since Record Type Name is not unique, this section could give unpredicable results <br>If possible, DO NOT USE this method - use DeveloperName instead
                     </div>
                   </li>
                   <li class="method global">
@@ -238,7 +238,7 @@
                     </a>
 
                     <div class="methods-toc__description">
-                      Given an object and RT Name, give the recordTypeId <br>&lt;bNote: Since Record Type Name is not unique, this could give unpredicable results
+                      Given an object and RT Name, give the recordTypeId <br>&lt;bNote: Since Record Type Name is not unique, this could give unpredicable results <br>If possible, DO NOT USE this method - use DeveloperName instead
                     </div>
                   </li>
                   <li class="method global">
@@ -362,7 +362,7 @@
                 <div class="method private">
                   <h4 class="method-title " id="RecordTypes.fillMapsForObject">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/salesforce-trigger-framework/tree/main/force-app/main/default/classes/RecordTypes.cls#L66">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L67">
                       fillMapsForObject(objectName)
                     </a>
                   </h4>
@@ -380,12 +380,12 @@
                 <div class="method global">
                   <h4 class="method-title " id="RecordTypes.getRecordTypeFromName">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/salesforce-trigger-framework/tree/main/force-app/main/default/classes/RecordTypes.cls#L101">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L103">
                       getRecordTypeFromName(objectName, recordTypeName)
                     </a>
                   </h4>
                   <div class="method-description">
-                    Given an object and RT Name, give the RecordType object <br>Note: Since Record Type Name is not unique, this section could give unpredicable results <br>If possible, DO NOT USE these methods - use DeveloperName instead
+                    Given an object and RT Name, give the RecordType object <br>Note: Since Record Type Name is not unique, this section could give unpredicable results <br>If possible, DO NOT USE this method - use DeveloperName instead
                   </div>
                   <div class="method-subtitle">
                     Signature
@@ -421,12 +421,12 @@
                 <div class="method global">
                   <h4 class="method-title " id="RecordTypes.getRecordTypeIdFromName">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/salesforce-trigger-framework/tree/main/force-app/main/default/classes/RecordTypes.cls#L124">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L127">
                       getRecordTypeIdFromName(objectName, recordTypeName)
                     </a>
                   </h4>
                   <div class="method-description">
-                    Given an object and RT Name, give the recordTypeId <br>&lt;bNote: Since Record Type Name is not unique, this could give unpredicable results
+                    Given an object and RT Name, give the recordTypeId <br>&lt;bNote: Since Record Type Name is not unique, this could give unpredicable results <br>If possible, DO NOT USE this method - use DeveloperName instead
                   </div>
                   <div class="method-subtitle">
                     Signature
@@ -462,7 +462,7 @@
                 <div class="method global">
                   <h4 class="method-title " id="RecordTypes.getRecordTypeDeveloperNameFromName">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/salesforce-trigger-framework/tree/main/force-app/main/default/classes/RecordTypes.cls#L137">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L140">
                       getRecordTypeDeveloperNameFromName(objectName, recordTypeName)
                     </a>
                   </h4>
@@ -503,7 +503,7 @@
                 <div class="method global">
                   <h4 class="method-title " id="RecordTypes.getRecordTypeFromDeveloperName">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/salesforce-trigger-framework/tree/main/force-app/main/default/classes/RecordTypes.cls#L154">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L157">
                       getRecordTypeFromDeveloperName(objectName, recordTypeDeveloperName)
                     </a>
                   </h4>
@@ -544,7 +544,7 @@
                 <div class="method global">
                   <h4 class="method-title " id="RecordTypes.getRecordTypeNameFromDeveloperName">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/salesforce-trigger-framework/tree/main/force-app/main/default/classes/RecordTypes.cls#L176">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L179">
                       getRecordTypeNameFromDeveloperName(objectName, recordTypeDeveloperName)
                     </a>
                   </h4>
@@ -585,7 +585,7 @@
                 <div class="method global">
                   <h4 class="method-title " id="RecordTypes.getRecordTypeIdFromDeveloperName">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/salesforce-trigger-framework/tree/main/force-app/main/default/classes/RecordTypes.cls#L190">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L193">
                       getRecordTypeIdFromDeveloperName(objectName, recordTypeDeveloperName)
                     </a>
                   </h4>
@@ -630,7 +630,7 @@
                 <div class="method global">
                   <h4 class="method-title " id="RecordTypes.getRecordTypeFromId">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/salesforce-trigger-framework/tree/main/force-app/main/default/classes/RecordTypes.cls#L207">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L210">
                       getRecordTypeFromId(objectName, recordTypeId)
                     </a>
                   </h4>
@@ -671,7 +671,7 @@
                 <div class="method global">
                   <h4 class="method-title " id="RecordTypes.getRecordTypeNameFromId">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/salesforce-trigger-framework/tree/main/force-app/main/default/classes/RecordTypes.cls#L229">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L232">
                       getRecordTypeNameFromId(objectName, recordTypeId)
                     </a>
                   </h4>
@@ -712,7 +712,7 @@
                 <div class="method global">
                   <h4 class="method-title " id="RecordTypes.getRecordTypeDeveloperNameFromId">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/salesforce-trigger-framework/tree/main/force-app/main/default/classes/RecordTypes.cls#L241">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L244">
                       getRecordTypeDeveloperNameFromId(objectName, recordTypeId)
                     </a>
                   </h4>
@@ -753,7 +753,7 @@
                 <div class="method global">
                   <h4 class="method-title " id="RecordTypes.getRecordType">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/salesforce-trigger-framework/tree/main/force-app/main/default/classes/RecordTypes.cls#L253">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L256">
                       getRecordType(objectName, recordTypeId)
                     </a>
                   </h4>
@@ -794,7 +794,7 @@
                 <div class="method global">
                   <h4 class="method-title " id="RecordTypes.getRecordTypeIdSetFromDevNames">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/salesforce-trigger-framework/tree/main/force-app/main/default/classes/RecordTypes.cls#L275">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L278">
                       getRecordTypeIdSetFromDevNames(objectName, recordTypeDevNameSet)
                     </a>
                   </h4>
@@ -835,7 +835,7 @@
                 <div class="method global">
                   <h4 class="method-title " id="RecordTypes.getRecordTypeDevNameIdMap">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/salesforce-trigger-framework/tree/main/force-app/main/default/classes/RecordTypes.cls#L301">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L304">
                       getRecordTypeDevNameIdMap(objectName)
                     </a>
                   </h4>
@@ -871,7 +871,7 @@
                 <div class="method global">
                   <h4 class="method-title " id="RecordTypes.getRecordTypeNameIdMap">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/salesforce-trigger-framework/tree/main/force-app/main/default/classes/RecordTypes.cls#L327">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L330">
                       getRecordTypeNameIdMap(objectName)
                     </a>
                   </h4>
@@ -907,7 +907,7 @@
                 <div class="method global">
                   <h4 class="method-title " id="RecordTypes.getRecordTypesForSelectList">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/salesforce-trigger-framework/tree/main/force-app/main/default/classes/RecordTypes.cls#L352">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L355">
                       getRecordTypesForSelectList(objectName)
                     </a>
                   </h4>
@@ -943,7 +943,7 @@
                 <div class="method global">
                   <h4 class="method-title " id="RecordTypes.getStringRecordTypesForSelectList">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/salesforce-trigger-framework/tree/main/force-app/main/default/classes/RecordTypes.cls#L370">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L373">
                       getStringRecordTypesForSelectList(objectName)
                     </a>
                   </h4>

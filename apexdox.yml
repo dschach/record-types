@@ -17,9 +17,9 @@ engine:
     - private
     - webService
     - testMethod
-  #homePagePath: "/"
+  homePagePath: "${workspaceFolder}/doc-assets/homepage.html"
   #pages:
-  #  - "${workspaceFolder}/documentation/Funny.html"
+  #  - "${workspaceFolder}/doc-assets/index.html"
   assets:
     - "${workspaceFolder}/doc-assets/logo.png"
     - "${workspaceFolder}/doc-assets/favicon.png"

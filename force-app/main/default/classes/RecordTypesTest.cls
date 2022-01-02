@@ -9,10 +9,10 @@
  */
 @IsTest
 public with sharing class RecordTypesTest {
- /**
-  * @description Test various record types and names
-  * <br>We test nonexistent object names, nonexistent record type names, null values, and existing Account record type (if available)
-  */
+	/**
+	 * @description Test various record types and names
+	 * <br>We test nonexistent object names, nonexistent record type names, null values, and existing Account record type (if available)
+	 */
 	@isTest
 	static void testRecTypes() {
 		//Test with Bogus object
@@ -56,7 +56,7 @@ public with sharing class RecordTypesTest {
 	@IsTest
 	static void testAccountRecordType() {
 		List<RecordType> accountRecordTypes = [SELECT Id, Name, DeveloperName FROM RecordType WHERE IsActive = TRUE AND SObjectType = 'Account'];
-
+		System.debug(accountRecordTypes);
 		RecordTypes.getRecordTypeNameIdMap('Account');
 		clearMaps();
 
@@ -68,7 +68,7 @@ public with sharing class RecordTypesTest {
 
 			RecordTypes.getRecordType('Account', activeRT.Id);
 
-			System.assertEquals(activeRT.Id, RecordTypes.getRecordTypeIdFromName('Account', activeRt.Name));
+			System.assertEquals(activeRT.Id, RecordTypes.getRecordTypeIdFromName('Account', activeRt.Name), 'Submitted ' + activeRT.Name + ' and expected an Id to be returned: ' + activeRT.Id);
 			clearMaps();
 
 			System.assertEquals(activeRT.DeveloperName, RecordTypes.getRecordTypeDeveloperNameFromName('Account', activeRT.Name));
