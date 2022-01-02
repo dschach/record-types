@@ -8,4 +8,5 @@
 .vscode
 
 coverage/
-docs/assets/
+# ApexDox website
+docs/

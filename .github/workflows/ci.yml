@@ -45,8 +45,8 @@ jobs:
 
       # Prettier formatting
       - name: "Code formatting EXECUTION with Prettier"
-        #run: npm run prettier:apex:local
-        run: npm run prettier --apex-standalone-parser built-in --write "**/*.{cls,cmp,component,css,js,json,md,page,trigger,xml,yaml,yml}"
+        run: npm run prettier:apex:local
+        #run: npm prettier --apex-standalone-parser built-in --write "**/*.{cls,cmp,component,css,js,json,md,page,trigger,xml,yaml,yml}"
 
       # Stop local Apex parser server for Prettier
       - name: "Stop local Apex parser server for Prettier"

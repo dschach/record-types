@@ -12,5 +12,6 @@
 "apexPMD.runOnFileChange": true,
 "apexPMD.runOnFileOpen": true,
 "apexPMD.showStdOut": true,
-"apexPMD.enableCache": true
+"apexPMD.enableCache": true,
+"editor.tabSize": 2
 }
