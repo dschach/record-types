@@ -117,7 +117,7 @@ global class RecordTypes {
 
 	/**
 	 * @description Given an object and RT Name, give the recordTypeId
-	 *              <br/><bNote: Since Record Type Name is not unique, this could give unpredicable results
+	 *              <br/>Note: Since Record Type Name is not unique, this could give unpredicable results
 	 *              <br/>If possible, DO NOT USE this method - use DeveloperName instead
 	 * @author David Schach
 	 * @param  objectName     SObject name
