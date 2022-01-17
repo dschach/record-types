@@ -31,7 +31,7 @@
  * @group RecordTypes
  * @see RecordTypesTest
  */
-global class RecordTypes {
+global inherited sharing class RecordTypes {
 	/**
 	 * @description Global schema describe
 	 */
