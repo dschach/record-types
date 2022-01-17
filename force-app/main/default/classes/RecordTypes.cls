@@ -25,9 +25,8 @@
  * Usage recommendation: Always use DeveloperName instead of Name, as this is more likely to be
  * hard-coded in places, while the Name is actually a label and may change (especially due to user language).
  *
- * @author Evan Callahan, Groundwiare
+ * @author Evan Callahan, Groundwiare & David Schach, X-Squared on Demand
  * @since 2010
- * @author David Schach, X-Squared on Demand
  * @group RecordTypes
  * @see RecordTypesTest
  */
