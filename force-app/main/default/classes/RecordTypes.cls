@@ -14,7 +14,7 @@
  -----------------------------------------------------------------------------------------------*/
 
 /**
- * @description This class is meant to allow for access to Record Type information from within other classes.
+ * @description This class is allows for easy, readable access to Record Type information from other classes.
  * <br>
  * It is called statically, and therefore will supply the same information to all calls made from
  * within one transaction, or set of trigger calls. This is beneficial because this info should
@@ -23,6 +23,7 @@
  * <br>
  * Usage recommendation: Always use DeveloperName instead of Name, as this is more likely to be
  * hard-coded in places, while the Name is actually a label and may change (especially due to user language).
+ *
  * @author Evan Callahan
  * @since 2010
  * @author David Schach
@@ -62,7 +63,7 @@ global class RecordTypes {
 	 * @description Gets record type maps for a new object
 	 * <br>We check in each public method if the object has already been described so we do not eagerly load DescribeSObjectResult
 	 * @author David Schach
-	 * @param  objectName SObject name
+	 * @param  objectName Object name (with __c if custom, etc)
 	 */
 	private static void fillMapsForObject(String objectName) {
 		// get the object map the first time
@@ -96,7 +97,7 @@ global class RecordTypes {
 	 *              <br/>Note: Since Record Type Name is not unique, this section could give unpredicable results
 	 *              <br/>If possible, DO NOT USE this method - use DeveloperName instead
 	 * @author David Schach
-	 * @param  objectName     SObject name
+	 * @param  objectName     Object name (with __c if custom, etc)
 	 * @param  recordTypeName Record Type Name (can include spaces)
 	 * @return                `Schema.RecordTypeInfo` RecordTypeInfo object
 	 */
@@ -120,7 +121,7 @@ global class RecordTypes {
 	 *              <br/>Note: Since Record Type Name is not unique, this could give unpredicable results
 	 *              <br/>If possible, DO NOT USE this method - use DeveloperName instead
 	 * @author David Schach
-	 * @param  objectName     SObject name
+	 * @param  objectName     Object name (with __c if custom, etc)
 	 * @param  recordTypeName Record Type Name (can include spaces)
 	 * @return                RecordType Id
 	 */
@@ -133,7 +134,7 @@ global class RecordTypes {
 	 * @description Given an object and RT Name, give the recordTypeId
 	 *              <br/>Note: Since Record Type Name is not unique, this could give unpredicable results
 	 * @author David Schach
-	 * @param  objectName     SObject name
+	 * @param  objectName     Object name (with __c if custom, etc)
 	 * @param  recordTypeName Record Type Name (can include spaces)
 	 * @return                RecordType DeveloperName
 	 */
@@ -150,7 +151,7 @@ global class RecordTypes {
 	/**
 	 * @description Given an object and RT DeveloperName, give the recordTypeId
 	 * @author David Schach
-	 * @param  objectName              SObject name
+	 * @param  objectName              Object name (with __c if custom, etc)
 	 * @param  recordTypeDeveloperName Record Type DeveloperName (cannot include spaces)
 	 * @return                         `Schema.RecordTypeInfo` RecordTypeInfo object
 	 */
@@ -172,9 +173,11 @@ global class RecordTypes {
 	/**
 	 * @description Given an object and RT DeveloperName, give the Record Type Name
 	 * @author David Schach
-	 * @param  objectName     SObject name
+	 * @param  objectName     Object name (with __c if custom, etc)
 	 * @param  recordTypeDeveloperName Record Type DeveloperName (cannot include spaces)
 	 * @return                RecordType Name
+	 * @example
+	 * RecordTypes.getRecordTypeNameFromDeveloperName('Account','Person_Account')
 	 */
 	global static String getRecordTypeNameFromDeveloperName(String objectName, String recordTypeDeveloperName) {
 		// prettier-ignore
@@ -184,7 +187,7 @@ global class RecordTypes {
 	/**
 	 * @description Given an object and RT DeveloperName, give the recordTypeId
 	 * @author David Schach
-	 * @param  objectName              SObject name
+	 * @param  objectName              Object name (with __c if custom, etc)
 	 * @param  recordTypeDeveloperName Record Type DeveloperName (cannot include spaces)
 	 * @return                         RecordType Id
 	 * @example
@@ -203,7 +206,7 @@ global class RecordTypes {
 	/**
 	 * @description Given an object and RT Id, give the Record Type object
 	 * @author David Schach
-	 * @param  objectName     SObject name
+	 * @param  objectName     Object name (with __c if custom, etc)
 	 * @param  recordTypeId   Record Type Id
 	 * @return                RecordTypeInfo object
 	 */
@@ -225,7 +228,7 @@ global class RecordTypes {
 	/**
 	 * @description Given an object and RT Id, give the RecordType Name
 	 * @author David Schach
-	 * @param  objectName     SObject name
+	 * @param  objectName     Object name (with __c if custom, etc)
 	 * @param  recordTypeId   Record Type Id
 	 * @return                RecordType Name
 	 */
@@ -236,8 +239,9 @@ global class RecordTypes {
 
 	/**
 	 * @description Given an object and RT Id, give the recordType DeveloperName
+	 * <br>This saves a query on the `RecordType` object
 	 * @author David Schach
-	 * @param  objectName     SObject name
+	 * @param  objectName     Object name (with __c if custom, etc)
 	 * @param  recordTypeId   Record Type Id
 	 * @return                RecordType DeveloperName
 	 */
@@ -249,7 +253,7 @@ global class RecordTypes {
 	/**
 	 * @description Given an object and RT Id, give the recordType object
 	 * @author David Schach
-	 * @param  objectName     SObject name
+	 * @param  objectName     Object name (with __c if custom, etc)
 	 * @param  recordTypeId   Record Type Id
 	 * @return                `Schema.RecordTypeInfo` RecordTypeInfo object
 	 */
@@ -298,7 +302,7 @@ global class RecordTypes {
 	/**
 	 * @description Gives a map of all record type IDs by developer name for an object
 	 * @author David Schach
-	 * @param  objectName     SObject name
+	 * @param  objectName     Object name (with __c if custom, etc)
 	 * @return                `Map<RecordTypeDeveloperName, RecordTypeId>`
 	 */
 	global static Map<String, Id> getRecordTypeDevNameIdMap(String objectName) {
@@ -324,7 +328,7 @@ global class RecordTypes {
 	/**
 	 * @description Gives a map of all record type IDs by name for an object
 	 * @author Evan Callahan
-	 * @param  objectName     SObject name
+	 * @param  objectName     Object name (with __c if custom, etc)
 	 * @return                `Map<RecordType Name, RecordTypeId>`
 	 */
 	global static Map<String, Id> getRecordTypeNameIdMap(String objectName) {
