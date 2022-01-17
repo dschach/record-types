@@ -43,10 +43,10 @@
             </summary>
             <ul>
               <!-- menu items -->
-              <li title="RecordTypes" id="item-RecordTypes" class="nav-item class global" onclick="goToLocation('RecordTypes.html');">
+              <li title="RecordTypes" id="item-RecordTypes" class="nav-item class " onclick="goToLocation('RecordTypes.html');">
                 <a tabindex="1" href="javascript:void(0)">RecordTypes</a>
               </li>
-              <li title="RecordTypesTest" id="item-RecordTypesTest" class="nav-item class public" onclick="goToLocation('RecordTypesTest.html');">
+              <li title="RecordTypesTest" id="item-RecordTypesTest" class="nav-item class " onclick="goToLocation('RecordTypesTest.html');">
                 <a tabindex="1" href="javascript:void(0)">RecordTypesTest</a>
               </li>
             </ul>
@@ -114,13 +114,13 @@
               <h3 class="subsection-title methods">RecordTypesTest Methods</h3>
               <div class="methods-container">
                 <ul class="methods-toc">
-                  <li class="method testmethod">
-                    <a class="methods-toc__entry " href="#RecordTypesTest.testRecTypes">
-                      testRecTypes ()
+                  <li class="method private">
+                    <a class="methods-toc__entry " href="#RecordTypesTest.resetTest">
+                      resetTest ()
                     </a>
 
                     <div class="methods-toc__description">
-                      Test various record types and names <br>We test nonexistent object names, nonexistent record type names, null values, and existing Account record type (if available)
+                      Clear all record type maps to enable using fewer test methods - reset within a method
                     </div>
                   </li>
                   <li class="method testmethod">
@@ -132,32 +132,38 @@
                       Separate method for checking if we have Account record type, and then testing that
                     </div>
                   </li>
-                  <li class="method private">
-                    <a class="methods-toc__entry " href="#RecordTypesTest.clearMaps">
-                      clearMaps ()
+                  <li class="method testmethod">
+                    <a class="methods-toc__entry " href="#RecordTypesTest.testRecTypes">
+                      testRecTypes ()
                     </a>
 
                     <div class="methods-toc__description">
-                      Clear all record type maps to enable using fewer methods
+                      Test various record types and names <br>We test nonexistent object names, nonexistent record type names, null values, and existing Account record type (if available)
                     </div>
                   </li>
                 </ul>
-                <div class="method testmethod">
-                  <h4 class="method-title " id="RecordTypesTest.testRecTypes">
+                <div class="method private">
+                  <h4 class="method-title " id="RecordTypesTest.resetTest">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypesTest.cls#L17">
-                      testRecTypes()
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypesTest.cls#L113">
+                      resetTest()
                     </a>
                   </h4>
                   <div class="method-description">
-                    Test various record types and names <br>We test nonexistent object names, nonexistent record type names, null values, and existing Account record type (if available)
+                    Clear all record type maps to enable using fewer test methods - reset within a method
                   </div>
                   <div class="method-subtitle">
                     Signature
                   </div>
-                  <div class="method-annotations">@isTest</div>
+
                   <div class="method-signature">
-                    static void testRecTypes()
+                    private static void resetTest()
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    David Schach
                   </div>
                 </div>
                 <div class="method testmethod">
@@ -184,28 +190,22 @@
                     David Schach
                   </div>
                 </div>
-                <div class="method private">
-                  <h4 class="method-title " id="RecordTypesTest.clearMaps">
+                <div class="method testmethod">
+                  <h4 class="method-title " id="RecordTypesTest.testRecTypes">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypesTest.cls#L112">
-                      clearMaps()
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypesTest.cls#L17">
+                      testRecTypes()
                     </a>
                   </h4>
                   <div class="method-description">
-                    Clear all record type maps to enable using fewer methods
+                    Test various record types and names <br>We test nonexistent object names, nonexistent record type names, null values, and existing Account record type (if available)
                   </div>
                   <div class="method-subtitle">
                     Signature
                   </div>
-
+                  <div class="method-annotations">@isTest</div>
                   <div class="method-signature">
-                    private static void clearMaps()
-                  </div>
-                  <div class="method-subtitle">
-                    Author
-                  </div>
-                  <div class="method-subtitle-description">
-                    David Schach
+                    static void testRecTypes()
                   </div>
                 </div>
               </div>

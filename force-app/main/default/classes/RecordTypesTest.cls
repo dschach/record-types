@@ -56,33 +56,34 @@ public with sharing class RecordTypesTest {
 	@IsTest
 	static void testAccountRecordType() {
 		List<RecordType> accountRecordTypes = [SELECT Id, Name, DeveloperName FROM RecordType WHERE IsActive = TRUE AND SObjectType = 'Account'];
-		System.debug(accountRecordTypes);
+
 		RecordTypes.getRecordTypeNameIdMap('Account');
-		clearMaps();
+		resetTest();
 
 		RecordTypes.getRecordTypeDevNameIdMap('Account');
-		clearMaps();
+		resetTest();
 
 		if (!accountRecordTypes.isEmpty()) {
 			RecordType activeRT = accountRecordTypes[0];
 
-			RecordTypes.getRecordType('Account', activeRT.Id);
+			Schema.RecordTypeInfo rti = RecordTypes.getRecordType('Account', activeRT.Id);
 
 			System.assertEquals(activeRT.Id, RecordTypes.getRecordTypeIdFromName('Account', activeRt.Name), 'Submitted ' + activeRT.Name + ' and expected an Id to be returned: ' + activeRT.Id);
-			clearMaps();
+			System.assertEquals(rti.getRecordTypeId(), RecordTypes.getRecordTypeIdFromName('Account', activeRt.Name), 'Submitted ' + activeRT.Name + ' and expected an Id: ' + rti.getRecordTypeId());
+			resetTest();
 
-			System.assertEquals(activeRT.DeveloperName, RecordTypes.getRecordTypeDeveloperNameFromName('Account', activeRT.Name));
-			clearMaps();
+			System.assertEquals(activeRT.DeveloperName, RecordTypes.getRecordTypeDeveloperNameFromName('Account', activeRT.Name), 'Error - mismatch on returned developername');
+			resetTest();
 
-			System.assertEquals(activeRT.Name, RecordTypes.getRecordTypeNameFromDeveloperName('Account', activeRT.DeveloperName));
-			System.assertEquals(activeRT.Id, RecordTypes.getRecordTypeIdFromDeveloperName('Account', activeRT.DeveloperName));
-			clearMaps();
+			System.assertEquals(activeRT.Name, RecordTypes.getRecordTypeNameFromDeveloperName('Account', activeRT.DeveloperName), 'Error - mismatch on returned name');
+			System.assertEquals(activeRT.Id, RecordTypes.getRecordTypeIdFromDeveloperName('Account', activeRT.DeveloperName), 'Error - mismatch on returned Id');
+			resetTest();
 
-			System.assertEquals(activeRT.Name, RecordTypes.getRecordTypeNameFromId('Account', activeRT.Id));
-			clearMaps();
+			System.assertEquals(activeRT.Name, RecordTypes.getRecordTypeNameFromId('Account', activeRT.Id), 'Error - mismatch on returned name');
+			resetTest();
 
-			System.assertEquals(activeRT.DeveloperName, RecordTypes.getRecordTypeDeveloperNameFromId('Account', activeRT.Id));
-			clearMaps();
+			System.assertEquals(activeRT.DeveloperName, RecordTypes.getRecordTypeDeveloperNameFromId('Account', activeRT.Id), 'Error - mismatch on returned developername');
+			resetTest();
 
 			Set<String> rtNames = new Set<String>();
 			Set<String> rtDevNames = new Set<String>();
@@ -92,27 +93,24 @@ public with sharing class RecordTypesTest {
 			}
 
 			RecordTypes.getRecordTypeIdSetFromDevNames('Account', rtDevNames);
-			clearMaps();
+			resetTest();
 		}
 		RecordTypes.getRecordTypeNameIdMap('Account');
-		clearMaps();
+		resetTest();
 
 		List<SelectOption> rtOptions = RecordTypes.getRecordTypesForSelectList('Account');
-		System.assertEquals(accountRecordTypes.size(), rtOptions.size());
-		clearMaps();
+		System.assertEquals(accountRecordTypes.size(), rtOptions.size(), 'Error - mismatch on record type count');
+		resetTest();
 
 		rtOptions = RecordTypes.getStringRecordTypesForSelectList('Account');
-		System.assertEquals(accountRecordTypes.size(), rtOptions.size());
+		System.assertEquals(accountRecordTypes.size(), rtOptions.size(), 'Error - mismatch on record type count');
 	}
 
 	/**
-	 * @description Clear all record type maps to enable using fewer methods
+	 * @description Clear all record type maps to enable using fewer test methods - reset within a method
 	 * @author David Schach
 	 */
-	private static void clearMaps() {
-		RecordTypes.recordTypesById.clear();
-		RecordTypes.recordTypesByName.clear();
-		RecordTypes.recordTypesByDevName.clear();
-		RecordTypes.recordTypesList.clear();
+	private static void resetTest() {
+		RecordTypes.clearMapsInTest();
 	}
 }
