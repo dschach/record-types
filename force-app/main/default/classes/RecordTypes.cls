@@ -167,7 +167,7 @@ global inherited sharing class RecordTypes {
 		}
 
 		// now grab and return the requested object
-		Map<String, Schema.RecordTypeInfo> rtMap = recordTypesByName.get(objectName);
+		Map<String, Schema.RecordTypeInfo> rtMap = recordTypesByDevName.get(objectName);
 		if (rtMap != null && rtMap.containsKey(RecordTypeDeveloperName)) {
 			return rtMap.get(recordTypeDeveloperName);
 		} else {
