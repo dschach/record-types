@@ -25,7 +25,7 @@ engine:
     - "${workspaceFolder}/doc-assets/favicon.png"
     - "${workspaceFolder}/doc-assets/icon.png"
   #  - "${workspaceFolder}/documentation/meme.jpg"
-  port: 9090
+  port: 8080
 docblock:
   alignItems: true
   spacious: true

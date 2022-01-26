@@ -77,8 +77,11 @@
 	<rule ref="category/apex/bestpractices.xml/AvoidGlobalModifier" message="Avoid using global modifier">
 		<priority>3</priority>
 	</rule>
-	<rule ref="category/apex/errorprone.xml/AvoidNonExistentAnnotations" />
+	<rule ref="category/apex/errorprone.xml/AvoidNonExistentAnnotations">
+		<priority>2</priority>
+	</rule>
 	<rule ref="category/apex/errorprone.xml/AvoidHardcodingId" message="Avoid hardcoding ID's">
+
 		<priority>3</priority>
 	</rule>
 	<rule ref="category/apex/performance.xml/AvoidDebugStatements">

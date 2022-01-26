@@ -159,6 +159,8 @@ global inherited sharing class RecordTypes {
 	 * @param  objectName              SObject name (with __c if custom, etc)
 	 * @param  recordTypeDeveloperName `RecordType.DeveloperName` (cannot include spaces)
 	 * @return                         `Schema.RecordTypeInfo` RecordTypeInfo object
+	 * @example
+	 * RecordTypes.getRecordTypeFromDeveloperName('Account','Person_Account')
 	 */
 	global static Schema.RecordTypeInfo getRecordTypeFromDeveloperName(String objectName, String recordTypeDeveloperName) {
 		// make sure we have this sObject's record types mapped
@@ -214,7 +216,7 @@ global inherited sharing class RecordTypes {
 	 * @author David Schach
 	 * @param  objectName     SObject name (with __c if custom, etc)
 	 * @param  recordTypeId   RecordType Id
-	 * @return                `RecordTypeInfo` object
+	 * @return                `Schema.RecordTypeInfo` RecordTypeInfo object
 	 */
 	global static Schema.RecordTypeInfo getRecordTypeFromId(String objectName, Id recordTypeId) {
 		// make sure we have this sObject's record types mapped
@@ -284,6 +286,9 @@ global inherited sharing class RecordTypes {
 	 * @param  objectName           Object of interest
 	 * @param  recordTypeDevNameSet Set of DeveloperNames
 	 * @return                      `Set<Id>` All `RecordType` IDs for a given sObject
+	 * @example
+	 * Set<String> rtNames = new Set<String> {'Person_Account', 'Customer'};
+	 * getRecordTypeIdSetFromDevNames('Account', rtNames);
 	 */
 	global static Set<Id> getRecordTypeIdSetFromDevNames(String objectName, Set<String> recordTypeDevNameSet) {
 		Set<Id> recordTypeIds = new Set<Id>();
@@ -309,7 +314,7 @@ global inherited sharing class RecordTypes {
 	 * @description Gives a map of all record type IDs by DeveloperName for an sObject
 	 * @author David Schach
 	 * @param  objectName     SObject name (with __c if custom, etc)
-	 * @return                `Map<RecordTypeDeveloperName, RecordTypeId`>`
+	 * @return                `Map<RecordTypeDeveloperName, RecordTypeId>`
 	 */
 	global static Map<String, Id> getRecordTypeDevNameIdMap(String objectName) {
 		Map<String, Id> recordTypeMap = new Map<String, Id>();
@@ -335,7 +340,7 @@ global inherited sharing class RecordTypes {
 	 * @description Gives a map of all `RecordType` IDs by name for an sObject
 	 * @author Evan Callahan
 	 * @param  objectName     SObject name (with __c if custom, etc)
-	 * @return                `Map<RecordType Name, RecordTypeId`>`
+	 * @return                `Map<RecordType Name, RecordTypeId>`
 	 */
 	global static Map<String, Id> getRecordTypeNameIdMap(String objectName) {
 		Map<String, Id> recordTypeMap = new Map<String, Id>();

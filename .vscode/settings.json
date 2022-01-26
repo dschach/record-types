@@ -13,5 +13,12 @@
 "apexPMD.runOnFileOpen": true,
 "apexPMD.showStdOut": true,
 "apexPMD.enableCache": true,
-"editor.tabSize": 2
+"editor.tabSize": 2,
+"editor.bracketPairColorization.enabled": true,
+"editor.guides.bracketPairs": "active",
+"editor.defaultFormatter": "esbenp.prettier-vscode",
+"force.showApexJavadocAuthorTag": true,
+"force.showApexJavadocContext": true,
+"force.showApexJavadocDescriptionTag": false,
+"apexdox.docblock.alignItems": true
 }
