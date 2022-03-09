@@ -15,7 +15,7 @@ The included test class has 100% coverage, so pull this into your org and get cr
 
 ## Documentation
 
-[ApexDox](https://dschach.github.io/record-types/) (generated with [ApexDox](https://github.com/no-stack-dub-sack/apexdox-vs-code))
+[ApexDox](https://dschach.github.io/record-types/RecordTypes.html) (generated with [ApexDox](https://github.com/no-stack-dub-sack/apexdox-vs-code))
 
 ## Installation
 
