@@ -1,32 +1,24 @@
 @SuppressWarnings('PMD.AvoidGlobalModifier')
-/*-----------------------------------------------------------------------------------------------
- * Written by Evan Callahan, copyright (c) 2010 Groundwire
- * This program is released under the GNU General Public License. http://www.gnu.org/licenses/
- *
- * Updated by David Schach, copyright (c) 2021
- *
- * This class is meant to allow for access to Record Type information from within other classes.
- *
- * It is called statically, and therefore will supply the same information to all calls made from
- * within one transaction, or set of trigger calls. This is beneficial because this info should
- * be the same for all calls in a transaction, and by calling it statically we reduce the calls
- * that are made, making the total transaction more efficient
- -----------------------------------------------------------------------------------------------*/
-
 /**
  * @description This class is allows for easy, readable access to Record Type information from other classes.
+ * <br>
+ * <br>Written by Evan Callahan, copyright (c) 2010 Groundwire
+ * <br>Updated by David Schach, copyright (c) 2021
+ * <br>
  * <br>This program is released under the GNU General Public License. http://www.gnu.org/licenses/
  * <br>
- * It is called statically, and therefore will supply the same information to all calls made from
+ * <br>This class is meant to allow for access to Record Type information from within other classes.
+ * <br>
+ * <br>It is called statically, and therefore will supply the same information to all calls made from
  * within one transaction, or set of trigger calls. This is beneficial because this info should
  * be the same for all calls in a transaction, and by calling it statically we reduce the calls
  * that are made, making the total transaction more efficient.
  * <br>
- * Usage recommendation: Always use DeveloperName instead of Name, as this is more likely to be
+ * <br>Usage recommendation: Always use DeveloperName instead of Name, as this is more likely to be
  * hard-coded in places, while the Name is actually a label and may change (especially due to user language).
  *
- * @author Evan Callahan, Groundwire & David Schach, X-Squared on Demand
- * @since 2010
+ * @author {@link [Evan Callahan](https://github.com/groundwired)}, Groundwire & {@link [David Schach](https://github.com/dschach)}, X-Squared on Demand
+ * @since 2010, 2021
  * @group RecordTypes
  * @see RecordTypesTest
  */
@@ -56,9 +48,6 @@ global inherited sharing class RecordTypes {
 	 */
 	private static List<Schema.Recordtypeinfo> recordTypesList = new List<Schema.Recordtypeinfo>();
 
-	/*******************************************
-	 * Gets record type maps for a new sObject
-	 ********************************************/
 	/**
 	 * @description Gets record type maps for a new sObject
 	 * <br>We check in each public method if the sObject has already been described so we do not eagerly load DescribeSObjectResult
@@ -87,7 +76,7 @@ global inherited sharing class RecordTypes {
 		}
 	}
 
-	//`RecordType Name` SECTION
+	//RecordType Name SECTION
 	//@param String objectName
 	//@param String recordTypeName
 	//@return Id, DeveloperName, RecordType object
@@ -139,7 +128,7 @@ global inherited sharing class RecordTypes {
 	 * @author David Schach
 	 * @param  objectName     SObject name (with __c if custom, etc)
 	 * @param  recordTypeName RecordType Name (can include spaces)
-	 * @return                RecordType DeveloperName
+	 * @return                `RecordType.DeveloperName`
 	 * @example
 	 * RecordTypes.getRecordTypeDeveloperNameFromName('Account','Person Account')
 	 */
@@ -148,7 +137,7 @@ global inherited sharing class RecordTypes {
 		return getRecordTypeFromName(objectName, recordTypeName)?.getDeveloperName();
 	}
 
-	//RECORD TYPE DeveloperName SECTION
+	//RecordType DeveloperName SECTION
 	//@param String objectName
 	//@param String recordTypeDeveloperName
 	//@return Id, Name, RecordType sObject
@@ -181,7 +170,7 @@ global inherited sharing class RecordTypes {
 	 * @description Given an sObject and `RecordType` DeveloperName, return the `RecordType` Name
 	 * @author David Schach
 	 * @param  objectName     SObject name (with __c if custom, etc)
-	 * @param  recordTypeDeveloperName RecordType DeveloperName (cannot include spaces)
+	 * @param  recordTypeDeveloperName `RecordType.DeveloperName` (cannot include spaces)
 	 * @return                RecordType Name
 	 * @example
 	 * RecordTypes.getRecordTypeNameFromDeveloperName('Account','Person_Account')
@@ -196,7 +185,7 @@ global inherited sharing class RecordTypes {
 	 * <br>This should be the most-used method in this class
 	 * @author David Schach
 	 * @param  objectName              SObject name (with __c if custom, etc)
-	 * @param  recordTypeDeveloperName RecordType DeveloperName (cannot include spaces)
+	 * @param  recordTypeDeveloperName `RecordType.DeveloperName` (cannot include spaces)
 	 * @return                         RecordType Id
 	 * @example
 	 * RecordTypes.getRecordTypeIdFromDeveloperName('Account','Person_Account')
@@ -206,7 +195,7 @@ global inherited sharing class RecordTypes {
 		return getRecordTypeFromDeveloperName(objectName, recordTypeDeveloperName)?.getRecordTypeId();
 	}
 
-	//RECORD TYPE ID SECTION
+	//RecordType Id SECTION
 	//@param String objectName
 	//@param Id `RecordType Id`
 	//@return Name, DeveloperName, RecordType object
@@ -314,7 +303,7 @@ global inherited sharing class RecordTypes {
 	 * @description Gives a map of all record type IDs by DeveloperName for an sObject
 	 * @author David Schach
 	 * @param  objectName     SObject name (with __c if custom, etc)
-	 * @return                `Map<RecordTypeDeveloperName, RecordTypeId>`
+	 * @return                `Map<String, Id>` Map<RecordTypeDeveloperName, RecordType Id>
 	 */
 	global static Map<String, Id> getRecordTypeDevNameIdMap(String objectName) {
 		Map<String, Id> recordTypeMap = new Map<String, Id>();
@@ -340,7 +329,7 @@ global inherited sharing class RecordTypes {
 	 * @description Gives a map of all `RecordType` IDs by name for an sObject
 	 * @author Evan Callahan
 	 * @param  objectName     SObject name (with __c if custom, etc)
-	 * @return                `Map<RecordType Name, RecordTypeId>`
+	 * @return                `Map<String, Id>` Map<RecordType Name, RecordType Id>
 	 */
 	global static Map<String, Id> getRecordTypeNameIdMap(String objectName) {
 		Map<String, Id> recordTypeMap = new Map<String, Id>();
