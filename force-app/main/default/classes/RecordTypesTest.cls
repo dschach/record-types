@@ -14,35 +14,37 @@ public with sharing class RecordTypesTest {
 	 * <br>We test nonexistent object names, nonexistent record type names, null values, and existing Account record type (if available)
 	 */
 	@IsTest
-	static void testRecTypes() {
+	public static void testRecTypes() {
 		//Test with Bogus object
 
 		System.assertEquals(null, RecordTypes.getRecordType('Bogus', null), 'Bogus object should not exist');
+		System.assertEquals(null, RecordTypes.getRecordTypeDevNameFromId(null), 'Nonexistent RecordType');
+		System.assertEquals(null, RecordTypes.getRecordTypeNameFromId(null), 'Nonexistent RecordType');
 
 		System.assertEquals(null, RecordTypes.getRecordTypeIdFromName('Bogust', 'Bogus'), 'Bogus object should not exist');
-		System.assertEquals(null, RecordTypes.getRecordTypeDeveloperNameFromName('Bogust', 'Bogus'), 'Bogus object should not exist');
+		System.assertEquals(null, RecordTypes.getRecordTypeDevNameFromName('Bogust', 'Bogus'), 'Bogus object should not exist');
 
-		System.assertEquals(null, RecordTypes.getRecordTypeNameFromDeveloperName('Bogus', 'Bogus'), 'Bogus object should not exist');
-		System.assertEquals(null, RecordTypes.getRecordTypeIdFromDeveloperName('Bogus', 'Bogus'), 'Bogus object should not exist');
+		System.assertEquals(null, RecordTypes.getRecordTypeNameFromDevName('Bogus', 'Bogus'), 'Bogus object should not exist');
+		System.assertEquals(null, RecordTypes.getRecordTypeIdFromDevName('Bogus', 'Bogus'), 'Bogus object should not exist');
 
 		System.assertEquals(null, RecordTypes.getRecordTypeNameFromId('Bogus', null), 'Bogus object should not exist');
-		System.assertEquals(null, RecordTypes.getRecordTypeDeveloperNameFromId('bogus', null), 'Bogus object should not exist');
+		System.assertEquals(null, RecordTypes.getRecordTypeDevNameFromId('bogus', null), 'Bogus object should not exist');
 
-		System.assertEquals(null, RecordTypes.getRecordTypeIdFromDeveloperName('Bogus', 'Bogus'), 'Bogus object should not exist');
+		System.assertEquals(null, RecordTypes.getRecordTypeIdFromDevName('Bogus', 'Bogus'), 'Bogus object should not exist');
 		System.assertEquals(null, RecordTypes.getRecordTypeIdFromName('Bogus', 'Bogus'), 'Bogus object should not exist');
 
 		//Test with Account
 		System.assertEquals(null, RecordTypes.getRecordTypeIdFromName('Account', 'Bogus'), 'Bogus record type should not exist');
 
-		System.assertEquals(null, RecordTypes.getRecordTypeDeveloperNameFromName('Account', 'Bogus'), 'Bogus record type should not exist');
+		System.assertEquals(null, RecordTypes.getRecordTypeDevNameFromName('Account', 'Bogus'), 'Bogus record type should not exist');
 
-		System.assertEquals(null, RecordTypes.getRecordTypeNameFromDeveloperName('Account', 'Bogus'), 'Bogus record type should not exist');
-		System.assertEquals(null, RecordTypes.getRecordTypeIdFromDeveloperName('Account', 'Bogus'), 'Bogus record type should not exist');
+		System.assertEquals(null, RecordTypes.getRecordTypeNameFromDevName('Account', 'Bogus'), 'Bogus record type should not exist');
+		System.assertEquals(null, RecordTypes.getRecordTypeIdFromDevName('Account', 'Bogus'), 'Bogus record type should not exist');
 
 		System.assertEquals(null, RecordTypes.getRecordTypeNameFromId('Account', null), 'Null record type should not exist');
-		System.assertEquals(null, RecordTypes.getRecordTypeDeveloperNameFromId('Account', null), 'Null record type should not exist');
+		System.assertEquals(null, RecordTypes.getRecordTypeDevNameFromId('Account', null), 'Null record type should not exist');
 
-		System.assertEquals(null, RecordTypes.getRecordTypeIdFromDeveloperName('Account', 'Bogus'), 'Bogus record type should not exist');
+		System.assertEquals(null, RecordTypes.getRecordTypeIdFromDevName('Account', 'Bogus'), 'Bogus record type should not exist');
 		System.assertEquals(null, RecordTypes.getRecordTypeIdFromName('Account', 'Bogus'), 'Bogus record type should not exist');
 
 		System.assert(RecordTypes.getRecordTypeDevNameIdMap('Bogus').isEmpty(), 'Bogus object should not exist');
@@ -54,7 +56,7 @@ public with sharing class RecordTypesTest {
 	 * @author David Schach
 	 */
 	@IsTest
-	static void testAccountRecordType() {
+	public static void testAccountRecordType() {
 		List<RecordType> accountRecordTypes = [SELECT Id, Name, DeveloperName FROM RecordType WHERE IsActive = TRUE AND SObjectType = 'Account'];
 
 		RecordTypes.getRecordTypeNameIdMap('Account');
@@ -68,21 +70,42 @@ public with sharing class RecordTypesTest {
 
 			Schema.RecordTypeInfo rti = RecordTypes.getRecordType('Account', activeRT.Id);
 
-			System.assertEquals(activeRT.Id, RecordTypes.getRecordTypeIdFromName('Account', activeRt.Name), 'Submitted ' + activeRT.Name + ' and expected an Id to be returned: ' + activeRT.Id);
-			System.assertEquals(rti.getRecordTypeId(), RecordTypes.getRecordTypeIdFromName('Account', activeRt.Name), 'Submitted ' + activeRT.Name + ' and expected an Id: ' + rti.getRecordTypeId());
+			System.assertNotEquals(null, RecordTypes.getRecordTypeDevNameFromId(activeRT.Id), 'We should have had an Account RecordType');
+			System.assertNotEquals(null, RecordTypes.getRecordTypeNameFromId(activeRT.Id), 'We should have had an Account RecordType');
+
+			System.assertEquals(
+				activeRT.Id,
+				RecordTypes.getRecordTypeIdFromName('Account', activeRt.Name),
+				'Submitted ' +
+				activeRT.Name +
+				' and expected an Id to be returned: ' +
+				activeRT.Id
+			);
+			System.assertEquals(
+				rti.getRecordTypeId(),
+				RecordTypes.getRecordTypeIdFromName('Account', activeRt.Name),
+				'Submitted ' +
+				activeRT.Name +
+				' and expected an Id: ' +
+				rti.getRecordTypeId()
+			);
 			resetTest();
 
-			System.assertEquals(activeRT.DeveloperName, RecordTypes.getRecordTypeDeveloperNameFromName('Account', activeRT.Name), 'Error - mismatch on returned developername');
+			System.assertEquals(
+				activeRT.DeveloperName,
+				RecordTypes.getRecordTypeDevNameFromName('Account', activeRT.Name),
+				'Error - mismatch on returned developername'
+			);
 			resetTest();
 
-			System.assertEquals(activeRT.Name, RecordTypes.getRecordTypeNameFromDeveloperName('Account', activeRT.DeveloperName), 'Error - mismatch on returned name');
-			System.assertEquals(activeRT.Id, RecordTypes.getRecordTypeIdFromDeveloperName('Account', activeRT.DeveloperName), 'Error - mismatch on returned Id');
+			System.assertEquals(activeRT.Name, RecordTypes.getRecordTypeNameFromDevName('Account', activeRT.DeveloperName), 'Error - mismatch on returned name');
+			System.assertEquals(activeRT.Id, RecordTypes.getRecordTypeIdFromDevName('Account', activeRT.DeveloperName), 'Error - mismatch on returned Id');
 			resetTest();
 
 			System.assertEquals(activeRT.Name, RecordTypes.getRecordTypeNameFromId('Account', activeRT.Id), 'Error - mismatch on returned name');
 			resetTest();
 
-			System.assertEquals(activeRT.DeveloperName, RecordTypes.getRecordTypeDeveloperNameFromId('Account', activeRT.Id), 'Error - mismatch on returned developername');
+			System.assertEquals(activeRT.DeveloperName, RecordTypes.getRecordTypeDevNameFromId('Account', activeRT.Id), 'Error - mismatch on returned developername');
 			resetTest();
 
 			Set<String> rtNames = new Set<String>();

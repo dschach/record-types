@@ -13,6 +13,10 @@ The included test class has 100% coverage, so pull this into your org and get cr
 [![CI](https://github.com/dschach/record-types/actions/workflows/ci.yml/badge.svg)](https://github.com/dschach/record-types/actions/workflows/ci.yml)
 [![Twitter](https://img.shields.io/twitter/follow/dschach.svg?style=social)](https://img.shields.io/twitter/follow/dschach.svg?style=social)
 
+## The Code
+
+The class and test class are found in this [folder](/force-app/main/default/classes/). Feel free to copy/paste directly into your org.
+
 ## Documentation
 
 [ApexDox](https://dschach.github.io/record-types/RecordTypes.html) (generated with [ApexDox](https://github.com/no-stack-dub-sack/apexdox-vs-code))
@@ -20,3 +24,11 @@ The included test class has 100% coverage, so pull this into your org and get cr
 ## Installation
 
 Clone this repository and run `. scripts/orginit.sh` to set up a scratch org with the classes installed.
+
+## Changelog
+
+- 2022-03-29 BREAKING CHANGE: Replaced "DeveloperName" with "DevName" in all method names. Update your code to refer to the new methods.
+
+- 2022-03-29 Add maps Id => Name and Id => DeveloperName for ease of use when wanting to refer to a record type by Id without including the object, since Id is globally unique
+
+- 2022-01-19 Initial Release
