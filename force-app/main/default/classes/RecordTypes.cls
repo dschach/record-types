@@ -1,4 +1,4 @@
-@SuppressWarnings('PMD.AvoidGlobalModifier')
+@SuppressWarnings('PMD.AvoidGlobalModifier, PMD.CyclomaticComplexity')
 /**
  * @description This class is allows for easy, readable access to Record Type information from other classes.
  * <br>

@@ -13,40 +13,40 @@ public with sharing class RecordTypesTest {
 	 * @description Test various record types and names
 	 * <br>We test nonexistent object names, nonexistent record type names, null values, and existing Account record type (if available)
 	 */
-	@isTest
+	@IsTest
 	static void testRecTypes() {
 		//Test with Bogus object
 
-		System.assertEquals(null, RecordTypes.getRecordType('Bogus', null));
+		System.assertEquals(null, RecordTypes.getRecordType('Bogus', null), 'Bogus object should not exist');
 
-		System.assertEquals(null, RecordTypes.getRecordTypeIdFromName('Bogust', 'Bogus'));
-		System.assertEquals(null, RecordTypes.getRecordTypeDeveloperNameFromName('Bogust', 'Bogus'));
+		System.assertEquals(null, RecordTypes.getRecordTypeIdFromName('Bogust', 'Bogus'), 'Bogus object should not exist');
+		System.assertEquals(null, RecordTypes.getRecordTypeDeveloperNameFromName('Bogust', 'Bogus'), 'Bogus object should not exist');
 
-		System.assertEquals(null, RecordTypes.getRecordTypeNameFromDeveloperName('Bogus', 'Bogus'));
-		System.assertEquals(null, RecordTypes.getRecordTypeIdFromDeveloperName('Bogus', 'Bogus'));
+		System.assertEquals(null, RecordTypes.getRecordTypeNameFromDeveloperName('Bogus', 'Bogus'), 'Bogus object should not exist');
+		System.assertEquals(null, RecordTypes.getRecordTypeIdFromDeveloperName('Bogus', 'Bogus'), 'Bogus object should not exist');
 
-		System.assertEquals(null, RecordTypes.getRecordTypeNameFromId('Bogus', null));
-		System.assertEquals(null, RecordTypes.getRecordTypeDeveloperNameFromId('bogus', null));
+		System.assertEquals(null, RecordTypes.getRecordTypeNameFromId('Bogus', null), 'Bogus object should not exist');
+		System.assertEquals(null, RecordTypes.getRecordTypeDeveloperNameFromId('bogus', null), 'Bogus object should not exist');
 
-		System.assertEquals(null, RecordTypes.getRecordTypeIdFromDeveloperName('Bogus', 'Bogus'));
-		System.assertEquals(null, RecordTypes.getRecordTypeIdFromName('Bogus', 'Bogus'));
+		System.assertEquals(null, RecordTypes.getRecordTypeIdFromDeveloperName('Bogus', 'Bogus'), 'Bogus object should not exist');
+		System.assertEquals(null, RecordTypes.getRecordTypeIdFromName('Bogus', 'Bogus'), 'Bogus object should not exist');
 
 		//Test with Account
-		System.assertEquals(null, RecordTypes.getRecordTypeIdFromName('Account', 'Bogus'));
+		System.assertEquals(null, RecordTypes.getRecordTypeIdFromName('Account', 'Bogus'), 'Bogus record type should not exist');
 
-		System.assertEquals(null, RecordTypes.getRecordTypeDeveloperNameFromName('Account', 'Bogus'));
+		System.assertEquals(null, RecordTypes.getRecordTypeDeveloperNameFromName('Account', 'Bogus'), 'Bogus record type should not exist');
 
-		System.assertEquals(null, RecordTypes.getRecordTypeNameFromDeveloperName('Account', 'Bogus'));
-		System.assertEquals(null, RecordTypes.getRecordTypeIdFromDeveloperName('Account', 'Bogus'));
+		System.assertEquals(null, RecordTypes.getRecordTypeNameFromDeveloperName('Account', 'Bogus'), 'Bogus record type should not exist');
+		System.assertEquals(null, RecordTypes.getRecordTypeIdFromDeveloperName('Account', 'Bogus'), 'Bogus record type should not exist');
 
-		System.assertEquals(null, RecordTypes.getRecordTypeNameFromId('Account', null));
-		System.assertEquals(null, RecordTypes.getRecordTypeDeveloperNameFromId('Account', null));
+		System.assertEquals(null, RecordTypes.getRecordTypeNameFromId('Account', null), 'Null record type should not exist');
+		System.assertEquals(null, RecordTypes.getRecordTypeDeveloperNameFromId('Account', null), 'Null record type should not exist');
 
-		System.assertEquals(null, RecordTypes.getRecordTypeIdFromDeveloperName('Account', 'Bogus'));
-		System.assertEquals(null, RecordTypes.getRecordTypeIdFromName('Account', 'Bogus'));
+		System.assertEquals(null, RecordTypes.getRecordTypeIdFromDeveloperName('Account', 'Bogus'), 'Bogus record type should not exist');
+		System.assertEquals(null, RecordTypes.getRecordTypeIdFromName('Account', 'Bogus'), 'Bogus record type should not exist');
 
-		System.assert(RecordTypes.getRecordTypeDevNameIdMap('Bogus').isEmpty());
-		System.assert(RecordTypes.getRecordTypeNameIdMap('Bogus').isEmpty());
+		System.assert(RecordTypes.getRecordTypeDevNameIdMap('Bogus').isEmpty(), 'Bogus object should not exist');
+		System.assert(RecordTypes.getRecordTypeNameIdMap('Bogus').isEmpty(), 'Bogus object should not exist');
 	}
 
 	/**
