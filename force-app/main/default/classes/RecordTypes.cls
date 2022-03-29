@@ -61,7 +61,7 @@ global inherited sharing class RecordTypes {
 	/**
 	 * @description Gets record type maps for a new sObject
 	 * <br>We check in each public method if the sObject has already been described so we do not eagerly load DescribeSObjectResult
-	 * @author David Schach
+	 * @author {@link [David Schach](https://github.com/dschach)}
 	 * @param  objectName SObject name (with __c if custom, etc)
 	 */
 	private static void fillMapsForObject(String objectName) {
@@ -95,7 +95,7 @@ global inherited sharing class RecordTypes {
 	 * @description Given an sObject and `RecordType` Name, return the `RecordType` object
 	 *              <br/>Note: Since `RecordType.Name` is not unique, this section could give unpredicable results
 	 *              <br/>If possible, DO NOT USE this method - use `RecordType.DeveloperName` instead
-	 * @author David Schach
+	 * @author {@link [David Schach](https://github.com/dschach)}
 	 * @param  objectName     SObject name (with __c if custom, etc)
 	 * @param  recordTypeName RecordType Name (can include spaces)
 	 * @return                `Schema.RecordTypeInfo` RecordTypeInfo object
@@ -119,7 +119,7 @@ global inherited sharing class RecordTypes {
 	 * @description Given an sObject and `RecordType` Name, return the `RecordType` Id
 	 *              <br/>Note: Since `RecordType.Name` is not unique, this section could give unpredicable results
 	 *              <br/>If possible, DO NOT USE this method - use `RecordType.DeveloperName` instead
-	 * @author David Schach
+	 * @author {@link [David Schach](https://github.com/dschach)}
 	 * @param  objectName     SObject name (with __c if custom, etc)
 	 * @param  recordTypeName RecordType Name (can include spaces)
 	 * @return                RecordType Id
@@ -134,7 +134,7 @@ global inherited sharing class RecordTypes {
 	 * @description Given an sObject and `RecordType` Name, return the `RecordType` Id
 	 *              <br/>Note: Since `RecordType.Name` is not unique, this section could give unpredicable results
 	 *              <br/>If possible, DO NOT USE this method - use `RecordType.DeveloperName` methods instead
-	 * @author David Schach
+	 * @author {@link [David Schach](https://github.com/dschach)}
 	 * @param  objectName     SObject name (with __c if custom, etc)
 	 * @param  recordTypeName RecordType Name (can include spaces)
 	 * @return                `RecordType.DeveloperName`
@@ -152,7 +152,7 @@ global inherited sharing class RecordTypes {
 
 	/**
 	 * @description Given an sObject and `RecordType` DeveloperName, return the `RecordType` Id
-	 * @author David Schach
+	 * @author {@link [David Schach](https://github.com/dschach)}
 	 * @param  objectName              SObject name (with __c if custom, etc)
 	 * @param  recordTypeDevName `RecordType.DeveloperName` (cannot include spaces)
 	 * @return                         `Schema.RecordTypeInfo` RecordTypeInfo object
@@ -176,7 +176,7 @@ global inherited sharing class RecordTypes {
 
 	/**
 	 * @description Given an sObject and `RecordType` DeveloperName, return the `RecordType` Name
-	 * @author David Schach
+	 * @author {@link [David Schach](https://github.com/dschach)}
 	 * @param  objectName     SObject name (with __c if custom, etc)
 	 * @param  recordTypeDevName `RecordType.DeveloperName` (cannot include spaces)
 	 * @return                RecordType Name
@@ -190,7 +190,7 @@ global inherited sharing class RecordTypes {
 	/**
 	 * @description Given an sObject and `RecordType` DeveloperName, return the `RecordType` Id
 	 * <br>This should be the most-used method in this class
-	 * @author David Schach
+	 * @author {@link [David Schach](https://github.com/dschach)}
 	 * @param  objectName              SObject name (with __c if custom, etc)
 	 * @param  recordTypeDevName `RecordType.DeveloperName` (cannot include spaces)
 	 * @return                         RecordType Id
@@ -208,7 +208,7 @@ global inherited sharing class RecordTypes {
 
 	/**
 	 * @description Given an sObject and `RecordType` Id, return the `Record Type` object
-	 * @author David Schach
+	 * @author {@link [David Schach](https://github.com/dschach)}
 	 * @param  objectName     SObject name (with __c if custom, etc)
 	 * @param  recordTypeId   RecordType Id
 	 * @return                `Schema.RecordTypeInfo` RecordTypeInfo object
@@ -230,7 +230,7 @@ global inherited sharing class RecordTypes {
 
 	/**
 	 * @description Given an sObject and `RecordType` Id, return the `RecordType` Name
-	 * @author David Schach
+	 * @author {@link [David Schach](https://github.com/dschach)}
 	 * @param  objectName     SObject name (with __c if custom, etc)
 	 * @param  recordTypeId   RecordType Id
 	 * @return                RecordType Name
@@ -242,7 +242,7 @@ global inherited sharing class RecordTypes {
 	/**
 	 * @description Given an sObject and `RecordType` Id, return the `RecordType` DeveloperName
 	 * <br>This saves a query on the `RecordType` object
-	 * @author David Schach
+	 * @author {@link [David Schach](https://github.com/dschach)}
 	 * @param  objectName        SObject name (with __c if custom, etc)
 	 * @param  recordTypeId      RecordType Id
 	 * @return                   `RecordType` DeveloperName
@@ -253,7 +253,7 @@ global inherited sharing class RecordTypes {
 
 	/**
 	 * @description Given an sObject and `RecordType` Id, return the `RecordType` object
-	 * @author David Schach
+	 * @author {@link [David Schach](https://github.com/dschach)}
 	 * @param  objectName     SObject name (with __c if custom, etc)
 	 * @param  recordTypeId   RecordType Id
 	 * @return                `Schema.RecordTypeInfo` RecordTypeInfo object
@@ -275,7 +275,7 @@ global inherited sharing class RecordTypes {
 
 	/**
 	 * @description Gives a set of `RecordType` Ids from an sObject and a set of `RecordType` Developernames
-	 * @author David Schach
+	 * @author {@link [David Schach](https://github.com/dschach)}
 	 * @param  objectName           Object of interest
 	 * @param  recordTypeDevNameSet Set of DeveloperNames
 	 * @return                      `Set<Id>` All `RecordType` IDs for a given sObject
@@ -305,7 +305,7 @@ global inherited sharing class RecordTypes {
 
 	/**
 	 * @description Gives a map of all record type IDs by DeveloperName for an sObject
-	 * @author David Schach
+	 * @author {@link [David Schach](https://github.com/dschach)}
 	 * @param  objectName     SObject name (with __c if custom, etc)
 	 * @return                `Map<String, Id>` Map<recordTypeDevName, RecordType Id>
 	 */

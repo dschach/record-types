@@ -3,18 +3,18 @@
  *
  * @author Evan Callahan
  * @since  2010
- * @author David Schach
+ * @author {@link [David Schach](https://github.com/dschach)}
  * @group RecordTypes
  * @see RecordTypes
  */
 @IsTest
-public with sharing class RecordTypesTest {
+private class RecordTypesTest {
 	/**
 	 * @description Test various record types and names
 	 * <br>We test nonexistent object names, nonexistent record type names, null values, and existing Account record type (if available)
 	 */
-	@IsTest
-	public static void testRecTypes() {
+	@isTest
+	private static void testRecTypes() {
 		//Test with Bogus object
 
 		System.assertEquals(null, RecordTypes.getRecordType('Bogus', null), 'Bogus object should not exist');
@@ -53,10 +53,10 @@ public with sharing class RecordTypesTest {
 
 	/**
 	 * @description Separate method for checking if we have Account record type, and then testing that
-	 * @author David Schach
+	 * @author {@link [David Schach](https://github.com/dschach)}
 	 */
-	@IsTest
-	public static void testAccountRecordType() {
+	@isTest
+	private static void testAccountRecordType() {
 		List<RecordType> accountRecordTypes = [SELECT Id, Name, DeveloperName FROM RecordType WHERE IsActive = TRUE AND SObjectType = 'Account'];
 
 		RecordTypes.getRecordTypeNameIdMap('Account');
@@ -131,7 +131,7 @@ public with sharing class RecordTypesTest {
 
 	/**
 	 * @description Clear all record type maps to enable using fewer test methods - reset within a method
-	 * @author David Schach
+	 * @author {@link [David Schach](https://github.com/dschach)}
 	 */
 	private static void resetTest() {
 		RecordTypes.clearMapsInTest();
