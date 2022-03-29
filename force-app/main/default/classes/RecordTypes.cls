@@ -51,8 +51,8 @@ global inherited sharing class RecordTypes {
 	/**
 	 * @description Map of queried `RecordType` Name by Id
 	 */
-
 	private static Map<Id, String> recordTypeNamesById;
+
 	/**
 	 * @description Map of queried `RecordType` DeveloperName by Id
 	 */
