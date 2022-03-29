@@ -43,10 +43,10 @@
             </summary>
             <ul>
               <!-- menu items -->
-              <li title="RecordTypes" id="item-RecordTypes" class="nav-item class global" onclick="goToLocation('RecordTypes.html');">
+              <li title="RecordTypes" id="item-RecordTypes" class="nav-item class " onclick="goToLocation('RecordTypes.html');">
                 <a tabindex="1" href="javascript:void(0)">RecordTypes</a>
               </li>
-              <li title="RecordTypesTest" id="item-RecordTypesTest" class="nav-item class public" onclick="goToLocation('RecordTypesTest.html');">
+              <li title="RecordTypesTest" id="item-RecordTypesTest" class="nav-item class " onclick="goToLocation('RecordTypesTest.html');">
                 <a tabindex="1" href="javascript:void(0)">RecordTypesTest</a>
               </li>
             </ul>
@@ -120,7 +120,7 @@
 
                     <th>Description</th>
                   </tr>
-                  <tr class="property private">
+                  <tr class="property ">
                     <td class="attribute-name">
                       <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L29">
                         gd
@@ -136,7 +136,39 @@
                       Global schema describe
                     </td>
                   </tr>
-                  <tr class="property private">
+                  <tr class="property ">
+                    <td class="attribute-name">
+                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L59">
+                        recordTypeDevNamesById
+                      </a></td>
+                    <td>
+                      <div class="attribute-signature">
+                        private static Map&lt;Id, String&gt; recordTypeDevNamesById
+                      </div>
+                    </td>
+
+
+                    <td class="attribute-description">
+                      Map of queried <code class="code-inline">RecordType</code> DeveloperName by Id
+                    </td>
+                  </tr>
+                  <tr class="property ">
+                    <td class="attribute-name">
+                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L54">
+                        recordTypeNamesById
+                      </a></td>
+                    <td>
+                      <div class="attribute-signature">
+                        private static Map&lt;Id, String&gt; recordTypeNamesById
+                      </div>
+                    </td>
+
+
+                    <td class="attribute-description">
+                      Map of queried <code class="code-inline">RecordType</code> Name by Id
+                    </td>
+                  </tr>
+                  <tr class="property ">
                     <td class="attribute-name">
                       <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L44">
                         recordTypesByDevName
@@ -152,7 +184,7 @@
                       Map of Record Types by sObject name, then by DeveloperName
                     </td>
                   </tr>
-                  <tr class="property private">
+                  <tr class="property ">
                     <td class="attribute-name">
                       <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L34">
                         recordTypesById
@@ -168,7 +200,7 @@
                       Map of Record Types by sObject name, then by Id
                     </td>
                   </tr>
-                  <tr class="property private">
+                  <tr class="property ">
                     <td class="attribute-name">
                       <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L39">
                         recordTypesByName
@@ -184,7 +216,23 @@
                       Map of Record Types by sObject name, then by Name
                     </td>
                   </tr>
-                  <tr class="property private">
+                  <tr class="property ">
+                    <td class="attribute-name">
+                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L360">
+                        recordTypesIdMap
+                      </a></td>
+                    <td>
+                      <div class="attribute-signature">
+                        private static Map&lt;Id, RecordType&gt; recordTypesIdMap
+                      </div>
+                    </td>
+
+
+                    <td class="attribute-description">
+                      Memoized map of queried <code class="code-inline">RecordType</code> records by Id
+                    </td>
+                  </tr>
+                  <tr class="property ">
                     <td class="attribute-name">
                       <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L49">
                         recordTypesList
@@ -234,8 +282,8 @@
                     </div>
                   </li>
                   <li class="method global">
-                    <a class="methods-toc__entry " href="#RecordTypes.getRecordTypeDeveloperNameFromId">
-                      getRecordTypeDeveloperNameFromId (objectName, recordTypeId)
+                    <a class="methods-toc__entry " href="#RecordTypes.getRecordTypeDevNameFromId">
+                      getRecordTypeDevNameFromId (objectName, recordTypeId)
                     </a>
 
                     <div class="methods-toc__description">
@@ -243,8 +291,17 @@
                     </div>
                   </li>
                   <li class="method global">
-                    <a class="methods-toc__entry " href="#RecordTypes.getRecordTypeDeveloperNameFromName">
-                      getRecordTypeDeveloperNameFromName (objectName, recordTypeName)
+                    <a class="methods-toc__entry " href="#RecordTypes.getRecordTypeDevNameFromId_1">
+                      getRecordTypeDevNameFromId (recordTypeId)
+                    </a>
+
+                    <div class="methods-toc__description">
+                      Generate map of all record type developer names by Id &amp; return Record Type DeveloperName
+                    </div>
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#RecordTypes.getRecordTypeDevNameFromName">
+                      getRecordTypeDevNameFromName (objectName, recordTypeName)
                     </a>
 
                     <div class="methods-toc__description">
@@ -261,8 +318,8 @@
                     </div>
                   </li>
                   <li class="method global">
-                    <a class="methods-toc__entry " href="#RecordTypes.getRecordTypeFromDeveloperName">
-                      getRecordTypeFromDeveloperName (objectName, recordTypeDeveloperName)
+                    <a class="methods-toc__entry " href="#RecordTypes.getRecordTypeFromDevName">
+                      getRecordTypeFromDevName (objectName, recordTypeDevName)
                     </a>
 
                     <div class="methods-toc__description">
@@ -288,8 +345,8 @@
                     </div>
                   </li>
                   <li class="method global">
-                    <a class="methods-toc__entry " href="#RecordTypes.getRecordTypeIdFromDeveloperName">
-                      getRecordTypeIdFromDeveloperName (objectName, recordTypeDeveloperName)
+                    <a class="methods-toc__entry " href="#RecordTypes.getRecordTypeIdFromDevName">
+                      getRecordTypeIdFromDevName (objectName, recordTypeDevName)
                     </a>
 
                     <div class="methods-toc__description">
@@ -315,8 +372,8 @@
                     </div>
                   </li>
                   <li class="method global">
-                    <a class="methods-toc__entry " href="#RecordTypes.getRecordTypeNameFromDeveloperName">
-                      getRecordTypeNameFromDeveloperName (objectName, recordTypeDeveloperName)
+                    <a class="methods-toc__entry " href="#RecordTypes.getRecordTypeNameFromDevName">
+                      getRecordTypeNameFromDevName (objectName, recordTypeDevName)
                     </a>
 
                     <div class="methods-toc__description">
@@ -330,6 +387,15 @@
 
                     <div class="methods-toc__description">
                       Given an sObject and <code class="code-inline">RecordType</code> Id, return the <code class="code-inline">RecordType</code> Name
+                    </div>
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#RecordTypes.getRecordTypeNameFromId_1">
+                      getRecordTypeNameFromId (recordTypeId)
+                    </a>
+
+                    <div class="methods-toc__description">
+                      Generate map of all record type names by Id &amp; return Record Type Name
                     </div>
                   </li>
                   <li class="method global">
@@ -363,7 +429,7 @@
                 <div class="method private">
                   <h4 class="method-title " id="RecordTypes.clearMapsInTest">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L393">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L432">
                       clearMapsInTest()
                     </a>
                   </h4>
@@ -381,7 +447,7 @@
                 <div class="method private">
                   <h4 class="method-title " id="RecordTypes.fillMapsForObject">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L57">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L67">
                       fillMapsForObject(objectName)
                     </a>
                   </h4>
@@ -405,13 +471,13 @@
                     Author
                   </div>
                   <div class="method-subtitle-description">
-                    David Schach
+                    <a target="_blank" rel="noopener noreferrer" href="https://github.com/dschach">David Schach</a>
                   </div>
                 </div>
                 <div class="method global">
                   <h4 class="method-title " id="RecordTypes.getRecordType">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L257">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L261">
                       getRecordType(objectName, recordTypeId)
                     </a>
                   </h4>
@@ -446,14 +512,14 @@
                     Author
                   </div>
                   <div class="method-subtitle-description">
-                    David Schach
+                    <a target="_blank" rel="noopener noreferrer" href="https://github.com/dschach">David Schach</a>
                   </div>
                 </div>
                 <div class="method global">
-                  <h4 class="method-title " id="RecordTypes.getRecordTypeDeveloperNameFromId">
+                  <h4 class="method-title " id="RecordTypes.getRecordTypeDevNameFromId">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L245">
-                      getRecordTypeDeveloperNameFromId(objectName, recordTypeId)
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L250">
+                      getRecordTypeDevNameFromId(objectName, recordTypeId)
                     </a>
                   </h4>
                   <div class="method-description">
@@ -464,7 +530,7 @@
                   </div>
 
                   <div class="method-signature">
-                    global static String getRecordTypeDeveloperNameFromId(String objectName, Id recordTypeId)
+                    global static String getRecordTypeDevNameFromId(String objectName, Id recordTypeId)
                   </div>
                   <div class="method-subtitle">Parameters</div>
                   <div class="param-name">objectName</div>
@@ -487,14 +553,56 @@
                     Author
                   </div>
                   <div class="method-subtitle-description">
-                    David Schach
+                    <a target="_blank" rel="noopener noreferrer" href="https://github.com/dschach">David Schach</a>
                   </div>
                 </div>
                 <div class="method global">
-                  <h4 class="method-title " id="RecordTypes.getRecordTypeDeveloperNameFromName">
+                  <h4 class="method-title " id="RecordTypes.getRecordTypeDevNameFromId_1">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L135">
-                      getRecordTypeDeveloperNameFromName(objectName, recordTypeName)
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L388">
+                      getRecordTypeDevNameFromId(recordTypeId)
+                    </a>
+                  </h4>
+                  <div class="method-description">
+                    Generate map of all record type developer names by Id &amp; return Record Type DeveloperName
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global static String getRecordTypeDevNameFromId(Id recordTypeId)
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">recordTypeId</div>
+                  <div class="param-type">
+                    Type: <code class="code-inline">Id</code>
+                  </div>
+                  <div class="param-description"><code class="code-inline">RecordTypeId</code></div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    <code class="code-inline">String</code> Record Type Name
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    <a target="_blank" rel="noopener noreferrer" href="https://github.com/dschach">David Schach</a>
+                  </div>
+                  <div class="method-subtitle">
+                    Since
+                  </div>
+                  <div class="method-subtitle-description">
+                    2022-03-29
+                  </div>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="RecordTypes.getRecordTypeDevNameFromName">
+
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L144">
+                      getRecordTypeDevNameFromName(objectName, recordTypeName)
                     </a>
                   </h4>
                   <div class="method-description">
@@ -505,7 +613,7 @@
                   </div>
 
                   <div class="method-signature">
-                    global static String getRecordTypeDeveloperNameFromName(String objectName, String recordTypeName)
+                    global static String getRecordTypeDevNameFromName(String objectName, String recordTypeName)
                   </div>
                   <div class="method-subtitle">Parameters</div>
                   <div class="param-name">objectName</div>
@@ -528,17 +636,17 @@
                     Author
                   </div>
                   <div class="method-subtitle-description">
-                    David Schach
+                    <a target="_blank" rel="noopener noreferrer" href="https://github.com/dschach">David Schach</a>
                   </div>
                   <div class="method-subtitle">
                     Example
                   </div>
-                  <pre class="code-example"><code> RecordTypes.getRecordTypeDeveloperNameFromName(&#39;Account&#39;,&#39;Person Account&#39;)</code></pre>
+                  <pre class="code-example"><code> RecordTypes.getRecordTypeDevNameFromName(&#39;Account&#39;,&#39;Person Account&#39;)</code></pre>
                 </div>
                 <div class="method global">
                   <h4 class="method-title " id="RecordTypes.getRecordTypeDevNameIdMap">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L308">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L312">
                       getRecordTypeDevNameIdMap(objectName)
                     </a>
                   </h4>
@@ -562,20 +670,20 @@
                     Returns
                   </div>
                   <div class="method-subtitle-description">
-                    <code class="code-inline">Map&lt;String, Id&gt;</code> Map&lt;RecordTypeDeveloperName, RecordType Id&gt;
+                    <code class="code-inline">Map&lt;String, Id&gt;</code> Map&lt;recordTypeDevName, RecordType Id&gt;
                   </div>
                   <div class="method-subtitle">
                     Author
                   </div>
                   <div class="method-subtitle-description">
-                    David Schach
+                    <a target="_blank" rel="noopener noreferrer" href="https://github.com/dschach">David Schach</a>
                   </div>
                 </div>
                 <div class="method global">
-                  <h4 class="method-title " id="RecordTypes.getRecordTypeFromDeveloperName">
+                  <h4 class="method-title " id="RecordTypes.getRecordTypeFromDevName">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L154">
-                      getRecordTypeFromDeveloperName(objectName, recordTypeDeveloperName)
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L162">
+                      getRecordTypeFromDevName(objectName, recordTypeDevName)
                     </a>
                   </h4>
                   <div class="method-description">
@@ -586,7 +694,7 @@
                   </div>
 
                   <div class="method-signature">
-                    global static Schema.RecordTypeInfo getRecordTypeFromDeveloperName(String objectName, String recordTypeDeveloperName)
+                    global static Schema.RecordTypeInfo getRecordTypeFromDevName(String objectName, String recordTypeDevName)
                   </div>
                   <div class="method-subtitle">Parameters</div>
                   <div class="param-name">objectName</div>
@@ -594,7 +702,7 @@
                     Type: <code class="code-inline">String</code>
                   </div>
                   <div class="param-description"> SObject name (with __c if custom, etc)</div>
-                  <div class="param-name">recordTypeDeveloperName</div>
+                  <div class="param-name">recordTypeDevName</div>
                   <div class="param-type">
                     Type: <code class="code-inline">String</code>
                   </div>
@@ -609,17 +717,17 @@
                     Author
                   </div>
                   <div class="method-subtitle-description">
-                    David Schach
+                    <a target="_blank" rel="noopener noreferrer" href="https://github.com/dschach">David Schach</a>
                   </div>
                   <div class="method-subtitle">
                     Example
                   </div>
-                  <pre class="code-example"><code> RecordTypes.getRecordTypeFromDeveloperName(&#39;Account&#39;,&#39;Person_Account&#39;)</code></pre>
+                  <pre class="code-example"><code> RecordTypes.getRecordTypeFromDevName(&#39;Account&#39;,&#39;Person_Account&#39;)</code></pre>
                 </div>
                 <div class="method global">
                   <h4 class="method-title " id="RecordTypes.getRecordTypeFromId">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L210">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L216">
                       getRecordTypeFromId(objectName, recordTypeId)
                     </a>
                   </h4>
@@ -654,13 +762,13 @@
                     Author
                   </div>
                   <div class="method-subtitle-description">
-                    David Schach
+                    <a target="_blank" rel="noopener noreferrer" href="https://github.com/dschach">David Schach</a>
                   </div>
                 </div>
                 <div class="method global">
                   <h4 class="method-title " id="RecordTypes.getRecordTypeFromName">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L93">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L103">
                       getRecordTypeFromName(objectName, recordTypeName)
                     </a>
                   </h4>
@@ -695,14 +803,14 @@
                     Author
                   </div>
                   <div class="method-subtitle-description">
-                    David Schach
+                    <a target="_blank" rel="noopener noreferrer" href="https://github.com/dschach">David Schach</a>
                   </div>
                 </div>
                 <div class="method global">
-                  <h4 class="method-title " id="RecordTypes.getRecordTypeIdFromDeveloperName">
+                  <h4 class="method-title " id="RecordTypes.getRecordTypeIdFromDevName">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L193">
-                      getRecordTypeIdFromDeveloperName(objectName, recordTypeDeveloperName)
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L200">
+                      getRecordTypeIdFromDevName(objectName, recordTypeDevName)
                     </a>
                   </h4>
                   <div class="method-description">
@@ -713,7 +821,7 @@
                   </div>
 
                   <div class="method-signature">
-                    global static Id getRecordTypeIdFromDeveloperName(String objectName, String recordTypeDeveloperName)
+                    global static Id getRecordTypeIdFromDevName(String objectName, String recordTypeDevName)
                   </div>
                   <div class="method-subtitle">Parameters</div>
                   <div class="param-name">objectName</div>
@@ -721,7 +829,7 @@
                     Type: <code class="code-inline">String</code>
                   </div>
                   <div class="param-description"> SObject name (with __c if custom, etc)</div>
-                  <div class="param-name">recordTypeDeveloperName</div>
+                  <div class="param-name">recordTypeDevName</div>
                   <div class="param-type">
                     Type: <code class="code-inline">String</code>
                   </div>
@@ -736,17 +844,17 @@
                     Author
                   </div>
                   <div class="method-subtitle-description">
-                    David Schach
+                    <a target="_blank" rel="noopener noreferrer" href="https://github.com/dschach">David Schach</a>
                   </div>
                   <div class="method-subtitle">
                     Example
                   </div>
-                  <pre class="code-example"><code> RecordTypes.getRecordTypeIdFromDeveloperName(&#39;Account&#39;,&#39;Person_Account&#39;)</code></pre>
+                  <pre class="code-example"><code> RecordTypes.getRecordTypeIdFromDevName(&#39;Account&#39;,&#39;Person_Account&#39;)</code></pre>
                 </div>
                 <div class="method global">
                   <h4 class="method-title " id="RecordTypes.getRecordTypeIdFromName">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L119">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L129">
                       getRecordTypeIdFromName(objectName, recordTypeName)
                     </a>
                   </h4>
@@ -781,7 +889,7 @@
                     Author
                   </div>
                   <div class="method-subtitle-description">
-                    David Schach
+                    <a target="_blank" rel="noopener noreferrer" href="https://github.com/dschach">David Schach</a>
                   </div>
                   <div class="method-subtitle">
                     Example
@@ -791,7 +899,7 @@
                 <div class="method global">
                   <h4 class="method-title " id="RecordTypes.getRecordTypeIdSetFromDevNames">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L282">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L286">
                       getRecordTypeIdSetFromDevNames(objectName, recordTypeDevNameSet)
                     </a>
                   </h4>
@@ -826,7 +934,7 @@
                     Author
                   </div>
                   <div class="method-subtitle-description">
-                    David Schach
+                    <a target="_blank" rel="noopener noreferrer" href="https://github.com/dschach">David Schach</a>
                   </div>
                   <div class="method-subtitle">
                     Example
@@ -835,10 +943,10 @@
  getRecordTypeIdSetFromDevNames(&#39;Account&#39;, rtNames);</code></pre>
                 </div>
                 <div class="method global">
-                  <h4 class="method-title " id="RecordTypes.getRecordTypeNameFromDeveloperName">
+                  <h4 class="method-title " id="RecordTypes.getRecordTypeNameFromDevName">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L178">
-                      getRecordTypeNameFromDeveloperName(objectName, recordTypeDeveloperName)
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L186">
+                      getRecordTypeNameFromDevName(objectName, recordTypeDevName)
                     </a>
                   </h4>
                   <div class="method-description">
@@ -849,7 +957,7 @@
                   </div>
 
                   <div class="method-signature">
-                    global static String getRecordTypeNameFromDeveloperName(String objectName, String recordTypeDeveloperName)
+                    global static String getRecordTypeNameFromDevName(String objectName, String recordTypeDevName)
                   </div>
                   <div class="method-subtitle">Parameters</div>
                   <div class="param-name">objectName</div>
@@ -857,7 +965,7 @@
                     Type: <code class="code-inline">String</code>
                   </div>
                   <div class="param-description"> SObject name (with __c if custom, etc)</div>
-                  <div class="param-name">recordTypeDeveloperName</div>
+                  <div class="param-name">recordTypeDevName</div>
                   <div class="param-type">
                     Type: <code class="code-inline">String</code>
                   </div>
@@ -872,17 +980,17 @@
                     Author
                   </div>
                   <div class="method-subtitle-description">
-                    David Schach
+                    <a target="_blank" rel="noopener noreferrer" href="https://github.com/dschach">David Schach</a>
                   </div>
                   <div class="method-subtitle">
                     Example
                   </div>
-                  <pre class="code-example"><code> RecordTypes.getRecordTypeNameFromDeveloperName(&#39;Account&#39;,&#39;Person_Account&#39;)</code></pre>
+                  <pre class="code-example"><code> RecordTypes.getRecordTypeNameFromDevName(&#39;Account&#39;,&#39;Person_Account&#39;)</code></pre>
                 </div>
                 <div class="method global">
                   <h4 class="method-title " id="RecordTypes.getRecordTypeNameFromId">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L232">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L238">
                       getRecordTypeNameFromId(objectName, recordTypeId)
                     </a>
                   </h4>
@@ -917,13 +1025,55 @@
                     Author
                   </div>
                   <div class="method-subtitle-description">
-                    David Schach
+                    <a target="_blank" rel="noopener noreferrer" href="https://github.com/dschach">David Schach</a>
+                  </div>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="RecordTypes.getRecordTypeNameFromId_1">
+
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L377">
+                      getRecordTypeNameFromId(recordTypeId)
+                    </a>
+                  </h4>
+                  <div class="method-description">
+                    Generate map of all record type names by Id &amp; return Record Type Name
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global static String getRecordTypeNameFromId(Id recordTypeId)
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">recordTypeId</div>
+                  <div class="param-type">
+                    Type: <code class="code-inline">Id</code>
+                  </div>
+                  <div class="param-description"><code class="code-inline">RecordTypeId</code></div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    <code class="code-inline">String</code> Record Type Name
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    <a target="_blank" rel="noopener noreferrer" href="https://github.com/dschach">David Schach</a>
+                  </div>
+                  <div class="method-subtitle">
+                    Since
+                  </div>
+                  <div class="method-subtitle-description">
+                    2022-03-29
                   </div>
                 </div>
                 <div class="method global">
                   <h4 class="method-title " id="RecordTypes.getRecordTypeNameIdMap">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L334">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L337">
                       getRecordTypeNameIdMap(objectName)
                     </a>
                   </h4>
@@ -959,7 +1109,7 @@
                 <div class="method global">
                   <h4 class="method-title " id="RecordTypes.getRecordTypesForSelectList">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L359">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L398">
                       getRecordTypesForSelectList(objectName)
                     </a>
                   </h4>
@@ -995,7 +1145,7 @@
                 <div class="method global">
                   <h4 class="method-title " id="RecordTypes.getStringRecordTypesForSelectList">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L377">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L416">
                       getStringRecordTypesForSelectList(objectName)
                     </a>
                   </h4>
