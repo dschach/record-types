@@ -10,19 +10,21 @@
 		"apex:local:stop": "node node_modules/prettier-plugin-apex/bin/stop-apex-server.js",
 		"prettier": "prettier --write \"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}\"",
 		"prettier:verify": "prettier --list-different \"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}\"",
+		"prettier:apex:verify": "prettier --list-different \"force-app/**/*.{cls,trigger}\"",
 		"prettier:docs": ". doc-assets/docscleanup.sh | prettier --write \"docs/*.html\"",
 		"initialize": ". scripts/initialize.sh",
 		"orginit": ". scripts/orginit.sh",
 		"postinstall": "husky install",
-		"precommit": "lint-staged"
+		"precommit": "lint-staged",
+		"updateHighlight": ". scripts/updateHighlight.sh"
 	},
 	"devDependencies": {
 		"@prettier/plugin-xml": "^2.2.0",
 		"husky": "^8.0.1",
-		"lint-staged": "^13.0.0",
-		"npm": "^8.12.1",
-		"prettier": "^2.6.2",
-		"prettier-plugin-apex": "^1.10.0"
+		"lint-staged": "^13.0.3",
+		"npm": "^8.19.2",
+		"prettier": "^2.7.1",
+		"prettier-plugin-apex": "^1.11.0"
 	},
 	"lint-staged": {
 		"**/*.{cls,cmp,component,css,js,json,md,page,trigger,xml,yaml,yml}": [

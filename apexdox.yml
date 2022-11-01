@@ -8,7 +8,7 @@ engine:
   title: Record Types code documentation
   subtitle: Documentation for <a target="_blank" rel="noopener noreferrer" href="https://github.com/dschach/record-types">RecordTypes Utilities</a>
   sortOrder: alpha
-  cleanDir: true
+  cleanDir: false
   showTOCSnippets: true
   scope:
     - global
@@ -24,7 +24,12 @@ engine:
     - "${workspaceFolder}/doc-assets/logo.png"
     - "${workspaceFolder}/doc-assets/favicon.png"
     - "${workspaceFolder}/doc-assets/icon.png"
-  #  - "${workspaceFolder}/documentation/meme.jpg"
+    - "${workspaceFolder}/doc-assets/highlight.css"
+    - "${workspaceFolder}/doc-assets/styling.css"
+    - "${workspaceFolder}/doc-assets/index.css"
+    - "${workspaceFolder}/doc-assets/highlight.js"
+    - "${workspaceFolder}/doc-assets/index.js"
+    - "${workspaceFolder}/doc-assets/RecordTypesHome.html"
   port: 8080
 docblock:
   alignItems: true

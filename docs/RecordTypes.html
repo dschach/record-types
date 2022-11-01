@@ -43,10 +43,10 @@
             </summary>
             <ul>
               <!-- menu items -->
-              <li title="RecordTypes" id="item-RecordTypes" class="nav-item class " onclick="goToLocation('RecordTypes.html');">
+              <li title="RecordTypes" id="item-RecordTypes" class="nav-item class global" onclick="goToLocation('RecordTypes.html');">
                 <a tabindex="1" href="javascript:void(0)">RecordTypes</a>
               </li>
-              <li title="RecordTypesTest" id="item-RecordTypesTest" class="nav-item class " onclick="goToLocation('RecordTypesTest.html');">
+              <li title="RecordTypesTest" id="item-RecordTypesTest" class="nav-item class private" onclick="goToLocation('RecordTypesTest.html');">
                 <a tabindex="1" href="javascript:void(0)">RecordTypesTest</a>
               </li>
             </ul>
@@ -112,143 +112,143 @@
             </div>
             <div class="subsection properties RecordTypes">
               <h3 class="subsection-title properties">RecordTypes Properties</h3>
-                <table class="attributes-table properties">
+              <table class="attributes-table properties">
 
-                  <tr>
-                    <th>Name</th>
-                    <th>Signature</th>
+                <tr>
+                  <th>Name</th>
+                  <th>Signature</th>
 
-                    <th>Description</th>
-                  </tr>
-                  <tr class="property ">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L29">
-                        gd
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        private static Map&lt;String, Schema.SObjectType&gt; gd
-                      </div>
-                    </td>
-
-
-                    <td class="attribute-description">
-                      Global schema describe
-                    </td>
-                  </tr>
-                  <tr class="property ">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L59">
-                        recordTypeDevNamesById
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        private static Map&lt;Id, String&gt; recordTypeDevNamesById
-                      </div>
-                    </td>
+                  <th>Description</th>
+                </tr>
+                <tr class="property private">
+                  <td class="attribute-name">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L29">
+                      gd
+                    </a></td>
+                  <td>
+                    <div class="attribute-signature">
+                      private static Map&lt;String, Schema.SObjectType&gt; gd
+                    </div>
+                  </td>
 
 
-                    <td class="attribute-description">
-                      Map of queried <code class="code-inline">RecordType</code> DeveloperName by Id
-                    </td>
-                  </tr>
-                  <tr class="property ">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L54">
-                        recordTypeNamesById
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        private static Map&lt;Id, String&gt; recordTypeNamesById
-                      </div>
-                    </td>
+                  <td class="attribute-description">
+                    Global schema describe
+                  </td>
+                </tr>
+                <tr class="property private">
+                  <td class="attribute-name">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L59">
+                      recordTypeDevNamesById
+                    </a></td>
+                  <td>
+                    <div class="attribute-signature">
+                      private static Map&lt;Id, String&gt; recordTypeDevNamesById
+                    </div>
+                  </td>
 
 
-                    <td class="attribute-description">
-                      Map of queried <code class="code-inline">RecordType</code> Name by Id
-                    </td>
-                  </tr>
-                  <tr class="property ">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L44">
-                        recordTypesByDevName
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        private static Map&lt;String, Map&lt;String, Schema.RecordTypeInfo&gt;&gt; recordTypesByDevName
-                      </div>
-                    </td>
+                  <td class="attribute-description">
+                    Map of queried <code class="code-inline">RecordType</code> DeveloperName by Id
+                  </td>
+                </tr>
+                <tr class="property private">
+                  <td class="attribute-name">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L54">
+                      recordTypeNamesById
+                    </a></td>
+                  <td>
+                    <div class="attribute-signature">
+                      private static Map&lt;Id, String&gt; recordTypeNamesById
+                    </div>
+                  </td>
 
 
-                    <td class="attribute-description">
-                      Map of Record Types by sObject name, then by DeveloperName
-                    </td>
-                  </tr>
-                  <tr class="property ">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L34">
-                        recordTypesById
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        private static Map&lt;String, Map&lt;Id, Schema.RecordTypeInfo&gt;&gt; recordTypesById
-                      </div>
-                    </td>
+                  <td class="attribute-description">
+                    Map of queried <code class="code-inline">RecordType</code> Name by Id
+                  </td>
+                </tr>
+                <tr class="property private">
+                  <td class="attribute-name">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L44">
+                      recordTypesByDevName
+                    </a></td>
+                  <td>
+                    <div class="attribute-signature">
+                      private static Map&lt;String, Map&lt;String, Schema.RecordTypeInfo&gt;&gt; recordTypesByDevName
+                    </div>
+                  </td>
 
 
-                    <td class="attribute-description">
-                      Map of Record Types by sObject name, then by Id
-                    </td>
-                  </tr>
-                  <tr class="property ">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L39">
-                        recordTypesByName
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        private static Map&lt;String, Map&lt;String, Schema.RecordTypeInfo&gt;&gt; recordTypesByName
-                      </div>
-                    </td>
+                  <td class="attribute-description">
+                    Map of Record Types by sObject name, then by DeveloperName
+                  </td>
+                </tr>
+                <tr class="property private">
+                  <td class="attribute-name">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L34">
+                      recordTypesById
+                    </a></td>
+                  <td>
+                    <div class="attribute-signature">
+                      private static Map&lt;String, Map&lt;Id, Schema.RecordTypeInfo&gt;&gt; recordTypesById
+                    </div>
+                  </td>
 
 
-                    <td class="attribute-description">
-                      Map of Record Types by sObject name, then by Name
-                    </td>
-                  </tr>
-                  <tr class="property ">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L360">
-                        recordTypesIdMap
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        private static Map&lt;Id, RecordType&gt; recordTypesIdMap
-                      </div>
-                    </td>
+                  <td class="attribute-description">
+                    Map of Record Types by sObject name, then by Id
+                  </td>
+                </tr>
+                <tr class="property private">
+                  <td class="attribute-name">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L39">
+                      recordTypesByName
+                    </a></td>
+                  <td>
+                    <div class="attribute-signature">
+                      private static Map&lt;String, Map&lt;String, Schema.RecordTypeInfo&gt;&gt; recordTypesByName
+                    </div>
+                  </td>
 
 
-                    <td class="attribute-description">
-                      Memoized map of queried <code class="code-inline">RecordType</code> records by Id
-                    </td>
-                  </tr>
-                  <tr class="property ">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L49">
-                        recordTypesList
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        private static List&lt;Schema.Recordtypeinfo&gt; recordTypesList
-                      </div>
-                    </td>
+                  <td class="attribute-description">
+                    Map of Record Types by sObject name, then by Name
+                  </td>
+                </tr>
+                <tr class="property private">
+                  <td class="attribute-name">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L360">
+                      recordTypesIdMap
+                    </a></td>
+                  <td>
+                    <div class="attribute-signature">
+                      private static Map&lt;Id, RecordType&gt; recordTypesIdMap
+                    </div>
+                  </td>
 
 
-                    <td class="attribute-description">
-                      List of Record Type Info sObjects
-                    </td>
-                  </tr>
-                </table>
+                  <td class="attribute-description">
+                    Memoized map of queried <code class="code-inline">RecordType</code> records by Id
+                  </td>
+                </tr>
+                <tr class="property private">
+                  <td class="attribute-name">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L49">
+                      recordTypesList
+                    </a></td>
+                  <td>
+                    <div class="attribute-signature">
+                      private static List&lt;Schema.Recordtypeinfo&gt; recordTypesList
+                    </div>
+                  </td>
+
+
+                  <td class="attribute-description">
+                    List of Record Type Info sObjects
+                  </td>
+                </tr>
+              </table>
             </div>
             <div class="subsection methods">
               <h3 class="subsection-title methods">RecordTypes Methods</h3>
