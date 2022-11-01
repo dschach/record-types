@@ -39,7 +39,7 @@ jobs:
 
       # Prettier formatting
       - name: "Code formatting verification with Prettier"
-        run: npm run prettier:verify
+        run: npm run prettier:apex:verify
 
   # Auto merge Dependabot PRs for:
   # - patch updates on prod dependencies
