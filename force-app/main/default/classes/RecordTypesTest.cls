@@ -76,18 +76,12 @@ private class RecordTypesTest {
 			System.assertEquals(
 				activeRT.Id,
 				RecordTypes.getRecordTypeIdFromName('Account', activeRt.Name),
-				'Submitted ' +
-				activeRT.Name +
-				' and expected an Id to be returned: ' +
-				activeRT.Id
+				'Submitted ' + activeRT.Name + ' and expected an Id to be returned: ' + activeRT.Id
 			);
 			System.assertEquals(
 				rti.getRecordTypeId(),
 				RecordTypes.getRecordTypeIdFromName('Account', activeRt.Name),
-				'Submitted ' +
-				activeRT.Name +
-				' and expected an Id: ' +
-				rti.getRecordTypeId()
+				'Submitted ' + activeRT.Name + ' and expected an Id: ' + rti.getRecordTypeId()
 			);
 			resetTest();
 
