@@ -17,8 +17,12 @@
  * <br>Usage recommendation: Always use DeveloperName instead of Name, as this is more likely to be
  * hard-coded in places, while the Name is actually a label and may change (especially due to user language).
  *
- * @author {@link [Evan Callahan](https://github.com/groundwired)}, Groundwire & {@link [David Schach](https://github.com/dschach)}, X-Squared on Demand
- * @since 2010, 2021
+ * @author {@link [Evan Callahan](https://github.com/groundwired)}, Groundwire
+ * @since 2010
+ * @author {@link [David Schach](https://github.com/dschach)}, X-Squared on Demand
+ * @since 2021
+ * @author Nicolas Vasquez, Globant
+ * @since 2022
  * @group RecordTypes
  * @see RecordTypesTest
  */
@@ -346,6 +350,60 @@ global inherited sharing class RecordTypes {
 			Map<String, Schema.RecordTypeInfo> rtMap = recordTypesByName.get(objectName);
 			for (Schema.RecordTypeInfo rti : rtMap.values()) {
 				if (rti.getName() != 'Master') {
+					recordTypeMap.put(rti.getName(), rti.getRecordTypeId());
+				}
+			}
+		}
+		return recordTypeMap;
+	}
+
+	/**
+	 * @description Gives a map of all ACTIVE `RecordTypeId`s by `developername` for an sObject
+	 * @author Nicolas Vasquez
+	 * @param  sObjectName     SObject name (with __c if custom, etc)
+	 * @return                `Map<String, Id>` Map<RecordType Name, RecordType Id>
+	 */
+	global static Map<String, Id> getAvailableRecordTypeDevNameIdMap(String sObjectName) {
+		Map<String, Id> recordTypeMap = new Map<String, Id>();
+		// make sure we have this sObject's record types mapped
+		if (!recordTypesByName.containsKey(sObjectName)) {
+			fillMapsForObject(sObjectName);
+		}
+
+		// fill the name to id map
+		if (recordTypesByName.containsKey(sObjectName)) {
+			Map<String, Schema.RecordTypeInfo> rtMap = recordTypesByName.get(sObjectName);
+			for (Schema.RecordTypeInfo rti : rtMap.values()) {
+				if (rti.getName() != 'Master' && rti.isAvailable()) {
+					// requires permission set to cover in package tests because cannot add record type
+					// to a profile when creating a scratch org
+					recordTypeMap.put(rti.getDeveloperName(), rti.getRecordTypeId());
+				}
+			}
+		}
+		return recordTypeMap;
+	}
+
+	/**
+	 * @description Gives a map of all ACTIVE `RecordTypeId`s by name for an sObject
+	 * @author Nicolas Vasquez
+	 * @param  sObjectName     SObject name (with __c if custom, etc)
+	 * @return                `Map<String, Id>` Map<RecordType Name, RecordType Id>
+	 */
+	global static Map<String, Id> getAvailableRecordTypeNameIdMap(String sObjectName) {
+		Map<String, Id> recordTypeMap = new Map<String, Id>();
+		// make sure we have this sObject's record types mapped
+		if (!recordTypesByName.containsKey(sObjectName)) {
+			fillMapsForObject(sObjectName);
+		}
+
+		// fill the name to id map
+		if (recordTypesByName.containsKey(sObjectName)) {
+			Map<String, Schema.RecordTypeInfo> rtMap = recordTypesByName.get(sObjectName);
+			for (Schema.RecordTypeInfo rti : rtMap.values()) {
+				if (rti.getName() != 'Master' && rti.isAvailable()) {
+					// requires permission set to cover in package tests because cannot add record type
+					// to a profile when creating a scratch org
 					recordTypeMap.put(rti.getName(), rti.getRecordTypeId());
 				}
 			}
