@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Extra metadata to allow 100% coverage when creating a scratch org</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>RecordTypes DefaultRT for Testing</label>
+    <recordTypeVisibilities>
+        <recordType>Account.Default</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+</PermissionSet>

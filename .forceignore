@@ -12,3 +12,7 @@ package.xml
 
 # LWC Jest
 **/__tests__/**
+
+# Unwanted org metadata to ignore
+*.profile
+*.settings
