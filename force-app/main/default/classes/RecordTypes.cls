@@ -358,7 +358,7 @@ global inherited sharing class RecordTypes {
 	}
 
 	/**
-	 * @description Gives a map of all ACTIVE `RecordTypeId`s by `developername` for an sObject
+	 * @description Gives a map of all available (to the running user) `RecordTypeId`s by `developername` for an sObject
 	 * @author Nicolas Vasquez
 	 * @param  sObjectName     SObject name (with __c if custom, etc)
 	 * @return                `Map<String, Id>` Map<RecordType Name, RecordType Id>
@@ -385,7 +385,7 @@ global inherited sharing class RecordTypes {
 	}
 
 	/**
-	 * @description Gives a map of all ACTIVE `RecordTypeId`s by name for an sObject
+	 * @description Gives a map of all available (to the running user) `RecordTypeId`s by name for an sObject
 	 * @author Nicolas Vasquez
 	 * @param  sObjectName     SObject name (with __c if custom, etc)
 	 * @return                `Map<String, Id>` Map<RecordType Name, RecordType Id>
