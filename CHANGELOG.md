@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.1](https://github.com/dschach/record-types/compare/recordtypes-utility-v1.1.0...recordtypes-utility-v1.1.1) (2023-02-08)
+
+
+### Bug Fixes
+
+* Bump prettier from 2.8.3 to 2.8.4 ([#32](https://github.com/dschach/record-types/issues/32)) ([d01b32f](https://github.com/dschach/record-types/commit/d01b32f1484cac2f42b8f21acf3225c360939117))
+
 ## [1.1.0](https://github.com/dschach/record-types/compare/recordtypes-utility-v1.1.0...recordtypes-utility-v1.1.0) (2023-02-08)
 
 
