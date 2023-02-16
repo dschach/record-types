@@ -6,7 +6,7 @@
 			"versionNumber": "1.1.0.NEXT"
 		}
 	],
-	"name": "record-types",
+	"name": "recordtypes-utility",
 	"namespace": "",
 	"sfdcLoginUrl": "https://login.salesforce.com",
 	"sourceApiVersion": "56.0"
