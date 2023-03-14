@@ -7,7 +7,7 @@
 			"bump-patch-for-minor-pre-major": false,
 			"draft": false,
 			"prerelease": false,
-			"package-name": "recordtypes-utility"
+			"package-name": "record-types"
 		}
 	},
 	"$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
@@ -21,6 +21,63 @@
 	"plugins": [
 		{
 			"type": "sentence-case"
+		}
+	],
+	"changelog-sections": [
+		{
+			"type": "feat",
+			"section": "Features",
+			"hidden": false
+		},
+		{
+			"type": "build",
+			"section": "Build System",
+			"hidden": false
+		},
+		{
+			"type": "docs",
+			"section": "Documentation",
+			"hidden": false
+		},
+		{
+			"type": "test",
+			"section": "Tests",
+			"hidden": false
+		},
+		{
+			"type": "fix",
+			"section": "Bug Fixes",
+			"hidden": false
+		},
+		{
+			"type": "ci",
+			"section": "Continuous Integration",
+			"hidden": false
+		},
+		{
+			"type": "perf",
+			"section": "Performance Improvements",
+			"hidden": false
+		},
+		{
+			"type": "chore",
+			"section": "Chores",
+			"hidden": false
+		},
+		{
+			"type": "revert",
+			"section": "Reverts",
+			"hidden": false
+		},
+		{
+			"type": "refactor",
+			"section": "Code Refactoring",
+			"hidden": false
+		},
+		{
+			"type": "style",
+			"section": "Styles",
+			"hidden": false
 		}
 	]
 }
