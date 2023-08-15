@@ -12,17 +12,17 @@ jobs:
       - name: "Checkout source code"
         uses: actions/checkout@v3
       - name: Install Dependencies
-        run: npm install sfdx-cli
+        run: npm install @salesforce/cli --global
       - name: Populate auth file
         run: 'echo "${{ secrets.SALESFORCE_AUTH_URL }}" > ./SALESFORCE_AUTH_URL.txt'
       - name: Authenticate Dev Hub
-        run: "node_modules/sfdx-cli/bin/run force:auth:sfdxurl:store -f ./SALESFORCE_AUTH_URL.txt -a DevHub -d"
+        run: "sf org login sfdx-url --sfdx-url-file ./SALESFORCE_AUTH_URL.txt --alias DevHub --set-default-dev-hub"
       - name: Create Scratch Org
-        run: node_modules/sfdx-cli/bin/run force:org:create --setdefaultusername --definitionfile config/project-scratch-def.json --setalias ciorg --durationdays 1
+        run: sf force org create scratch --setdefaultusername --definitionfile config/project-scratch-def.json --setalias ciorg --durationdays 1
       - name: Deploy source
-        run: node_modules/sfdx-cli/bin/run force:source:push
+        run: sf force source push
       - name: Run Apex tests
-        run: node_modules/sfdx-cli/bin/run force:apex:test:run --codecoverage --resultformat human -d ./
+        run: sf apex run test --code-coverage --result-format human --output-dir ./
       - name: Delete coverage file (temporary fix)
         run: rm ./test-result-707*-codecoverage.json
       - name: "Upload code coverage for Apex to Codecov.io"
@@ -30,4 +30,4 @@ jobs:
         with:
           flags: Apex
       - name: Delete Scratch Org
-        run: node_modules/sfdx-cli/bin/run force:org:delete --noprompt
+        run: sf force org delete scratch --no-prompt

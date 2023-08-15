@@ -12,6 +12,11 @@
 		{
 			"files": "*.{cmp,page,component}",
 			"options": { "parser": "html" }
+		},
+		{
+			"files": "*.{yaml,yml}",
+			"options": { "useTabs": false }
 		}
-	]
+	],
+	"plugins": ["prettier-plugin-apex", "@prettier/plugin-xml"]
 }
