@@ -55,11 +55,10 @@ jobs:
       # Install Salesforce CLI
       - name: "Install Salesforce CLI"
         run: |
-          wget https://developer.salesforce.com/media/salesforce-cli/sfdx/channels/stable/sfdx-linux-x64.tar.xz
-          mkdir ~/sfdx
-          tar xJf sfdx-linux-x64.tar.xz -C ~/sfdx --strip-components 1
-          echo "$HOME/sfdx/bin" >> $GITHUB_PATH
-          ~/sfdx/bin/sfdx version
+          npm install @salesforce/cli --global
+          nodeInstallPath=$(npm config get prefix)
+          echo "$nodeInstallPath/bin" >> $GITHUB_PATH
+          sf --version
 
       # Store secret for dev hub
       - name: "Populate auth file with SALESFORCE_AUTH_URL secret"
@@ -74,19 +73,19 @@ jobs:
 
       # Authenticate dev hub
       - name: "Authenticate Dev Hub"
-        run: sfdx auth:sfdxurl:store -f ./SALESFORCE_AUTH_URL.txt -a devhub -d
+        run: sf org login sfdx-url --sfdx-url-file ./SALESFORCE_AUTH_URL.txt --alias devhub --set-default-dev-hub
 
       # Create scratch org
       - name: "Create scratch org"
-        run: sfdx force:org:create -f config/project-scratch-def.json -a scratch-org -s -d 1
+        run: sf force org create scratch --definition-file config/project-scratch-def.json --alias RecordTypes --set-default --duration-days 1
 
       # Deploy source to scratch org
       - name: "Push source to scratch org"
-        run: sfdx force:source:push
+        run: sf project deploy start
 
       # Run Apex tests in scratch org
       - name: "Run Apex tests"
-        run: sfdx force:apex:test:run -c -r human -d ./tests/apex -w 20
+        run: sf apex run test --code-coverage --result-format human --output-dir ./tests/apex --wait 20
 
       # Delete temporary test file that Codecov is unable to parse
       #- name: "Delete coverage file (temporary step)"
@@ -101,4 +100,4 @@ jobs:
       # Housekeeping
       - name: "Delete scratch org"
         if: always()
-        run: sfdx force:org:delete -p -u scratch-org
+        run: sf force org delete scratch --no-prompt --target-org RecordTypes
