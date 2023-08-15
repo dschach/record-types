@@ -1,21 +1,21 @@
 #!/bin/bash
 
 echo "Cleaning previous scratch org..."
-sfdx force:org:delete -p -u RecordTypes
+sf org delete scratch --no-prompt --target-org RecordTypes
 
 echo "Creating new scratch org"
-sfdx force:org:create -f config/project-scratch-def.json --durationdays 10 -a RecordTypes -s
+sf org create scratch --definition-file config/project-scratch-def.json --duration-days 10 --alias RecordTypes --set-default
 
 echo "Pushing metadata"
-sfdx force:source:push
+sf project deploy start
 
 echo "Assigning permission set"
-sfdx force:user:permset:assign -n unpackaged/main/default/permissionsets/RecordTypes_DefaultRT_for_Testing
+sf sf org assign permset --name unpackaged/main/default/permissionsets/RecordTypes_DefaultRT_for_Testing
 
 echo "Running Apex tests"
-sfdx force:apex:test:run --codecoverage --resultformat human -l RunLocalTests --wait 20
+sf apex run test --code-coverage --result-format human --test-level RunLocalTests --wait 20
 
 echo "Opening org"
-sfdx force:org:open
+sf org open
 
 echo "Org is set up"
