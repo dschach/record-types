@@ -11,7 +11,7 @@ on:
 # Jobs to be executed
 jobs:
   # Formatting and linting only runs on human-submitted PRs
-  format-lint-lwc-tests:
+  format-tests:
     runs-on: ubuntu-latest
     if: ${{ github.actor != 'dependabot[bot]' }}
     steps:
@@ -45,7 +45,7 @@ jobs:
 
   scratch-org-test:
     runs-on: ubuntu-latest
-    needs: format-lint-lwc-tests
+    needs: format-tests
     if: ${{ github.actor != 'dependabot[bot]' }}
     steps:
       # Checkout the source code
