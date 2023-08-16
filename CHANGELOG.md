@@ -1,5 +1,43 @@
 # Changelog
 
+## [1.2.1](https://github.com/dschach/record-types/compare/record-types-v1.2.0...record-types-v1.2.1) (2023-08-16)
+
+
+### Build System
+
+* **ApexDox:** Update ApexDox ([#62](https://github.com/dschach/record-types/issues/62)) ([ae8063b](https://github.com/dschach/record-types/commit/ae8063b090728a7f0530f9c46a97df0dfa5225cf))
+* **deps-dev:** Bump @prettier/plugin-xml from 2.2.0 to 3.1.1 ([#56](https://github.com/dschach/record-types/issues/56)) ([d2f0a8a](https://github.com/dschach/record-types/commit/d2f0a8a4f225446e0f9a838281bfc4972ae8f5ac))
+* **deps-dev:** Bump @prettier/plugin-xml from 3.1.1 to 3.2.0 ([#58](https://github.com/dschach/record-types/issues/58)) ([8ab6421](https://github.com/dschach/record-types/commit/8ab642103fac451268a643c34416531fe656a4af))
+* **deps-dev:** Bump lint-staged from 13.2.0 to 13.2.1 ([#45](https://github.com/dschach/record-types/issues/45)) ([b8539fd](https://github.com/dschach/record-types/commit/b8539fdcc666ea4e5347952217b69d866179b360))
+* **deps-dev:** Bump lint-staged from 13.2.1 to 13.2.2 ([#49](https://github.com/dschach/record-types/issues/49)) ([a058181](https://github.com/dschach/record-types/commit/a0581810b58034ad269efc70069b5ade03768c11))
+* **deps-dev:** Bump lint-staged from 13.2.2 to 13.2.3 ([#52](https://github.com/dschach/record-types/issues/52)) ([f43ed99](https://github.com/dschach/record-types/commit/f43ed99571353fbc660c50b2b8316c825121c004))
+* **deps-dev:** Bump lint-staged from 13.2.3 to 14.0.0 ([#59](https://github.com/dschach/record-types/issues/59)) ([3994458](https://github.com/dschach/record-types/commit/39944583e67d94ca7109348bbb8d273c623f0004))
+* **deps-dev:** Bump prettier and prettier-plugin-apex ([#53](https://github.com/dschach/record-types/issues/53)) ([1c8fa7b](https://github.com/dschach/record-types/commit/1c8fa7b2b054b8d8ca04ca687c629604baa0ade3))
+* **deps-dev:** Bump prettier from 2.8.4 to 2.8.5 ([#42](https://github.com/dschach/record-types/issues/42)) ([5e23e23](https://github.com/dschach/record-types/commit/5e23e23b61657ad84ece14b1167786c457a01ffc))
+* **deps-dev:** Bump prettier from 2.8.5 to 2.8.6 ([#43](https://github.com/dschach/record-types/issues/43)) ([5995994](https://github.com/dschach/record-types/commit/5995994b4d3b4c66df5f045cdf41b58885936db4))
+* **deps-dev:** Bump prettier from 2.8.6 to 2.8.7 ([#44](https://github.com/dschach/record-types/issues/44)) ([49e70d4](https://github.com/dschach/record-types/commit/49e70d47e2599217ec6bc8a3bdd0a61e0598923e))
+* **deps-dev:** Bump prettier from 2.8.7 to 2.8.8 ([#46](https://github.com/dschach/record-types/issues/46)) ([4511236](https://github.com/dschach/record-types/commit/45112367d01159858060a557fcee29afc94ef709))
+* **deps-dev:** Bump prettier from 3.0.0 to 3.0.1 ([#57](https://github.com/dschach/record-types/issues/57)) ([773c11c](https://github.com/dschach/record-types/commit/773c11cca3bcfb4e42904a7f23b643d30aa8efb8))
+* **deps-dev:** Bump prettier from 3.0.1 to 3.0.2 ([#60](https://github.com/dschach/record-types/issues/60)) ([93c293e](https://github.com/dschach/record-types/commit/93c293e30c5d6f38de85ad25d744a24713f47700))
+* **deps-dev:** Bump prettier-plugin-apex from 1.12.0 to 1.13.0 ([#47](https://github.com/dschach/record-types/issues/47)) ([0bbb6b5](https://github.com/dschach/record-types/commit/0bbb6b5b46c2f7d0eddd1a486cfb37b33b43d062))
+* **deps:** Bump yaml from 2.2.1 to 2.2.2 ([#48](https://github.com/dschach/record-types/issues/48)) ([3bfb579](https://github.com/dschach/record-types/commit/3bfb5796375a49334b58d28a0d88a5d1c28b0946))
+* **sfdx:** Update sfdx cli to sf cli ([#61](https://github.com/dschach/record-types/issues/61)) ([eb80d9e](https://github.com/dschach/record-types/commit/eb80d9e7902dc3665b0fb931c27ff5a45050ffdf))
+
+
+### Documentation
+
+* **ApexDox:** Update highlight.js library ([b8f7630](https://github.com/dschach/record-types/commit/b8f7630f62c08495733fee3e887e70f02dd94482))
+
+
+### Bug Fixes
+
+* **build:** Fix pull request GitHub action ([9f55805](https://github.com/dschach/record-types/commit/9f55805ecf11a97bacb5dc23f07541f7c8971dd2))
+
+
+### Chores
+
+* **linguist:** Exclude vendor js files ([#50](https://github.com/dschach/record-types/issues/50)) ([9d7bcfa](https://github.com/dschach/record-types/commit/9d7bcfae729329075f116614561a9c805a19211a))
+
 ## [1.2.0](https://github.com/dschach/record-types/compare/record-types-v1.1.0...record-types-v1.2.0) (2023-03-14)
 
 
