@@ -23,9 +23,11 @@ The class and test class are found in this [folder](/force-app/main/default/clas
 
 ## Installation
 
-Clone this repository and run `. scripts/orginit.sh` to set up a scratch org with the classes installed.
+Clone this repository and run `. scripts/orginit.sh` to set up a scratch org with the classes installed and a single Account Record Type.
 
 ## Changelog
+
+- 2023-08-18 Add methods to get default RecordTypeId, handling situation where no RT is on the Profile but at least one is avaialble via Permission Set.
 
 - 2022-03-29 BREAKING CHANGE: Replaced "DeveloperName" with "DevName" in all method names. Update your code to refer to the new methods.
 
