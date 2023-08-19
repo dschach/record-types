@@ -224,11 +224,11 @@ private class RecordTypesTest {
 		resetTest();
 
 		if (!accountRecordTypes.isEmpty()) {
-			System.debug('Contact default RTDevName: ' + RecordTypes.getDefaultRecordTypeDevName('Contact'));
+			SRecordTypes.getDefaultRecordTypeDevName('Contact');
 			resetTest();
-			System.debug('Contact default RTName: ' + RecordTypes.getDefaultRecordTypeName('Contact'));
+			RecordTypes.getDefaultRecordTypeName('Contact');
 			resetTest();
-			System.debug('Contact default RTId: ' + RecordTypes.getDefaultRecordTypeId('Contact'));
+			RecordTypes.getDefaultRecordTypeId('Contact');
 			resetTest();
 
 			RecordType activeRT = accountRecordTypes[0];
