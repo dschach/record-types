@@ -21,7 +21,6 @@ private class RecordTypesTest {
 		//Test with Bogus object
 
 		Assert.isNull(RecordTypes.getRecordTypesForObject('Bogus'), 'Bogus object should not exist');
-		Assert.isNull(RecordTypes.getRecordType('Bogus', null), 'Bogus object should not exist');
 		Assert.isNull(RecordTypes.getRecordTypeDevNameFromId(null), 'Nonexistent RecordType');
 		Assert.isNull(RecordTypes.getRecordTypeNameFromId(null), 'Nonexistent RecordType');
 
@@ -152,7 +151,7 @@ private class RecordTypesTest {
 
 			RecordType activeRT = accountRecordTypes[0];
 
-			Schema.RecordTypeInfo rti = RecordTypes.getRecordType('Account', activeRT.Id);
+			Schema.RecordTypeInfo rti = RecordTypes.getRecordTypeFromId('Account', activeRT.Id);
 
 			Assert.areNotEqual(null, RecordTypes.getRecordTypeDevNameFromId(activeRT.Id), 'We should have had an Account RecordType');
 			Assert.areNotEqual(null, RecordTypes.getRecordTypeNameFromId(activeRT.Id), 'We should have had an Account RecordType');
@@ -232,8 +231,7 @@ private class RecordTypesTest {
 
 			RecordType activeRT = accountRecordTypes[0];
 
-			Schema.RecordTypeInfo rti = RecordTypes.getRecordType('Contact', activeRT.Id);
-
+			Schema.RecordTypeInfo rti = RecordTypes.getRecordTypeFromId('Contact', activeRT.Id);
 			Assert.areNotEqual(null, RecordTypes.getRecordTypeDevNameFromId(activeRT.Id), 'We should have had an Contact RecordType');
 			Assert.areNotEqual(null, RecordTypes.getRecordTypeNameFromId(activeRT.Id), 'We should have had an Contact RecordType');
 

@@ -2,9 +2,7 @@
 
 This is a project based on work by [Evan Callahan](https://github.com/groundwired) (formerly of Groundwire, and now at Salesforce) who wrote [this class](https://github.com/SalesforceFoundation/JenkinsTesting/blob/master/src/classes/RecordTypes.cls) (Repo has been deleted. Sadface.) a long time ago to reduce the number of describe calls required to work with Record Types.
 
-I've updated the project (by pulling test code out of the main class - that's how old it was!) and have added some additional methods.
-
-The included test class has 100% coverage, so pull this into your org and get cracking!
+I've updated the project (by pulling test code out of the main class - that's how old it was!) and have added some additional methods. The included test class has 100% coverage, so pull this into your org and get cracking!
 
 Of note: The test code assumes that you have no record types for the Solution object. If you do, you may need to remove that test method.
 

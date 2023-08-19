@@ -7,6 +7,7 @@ echo >> "doc-assets/main.html"
 cat doc-assets/RecordTypesHome.html >> "doc-assets/main.html"
 echo "\n" >> "doc-assets/main.html"
 npx marked -i README.md --gfm >> "doc-assets/main.html"
+cat doc-assets/methodstable.html >> "doc-assets/main.html"
 
 printf '<link href="assets/styling.css" rel="stylesheet" />' > "doc-assets/changelog.html"
 #echo >> "doc-assets/changelog.html"
