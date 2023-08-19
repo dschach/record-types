@@ -16,6 +16,9 @@
  * <br>
  * <br>Usage recommendation: Always use DeveloperName instead of Name, as this is more likely to be
  * hard-coded in places, while the Name is actually a label and may change (especially due to user language).
+ * <br>
+ * An easy-to-read table with the various methods, their inputs, and their outputs is available at
+ * {@link [RecordTypesHome](./RecordTypesHomt.html)}
  *
  * @author {@link [Evan Callahan](https://github.com/groundwired)}, Groundwire
  * @since 2010
@@ -24,6 +27,7 @@
  * @author Nicolas Vasquez, Globant
  * @since 2022
  * @group RecordTypes
+ * @group-content doc-assets/RecordTypesHome.html
  * @see RecordTypesTest
  */
 global inherited sharing class RecordTypes {
@@ -377,28 +381,6 @@ global inherited sharing class RecordTypes {
 	}
 
 	/**
-	 * @description Given an sObject and `RecordType` Id, return the `RecordType` object
-	 * @author {@link [David Schach](https://github.com/dschach)}
-	 * @param  objectName     SObject name (with __c if custom, etc)
-	 * @param  recordTypeId   RecordType Id
-	 * @return                `Schema.RecordTypeInfo` RecordTypeInfo object
-	 */
-	global static Schema.RecordTypeInfo getRecordType(String objectName, Id recordTypeId) {
-		// make sure we have this sObject's record types mapped
-		if (!recordTypesById.containsKey(objectName)) {
-			fillMapsForObject(objectName);
-		}
-
-		// now grab and return the requested object
-		Map<Id, Schema.RecordTypeInfo> rtMap = recordTypesById.get(objectName);
-		if (rtMap != null && rtMap.containsKey(RecordTypeId)) {
-			return rtMap.get(recordTypeId);
-		} else {
-			return null;
-		}
-	}
-
-	/**
 	 * @description Gives a set of `RecordType` Ids from an sObject and a set of `RecordType` DeveloperNames
 	 * @author {@link [David Schach](https://github.com/dschach)}
 	 * @param  objectName           SObject name (with __c if custom, etc)
@@ -569,10 +551,16 @@ global inherited sharing class RecordTypes {
 	}
 
 	/**
-	 * @description Make a Visualforce picklist with the `RecordType` Name displayed and the `RecordType` Id as the value
+	 * @description Make a Visualforce picklist of all available Record Types with the `RecordType` Name
+	 * displayed and the `RecordType` Id as the value
 	 * @author Evan Callahan
 	 * @param  objectName SObject name (with __c if custom, etc)
 	 * @return            `List<SelectOption>` Visualforce SelectOption list
+	 * @example
+	 * RecordTypes.getRecordTypesForSelectList('Account')
+	 * <br><br>
+	 * System.SelectOption[value="<SFID>", label="Available", disabled="false"]
+	 * System.SelectOption[value="<SFID>", label="Default", disabled="false"]
 	 */
 	global static List<SelectOption> getRecordTypesForSelectList(String objectName) {
 		List<SelectOption> recordTypesOptions = new List<SelectOption>();
@@ -587,7 +575,8 @@ global inherited sharing class RecordTypes {
 	}
 
 	/**
-	 * @description Make a Visualforce picklist with the `RecordType` Name displayed and the `RecordType` Id as the value
+	 * @description Make a Visualforce picklist with ALL `RecordType` Names displayed and the `RecordType` Id as the value
+	 * <br>Unavailable Record Types will be disabled in the picklist
 	 * @author {@link [David Schach](https://github.com/dschach)}
 	 * @param  objectName SObject name (with __c if custom, etc)
 	 * @return            `List<SelectOption>` Visualforce SelectOption list

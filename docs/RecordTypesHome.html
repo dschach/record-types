@@ -39,7 +39,7 @@
           </a>
           <details id="RecordTypes" class="group-name">
             <summary id="header-RecordTypes" class="nav-header">
-              <span>RecordTypes</span>
+              <a href="javascript:void(0)" title="See Class Group info" onclick="goToLocation('RecordTypesHome.html');">RecordTypes</a>
             </summary>
             <ul>
               <!-- menu items -->
@@ -76,9 +76,10 @@
       </tr>
       <tr>
         <td class="doc-page">
+          <h2 class='section-title'>RecordTypes</h2>
           <h1><a href="./RecordTypes.html">Record Types Utilities</a></h1>
-          <!-- <h2>Original Header</h2> -->
 
+          <!-- <h2>Original Header</h2> -->
           <p>
             Written by Evan Callahan, copyright (c) 2010 Groundwire
             <br />
@@ -86,20 +87,18 @@
             <br />
             This class is meant to allow for access to Record Type information from within other classes.
             <br />
-
-            It is called statically, and therefore will supply the same information to all calls made from within one transaction, or set of trigger calls. This is
-            beneficial because this info should be the same for all calls in a transaction, and by calling it statically we reduce the calls that are made, making the
-            total transaction more efficient.
+            It is called statically, and therefore will supply the same information to all calls made from within one transaction, or set of trigger calls. This is beneficial because this
+            info should be the same for all calls in a transaction, and by calling it statically we reduce the calls that are made, making the total transaction more efficient.
           </p>
           <!-- 
 <h2>Additional/Changed Header</h2> -->
           <p>
             Updated by David Schach, copyright (c) 2021 X-Squared on Demand
             <br />
-            This class is allows for easy, readable access to Record Type information from other classes.
+            This class allows for easy, readable access to Record Type information from other classes.
             <br />
-            Usage recommendation: Always use DeveloperName instead of Name, as this is more likely to be hard-coded in places, while the Name is actually a label and may
-            change (especially due to user language).
+            Usage recommendation: Always use DeveloperName instead of Name, as this is more likely to be hard-coded in places, while the Name is actually a label and may change (especially
+            due to user language).
           </p>
 
         </td>
