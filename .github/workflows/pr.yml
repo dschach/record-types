@@ -77,11 +77,17 @@ jobs:
 
       # Create scratch org
       - name: "Create scratch org"
-        run: sf force org create scratch --definition-file config/project-scratch-def.json --alias RecordTypes --set-default --duration-days 1
+        run: sf org create scratch --definition-file config/project-scratch-def.json --alias RecordTypes --set-default --duration-days 1
 
       # Deploy source to scratch org
-      - name: "Push source to scratch org"
+      - name: "Push main directory to scratch org"
         run: sf project deploy start
+
+      - name: "Push permission set"
+        run: sf project deploy start --source-dir unpackaged
+
+      - name: "Assign Permission Set"
+        run: sf org assign permset --name RecordTypes_DefaultRT_for_Testing
 
       # Run Apex tests in scratch org
       - name: "Run Apex tests"
@@ -100,4 +106,4 @@ jobs:
       # Housekeeping
       - name: "Delete scratch org"
         if: always()
-        run: sf force org delete scratch --no-prompt --target-org RecordTypes
+        run: sf org delete scratch --no-prompt --target-org RecordTypes
