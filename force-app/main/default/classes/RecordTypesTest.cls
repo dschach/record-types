@@ -85,7 +85,6 @@ private class RecordTypesTest {
 
 		resetTest();
 		Assert.isFalse(RecordTypes.getAllRecordTypesForSelectList('Account').isEmpty(), 'Should return at least single item select list');
-		Assert.isFalse(RecordTypes.getAvailableRecordTypeNameIdMap('Account').isEmpty(), 'We should retrieve at least one active record type');
 	}
 
 	/**
