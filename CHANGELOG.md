@@ -1,5 +1,22 @@
 # Changelog
 
+## [1.3.0](https://github.com/dschach/record-types/compare/record-types-v1.2.1...record-types-v1.3.0) (2023-08-19)
+
+
+### Features
+
+* Handle inactive RTs and RTs via PermSet ([#63](https://github.com/dschach/record-types/issues/63)) ([064e1aa](https://github.com/dschach/record-types/commit/064e1aaae4cd2cde7d9b086b5c6f36b5fa99897f))
+
+
+### Bug Fixes
+
+* Remove redundant methods, update docs ([#66](https://github.com/dschach/record-types/issues/66)) ([3487d30](https://github.com/dschach/record-types/commit/3487d30d100d3ae238d0bb8c88671845c1647993))
+
+
+### Documentation
+
+* **apexdox:** Update ApexDox, Changelog ([#65](https://github.com/dschach/record-types/issues/65)) ([ee2d5de](https://github.com/dschach/record-types/commit/ee2d5decbe6081b5ee2e25fa921fc8e3c2d78626))
+
 ## [1.2.1](https://github.com/dschach/record-types/compare/record-types-v1.2.0...record-types-v1.2.1) (2023-08-16)
 
 ### Build System
