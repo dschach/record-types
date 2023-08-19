@@ -111,6 +111,7 @@ global inherited sharing class RecordTypes {
 	 * @param objectName SObject name (with __c if custom, etc)
 	 * @return           `Id` Default Record Type Id for the running user for this object
 	 */
+	@SuppressWarnings('PMD.AvoidDeeplyNestedIfStmts')
 	global static Schema.RecordTypeInfo getDefaultRecordType(String objectName) {
 		// make sure we have this sObject's record types mapped
 		if (!recordTypesByName.containsKey(objectName)) {
