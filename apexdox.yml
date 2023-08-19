@@ -13,13 +13,14 @@ engine:
   scope:
     - global
     - public
-    - protected
+    #- protected
     - private
-    - webService
+    #- webService
     - testMethod
-  homePagePath: "${workspaceFolder}/doc-assets/homepage.html"
-  #pages:
-  #  - "${workspaceFolder}/doc-assets/index.html"
+  homePagePath: "${workspaceFolder}/doc-assets/main.html"
+  pages:
+    - "${workspaceFolder}/doc-assets/changelog.html"
+    - "${workspaceFolder}/doc-assets/RecordTypesHome.html"
   assets:
     - "${workspaceFolder}/doc-assets/logo.png"
     - "${workspaceFolder}/doc-assets/favicon.png"
@@ -29,7 +30,7 @@ engine:
     - "${workspaceFolder}/doc-assets/index.css"
     - "${workspaceFolder}/doc-assets/highlight.js"
     - "${workspaceFolder}/doc-assets/index.js"
-    - "${workspaceFolder}/doc-assets/RecordTypesHome.html"
+
   port: 8080
 docblock:
   alignItems: true

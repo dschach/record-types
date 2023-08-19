@@ -12,10 +12,12 @@
   It is called statically, and therefore will supply the same information to all calls made from within one transaction, or set of trigger calls. This is beneficial because this
   info should be the same for all calls in a transaction, and by calling it statically we reduce the calls that are made, making the total transaction more efficient.
 </p>
+
 <!-- 
 <h2>Additional/Changed Header</h2> -->
 <p>
   Updated by David Schach, copyright (c) 2021 X-Squared on Demand
+
   <br />
   This class is allows for easy, readable access to Record Type information from other classes.
   <br />
@@ -44,6 +46,7 @@
 <h2>Documentation</h2>
 <p><a href="https://dschach.github.io/record-types/RecordTypes.html">ApexDox</a> (generated with <a href="https://github.com/no-stack-dub-sack/apexdox-vs-code">ApexDox</a>)</p>
 <h2>Installation</h2>
+
 <ul>
   <li>Clone this repository and run <code>. scripts/orginit.sh</code> to set up a scratch org with the classes installed and a single Account Record Type.</li>
   <li>To set up a scratch org without creating a Record Type, run <code>.scripts/orginit-norecordtypes.sh</code></li>
