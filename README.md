@@ -1,10 +1,12 @@
 # Record-Types
 
-This is a project based on work by [Evan Callahan](https://github.com/groundwired) (formerly of Groundwire, and now at Salesforce) who wrote [this class](https://github.com/SalesforceFoundation/JenkinsTesting/blob/master/src/classes/RecordTypes.cls) a long time ago to reduce the number of describe calls required to work with Record Types.
+This is a project based on work by [Evan Callahan](https://github.com/groundwired) (formerly of Groundwire, and now at Salesforce) who wrote [this class](https://github.com/SalesforceFoundation/JenkinsTesting/blob/master/src/classes/RecordTypes.cls) (Repo has been deleted. Sadface.) a long time ago to reduce the number of describe calls required to work with Record Types.
 
 I've updated the project (by pulling test code out of the main class - that's how old it was!) and have added some additional methods.
 
 The included test class has 100% coverage, so pull this into your org and get cracking!
+
+Of note: The test code assumes that you have no record types for the Solution object. If you do, you may need to remove that test method.
 
 ## Badges
 
@@ -23,9 +25,15 @@ The class and test class are found in this [folder](/force-app/main/default/clas
 
 ## Installation
 
-Clone this repository and run `. scripts/orginit.sh` to set up a scratch org with the classes installed.
+- Clone this repository and run `. scripts/orginit.sh` to set up a scratch org with the classes installed and a single Account Record Type.
+- To set up a scratch org without creating a Record Type, run `.scripts/orginit-norecordtypes.sh`
 
-## Changelog
+## [Changelog](./CHANGELOG.md)
+
+- 2023-08-18
+
+  - Add methods to get default RecordTypeId, handling situation where no RT is on the Profile but at least one is avaialble via Permission Set.
+  - Add test methods against Account and Solution objects, as we assume Solution has no defined record types. (Change for your org if you have them.)
 
 - 2022-03-29 BREAKING CHANGE: Replaced "DeveloperName" with "DevName" in all method names. Update your code to refer to the new methods.
 

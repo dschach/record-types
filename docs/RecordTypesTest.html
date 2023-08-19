@@ -65,15 +65,9 @@
           </label>&nbsp;&nbsp;<input type="checkbox" checked="true" id="cbx-public" onclick="toggleScope('public', this.checked);" />
           <label for="cbx-public">
             public
-          </label>&nbsp;&nbsp;<input type="checkbox" checked="true" id="cbx-protected" onclick="toggleScope('protected', this.checked);" />
-          <label for="cbx-protected">
-            protected
           </label>&nbsp;&nbsp;<input type="checkbox" checked="true" id="cbx-private" onclick="toggleScope('private', this.checked);" />
           <label for="cbx-private">
             private
-          </label>&nbsp;&nbsp;<input type="checkbox" checked="true" id="cbx-webservice" onclick="toggleScope('webservice', this.checked);" />
-          <label for="cbx-webservice">
-            webService
           </label>&nbsp;&nbsp;<input type="checkbox" checked="true" id="cbx-testmethod" onclick="toggleScope('testmethod', this.checked);" />
           <label for="cbx-testmethod">
             testMethod
@@ -87,7 +81,7 @@
 
             <h2 class="class-title top-level-type" id="RecordTypesTest">
 
-              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypesTest.cls#L12">
+              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypesTest.cls#L13">
                 RecordTypesTest
               </a>
             </h2>
@@ -131,7 +125,8 @@
                 Since
               </div>
               <div class="class-subtitle-description">
-                <li>2021</li>
+                <li>2021 Various enhancements and updates to use new Apex methods</li>
+                <li>2023 Addition of methods to handle no profile-based RT permissions with permissions via permission set</li>
               </div>
             </div>
             <div class="subsection methods">
@@ -148,8 +143,8 @@
                     </div>
                   </li>
                   <li class="method testmethod">
-                    <a class="methods-toc__entry " href="#RecordTypesTest.testAccountRecordType">
-                      testAccountRecordType ()
+                    <a class="methods-toc__entry " href="#RecordTypesTest.testAccountRecordTypeReturns">
+                      testAccountRecordTypeReturns ()
                     </a>
 
                     <div class="methods-toc__description">
@@ -157,19 +152,46 @@
                     </div>
                   </li>
                   <li class="method testmethod">
-                    <a class="methods-toc__entry " href="#RecordTypesTest.testRecTypes">
-                      testRecTypes ()
+                    <a class="methods-toc__entry " href="#RecordTypesTest.testAccountRecTypes">
+                      testAccountRecTypes ()
+                    </a>
+
+                    <div class="methods-toc__description">
+                      Test against Account, an object with record types in package testing
+                    </div>
+                  </li>
+                  <li class="method testmethod">
+                    <a class="methods-toc__entry " href="#RecordTypesTest.testBogusRecTypes">
+                      testBogusRecTypes ()
                     </a>
 
                     <div class="methods-toc__description">
                       Test various record types and names <br>We test nonexistent object names, nonexistent record type names, null values, and existing Account record type (if available)
                     </div>
                   </li>
+                  <li class="method testmethod">
+                    <a class="methods-toc__entry " href="#RecordTypesTest.testContactRecordType">
+                      testContactRecordType ()
+                    </a>
+
+                    <div class="methods-toc__description">
+                      Separate method for checking if we have Account record type, and then testing that
+                    </div>
+                  </li>
+                  <li class="method testmethod">
+                    <a class="methods-toc__entry " href="#RecordTypesTest.testSolutionRecTypes">
+                      testSolutionRecTypes ()
+                    </a>
+
+                    <div class="methods-toc__description">
+                      Test against Solution, an object likely to have no record types
+                    </div>
+                  </li>
                 </ul>
                 <div class="method private">
                   <h4 class="method-title " id="RecordTypesTest.resetTest">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypesTest.cls#L140">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypesTest.cls#L291">
                       resetTest()
                     </a>
                   </h4>
@@ -191,10 +213,10 @@
                   </div>
                 </div>
                 <div class="method testmethod">
-                  <h4 class="method-title " id="RecordTypesTest.testAccountRecordType">
+                  <h4 class="method-title " id="RecordTypesTest.testAccountRecordTypeReturns">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypesTest.cls#L73">
-                      testAccountRecordType()
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypesTest.cls#L137">
+                      testAccountRecordTypeReturns()
                     </a>
                   </h4>
                   <div class="method-description">
@@ -205,7 +227,7 @@
                   </div>
                   <div class="method-annotations">@isTest</div>
                   <div class="method-signature">
-                    private static void testAccountRecordType()
+                    private static void testAccountRecordTypeReturns()
                   </div>
                   <div class="method-subtitle">
                     Author
@@ -215,10 +237,34 @@
                   </div>
                 </div>
                 <div class="method testmethod">
-                  <h4 class="method-title " id="RecordTypesTest.testRecTypes">
+                  <h4 class="method-title " id="RecordTypesTest.testAccountRecTypes">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypesTest.cls#L19">
-                      testRecTypes()
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypesTest.cls#L56">
+                      testAccountRecTypes()
+                    </a>
+                  </h4>
+                  <div class="method-description">
+                    Test against Account, an object with record types in package testing
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+                  <div class="method-annotations">@isTest</div>
+                  <div class="method-signature">
+                    private static void testAccountRecTypes()
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Evan Callahan
+                  </div>
+                </div>
+                <div class="method testmethod">
+                  <h4 class="method-title " id="RecordTypesTest.testBogusRecTypes">
+
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypesTest.cls#L20">
+                      testBogusRecTypes()
                     </a>
                   </h4>
                   <div class="method-description">
@@ -229,13 +275,61 @@
                   </div>
                   <div class="method-annotations">@isTest</div>
                   <div class="method-signature">
-                    private static void testRecTypes()
+                    private static void testBogusRecTypes()
                   </div>
                   <div class="method-subtitle">
                     Author
                   </div>
                   <div class="method-subtitle-description">
                     Evan Callahan
+                  </div>
+                </div>
+                <div class="method testmethod">
+                  <h4 class="method-title " id="RecordTypesTest.testContactRecordType">
+
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypesTest.cls#L217">
+                      testContactRecordType()
+                    </a>
+                  </h4>
+                  <div class="method-description">
+                    Separate method for checking if we have Account record type, and then testing that
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+                  <div class="method-annotations">@isTest</div>
+                  <div class="method-signature">
+                    private static void testContactRecordType()
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    <a target="_blank" rel="noopener noreferrer" href="https://github.com/dschach">David Schach</a>
+                  </div>
+                </div>
+                <div class="method testmethod">
+                  <h4 class="method-title " id="RecordTypesTest.testSolutionRecTypes">
+
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypesTest.cls#L97">
+                      testSolutionRecTypes()
+                    </a>
+                  </h4>
+                  <div class="method-description">
+                    Test against Solution, an object likely to have no record types
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+                  <div class="method-annotations">@isTest</div>
+                  <div class="method-signature">
+                    private static void testSolutionRecTypes()
+                  </div>
+                  <div class="method-subtitle">
+                    Authors
+                  </div>
+                  <div class="method-subtitle-description">
+                    Evan Callahan, <a target="_blank" rel="noopener noreferrer" href="https://github.com/dschach">David Schach</a>
                   </div>
                 </div>
               </div>

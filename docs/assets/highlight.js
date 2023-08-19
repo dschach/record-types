@@ -1204,7 +1204,9 @@ begin:"\\b[0-9]{4}(-[0-9][0-9]){0,2}([Tt \\t][0-9][0-9]?(:[0-9][0-9]){2})?(\\.[0
 aliases:["yml"],contains:l}}});const qe=ae;for(const e of Object.keys(Ke)){
 const n=e.replace("grmr_","").replace("_","-");qe.registerLanguage(n,Ke[e])}
 return qe}()
-;"object"==typeof exports&&"undefined"!=typeof module&&(module.exports=hljs);/*! `apex` grammar compiled for Highlight.js 11.8.0 */
+;"object"==typeof exports&&"undefined"!=typeof module&&(module.exports=hljs);
+
+/*! `apex` grammar compiled for Highlight.js 11.8.0 */
 (()=>{var e=(()=>{"use strict";return e=>{
 const t=e.regex,s="[a-zA-Z][a-zA-Z_0-9]*",a={scope:"number",variants:[{
 match:/\b[0-9]+(?:\.[0-9]+)?/},{match:/\s(?:[0-9,]+)?\.[0-9]+/},{
