@@ -3,7 +3,7 @@
  * @description This class is allows for easy, readable access to Record Type information from other classes.
  * <br>
  * <br>Written by Evan Callahan, copyright (c) 2010 Groundwire
- * <br>Updated by David Schach, copyright (c) 2021
+ * <br>Updated by David Schach, copyright (c) 2021 X-Squared on Demand
  * <br>
  * <br>This program is released under the GNU General Public License. http://www.gnu.org/licenses/
  * <br>
@@ -50,7 +50,12 @@ global inherited sharing class RecordTypes {
 	/**
 	 * @description List of available (to the running user) Record Type Info sObjects
 	 */
-	private static List<Schema.Recordtypeinfo> availableRecordTypesList = new List<Schema.Recordtypeinfo>();
+	private static Map<String, List<Schema.Recordtypeinfo>> availableRecordTypesMap = new Map<String, List<Schema.Recordtypeinfo>>();
+
+	/**
+	 * @description map of all Record Types by sObject name, including inactive and unavailable
+	 */
+	private static Map<String, List<Schema.RecordTypeInfo>> allRecordTypes = new Map<String, List<Schema.RecordTypeInfo>>();
 
 	/**
 	 * @description Map of default `Record Type` Ids for the running user
@@ -81,16 +86,22 @@ global inherited sharing class RecordTypes {
 			recordTypesByName.put(objectName, d.getRecordTypeInfosByName());
 			recordTypesByDevName.put(objectName, d.getRecordTypeInfosByDeveloperName());
 			recordTypesById.put(objectName, d.getRecordTypeInfosById());
+			List<Schema.RecordTypeInfo> recordTypesForSObject = new List<Schema.RecordTypeInfo>();
+			List<Schema.RecordTypeInfo> availableRecordTypesList = new List<Schema.RecordTypeInfo>();
 			for (Schema.Recordtypeinfo rt : d.getRecordTypeInfos()) {
+				if (!rt.isMaster()) {
+					recordTypesForSObject.add(rt);
+				}
 				if (rt.isActive() && rt.isAvailable() && !rt.isMaster()) {
 					availableRecordTypesList.add(rt);
 				}
-
 				if (rt.isDefaultRecordTypeMapping()) {
 					defaultRecordTypeIds.put(objectName, rt.getRecordTypeId());
 					defaultRecordTypes.put(objectName, rt);
 				}
 			}
+			allRecordTypes.put(objectName, recordTypesForSObject);
+			availableRecordTypesMap.put(objectName, availableRecordTypesList);
 		}
 	}
 
@@ -105,37 +116,44 @@ global inherited sharing class RecordTypes {
 		if (!recordTypesByName.containsKey(objectName)) {
 			fillMapsForObject(objectName);
 		}
-		Schema.RecordTypeInfo defaultRT = defaultRecordTypes?.get(objectName);
-		if (defaultRT == null || defaultRT.isMaster()) {
-			// fill the name to id map
-			Map<String, Schema.RecordTypeInfo> rtMap = recordTypesByName?.get(objectName);
-			for (Schema.RecordTypeInfo rti : rtMap.values()) {
-				if (!rti.isMaster() && rti.isAvailable() && rti.isActive()) {
-					defaultRecordTypes.put(objectName, rti);
-					return rti;
+		if (recordTypesByName.containsKey(objectName)) {
+			Schema.RecordTypeInfo defaultRT = defaultRecordTypes.get(objectName);
+			if (defaultRT.isMaster()) {
+				// fill the name to id map
+				Map<String, Schema.RecordTypeInfo> rtMap = recordTypesByName?.get(objectName);
+				for (Schema.RecordTypeInfo rti : rtMap?.values()) {
+					if (!rti.isMaster() && rti.isAvailable() && rti.isActive()) {
+						defaultRecordTypes.put(objectName, rti);
+						defaultRecordTypeIds.put(objectName, rti.getRecordTypeId());
+						return rti;
+					}
 				}
 			}
+			return defaultRT;
 		}
-		return defaultRT;
+		return null;
 	}
 
 	/**
 	 * @description Gives a list of all the `RecordTypeInfo` object records for an sObject
-	 * <br>This list has more items than just the record types available to the running user
+	 * <br>This list has more items than just the record types available to the running user.
+	 * <br>This method has no immediately obvious uses, but perhaps an outside library will need this list for, say,
+	 * a project for a LWC.
 	 * @author {@link [David Schach](https://github.com/dschach)}
 	 * @param objectName SObject name (with __c if custom, etc)
 	 * @return           `List<Schema.RecordTypeInfo>` List of all record types for the object (active and inactive)
 	 */
 	global static List<Schema.RecordTypeInfo> getRecordTypesForObject(String objectName) {
-		List<Schema.RecordTypeInfo> recordTypeList = new List<Schema.RecordTypeInfo>();
 		// make sure we have this sObject's record types mapped
 		if (!recordTypesByName.containsKey(objectName)) {
 			fillMapsForObject(objectName);
 		}
-
-		// get the record types for the object
-		recordTypeList = recordTypesByName.get(objectName)?.values();
-		return recordTypeList;
+		if (recordTypesByName.containsKey(objectName)) {
+			// get the record types for the object
+			List<Schema.RecordTypeInfo> recordTypeList = recordTypesByName?.get(objectName)?.values();
+			return recordTypeList;
+		}
+		return null;
 	}
 
 	//Default RecordType SECTION
@@ -153,18 +171,14 @@ global inherited sharing class RecordTypes {
 		if (!recordTypesByName.containsKey(objectName)) {
 			fillMapsForObject(objectName);
 		}
-		Schema.RecordTypeInfo defaultRT = defaultRecordTypes?.get(objectName);
-		if (defaultRT == null || defaultRT.isMaster()) {
-			// fill the name to id map
-			Map<String, Schema.RecordTypeInfo> rtMap = recordTypesByName?.get(objectName);
-			for (Schema.RecordTypeInfo rti : rtMap.values()) {
-				if (!rti.isMaster() && rti.isAvailable() && rti.isActive()) {
-					return rti.getRecordTypeId();
-				}
+		if (recordTypesByName.containsKey(objectName)) {
+			Schema.RecordTypeInfo defaultRT = getDefaultRecordType(objectName);
+			if (defaultRT.isMaster()) {
+				return null;
 			}
-			return null;
+			return defaultRT.getRecordTypeId();
 		}
-		return defaultRT.getRecordTypeId();
+		return null;
 	}
 
 	/**
@@ -178,18 +192,7 @@ global inherited sharing class RecordTypes {
 		if (!recordTypesByName.containsKey(objectName)) {
 			fillMapsForObject(objectName);
 		}
-		Schema.RecordTypeInfo defaultRT = defaultRecordTypes?.get(objectName);
-		if (defaultRT == null || defaultRT.isMaster()) {
-			// fill the name to id map
-			Map<String, Schema.RecordTypeInfo> rtMap = recordTypesByName?.get(objectName);
-			for (Schema.RecordTypeInfo rti : rtMap.values()) {
-				if (!rti.isMaster() && rti.isAvailable() && rti.isActive()) {
-					return rti.getDeveloperName();
-				}
-			}
-			return null;
-		}
-		return defaultRT.getDeveloperName();
+		return getDefaultRecordType(objectName)?.getDeveloperName();
 	}
 
 	/**
@@ -203,18 +206,7 @@ global inherited sharing class RecordTypes {
 		if (!recordTypesByName.containsKey(objectName)) {
 			fillMapsForObject(objectName);
 		}
-		Schema.RecordTypeInfo defaultRT = defaultRecordTypes?.get(objectName);
-		if (defaultRT == null || defaultRT.isMaster()) {
-			// fill the name to id map
-			Map<String, Schema.RecordTypeInfo> rtMap = recordTypesByName?.get(objectName);
-			for (Schema.RecordTypeInfo rti : rtMap.values()) {
-				if (!rti.isMaster() && rti.isAvailable() && rti.isActive()) {
-					return rti.getName();
-				}
-			}
-			return null;
-		}
-		return defaultRT.getName();
+		return getDefaultRecordType(objectName)?.getName();
 	}
 
 	//RecordType Name SECTION
@@ -377,6 +369,7 @@ global inherited sharing class RecordTypes {
 	 * @param  objectName        SObject name (with __c if custom, etc)
 	 * @param  recordTypeId      RecordType Id
 	 * @return                   `RecordType` DeveloperName
+	 * @see getRecordTypeDevNameFromId[1]
 	 */
 	global static String getRecordTypeDevNameFromId(String objectName, Id recordTypeId) {
 		return getRecordTypeFromId(objectName, recordTypeId)?.getDeveloperName();
@@ -407,7 +400,7 @@ global inherited sharing class RecordTypes {
 	/**
 	 * @description Gives a set of `RecordType` Ids from an sObject and a set of `RecordType` DeveloperNames
 	 * @author {@link [David Schach](https://github.com/dschach)}
-	 * @param  objectName           Object of interest
+	 * @param  objectName           SObject name (with __c if custom, etc)
 	 * @param  recordTypeDevNameSet Set of DeveloperNames
 	 * @return                      `Set<Id>` All `RecordType` IDs for a given sObject
 	 * @example
@@ -487,6 +480,8 @@ global inherited sharing class RecordTypes {
 	/**
 	 * @description Gives a map of all available (to the running user) `RecordTypeId`s by `developername` for an sObject
 	 * @author Nicolas Vasquez
+	 * @author {@link [David Schach](https://github.com/dschach)}
+	 * @since 2023 Use available record types map
 	 * @param  objectName     SObject name (with __c if custom, etc)
 	 * @return                `Map<String, Id>` Map<RecordType Name, RecordType Id>
 	 */
@@ -497,15 +492,12 @@ global inherited sharing class RecordTypes {
 			fillMapsForObject(objectName);
 		}
 
-		// fill the name to id map
-		if (recordTypesByName.containsKey(objectName)) {
-			Map<String, Schema.RecordTypeInfo> rtMap = recordTypesByName.get(objectName);
-			for (Schema.RecordTypeInfo rti : rtMap.values()) {
-				if (!rti.isMaster() && rti.isAvailable() && rti.isActive()) {
-					// requires permission set to cover in package tests because cannot add record type
-					// to a profile when creating a scratch org
-					recordTypeMap.put(rti.getDeveloperName(), rti.getRecordTypeId());
-				}
+		// fill the devname to id map
+		if (availableRecordTypesMap.containsKey(objectName)) {
+			for (Schema.RecordTypeInfo rti : availableRecordTypesMap.get(objectName)) {
+				// requires permission set to cover in package tests because cannot add record type
+				// to a profile when creating a scratch org
+				recordTypeMap.put(rti.getDeveloperName(), rti.getRecordTypeId());
 			}
 		}
 		return recordTypeMap;
@@ -514,6 +506,8 @@ global inherited sharing class RecordTypes {
 	/**
 	 * @description Gives a map of all available (to the running user) `RecordTypeId`s by name for an sObject
 	 * @author Nicolas Vasquez
+	 * @author {@link [David Schach](https://github.com/dschach)}
+	 * @since 2023 Use available record types map
 	 * @param  objectName     SObject name (with __c if custom, etc)
 	 * @return                `Map<String, Id>` Map<RecordType Name, RecordType Id>
 	 */
@@ -525,14 +519,11 @@ global inherited sharing class RecordTypes {
 		}
 
 		// fill the name to id map
-		if (recordTypesByName.containsKey(objectName)) {
-			Map<String, Schema.RecordTypeInfo> rtMap = recordTypesByName.get(objectName);
-			for (Schema.RecordTypeInfo rti : rtMap.values()) {
-				if (!rti.isMaster() && rti.isAvailable() && rti.isActive()) {
-					// requires permission set to cover in package tests because cannot add record type
-					// to a profile when creating a scratch org
-					recordTypeMap.put(rti.getName(), rti.getRecordTypeId());
-				}
+		if (availableRecordTypesMap.containsKey(objectName)) {
+			for (Schema.RecordTypeInfo rti : availableRecordTypesMap.get(objectName)) {
+				// requires permission set to cover in package tests because cannot add record type
+				// to a profile when creating a scratch org
+				recordTypeMap.put(rti.getName(), rti.getRecordTypeId());
 			}
 		}
 		return recordTypeMap;
@@ -565,10 +556,12 @@ global inherited sharing class RecordTypes {
 
 	/**
 	 * @description Generate map of all record type developerNames by Id & return Record Type DeveloperName
+	 * <br>This is an overloaded method for efficiency, using only the Id
 	 * @author {@link [David Schach](https://github.com/dschach)}
 	 * @since 2022-03-29
 	 * @param recordTypeId `RecordTypeId`
 	 * @return `String` Record Type Name
+	 * @see getRecordTypeDevNameFromId[0]
 	 **/
 	global static String getRecordTypeDevNameFromId(Id recordTypeId) {
 		return recordTypesIdMap.get(recordTypeId)?.DeveloperName;
@@ -589,6 +582,27 @@ global inherited sharing class RecordTypes {
 			recordTypesOptions.add(new SelectOption(availRecordTypes.get(thisRecordType), thisRecordType));
 		}
 
+		return recordTypesOptions;
+	}
+
+	/**
+	 * @description Make a Visualforce picklist with the `RecordType` Name displayed and the `RecordType` Id as the value
+	 * @author {@link [David Schach](https://github.com/dschach)}
+	 * @param  objectName SObject name (with __c if custom, etc)
+	 * @return            `List<SelectOption>` Visualforce SelectOption list
+	 */
+	global static List<SelectOption> getAllRecordTypesForSelectList(String objectName) {
+		List<SelectOption> recordTypesOptions = new List<SelectOption>();
+		if (!allRecordTypes.containsKey(objectName)) {
+			fillMapsForObject(objectName);
+		}
+		List<Schema.RecordTypeInfo> recordTypes = allRecordTypes.get(objectName);
+		for (Schema.RecordTypeInfo rti : recordTypes) {
+			recordTypesOptions.add(new SelectOption(rti.getRecordTypeId(), rti.getName(), !rti.isAvailable()));
+		}
+		if (recordTypesOptions.isEmpty()) {
+			recordTypesOptions.add(new SelectOption('', defaultRecordTypes?.get(objectName).getName()));
+		}
 		return recordTypesOptions;
 	}
 
@@ -619,7 +633,8 @@ global inherited sharing class RecordTypes {
 			RecordTypes.recordTypesById.clear();
 			RecordTypes.recordTypesByName.clear();
 			RecordTypes.recordTypesByDevName.clear();
-			RecordTypes.availableRecordTypesList.clear();
+			RecordTypes.availableRecordTypesMap.clear();
+			RecordTypes.allRecordTypes.clear();
 		}
 	}
 }
