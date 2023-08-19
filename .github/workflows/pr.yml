@@ -86,6 +86,9 @@ jobs:
       - name: "Push permission set"
         run: sf project deploy start --source-dir unpackaged
 
+      - name: "Assign Permission Set"
+        run: sf org assign permset --name RecordTypes_DefaultRT_for_Testing
+
       # Run Apex tests in scratch org
       - name: "Run Apex tests"
         run: sf apex run test --code-coverage --result-format human --output-dir ./tests/apex --wait 20

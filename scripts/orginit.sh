@@ -11,7 +11,7 @@ sf project deploy start
 sf project deploy start --source-dir unpackaged
 
 echo "Assigning permission set"
-sf sf org assign permset --name RecordTypes_DefaultRT_for_Testing
+sf org assign permset --name RecordTypes_DefaultRT_for_Testing
 
 echo "Running Apex tests"
 sf apex run test --code-coverage --result-format human --test-level RunLocalTests --wait 20
