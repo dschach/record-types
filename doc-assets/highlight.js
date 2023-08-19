@@ -1205,6 +1205,7 @@ aliases:["yml"],contains:l}}});const qe=ae;for(const e of Object.keys(Ke)){
 const n=e.replace("grmr_","").replace("_","-");qe.registerLanguage(n,Ke[e])}
 return qe}()
 ;"object"==typeof exports&&"undefined"!=typeof module&&(module.exports=hljs);
+
 /*! `apex` grammar compiled for Highlight.js 11.8.0 */
 (()=>{var e=(()=>{"use strict";return e=>{
 const t=e.regex,s="[a-zA-Z][a-zA-Z_0-9]*",a={scope:"number",variants:[{

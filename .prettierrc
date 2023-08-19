@@ -10,12 +10,20 @@
 			"options": { "parser": "lwc" }
 		},
 		{
+			"files": ".prettierrc",
+			"options": { "parser": "json", "printWidth": 80 }
+		},
+		{
 			"files": "*.{cmp,page,component}",
 			"options": { "parser": "html" }
 		},
 		{
 			"files": "*.{yaml,yml}",
 			"options": { "useTabs": false }
+		},
+		{
+			"files": "*.json",
+			"options": { "useTabs": true, "parser": "json" }
 		}
 	],
 	"plugins": ["prettier-plugin-apex", "@prettier/plugin-xml"]

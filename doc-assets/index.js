@@ -96,7 +96,7 @@ function updateMenuModel(items, state) {
     console.log(
       newKeys.map(function (g) {
         return g.id;
-      })
+      }),
     );
   }
 }
