@@ -1,187 +1,187 @@
 <style>
-	.methodtable {
-		border-collapse: collapse;
-		width: 100%;
-		color: #333;
-		font-family: Arial, sans-serif;
-		font-size: 14px;
-		text-align: left;
-		border-radius: 10px;
-		overflow: hidden;
-		box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-		margin: auto;
-		margin-top: 50px;
-		margin-bottom: 50px;
-	}
-	.methodtable th {
-		color: #000;
-		font-weight: bold;
-		padding: 10px;
-		text-transform: uppercase;
-		letter-spacing: 1px;
-		border-top: 1px solid #fff;
-		border-bottom: 1px solid #ccc;
-	}
-	.methodtable td {
-		padding: 10px;
-		border-bottom: 1px solid #ccc;
-		font-weight: bold;
-	}
+  .methodtable {
+    border-collapse: collapse;
+    width: 100%;
+    color: #333;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    text-align: left;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+  .methodtable th {
+    color: #000;
+    font-weight: bold;
+    padding: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #ccc;
+  }
+  .methodtable td {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    font-weight: bold;
+  }
 </style>
 <h1>Most Common Methods</h1>
 <p>
-	These are the most common methods to be used. They are the fastest ways to get a Record Type Id from an object name and the developer name, for example.
-	<br />
-	There are soem overloaded methods included for historical purposes (the ones that accept a Record Type Id and an object name and return the developer name).
-	While the object name is, technically, optional, that method is faster because it does not require memoizing a SOQL query.
+  These are the most common methods to be used. They are the fastest ways to get a Record Type Id from an object name and the developer name, for example.
+  <br />
+  There are soem overloaded methods included for historical purposes (the ones that accept a Record Type Id and an object name and return the developer name). While the object name
+  is, technically, optional, that method is faster because it does not require memoizing a SOQL query.
 </p>
 <table class="methodtable">
-	<thead>
-		<tr>
-			<th><strong>Parameters / Output</strong></th>
-			<th>Id</th>
-			<th>Name</th>
-			<th>DeveloperName</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td><strong>objectName, recordTypeName</strong></td>
-			<td><a href="RecordTypes.html#RecordTypes.getRecordTypeIdFromName">getRecordTypeIdFromName</a></td>
-			<td></td>
-			<td></td>
-		</tr>
-		<tr>
-			<td><strong>objectName, recordTypeName</strong></td>
-			<td></td>
-			<td></td>
-			<td><a href="RecordTypes.html#RecordTypes.getRecordTypeIdFromName">getRecordTypeDevNameFromName</a></td>
-		</tr>
-		<tr>
-			<td><strong>objectName, recordTypeDevName</strong></td>
-			<td></td>
-			<td></td>
-			<td><a href="RecordTypes.html#RecordTypes.getRecordTypeIdFromName">getRecordTypeFromDevName</a></td>
-		</tr>
-		<tr>
-			<td><strong>objectName, recordTypeDevName</strong></td>
-			<td></td>
-			<td><a href="RecordTypes.html#RecordTypes.getRecordTypeIdFromName">getRecordTypeNameFromDevName</a></td>
-			<td></td>
-		</tr>
-		<tr>
-			<td><strong>objectName, recordTypeDevName</strong></td>
-			<td><a href="RecordTypes.html#RecordTypes.getRecordTypeIdFromName">getRecordTypeIdFromDevName</a></td>
-			<td></td>
-			<td></td>
-		</tr>
-		<tr>
-			<td><strong>objectName, recordTypeId</strong></td>
-			<td></td>
-			<td><a href="RecordTypes.html#RecordTypes.getRecordTypeIdFromName">getRecordTypeNameFromId</a></td>
-			<td></td>
-		</tr>
-		<tr>
-			<td><strong>objectName, recordTypeId</strong></td>
-			<td></td>
-			<td></td>
-			<td><a href="RecordTypes.html#RecordTypes.getRecordTypeIdFromName">getRecordTypeDevNameFromId</a></td>
-		</tr>
-		<tr>
-			<td><strong>recordTypeId</strong></td>
-			<td></td>
-			<td><a href="RecordTypes.html#RecordTypes.getRecordTypeIdFromName">getRecordTypeNameFromId</a></td>
-			<td></td>
-		</tr>
-		<tr>
-			<td><strong>recordTypeId</strong></td>
-			<td></td>
-			<td></td>
-			<td><a href="RecordTypes.html#RecordTypes.getRecordTypeIdFromName">getRecordTypeDevNameFromId</a></td>
-		</tr>
-	</tbody>
+  <thead>
+    <tr>
+      <th><strong>Parameters / Output</strong></th>
+      <th>Id</th>
+      <th>Name</th>
+      <th>DeveloperName</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>objectName, recordTypeName</strong></td>
+      <td><a href="RecordTypes.html#RecordTypes.getRecordTypeIdFromName">getRecordTypeIdFromName</a></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><strong>objectName, recordTypeName</strong></td>
+      <td></td>
+      <td></td>
+      <td><a href="RecordTypes.html#RecordTypes.getRecordTypeIdFromName">getRecordTypeDevNameFromName</a></td>
+    </tr>
+    <tr>
+      <td><strong>objectName, recordTypeDevName</strong></td>
+      <td></td>
+      <td></td>
+      <td><a href="RecordTypes.html#RecordTypes.getRecordTypeIdFromName">getRecordTypeFromDevName</a></td>
+    </tr>
+    <tr>
+      <td><strong>objectName, recordTypeDevName</strong></td>
+      <td></td>
+      <td><a href="RecordTypes.html#RecordTypes.getRecordTypeIdFromName">getRecordTypeNameFromDevName</a></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><strong>objectName, recordTypeDevName</strong></td>
+      <td><a href="RecordTypes.html#RecordTypes.getRecordTypeIdFromName">getRecordTypeIdFromDevName</a></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><strong>objectName, recordTypeId</strong></td>
+      <td></td>
+      <td><a href="RecordTypes.html#RecordTypes.getRecordTypeIdFromName">getRecordTypeNameFromId</a></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><strong>objectName, recordTypeId</strong></td>
+      <td></td>
+      <td></td>
+      <td><a href="RecordTypes.html#RecordTypes.getRecordTypeIdFromName">getRecordTypeDevNameFromId</a></td>
+    </tr>
+    <tr>
+      <td><strong>recordTypeId</strong></td>
+      <td></td>
+      <td><a href="RecordTypes.html#RecordTypes.getRecordTypeIdFromName">getRecordTypeNameFromId</a></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><strong>recordTypeId</strong></td>
+      <td></td>
+      <td></td>
+      <td><a href="RecordTypes.html#RecordTypes.getRecordTypeIdFromName">getRecordTypeDevNameFromId</a></td>
+    </tr>
+  </tbody>
 </table>
 
 <h1>Less Common Methods</h1>
 <p>
-	These methods are used less often but may be useful.
-	<br />
-	The most useful of these are the SelectList generators for Visualforce. However, if you are using LWC, you may prefer to use some of the other methods and to
-	parse the returned list of RecordTypeInfo items yourself.
+  These methods are used less often but may be useful.
+  <br />
+  The most useful of these are the SelectList generators for Visualforce. However, if you are using LWC, you may prefer to use some of the other methods and to parse the returned
+  list of RecordTypeInfo items yourself.
 </p>
 <table class="methodtable">
-	<thead>
-		<tr>
-			<th><strong>Parameters / Output</strong></th>
-			<th>Schema.RecordTypeInfo</th>
-			<th>Map(String, Id)</th>
-			<th>SelectList</th>
-			<th>Set&lt;Id&gt;</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td><strong>objectName, recordTypeId</strong></td>
-			<td><a href="RecordTypes.html#RecordTypes.getRecordTypeIdFromName">getRecordTypeFromId</a></td>
-			<td></td>
-			<td></td>
-			<td></td>
-		</tr>
-		<tr>
-			<td><strong>objectName, Set&lt;recordTypeDevName&gt;</strong></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td><a href="RecordTypes.html#RecordTypes.getRecordTypeIdFromName">getRecordTypeIdSetFromDevNames</a></td>
-		</tr>
-		<tr>
-			<td><strong>objectName</strong></td>
-			<td></td>
-			<td><a href="RecordTypes.html#RecordTypes.getRecordTypeIdFromName">getRecordTypeDevNameIdMap</a></td>
-			<td></td>
-			<td></td>
-		</tr>
-		<tr>
-			<td><strong>objectName</strong></td>
-			<td></td>
-			<td><a href="RecordTypes.html#RecordTypes.getRecordTypeIdFromName">getRecordTypeNameIdMap</a></td>
-			<td></td>
-			<td></td>
-		</tr>
-		<tr>
-			<td><strong>objectName</strong></td>
-			<td></td>
-			<td><a href="RecordTypes.html#RecordTypes.getRecordTypeIdFromName">getAvailableRecordTypeDevNameIdMap</a></td>
-			<td></td>
-			<td></td>
-		</tr>
-		<tr>
-			<td><strong>objectName</strong></td>
-			<td></td>
-			<td><a href="RecordTypes.html#RecordTypes.getRecordTypeIdFromName">getAvailableRecordTypeNameIdMap</a></td>
-			<td></td>
-			<td></td>
-		</tr>
-		<tr>
-			<td><strong>objectName</strong></td>
-			<td></td>
-			<td></td>
-			<td><a href="RecordTypes.html#RecordTypes.getRecordTypeIdFromName">getRecordTypesForSelectList</a></td>
-			<td></td>
-		</tr>
-		<tr>
-			<td><strong>objectName</strong></td>
-			<td></td>
-			<td></td>
-			<td><a href="RecordTypes.html#RecordTypes.getRecordTypeIdFromName">getAllRecordTypesForSelectList</a></td>
-			<td></td>
-		</tr>
-		<tr>
-			<td><strong>objectName</strong></td>
-			<td></td>
-			<td></td>
-			<td><a href="RecordTypes.html#RecordTypes.getRecordTypeIdFromName">getStringRecordTypesForSelectList</a></td>
-			<td></td>
-		</tr>
-	</tbody>
+  <thead>
+    <tr>
+      <th><strong>Parameters / Output</strong></th>
+      <th>Schema.RecordTypeInfo</th>
+      <th>Map(String, Id)</th>
+      <th>SelectList</th>
+      <th>Set&lt;Id&gt;</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>objectName, recordTypeId</strong></td>
+      <td><a href="RecordTypes.html#RecordTypes.getRecordTypeIdFromName">getRecordTypeFromId</a></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><strong>objectName, Set&lt;recordTypeDevName&gt;</strong></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><a href="RecordTypes.html#RecordTypes.getRecordTypeIdFromName">getRecordTypeIdSetFromDevNames</a></td>
+    </tr>
+    <tr>
+      <td><strong>objectName</strong></td>
+      <td></td>
+      <td><a href="RecordTypes.html#RecordTypes.getRecordTypeIdFromName">getRecordTypeDevNameIdMap</a></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><strong>objectName</strong></td>
+      <td></td>
+      <td><a href="RecordTypes.html#RecordTypes.getRecordTypeIdFromName">getRecordTypeNameIdMap</a></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><strong>objectName</strong></td>
+      <td></td>
+      <td><a href="RecordTypes.html#RecordTypes.getRecordTypeIdFromName">getAvailableRecordTypeDevNameIdMap</a></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><strong>objectName</strong></td>
+      <td></td>
+      <td><a href="RecordTypes.html#RecordTypes.getRecordTypeIdFromName">getAvailableRecordTypeNameIdMap</a></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><strong>objectName</strong></td>
+      <td></td>
+      <td></td>
+      <td><a href="RecordTypes.html#RecordTypes.getRecordTypeIdFromName">getRecordTypesForSelectList</a></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><strong>objectName</strong></td>
+      <td></td>
+      <td></td>
+      <td><a href="RecordTypes.html#RecordTypes.getRecordTypeIdFromName">getAllRecordTypesForSelectList</a></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><strong>objectName</strong></td>
+      <td></td>
+      <td></td>
+      <td><a href="RecordTypes.html#RecordTypes.getRecordTypeIdFromName">getStringRecordTypesForSelectList</a></td>
+      <td></td>
+    </tr>
+  </tbody>
 </table>
