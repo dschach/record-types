@@ -224,7 +224,7 @@ private class RecordTypesTest {
 		resetTest();
 
 		if (!accountRecordTypes.isEmpty()) {
-			SRecordTypes.getDefaultRecordTypeDevName('Contact');
+			RecordTypes.getDefaultRecordTypeDevName('Contact');
 			resetTest();
 			RecordTypes.getDefaultRecordTypeName('Contact');
 			resetTest();

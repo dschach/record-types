@@ -80,8 +80,11 @@ jobs:
         run: sf org create scratch --definition-file config/project-scratch-def.json --alias RecordTypes --set-default --duration-days 1
 
       # Deploy source to scratch org
-      - name: "Push source to scratch org"
+      - name: "Push main directory to scratch org"
         run: sf project deploy start
+
+      - name: "Push permission set"
+        run: sf project deploy start --source-dir unpackaged
 
       # Run Apex tests in scratch org
       - name: "Run Apex tests"
