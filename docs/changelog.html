@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <title>Record Types code documentation</title>
+    <meta charset="UTF-8">
+    <script type="module" src="./assets/index.js"></script>
+    <script type="module" src="./assets/search-idx.js"></script>
+    <script type="module" src="./assets/search.js"></script>
+    <script charset="UTF-8" src="./assets/highlight.js"></script>
+    <script charset="UTF-8" src="./assets/mark.js"></script>
+    <script charset="UTF-8" src="./assets/lunr.js"></script>
+    <link rel="stylesheet" href="./assets/highlight.css" />
+    <link rel="stylesheet" type="text/css" href="./assets/index.css" />
+    <link rel="shortcut icon" type="image/png" href="./assets/favicon.png" />
+  </head>
+
+  <body>
+    <div id="side-bar">
+
+      <div id="logo-container">
+        <div class="title">
+          Record Types code documentation
+        </div>
+        <img src="assets/logo.png" />
+        <div class="subtitle">
+          Documentation for <a target="_blank" rel="noopener noreferrer" href="https://github.com/dschach/record-types">RecordTypes Utilities</a>
+        </div>
+      </div>
+      <div id="search-wrapper">
+        <div class="search-icon"></div>
+        <input id="search-input" type="text" autocomplete="off" placeholder="Search...">
+      </div>
+      <ul id="search-results" class=""></ul>
+      <div class="navbar">
+        <nav role="navigation">
+          <a class="nav-header" id="home" href="javascript:void(0)" onclick="goToLocation('index.html');">
+            Home
+          </a>
+          <details id="RecordTypes" class="group-name">
+            <summary id="header-RecordTypes" class="nav-header">
+              <span>RecordTypes</span>
+            </summary>
+            <ul>
+              <!-- menu items -->
+              <li title="RecordTypes" id="item-RecordTypes" class="nav-item class global" onclick="goToLocation('RecordTypes.html');">
+                <a tabindex="1" href="javascript:void(0)">RecordTypes</a>
+              </li>
+              <li title="RecordTypesTest" id="item-RecordTypesTest" class="nav-item class private" onclick="goToLocation('RecordTypesTest.html');">
+                <a tabindex="1" href="javascript:void(0)">RecordTypesTest</a>
+              </li>
+            </ul>
+          </details>
+        </nav>
+      </div>
+    </div>
+    <table id="content">
+      <tr>
+        <td class="scoping-panel">
+          Show: <input type="checkbox" checked="true" id="cbx-all" onclick="toggleAllScopes(this.checked);" />
+          <label for="cbx-all">All</label>&nbsp;&nbsp;
+          <input type="checkbox" checked="true" id="cbx-global" onclick="toggleScope('global', this.checked);" />
+          <label for="cbx-global">
+            global
+          </label>&nbsp;&nbsp;<input type="checkbox" checked="true" id="cbx-public" onclick="toggleScope('public', this.checked);" />
+          <label for="cbx-public">
+            public
+          </label>&nbsp;&nbsp;<input type="checkbox" checked="true" id="cbx-private" onclick="toggleScope('private', this.checked);" />
+          <label for="cbx-private">
+            private
+          </label>&nbsp;&nbsp;<input type="checkbox" checked="true" id="cbx-testmethod" onclick="toggleScope('testmethod', this.checked);" />
+          <label for="cbx-testmethod">
+            testMethod
+          </label>
+        </td>
+      </tr>
+      <tr>
+        <td class="doc-page">
+          <link href="assets/styling.css" rel="stylesheet" />
+          <h1>Changelog</h1>
+          <h2><a href="https://github.com/dschach/record-types/compare/record-types-v1.2.0...record-types-v1.2.1">1.2.1</a> (2023-08-16)</h2>
+          <h3>Build System</h3>
+          <ul>
+            <li><strong>ApexDox:</strong> Update ApexDox (<a href="https://github.com/dschach/record-types/issues/62">#62</a>) (<a href="https://github.com/dschach/record-types/commit/ae8063b090728a7f0530f9c46a97df0dfa5225cf">ae8063b</a>)</li>
+            <li><strong>deps-dev:</strong> Bump @prettier/plugin-xml from 2.2.0 to 3.1.1 (<a href="https://github.com/dschach/record-types/issues/56">#56</a>) (<a href="https://github.com/dschach/record-types/commit/d2f0a8a4f225446e0f9a838281bfc4972ae8f5ac">d2f0a8a</a>)</li>
+            <li><strong>deps-dev:</strong> Bump @prettier/plugin-xml from 3.1.1 to 3.2.0 (<a href="https://github.com/dschach/record-types/issues/58">#58</a>) (<a href="https://github.com/dschach/record-types/commit/8ab642103fac451268a643c34416531fe656a4af">8ab6421</a>)</li>
+            <li><strong>deps-dev:</strong> Bump lint-staged from 13.2.0 to 13.2.1 (<a href="https://github.com/dschach/record-types/issues/45">#45</a>) (<a href="https://github.com/dschach/record-types/commit/b8539fdcc666ea4e5347952217b69d866179b360">b8539fd</a>)</li>
+            <li><strong>deps-dev:</strong> Bump lint-staged from 13.2.1 to 13.2.2 (<a href="https://github.com/dschach/record-types/issues/49">#49</a>) (<a href="https://github.com/dschach/record-types/commit/a0581810b58034ad269efc70069b5ade03768c11">a058181</a>)</li>
+            <li><strong>deps-dev:</strong> Bump lint-staged from 13.2.2 to 13.2.3 (<a href="https://github.com/dschach/record-types/issues/52">#52</a>) (<a href="https://github.com/dschach/record-types/commit/f43ed99571353fbc660c50b2b8316c825121c004">f43ed99</a>)</li>
+            <li><strong>deps-dev:</strong> Bump lint-staged from 13.2.3 to 14.0.0 (<a href="https://github.com/dschach/record-types/issues/59">#59</a>) (<a href="https://github.com/dschach/record-types/commit/39944583e67d94ca7109348bbb8d273c623f0004">3994458</a>)</li>
+            <li><strong>deps-dev:</strong> Bump prettier and prettier-plugin-apex (<a href="https://github.com/dschach/record-types/issues/53">#53</a>) (<a href="https://github.com/dschach/record-types/commit/1c8fa7b2b054b8d8ca04ca687c629604baa0ade3">1c8fa7b</a>)</li>
+            <li><strong>deps-dev:</strong> Bump prettier from 2.8.4 to 2.8.5 (<a href="https://github.com/dschach/record-types/issues/42">#42</a>) (<a href="https://github.com/dschach/record-types/commit/5e23e23b61657ad84ece14b1167786c457a01ffc">5e23e23</a>)</li>
+            <li><strong>deps-dev:</strong> Bump prettier from 2.8.5 to 2.8.6 (<a href="https://github.com/dschach/record-types/issues/43">#43</a>) (<a href="https://github.com/dschach/record-types/commit/5995994b4d3b4c66df5f045cdf41b58885936db4">5995994</a>)</li>
+            <li><strong>deps-dev:</strong> Bump prettier from 2.8.6 to 2.8.7 (<a href="https://github.com/dschach/record-types/issues/44">#44</a>) (<a href="https://github.com/dschach/record-types/commit/49e70d47e2599217ec6bc8a3bdd0a61e0598923e">49e70d4</a>)</li>
+            <li><strong>deps-dev:</strong> Bump prettier from 2.8.7 to 2.8.8 (<a href="https://github.com/dschach/record-types/issues/46">#46</a>) (<a href="https://github.com/dschach/record-types/commit/45112367d01159858060a557fcee29afc94ef709">4511236</a>)</li>
+            <li><strong>deps-dev:</strong> Bump prettier from 3.0.0 to 3.0.1 (<a href="https://github.com/dschach/record-types/issues/57">#57</a>) (<a href="https://github.com/dschach/record-types/commit/773c11cca3bcfb4e42904a7f23b643d30aa8efb8">773c11c</a>)</li>
+            <li><strong>deps-dev:</strong> Bump prettier from 3.0.1 to 3.0.2 (<a href="https://github.com/dschach/record-types/issues/60">#60</a>) (<a href="https://github.com/dschach/record-types/commit/93c293e30c5d6f38de85ad25d744a24713f47700">93c293e</a>)</li>
+            <li><strong>deps-dev:</strong> Bump prettier-plugin-apex from 1.12.0 to 1.13.0 (<a href="https://github.com/dschach/record-types/issues/47">#47</a>) (<a href="https://github.com/dschach/record-types/commit/0bbb6b5b46c2f7d0eddd1a486cfb37b33b43d062">0bbb6b5</a>)</li>
+            <li><strong>deps:</strong> Bump yaml from 2.2.1 to 2.2.2 (<a href="https://github.com/dschach/record-types/issues/48">#48</a>) (<a href="https://github.com/dschach/record-types/commit/3bfb5796375a49334b58d28a0d88a5d1c28b0946">3bfb579</a>)</li>
+            <li><strong>sfdx:</strong> Update sfdx cli to sf cli (<a href="https://github.com/dschach/record-types/issues/61">#61</a>) (<a href="https://github.com/dschach/record-types/commit/eb80d9e7902dc3665b0fb931c27ff5a45050ffdf">eb80d9e</a>)</li>
+          </ul>
+          <h3>Documentation</h3>
+          <ul>
+            <li><strong>ApexDox:</strong> Update highlight.js library (<a href="https://github.com/dschach/record-types/commit/b8f7630f62c08495733fee3e887e70f02dd94482">b8f7630</a>)</li>
+          </ul>
+          <h3>Bug Fixes</h3>
+          <ul>
+            <li><strong>build:</strong> Fix pull request GitHub action (<a href="https://github.com/dschach/record-types/commit/9f55805ecf11a97bacb5dc23f07541f7c8971dd2">9f55805</a>)</li>
+          </ul>
+          <h3>Chores</h3>
+          <ul>
+            <li><strong>linguist:</strong> Exclude vendor js files (<a href="https://github.com/dschach/record-types/issues/50">#50</a>) (<a href="https://github.com/dschach/record-types/commit/9d7bcfae729329075f116614561a9c805a19211a">9d7bcfa</a>)</li>
+          </ul>
+          <h2><a href="https://github.com/dschach/record-types/compare/record-types-v1.1.0...record-types-v1.2.0">1.2.0</a> (2023-03-14)</h2>
+          <h3>Features</h3>
+          <ul>
+            <li>Implement release-please (<a href="https://github.com/dschach/record-types/issues/40">#40</a>) (<a href="https://github.com/dschach/record-types/commit/d254692598fe7ed523fa25801d1037916677ed85">d254692</a>)</li>
+          </ul>
+          <h3>Bug Fixes</h3>
+          <ul>
+            <li>Bump @sideway/formula from 3.0.0 to 3.0.1 (<a href="https://github.com/dschach/record-types/commit/5bca1b8af368115bdea5e28563930edbe716fa39">5bca1b8</a>)</li>
+            <li>Bump lint-staged from 13.1.1 to 13.1.2 (<a href="https://github.com/dschach/record-types/commit/2ef66b110fb7ef976a943079404256cad22cdadd">2ef66b1</a>)</li>
+            <li>Bump npm from 9.4.2 to 9.5.0 (<a href="https://github.com/dschach/record-types/commit/174b6c74a49b88648b06fdf7f0c6bfc423aece9b">174b6c7</a>)</li>
+            <li>PR testing only on force-app path (<a href="https://github.com/dschach/record-types/commit/1395d3a14e9c51f3a25fd1fe23ee7f225e78d094">1395d3a</a>)</li>
+          </ul>
+          <h3>Continuous Integration</h3>
+          <ul>
+            <li><strong>dependabot:</strong> No scratch org on dependabot (<a href="https://github.com/dschach/record-types/issues/38">#38</a>) (<a href="https://github.com/dschach/record-types/commit/c8d21dc1c869b2f5fae989ff5de7629f902dc993">c8d21dc</a>)</li>
+            <li><strong>dependabot:</strong> Scope dependabot PRs (<a href="https://github.com/dschach/record-types/commit/dc02bba2c461e1697fcff3463163075d450b3428">dc02bba</a>)</li>
+          </ul>
+          <h3>Build System</h3>
+          <ul>
+            <li>Bump lint-staged from 13.1.2 to 13.2.0 (<a href="https://github.com/dschach/record-types/issues/37">#37</a>) (<a href="https://github.com/dschach/record-types/commit/f981c208363d67a246a44fa795e6a0e1e3d93774">f981c20</a>)</li>
+            <li>Bump prettier from 2.8.3 to 2.8.4 (<a href="https://github.com/dschach/record-types/commit/d01b32f1484cac2f42b8f21acf3225c360939117">d01b32f</a>)</li>
+            <li><strong>npm:</strong> Bump npm from 9.4.2 to 9.5.0 (<a href="https://github.com/dschach/record-types/issues/36">#36</a>) (<a href="https://github.com/dschach/record-types/commit/54c0f2ad3bfd8c9e2d6dcc2dbcec64a575bf0b71">54c0f2a</a>)</li>
+            <li><strong>npm:</strong> Remove npm dev-dependency (<a href="https://github.com/dschach/record-types/commit/aea80de8cfbe9be680e72f14f41c01a1bd3cd3d8">aea80de</a>)</li>
+          </ul>
+          <h2><a href="https://github.com/dschach/record-types/compare/recordtypes-utility-v1.1.0...recordtypes-utility-v1.1.0">1.1.0</a> (2023-02-08)</h2>
+          <h3>Features</h3>
+          <ul>
+            <li>API 56, new methods (<a href="https://github.com/dschach/record-types/issues/27">#27</a>) (<a href="https://github.com/dschach/record-types/commit/cb53adcd31611235122038eb5f11622daf12b6ca">cb53adc</a>)</li>
+          </ul>
+          <h3>Bug Fixes</h3>
+          <ul>
+            <li>Bump lint-staged from 13.1.0 to 13.1.1 (<a href="https://github.com/dschach/record-types/issues/25">#25</a>) (<a href="https://github.com/dschach/record-types/commit/ce9752620d25761c54984c68cfc7ae62af51314b">ce97526</a>)</li>
+            <li>Bump npm from 9.4.1 to 9.4.2 (<a href="https://github.com/dschach/record-types/issues/26">#26</a>) (<a href="https://github.com/dschach/record-types/commit/1aa9923e5d3a1f3d6b53be5befc4663e13640474">1aa9923</a>)</li>
+            <li>Change Active to Available (<a href="https://github.com/dschach/record-types/commit/8973e2bcd544ec37200331a3c68df5984774d660">8973e2b</a>)</li>
+            <li>Change Active to Available (<a href="https://github.com/dschach/record-types/commit/76e1d0b7c7979474dddfc93f5a819d12218808dc">76e1d0b</a>)</li>
+            <li>Highlight 11.7 (<a href="https://github.com/dschach/record-types/commit/632b1fe94c71ff100ff347bd5b7133eeb7676fe2">632b1fe</a>)</li>
+            <li>Highlight 11.7 typo (<a href="https://github.com/dschach/record-types/commit/8973e2bcd544ec37200331a3c68df5984774d660">8973e2b</a>)</li>
+          </ul>
+          <h3>Miscellaneous Chores</h3>
+          <ul>
+            <li>Release 1.1.0 (<a href="https://github.com/dschach/record-types/commit/3be676cec236890318a7dd66e137f8c5fb1da8a3">3be676c</a>)</li>
+          </ul>
+          <h2><a href="https://github.com/dschach/record-types/compare/record-types-v1.1.0...record-types-v1.1.0">1.1.0</a> (2023-02-07)</h2>
+          <h3>Features</h3>
+          <ul>
+            <li>API 56, new methods (<a href="https://github.com/dschach/record-types/issues/27">#27</a>) (<a href="https://github.com/dschach/record-types/commit/cb53adcd31611235122038eb5f11622daf12b6ca">cb53adc</a>)</li>
+          </ul>
+          <h3>Bug Fixes</h3>
+          <ul>
+            <li>bump lint-staged from 13.1.0 to 13.1.1 (<a href="https://github.com/dschach/record-types/issues/25">#25</a>) (<a href="https://github.com/dschach/record-types/commit/ce9752620d25761c54984c68cfc7ae62af51314b">ce97526</a>)</li>
+            <li>bump npm from 9.4.1 to 9.4.2 (<a href="https://github.com/dschach/record-types/issues/26">#26</a>) (<a href="https://github.com/dschach/record-types/commit/1aa9923e5d3a1f3d6b53be5befc4663e13640474">1aa9923</a>)</li>
+          </ul>
+          <h3>Miscellaneous Chores</h3>
+          <ul>
+            <li>release 1.1.0 (<a href="https://github.com/dschach/record-types/commit/3be676cec236890318a7dd66e137f8c5fb1da8a3">3be676c</a>)</li>
+          </ul>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="footer">
+
+          <div>
+            <a href="https://github.com/no-stack-dub-sack/apexdox-vs-code" target="_blank" rel="noopener noreferrer">
+              Powered By ApexDox VS Code
+            </a>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </body>
+
+</html>
