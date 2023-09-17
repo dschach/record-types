@@ -29,16 +29,19 @@ The class and test class are found in this [folder](/force-app/main/default/clas
 
 ## [Changelog](./CHANGELOG.md)
 
-- 2023-08-18
+- 2023-09 Overload getRecordTypeFromId so it doesn't require a SobjectType string
+
+- 2023-08
 
   - Add methods to get default RecordTypeId, handling situation where no RT is on the Profile but at least one is avaialble via Permission Set.
   - Add test methods against Account and Solution objects, as we assume Solution has no defined record types. (Change for your org if you have them.)
+  - Include table of all methods on documentation site
 
-- 2022-03-29 BREAKING CHANGE: Replaced "DeveloperName" with "DevName" in all method names. Update your code to refer to the new methods.
+- 2022-03 BREAKING CHANGE: Replaced "DeveloperName" with "DevName" in all method names. Update your code to refer to the new methods.
 
-- 2022-03-29 Add maps Id => Name and Id => DeveloperName for ease of use when wanting to refer to a record type by Id without including the object, since Id is globally unique
+- 2022-03 Add maps Id => Name and Id => DeveloperName for ease of use when wanting to refer to a record type by Id without including the object, since Id is globally unique
 
-- 2022-01-19 Initial Release
+- 2022-01 Initial Release
 
 ## Code Header
 
