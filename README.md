@@ -62,8 +62,9 @@ Updated by David Schach, copyright (c) 2021 X-Squared on Demand
 	There are some overloaded methods included for historical purposes (the ones that accept a Record Type Id and an object name and return the developer name).
 	While the object name is, technically, optional, that method is faster because it does not require memoizing a SOQL query.
 </p>
+
 | Parameters / Output           | Id                         | Name                         | DeveloperName                |
-|-------------------------------|----------------------------|------------------------------|------------------------------|
+| ----------------------------- | -------------------------- | ---------------------------- | ---------------------------- |
 | objectName, recordTypeName    | getRecordTypeIdFromName    |                              |                              |
 | objectName, recordTypeName    |                            |                              | getRecordTypeDevNameFromName |
 | objectName, recordTypeDevName |                            |                              | getRecordTypeFromDevName     |
