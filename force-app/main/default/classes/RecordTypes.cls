@@ -23,11 +23,10 @@
  * @author {@link [Evan Callahan](https://github.com/groundwired)}, Groundwire
  * @since 2010
  * @author {@link [David Schach](https://github.com/dschach)}, X-Squared on Demand
- * @since 2021
+ * @since 2021, 2023
  * @author Nicolas Vasquez, Globant
  * @since 2022
  * @group RecordTypes
- * @group-content doc-assets/RecordTypesHome.html
  * @see RecordTypesTest
  */
 global inherited sharing class RecordTypes {
@@ -335,6 +334,17 @@ global inherited sharing class RecordTypes {
 	//@return Name, DeveloperName, RecordType object
 
 	/**
+	 * @description Given a `RecordType` Id, return the `Record Type` object
+	 * @author {@link [David Schach](https://github.com/dschach)}
+	 * @param  recordTypeId   RecordType Id
+	 * @return                `Schema.RecordTypeInfo` RecordTypeInfo object
+	 */
+	global static Schema.RecordTypeInfo getRecordTypeFromId(Id recordTypeId) {
+		String objectName = recordTypesIdMap.get(recordTypeId).SobjectType;
+		return getRecordTypeFromId(objectName, recordTypeId);
+	}
+
+	/**
 	 * @description Given an sObject and `RecordType` Id, return the `Record Type` object
 	 * @author {@link [David Schach](https://github.com/dschach)}
 	 * @param  objectName     SObject name (with __c if custom, etc)
@@ -519,7 +529,7 @@ global inherited sharing class RecordTypes {
 	private static Map<Id, RecordType> recordTypesIdMap {
 		get {
 			if (recordTypesIdMap == null) {
-				recordTypesIdMap = new Map<Id, RecordType>([SELECT Id, Name, DeveloperName FROM RecordType]);
+				recordTypesIdMap = new Map<Id, RecordType>([SELECT Id, Name, SobjectType, DeveloperName FROM RecordType]);
 			}
 			return recordTypesIdMap;
 		}

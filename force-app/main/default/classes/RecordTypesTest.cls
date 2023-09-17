@@ -152,6 +152,9 @@ private class RecordTypesTest {
 			RecordType activeRT = accountRecordTypes[0];
 
 			Schema.RecordTypeInfo rti = RecordTypes.getRecordTypeFromId('Account', activeRT.Id);
+			Schema.RecordTypeInfo rti2 = RecordTypes.getRecordTypeFromId(activeRT.Id);
+
+			Assert.areEqual(rti.getDeveloperName(), rti2.getDeveloperName(), 'Overloaded method failed to retrieve same RTId');
 
 			Assert.areNotEqual(null, RecordTypes.getRecordTypeDevNameFromId(activeRT.Id), 'We should have had an Account RecordType');
 			Assert.areNotEqual(null, RecordTypes.getRecordTypeNameFromId(activeRT.Id), 'We should have had an Account RecordType');
