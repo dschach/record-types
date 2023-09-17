@@ -61,12 +61,10 @@ Updated by David Schach, copyright (c) 2021 X-Squared on Demand
 
 ## Most Common Methods
 
-<p>
-	These are the most common methods to be used. They are the fastest ways to get a Record Type Id from an object name and the developer name, for example.
-	<br />
-	There are some overloaded methods included for historical purposes (the ones that accept a Record Type Id and an object name and return the developer name).
-	While the object name is, technically, optional, that method is faster because it does not require memoizing a SOQL query.
-</p>
+These are the most common methods to be used. They are the fastest ways to get a Record Type Id from an object name and the developer name, for example.
+
+There are some overloaded methods included for historical purposes (the ones that accept a Record Type Id and an object name and return the developer name).
+While the object name is, technically, optional, that method is faster because it does not require memoizing a SOQL query.
 
 | Parameters / Output           | Id                         | Name                         | DeveloperName                |
 | ----------------------------- | -------------------------- | ---------------------------- | ---------------------------- |
@@ -82,12 +80,9 @@ Updated by David Schach, copyright (c) 2021 X-Squared on Demand
 
 ## Less Common Methods
 
-<p>
-	These methods are used less often but may be useful.
-	<br />
-	The most useful of these are the SelectList generators for Visualforce. However, if you are using LWC, you may prefer to use some of the other methods and to
-	parse the returned list of RecordTypeInfo items yourself.
-</p>
+These methods are used less often but may be useful.
+
+The most useful of these are the SelectList generators for Visualforce. However, if you are using LWC, you may prefer to use some of the other methods and to parse the returned list of RecordTypeInfo items yourself.
 
 | Parameters / Output                      | Schema.RecordTypeInfo | Map(String, Id)                    | SelectList                        | Set&lt;Id&gt;                  |
 | ---------------------------------------- | --------------------- | ---------------------------------- | --------------------------------- | ------------------------------ |
