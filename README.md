@@ -57,7 +57,7 @@ Updated by David Schach, copyright (c) 2021 X-Squared on Demand
 
 # Library Methods
 
-(Full documentation at [https://dschach.github.io/record-types/](https://dschach.github.io/record-types/))
+(Full documentation at [https://dschach.github.io/record-types](https://dschach.github.io/record-types/))
 
 ## Most Common Methods
 

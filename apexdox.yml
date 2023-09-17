@@ -20,7 +20,7 @@ engine:
   homePagePath: "${workspaceFolder}/doc-assets/main.html"
   pages:
     - "${workspaceFolder}/doc-assets/changelog.html"
-    - "${workspaceFolder}/doc-assets/RecordTypesHome.html"
+    #- "${workspaceFolder}/doc-assets/RecordTypesHome.html"
   assets:
     - "${workspaceFolder}/doc-assets/logo.png"
     - "${workspaceFolder}/doc-assets/favicon.png"
