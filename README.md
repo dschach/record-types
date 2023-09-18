@@ -33,18 +33,19 @@ The class and test class are found in this [folder](/force-app/main/default/clas
   <img alt="Deploy to Salesforce"
        src="./media/deploy-package-to-prod.png">
 </a>
-
 <a href="https://test.salesforce.com/packaging/installPackage.apexp?p0=04tQm0000009IIfIAM">
   <img alt="Deploy to Salesforce Sandbox"
        src="./media/deploy-package-to-sandbox.png">
 </a>
 
 <br/>
-<br/>
 
 ## [Changelog](./CHANGELOG.md)
 
-- 2023-09 Overload getRecordTypeFromId so it doesn't require a SobjectType string
+- 2023-09
+
+  - Overload getRecordTypeFromId so it doesn't require a SobjectType string
+  - Release unlocked package
 
 - 2023-08
 
