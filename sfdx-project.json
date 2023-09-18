@@ -7,7 +7,8 @@
       "definitionFile": "config/project-scratch-def.json",
       "package": "Record Types",
       "versionName": "ver 1.4",
-      "versionDescription": ""
+      "versionDescription": "Record Type library/utility class for fast code execution",
+			"ancestorVersion": "HIGHEST"
     }
   ],
   "name": "record-types",
