@@ -22,14 +22,30 @@ The class and test class are found in this [folder](/force-app/main/default/clas
 
 [ApexDox](https://dschach.github.io/record-types/RecordTypes.html) (generated with [ApexDox](https://github.com/no-stack-dub-sack/apexdox-vs-code))
 
-## Installation
+## Installation (via VCS)
 
 - Clone this repository and run `. scripts/orginit.sh` to set up a scratch org with the classes installed and a single Account Record Type.
 - To set up a scratch org without creating a Record Type, run `.scripts/orginit-norecordtypes.sh`
 
+## Package Installation
+
+<a href="https://login.salesforce.com/packaging/installPackage.apexp?p0=04tQm0000009IIfIAM">
+  <img alt="Deploy to Salesforce"
+       src="./media/deploy-package-to-prod.png">
+</a>
+<a href="https://test.salesforce.com/packaging/installPackage.apexp?p0=04tQm0000009IIfIAM">
+  <img alt="Deploy to Salesforce Sandbox"
+       src="./media/deploy-package-to-sandbox.png">
+</a>
+
+<br/>
+
 ## [Changelog](./CHANGELOG.md)
 
-- 2023-09 Overload getRecordTypeFromId so it doesn't require a SobjectType string
+- 2023-09
+
+  - Overload getRecordTypeFromId so it doesn't require a SobjectType string
+  - Release unlocked package
 
 - 2023-08
 
