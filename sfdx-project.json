@@ -1,13 +1,22 @@
 {
-	"packageDirectories": [
-		{
-			"path": "force-app",
-			"default": true,
-			"versionNumber": "1.4.0.NEXT"
-		}
-	],
-	"name": "record-types",
-	"namespace": "",
-	"sfdcLoginUrl": "https://login.salesforce.com",
-	"sourceApiVersion": "56.0"
+  "packageDirectories": [
+    {
+      "path": "force-app",
+      "default": true,
+      "versionNumber": "1.4.0.NEXT",
+      "definitionFile": "config/project-scratch-def.json",
+      "package": "Record Types",
+      "versionName": "ver 1.4",
+      "versionDescription": ""
+    }
+  ],
+  "name": "record-types",
+  "namespace": "",
+  "sfdcLoginUrl": "https://login.salesforce.com",
+  "sourceApiVersion": "58.0",
+  "packageAliases": {
+    "Record Types": "0HoQm00000000BJKAY",
+    "RecordTypes": "0HoQm00000000BJKAY",
+    "Record Types@1.4.0-1": "04tQm0000009IIfIAM"
+  }
 }
