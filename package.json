@@ -29,7 +29,7 @@
 		"prettier-plugin-apex": "^2.0.1"
 	},
 	"lint-staged": {
-		"**/*.{cls,cmp,component,css,js,json,md,page,trigger,xml,yaml,yml}": [
+		"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}": [
 			"prettier --write"
 		]
 	}

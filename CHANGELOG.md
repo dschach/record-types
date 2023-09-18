@@ -2,21 +2,18 @@
 
 ## [1.4.0](https://github.com/dschach/record-types/compare/record-types-v1.3.0...record-types-v1.4.0) (2023-09-17)
 
-
 ### Features
 
-* Overload get RT from Id ([#79](https://github.com/dschach/record-types/issues/79)) ([1344b75](https://github.com/dschach/record-types/commit/1344b7557093487751f9854840e15a0aa798fcb2))
-
+- Overload get RT from Id ([#79](https://github.com/dschach/record-types/issues/79)) ([1344b75](https://github.com/dschach/record-types/commit/1344b7557093487751f9854840e15a0aa798fcb2))
 
 ### Documentation
 
-* Update ApexDox ([f853dbc](https://github.com/dschach/record-types/commit/f853dbca5decf5674e5948d6084b3847fad5dbe1))
-* Update ApexDox ([a3cded8](https://github.com/dschach/record-types/commit/a3cded8cb0e38a8ebc1e88853ac762a51522af52))
-
+- Update ApexDox ([f853dbc](https://github.com/dschach/record-types/commit/f853dbca5decf5674e5948d6084b3847fad5dbe1))
+- Update ApexDox ([a3cded8](https://github.com/dschach/record-types/commit/a3cded8cb0e38a8ebc1e88853ac762a51522af52))
 
 ### Continuous Integration
 
-* **deps:** Bump actions/checkout from 3 to 4 ([#71](https://github.com/dschach/record-types/issues/71)) ([2fb0b6d](https://github.com/dschach/record-types/commit/2fb0b6d7bc22fb5cea21a51fd82d86c7883dcc6e))
+- **deps:** Bump actions/checkout from 3 to 4 ([#71](https://github.com/dschach/record-types/issues/71)) ([2fb0b6d](https://github.com/dschach/record-types/commit/2fb0b6d7bc22fb5cea21a51fd82d86c7883dcc6e))
 
 ## [1.3.0](https://github.com/dschach/record-types/compare/record-types-v1.2.1...record-types-v1.3.0) (2023-08-19)
 

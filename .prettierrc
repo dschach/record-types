@@ -23,7 +23,11 @@
 		},
 		{
 			"files": "*.json",
-			"options": { "useTabs": true, "parser": "json" }
+			"options": {
+				"useTabs": true,
+				"parser": "json",
+				"printWidth": 80
+			}
 		}
 	],
 	"plugins": ["prettier-plugin-apex", "@prettier/plugin-xml"]
