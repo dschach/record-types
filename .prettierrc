@@ -4,6 +4,7 @@
 	"useTabs": true,
 	"printWidth": 160,
 	"tabWidth": 2,
+	"singleQuote": true,
 	"overrides": [
 		{
 			"files": "**/lwc/**/*.html",
@@ -19,7 +20,7 @@
 		},
 		{
 			"files": "*.{yaml,yml}",
-			"options": { "useTabs": false }
+			"options": { "useTabs": false, "tabWidth": 2, "singleQuote": true }
 		},
 		{
 			"files": "*.json",
@@ -28,7 +29,19 @@
 				"parser": "json",
 				"printWidth": 80
 			}
+		},
+		{
+			"files": "docs/*.html",
+			"options": {
+				"parser": "html",
+				"useTabs": true,
+				"tabWidth": 2,
+				"printWidth": 150,
+				"htmlWhitespaceSensitivity": "css",
+				"singleQuote": false
+			}
 		}
 	],
-	"plugins": ["prettier-plugin-apex", "@prettier/plugin-xml"]
+	"plugins": ["prettier-plugin-apex", "@prettier/plugin-xml"],
+	"$schema": "https://json.schemastore.org/prettierrc"
 }
