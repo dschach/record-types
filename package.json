@@ -20,7 +20,7 @@
 		"updateHighlight": ". scripts/updateHighlight.sh"
 	},
 	"devDependencies": {
-		"@highlightjs/cdn-assets": "^11.8.0",
+		"@highlightjs/cdn-assets": "^11.9.0",
 		"@prettier/plugin-xml": "^3.2.1",
 		"highlightjs-apex": "^1.2.0",
 		"husky": "^8.0.3",
