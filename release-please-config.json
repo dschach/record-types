@@ -12,73 +12,21 @@
 	},
 	"$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
 	"extra-files": [
-		{
-			"type": "json",
-			"path": "package.json",
-			"jsonpath": "$.version"
-		}
+		{ "type": "json", "path": "package.json", "jsonpath": "$.version" }
 	],
-	"plugins": [
-		{
-			"type": "sentence-case"
-		}
-	],
+	"plugins": [{ "type": "sentence-case" }],
 	"changelog-sections": [
-		{
-			"type": "feat",
-			"section": "Features",
-			"hidden": false
-		},
-		{
-			"type": "fix",
-			"section": "Bug Fixes",
-			"hidden": false
-		},
-		{
-			"type": "chore",
-			"section": "Chores",
-			"hidden": false
-		},
-		{
-			"type": "perf",
-			"section": "Performance Improvements",
-			"hidden": false
-		},
-		{
-			"type": "docs",
-			"section": "Documentation",
-			"hidden": false
-		},
-		{
-			"type": "test",
-			"section": "Tests",
-			"hidden": false
-		},
-
-		{
-			"type": "ci",
-			"section": "Continuous Integration",
-			"hidden": false
-		},
-		{
-			"type": "revert",
-			"section": "Reverts",
-			"hidden": false
-		},
-		{
-			"type": "refactor",
-			"section": "Code Refactoring",
-			"hidden": false
-		},
-		{
-			"type": "style",
-			"section": "Styles",
-			"hidden": false
-		},
-		{
-			"type": "build",
-			"section": "Build System",
-			"hidden": true
-		}
+		{ "type": "feat", "section": "Features", "hidden": false },
+		{ "type": "fix", "section": "Bug Fixes", "hidden": false },
+		{ "type": "chore", "section": "Chores", "hidden": false },
+		{ "type": "perf", "section": "Performance Improvements", "hidden": false },
+		{ "type": "docs", "section": "Documentation", "hidden": false },
+		{ "type": "test", "section": "Tests", "hidden": false },
+		{ "type": "revert", "section": "Reverts", "hidden": false },
+		{ "type": "refactor", "section": "Code Refactoring", "hidden": false },
+		{ "type": "style", "section": "Styles", "hidden": false },
+		{ "type": "deps", "section": "Dependencies", "hidden": false },
+		{ "type": "build", "section": "Build System", "hidden": true },
+		{ "type": "ci", "section": "Continuous Integration", "hidden": false }
 	]
 }

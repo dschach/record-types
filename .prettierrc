@@ -19,6 +19,10 @@
 			"options": { "parser": "html" }
 		},
 		{
+			"files": ".json",
+			"options": { "parser": "json", "printWidth": 80 }
+		},
+		{
 			"files": "*.{yaml,yml}",
 			"options": { "useTabs": false, "tabWidth": 2, "singleQuote": true }
 		},
