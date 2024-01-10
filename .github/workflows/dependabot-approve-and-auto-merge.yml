@@ -1,11 +1,12 @@
 name: Dependabot Pull Request Approve and Merge
-on: pull_request #_target
+on: pull_request_target
 permissions:
   pull-requests: write
   contents: write
 jobs:
   pull-request-title-change:
     runs-on: ubuntu-latest
+    if: ${{ github.actor == 'dependabot[bot]' }}
     steps:
       # Checkout the source code
       - name: 'Checkout source code'
@@ -14,6 +15,8 @@ jobs:
       - name: 'Fetch Dependabot metadata'
         id: dependabot-fetch
         uses: dependabot/fetch-metadata@v1
+        with:
+          github-token: '${{ secrets.GITHUB_TOKEN }}'
 
       - name: 'Split title and update'
         id: split-title
@@ -28,9 +31,9 @@ jobs:
           title_pt1="${TITLE%%:*}"
           gh pr checkout "$PR_URL" # sets the upstream metadata for `gh pr status`
           packagename="${{ steps.dependabot-fetch.outputs.dependency-names }}"
-          echo "packagename is $packagename"
-          echo "$title_pt1"
-          echo "$title_pt2"
+          #echo "packagename is $packagename"
+          #echo "$title_pt1"
+          #echo "$title_pt2"
           parensOpen="("
           parensClose="):"
           pr_title=$title_pt1$parensOpen$packagename$parensClose$title_pt2
@@ -49,6 +52,8 @@ jobs:
       - name: 'Fetch Dependabot metadata'
         id: dependabot
         uses: dependabot/fetch-metadata@v1
+        with:
+          github-token: '${{ secrets.GITHUB_TOKEN }}'
 
       - name: 'Check auto merge conditions'
         id: auto-merge
