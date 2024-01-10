@@ -86,7 +86,6 @@ While the object name is, technically, optional, that method is faster because i
 | ----------------------------- | -------------------------- | ---------------------------- | ---------------------------- |
 | objectName, recordTypeName    | getRecordTypeIdFromName    |                              |                              |
 | objectName, recordTypeName    |                            |                              | getRecordTypeDevNameFromName |
-| objectName, recordTypeDevName |                            |                              | getRecordTypeFromDevName     |
 | objectName, recordTypeDevName |                            | getRecordTypeNameFromDevName |                              |
 | objectName, recordTypeDevName | getRecordTypeIdFromDevName |                              |                              |
 | objectName, recordTypeId      |                            | getRecordTypeNameFromId      |                              |
@@ -100,15 +99,16 @@ These methods are used less often but may be useful.
 
 The most useful of these are the SelectList generators for Visualforce. However, if you are using LWC, you may prefer to use some of the other methods and to parse the returned list of RecordTypeInfo items yourself.
 
-| Parameters / Output                      | Schema.RecordTypeInfo | Map(String, Id)                    | SelectList                        | Set&lt;Id&gt;                  |
-| ---------------------------------------- | --------------------- | ---------------------------------- | --------------------------------- | ------------------------------ |
-| recordTypeId                             | getRecordTypeFromId   |                                    |                                   |                                |
-| objectName, recordTypeId                 | getRecordTypeFromId   |                                    |                                   |                                |
-| objectName, Set&lt;recordTypeDevName&gt; |                       |                                    |                                   | getRecordTypeIdSetFromDevNames |
-| objectName                               |                       | getRecordTypeDevNameIdMap          |                                   |                                |
-| objectName                               |                       | getRecordTypeNameIdMap             |                                   |                                |
-| objectName                               |                       | getAvailableRecordTypeDevNameIdMap |                                   |                                |
-| objectName                               |                       | getAvailableRecordTypeNameIdMap    |                                   |                                |
-| objectName                               |                       |                                    | getRecordTypesForSelectList       |                                |
-| objectName                               |                       |                                    | getAllRecordTypesForSelectList    |                                |
-| objectName                               |                       |                                    | getStringRecordTypesForSelectList |                                |
+| Parameters / Output                      | Schema.RecordTypeInfo    | Map(String, Id)                    | SelectList                        | Set&lt;Id&gt;                  |
+| ---------------------------------------- | ------------------------ | ---------------------------------- | --------------------------------- | ------------------------------ |
+| recordTypeId                             | getRecordTypeFromId      |                                    |                                   |                                |
+| objectName, recordTypeId                 | getRecordTypeFromId      |                                    |                                   |                                |
+| objectName, recordTypeDevName            | getRecordTypeFromDevName |                                    |                                   |
+| objectName, Set&lt;recordTypeDevName&gt; |                          |                                    |                                   | getRecordTypeIdSetFromDevNames |
+| objectName                               |                          | getRecordTypeDevNameIdMap          |                                   |                                |
+| objectName                               |                          | getRecordTypeNameIdMap             |                                   |                                |
+| objectName                               |                          | getAvailableRecordTypeDevNameIdMap |                                   |                                |
+| objectName                               |                          | getAvailableRecordTypeNameIdMap    |                                   |                                |
+| objectName                               |                          |                                    | getRecordTypesForSelectList       |                                |
+| objectName                               |                          |                                    | getAllRecordTypesForSelectList    |                                |
+| objectName                               |                          |                                    | getStringRecordTypesForSelectList |                                |
