@@ -103,7 +103,7 @@ The most useful of these are the SelectList generators for Visualforce. However,
 | ---------------------------------------- | ------------------------ | ---------------------------------- | --------------------------------- | ------------------------------ |
 | recordTypeId                             | getRecordTypeFromId      |                                    |                                   |                                |
 | objectName, recordTypeId                 | getRecordTypeFromId      |                                    |                                   |                                |
-| objectName, recordTypeDevName            | getRecordTypeFromDevName |                                    |                                   |
+| objectName, recordTypeDevName            | getRecordTypeFromDevName |                                    |                                   |                                |
 | objectName, Set&lt;recordTypeDevName&gt; |                          |                                    |                                   | getRecordTypeIdSetFromDevNames |
 | objectName                               |                          | getRecordTypeDevNameIdMap          |                                   |                                |
 | objectName                               |                          | getRecordTypeNameIdMap             |                                   |                                |
