@@ -624,7 +624,7 @@ global inherited sharing class RecordTypes {
 	}
 
 	/**
-	 * @description If we are running a test, clear sObject maps. We do this to avoid using @testVisible on the maps
+	 * @description If we are running a test, clear sObject maps. We do this to avoid using @testVisible on the maps themselves
 	 * <br>This is private and testvisible so it cannot be called in production code context
 	 */
 	@testVisible

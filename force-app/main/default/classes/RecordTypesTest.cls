@@ -16,7 +16,7 @@ private class RecordTypesTest {
 	 * <br>We test nonexistent object names, nonexistent record type names, null values, and existing Account record type (if available)
 	 * @author Evan Callahan
 	 */
-	@isTest
+	@IsTest
 	private static void testBogusRecTypes() {
 		//Test with Bogus object
 
@@ -51,7 +51,7 @@ private class RecordTypesTest {
 	 * @description Test against Account, an object with record types in package testing
 	 * @author Evan Callahan
 	 */
-	@isTest
+	@IsTest
 	private static void testAccountRecTypes() {
 		//Test with Account
 
@@ -71,7 +71,7 @@ private class RecordTypesTest {
 		Assert.isNotNull(RecordTypes.getDefaultRecordTypeName('Account'), 'A real sobject should have at least Master record type');
 		Assert.isNotNull(RecordTypes.getDefaultRecordTypeDevName('Account'), 'A real sobject should have at least Master record type');
 
-		Assert.isNotNull(RecordTypes.getRecordTypeDevNameIdMap('Account'), 'a real sobject should return at least an empty map');
+		Assert.isNotNull(RecordTypes.getRecordTypeDevNameIdMap('Account'), 'A real sobject should return at least an empty map');
 
 		Assert.isNotNull(
 			RecordTypes.getAvailableRecordTypeDevNameIdMap('Account'),
@@ -91,7 +91,7 @@ private class RecordTypesTest {
 	 * @author Evan Callahan
 	 * @author {@link [David Schach](https://github.com/dschach)}
 	 */
-	@isTest
+	@IsTest
 	private static void testSolutionRecTypes() {
 		//Test with Solution
 		Assert.isNull(RecordTypes.getRecordTypeIdFromName('Solution', 'BogusRT'), 'BogusRT record type should not exist');
@@ -130,158 +130,135 @@ private class RecordTypesTest {
 	/**
 	 * @description Separate method for checking if we have Account record type, and then testing that
 	 * @author {@link [David Schach](https://github.com/dschach)}
+	 * @see testSObjectRecordTypeReturns
 	 */
-	@isTest
-	private static void testAccountRecordTypeReturns() {
-		List<RecordType> accountRecordTypes = [SELECT Id, Name, DeveloperName FROM RecordType WHERE SObjectType = 'Account'];
-
-		RecordTypes.getRecordTypeNameIdMap('Account');
-		resetTest();
-
-		RecordTypes.getRecordTypeDevNameIdMap('Account');
-		resetTest();
-
-		if (!accountRecordTypes.isEmpty()) {
-			RecordTypes.getDefaultRecordTypeDevName('Account');
-			resetTest();
-			RecordTypes.getDefaultRecordTypeName('Account');
-			resetTest();
-			RecordTypes.getDefaultRecordTypeId('Account');
-			resetTest();
-
-			RecordType activeRT = accountRecordTypes[0];
-
-			Schema.RecordTypeInfo rti = RecordTypes.getRecordTypeFromId('Account', activeRT.Id);
-			Schema.RecordTypeInfo rti2 = RecordTypes.getRecordTypeFromId(activeRT.Id);
-
-			Assert.areEqual(rti.getDeveloperName(), rti2.getDeveloperName(), 'Overloaded method failed to retrieve same RTId');
-
-			Assert.areNotEqual(null, RecordTypes.getRecordTypeDevNameFromId(activeRT.Id), 'We should have had an Account RecordType');
-			Assert.areNotEqual(null, RecordTypes.getRecordTypeNameFromId(activeRT.Id), 'We should have had an Account RecordType');
-
-			Assert.areEqual(
-				activeRT.Id,
-				RecordTypes.getRecordTypeIdFromName('Account', activeRt.Name),
-				'Submitted ' + activeRT.Name + ' and expected an Id to be returned: ' + activeRT.Id
-			);
-			Assert.areEqual(
-				rti.getRecordTypeId(),
-				RecordTypes.getRecordTypeIdFromName('Account', activeRt.Name),
-				'Submitted ' + activeRT.Name + ' and expected an Id: ' + rti.getRecordTypeId()
-			);
-			resetTest();
-
-			Assert.areEqual(activeRT.DeveloperName, RecordTypes.getRecordTypeDevNameFromName('Account', activeRT.Name), 'Error - mismatch on returned developername');
-			resetTest();
-
-			Assert.areEqual(activeRT.Name, RecordTypes.getRecordTypeNameFromDevName('Account', activeRT.DeveloperName), 'Error - mismatch on returned name');
-			Assert.areEqual(activeRT.Id, RecordTypes.getRecordTypeIdFromDevName('Account', activeRT.DeveloperName), 'Error - mismatch on returned Id');
-			resetTest();
-
-			Assert.areEqual(activeRT.Name, RecordTypes.getRecordTypeNameFromId('Account', activeRT.Id), 'Error - mismatch on returned name');
-			resetTest();
-
-			Assert.areEqual(activeRT.DeveloperName, RecordTypes.getRecordTypeDevNameFromId('Account', activeRT.Id), 'Error - mismatch on returned developername');
-			resetTest();
-
-			Set<String> rtNames = new Set<String>();
-			Set<String> rtDevNames = new Set<String>();
-			for (RecordType rt : accountRecordTypes) {
-				rtNames.add(rt.Name);
-				rtDevNames.add(rt.DeveloperName);
-			}
-
-			RecordTypes.getRecordTypeIdSetFromDevNames('Account', rtDevNames);
-			resetTest();
-		}
-		RecordTypes.getRecordTypeNameIdMap('Account');
-		resetTest();
-
-		List<SelectOption> allRtOptions = RecordTypes.getAllRecordTypesForSelectList('Account');
-		Assert.isTrue(accountRecordTypes.size() >= allRtOptions.size(), 'Error - SelectList has too many items');
-		resetTest();
-
-		List<SelectOption> rtOptions = RecordTypes.getRecordTypesForSelectList('Account');
-		Assert.isTrue(accountRecordTypes.size() >= rtOptions.size(), 'Error - SelectList has too many items');
-		Assert.isTrue(allRtOptions.size() >= rtOptions.size(), 'Error - The number of available record types is wrong');
-		resetTest();
-
-		rtOptions = RecordTypes.getStringRecordTypesForSelectList('Account');
-		Assert.isTrue(accountRecordTypes.size() >= rtOptions.size(), 'Error - SelectList has too many items');
+	@IsTest
+	private static void testAccountRecordTypes() {
+		Assert.isTrue(testSObjectRecordTypeReturns('account'));
 	}
 
 	/**
-	 * @description Separate method for checking if we have Account record type, and then testing that
+	 * @description Separate method for checking if we have Contact record type, and then testing that
 	 * @author {@link [David Schach](https://github.com/dschach)}
+	 * @see testSObjectRecordTypeReturns
 	 */
-	@isTest
-	private static void testContactRecordType() {
-		List<RecordType> accountRecordTypes = [SELECT Id, Name, DeveloperName FROM RecordType WHERE IsActive = TRUE AND SObjectType = 'Contact'];
+	@IsTest
+	private static void testContactRecordTypes() {
+		Assert.isTrue(testSObjectRecordTypeReturns('contact'));
+	}
 
-		RecordTypes.getRecordTypeNameIdMap('Contact');
+	private static Boolean testSObjectRecordTypeReturns(String sobjectname) {
+		List<RecordType> queriedRecordTypes = [SELECT Id, Name, DeveloperName FROM RecordType WHERE SObjectType = :sobjectname];
+
+		RecordTypes.getRecordTypeNameIdMap(sobjectname);
 		resetTest();
 
-		RecordTypes.getRecordTypeDevNameIdMap('Contact');
+		RecordTypes.getRecordTypeDevNameIdMap(sobjectname);
 		resetTest();
 
-		if (!accountRecordTypes.isEmpty()) {
-			RecordTypes.getDefaultRecordTypeDevName('Contact');
+		if (!queriedRecordTypes.isEmpty()) {
+			RecordTypes.getDefaultRecordTypeDevName(sobjectname);
 			resetTest();
-			RecordTypes.getDefaultRecordTypeName('Contact');
+			RecordTypes.getDefaultRecordTypeName(sobjectname);
 			resetTest();
-			RecordTypes.getDefaultRecordTypeId('Contact');
+			RecordTypes.getDefaultRecordTypeId(sobjectname);
 			resetTest();
 
-			RecordType activeRT = accountRecordTypes[0];
+			RecordType activeRT = queriedRecordTypes[0];
 
-			Schema.RecordTypeInfo rti = RecordTypes.getRecordTypeFromId('Contact', activeRT.Id);
-			Assert.areNotEqual(null, RecordTypes.getRecordTypeDevNameFromId(activeRT.Id), 'We should have had an Contact RecordType');
-			Assert.areNotEqual(null, RecordTypes.getRecordTypeNameFromId(activeRT.Id), 'We should have had an Contact RecordType');
+			Schema.RecordTypeInfo rti = RecordTypes.getRecordTypeFromId(sobjectname, activeRT.Id);
+			Schema.RecordTypeInfo rti2 = RecordTypes.getRecordTypeFromId(activeRT.Id);
+
+			Assert.areEqual(rti.getDeveloperName(), rti2.getDeveloperName(), 'Overloaded ' + sobjectname.capitalize() + ' method failed to retrieve same RTId');
+
+			Assert.areNotEqual(null, RecordTypes.getRecordTypeDevNameFromId(activeRT.Id), 'We should have had an' + sobjectname.capitalize() + ' RecordType');
+			Assert.areNotEqual(null, RecordTypes.getRecordTypeNameFromId(activeRT.Id), 'We should have had an' + sobjectname.capitalize() + ' RecordType');
 
 			Assert.areEqual(
 				activeRT.Id,
-				RecordTypes.getRecordTypeIdFromName('Contact', activeRt.Name),
+				RecordTypes.getRecordTypeIdFromName(sobjectname, activeRt.Name),
 				'Submitted ' + activeRT.Name + ' and expected an Id to be returned: ' + activeRT.Id
 			);
 			Assert.areEqual(
 				rti.getRecordTypeId(),
-				RecordTypes.getRecordTypeIdFromName('Contact', activeRt.Name),
+				RecordTypes.getRecordTypeIdFromName(sobjectname, activeRt.Name),
 				'Submitted ' + activeRT.Name + ' and expected an Id: ' + rti.getRecordTypeId()
 			);
 			resetTest();
 
-			Assert.areEqual(activeRT.DeveloperName, RecordTypes.getRecordTypeDevNameFromName('Contact', activeRT.Name), 'Error - mismatch on returned developername');
+			Assert.areEqual(
+				activeRT.DeveloperName,
+				RecordTypes.getRecordTypeDevNameFromName(sobjectname, activeRT.Name),
+				'Error - ' + sobjectname.capitalize() + ' mismatch on returned developername'
+			);
 			resetTest();
 
-			Assert.areEqual(activeRT.Name, RecordTypes.getRecordTypeNameFromDevName('Contact', activeRT.DeveloperName), 'Error - mismatch on returned name');
-			Assert.areEqual(activeRT.Id, RecordTypes.getRecordTypeIdFromDevName('Contact', activeRT.DeveloperName), 'Error - mismatch on returned Id');
+			Assert.areEqual(
+				activeRT.Name,
+				RecordTypes.getRecordTypeNameFromDevName(sobjectname, activeRT.DeveloperName),
+				'Error - ' + sobjectname.capitalize() + ' mismatch on returned name'
+			);
+			Assert.areEqual(
+				activeRT.Id,
+				RecordTypes.getRecordTypeIdFromDevName(sobjectname, activeRT.DeveloperName),
+				'Error - ' + sobjectname.capitalize() + ' mismatch on returned Id'
+			);
 			resetTest();
 
-			Assert.areEqual(activeRT.Name, RecordTypes.getRecordTypeNameFromId('Contact', activeRT.Id), 'Error - mismatch on returned name');
+			Assert.areEqual(
+				activeRT.Name,
+				RecordTypes.getRecordTypeNameFromId(sobjectname, activeRT.Id),
+				'Error - ' + sobjectname.capitalize() + ' mismatch on returned name'
+			);
 			resetTest();
 
-			Assert.areEqual(activeRT.DeveloperName, RecordTypes.getRecordTypeDevNameFromId('Contact', activeRT.Id), 'Error - mismatch on returned developername');
+			Assert.areEqual(
+				activeRT.DeveloperName,
+				RecordTypes.getRecordTypeDevNameFromId(sobjectname, activeRT.Id),
+				'Error - ' + sobjectname.capitalize() + ' mismatch on returned developername'
+			);
 			resetTest();
 
 			Set<String> rtNames = new Set<String>();
 			Set<String> rtDevNames = new Set<String>();
-			for (RecordType rt : accountRecordTypes) {
+			for (RecordType rt : queriedRecordTypes) {
 				rtNames.add(rt.Name);
 				rtDevNames.add(rt.DeveloperName);
 			}
 
-			RecordTypes.getRecordTypeIdSetFromDevNames('Contact', rtDevNames);
+			RecordTypes.getRecordTypeIdSetFromDevNames(sobjectname, rtDevNames);
 			resetTest();
+
+			List<SelectOption> allRtOptions = RecordTypes.getAllRecordTypesForSelectList(sobjectname);
+			Assert.isTrue(queriedRecordTypes.size() >= allRtOptions.size(), 'Error - ' + sobjectname.capitalize() + ' SelectList has too many items');
+			resetTest();
+
+			List<SelectOption> rtOptions = RecordTypes.getRecordTypesForSelectList(sobjectname);
+			Assert.isTrue(queriedRecordTypes.size() >= rtOptions.size(), 'Error - ' + sobjectname.capitalize() + ' SelectList has too many items');
+			Assert.isTrue(allRtOptions.size() >= rtOptions.size(), 'Error - The number of available ' + sobjectname.capitalize() + ' record types is wrong');
+			resetTest();
+
+			rtOptions = RecordTypes.getStringRecordTypesForSelectList(sobjectname);
+			Assert.isTrue(queriedRecordTypes.size() >= rtOptions.size(), 'Error - ' + sobjectname.capitalize() + ' SelectList has too many items');
+		} else {
+			System.debug('No' + sobjectname.capitalize() + ' Record Type found');
+
+			RecordTypes.getRecordTypeIdSetFromDevNames(sobjectname, new Set<String>());
+			resetTest();
+
+			List<SelectOption> allRtOptions = RecordTypes.getAllRecordTypesForSelectList(sobjectname); // 1
+			Assert.areEqual(1, allRtOptions.size(), 'Error - ' + sobjectname.capitalize() + ' SelectList should have one item');
+			resetTest();
+
+			List<SelectOption> rtOptions = RecordTypes.getRecordTypesForSelectList(sobjectname);
+			Assert.isTrue(rtOptions.isEmpty(), 'Error - We should have zero ' + sobjectname.capitalize() + ' record types');
+			resetTest();
+
+			rtOptions = RecordTypes.getStringRecordTypesForSelectList(sobjectname);
+			Assert.isTrue(queriedRecordTypes.size() >= rtOptions.size(), 'Error - ' + sobjectname.capitalize() + ' SelectList has too many items');
 		}
-		RecordTypes.getRecordTypeNameIdMap('Contact');
-		resetTest();
 
-		List<SelectOption> rtOptions = RecordTypes.getRecordTypesForSelectList('Contact');
-		Assert.isTrue(accountRecordTypes.size() >= rtOptions.size(), 'Error - SelectList has too many items');
-		resetTest();
-
-		rtOptions = RecordTypes.getStringRecordTypesForSelectList('Contact');
-		Assert.isTrue(accountRecordTypes.size() >= rtOptions.size(), 'Error - SelectList has too many items');
+		return true;
 	}
 
 	/**
