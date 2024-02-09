@@ -26,7 +26,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_URL: ${{github.event.pull_request.html_url}}
         run: |
-          echo $TITLE  
+          echo "Title: $TITLE"
           title_pt2="${TITLE##*:}"
           title_pt1="${TITLE%%:*}"
           gh pr checkout "$PR_URL" # sets the upstream metadata for `gh pr status`
@@ -75,3 +75,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_URL: ${{ github.event.pull_request.html_url }}
+      - name: 'release-please'
+        if: ${{ steps.auto-merge.conclusion == 'success' }}
+        uses: google-github-actions/release-please-action@v4
