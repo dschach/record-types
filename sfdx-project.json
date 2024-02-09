@@ -8,7 +8,6 @@
 			"package": "Record Types",
 			"versionName": "ver 1.5",
 			"versionDescription": "Record Type library/utility class for fast code execution",
-			"ancestorVersion": "HIGHEST",
 			"unpackagedMetadata": {
 				"path": "unpackaged"
 			},
@@ -16,7 +15,10 @@
 				"permissionSets": ["RecordTypes_DefaultRT_for_Testing"]
 			}
 		},
-		{ "path": "unpackaged", "default": false }
+		{
+			"path": "unpackaged",
+			"default": false
+		}
 	],
 	"name": "record-types",
 	"namespace": "",
@@ -25,6 +27,7 @@
 	"packageAliases": {
 		"Record Types": "0HoQm00000000BJKAY",
 		"RecordTypes": "0HoQm00000000BJKAY",
-		"Record Types@1.4.0-1": "04tQm0000009IIfIAM"
+		"Record Types@1.4.0-1": "04tQm0000009IIfIAM",
+		"Record Types@1.5.0-1": "04tQm000000fcvmIAA"
 	}
 }
