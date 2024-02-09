@@ -1,3 +1,3 @@
 #!/bin/bash
 
-sf package version create --code-coverage --installation-key-bypass --wait 20 --verbose --definition-file config/project-scratch-def.json --target-dev-hub x2od
+sf package version create --code-coverage --installation-key-bypass --wait 90 --verbose --definition-file config/project-scratch-def.json --package "Record Types" --target-dev-hub x2od
