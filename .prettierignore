@@ -13,5 +13,5 @@ docs/
 highlight.js
 
 # Exclude project config
-sfdx-project.json
+#sfdx-project.json
 dependencies.json

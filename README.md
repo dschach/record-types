@@ -67,7 +67,7 @@ Written by Evan Callahan, copyright (c) 2010 Groundwire
 - This class is meant to allow for access to Record Type information from within other classes.
 - It is called statically, and therefore will supply the same information to all calls made from within one transaction, or set of trigger calls. This is beneficial because this info should be the same for all calls in a transaction, and by calling it statically we reduce the calls that are made, making the total transaction more efficient.
 
-Updated by David Schach, copyright (c) 2021 X-Squared on Demand
+Updated by David Schach, copyright (c) X-Squared on Demand
 
 - Usage recommendation: Always use DeveloperName instead of Name, as this is more likely to be hard-coded in places, while the Name is actually a label and may change (especially due to user language).
 

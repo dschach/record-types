@@ -6,6 +6,7 @@
 	"scripts": {
 		"apex:local:start": "node node_modules/prettier-plugin-apex/bin/start-apex-server.js",
 		"apex:local:stop": "node node_modules/prettier-plugin-apex/bin/stop-apex-server.js",
+		"build": ". scripts/packagedev/build.sh",
 		"devhub-x2od": "sf config set target-dev-hub=x2od",
 		"initialize": ". scripts/initialize.sh",
 		"orginit": ". scripts/orginit.sh",
