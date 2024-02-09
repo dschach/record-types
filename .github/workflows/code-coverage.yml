@@ -26,8 +26,9 @@ jobs:
       - name: Delete coverage file (temporary fix)
         run: rm ./test-result-707*-codecoverage.json
       - name: 'Upload code coverage for Apex to Codecov.io'
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v4
         with:
           flags: Apex
+          token: ${{ secrets.CODECOV_TOKEN }}
       - name: Delete Scratch Org
         run: sf force org delete scratch --no-prompt
