@@ -122,7 +122,7 @@ global inherited sharing class RecordTypes {
 		}
 		if (recordTypesByName.containsKey(objectName)) {
 			Schema.RecordTypeInfo defaultRT = defaultRecordTypes.get(objectName);
-			if (defaultRT.isMaster()) {
+			/* if (defaultRT.isMaster()) {
 				// fill the name to id map
 				Map<String, Schema.RecordTypeInfo> rtMap = recordTypesByName?.get(objectName);
 				for (Schema.RecordTypeInfo rti : rtMap?.values()) {
@@ -132,7 +132,7 @@ global inherited sharing class RecordTypes {
 						return rti;
 					}
 				}
-			}
+			} */
 			return defaultRT;
 		}
 		return null;
@@ -567,42 +567,77 @@ global inherited sharing class RecordTypes {
 	 * @param  objectName SObject name (with __c if custom, etc)
 	 * @return            `List<SelectOption>` Visualforce SelectOption list
 	 * @example
-	 * RecordTypes.getRecordTypesForSelectList('Account')
+	 * RecordTypes.getAvailableRecordTypesForSelectList('Account')
 	 * <br><br>
 	 * System.SelectOption[value="<SFID>", label="Available", disabled="false"]
 	 * System.SelectOption[value="<SFID>", label="Default", disabled="false"]
+	 * System.SelectOption[value="<SFID>", label="Inactive", disabled="true"]
 	 */
-	global static List<SelectOption> getRecordTypesForSelectList(String objectName) {
+	global static List<SelectOption> getAvailableRecordTypesForSelectList(String objectName) {
 		List<SelectOption> recordTypesOptions = new List<SelectOption>();
-
-		Map<String, Id> availRecordTypes = getAvailableRecordTypeNameIdMap(objectName);
-
+		System.debug('in available method');
+		Map<String, Id> availRecordTypes = getAvailableRecordTypeNameIdMap(objectName); // never null. Can be empty.
+		/* if (availRecordTypes == null) {
+			return recordTypesOptions;
+		} */
 		for (String thisRecordType : availRecordTypes.keyset()) {
 			recordTypesOptions.add(new SelectOption(availRecordTypes.get(thisRecordType), thisRecordType));
 		}
-
+		System.debug('options!' + recordTypesOptions);
+		System.debug('containsGlobalKey: ' + gd.containsKey(objectName));
+		if (recordTypesOptions.isEmpty() && gd.containsKey(objectName)) {
+			System.debug('empty');
+			String defaultRTName = defaultRecordTypes.get(objectName)?.getName();
+			System.debug(defaultRTName);
+			defaultRTName = defaultRTName == null ? '' : '--' + defaultRecordTypes.get(objectName)?.getName() + '--';
+			System.debug(defaultRTName);
+			recordTypesOptions.add(new SelectOption('', defaultRTName, false));
+		}
+		recordTypesOptions.sort();
+		System.debug(recordTypesOptions);
 		return recordTypesOptions;
 	}
 
 	/**
 	 * @description Make a Visualforce picklist with ALL `RecordType` Names displayed and the `RecordType` Id as the value
-	 * <br>Unavailable Record Types will be disabled in the picklist
+	 * <br>Unavailable Record Types will be _disabled_ in the picklist
 	 * @author {@link [David Schach](https://github.com/dschach)}
 	 * @param  objectName SObject name (with __c if custom, etc)
 	 * @return            `List<SelectOption>` Visualforce SelectOption list
 	 */
 	global static List<SelectOption> getAllRecordTypesForSelectList(String objectName) {
+		return getAllRecordTypesForSelectList(objectName, true);
+	}
+	/**
+	 * @description Make a Visualforce picklist with ALL `RecordType` Names displayed and the `RecordType` Id as the value
+	 * <br>Unavailable Record Types will be disabled in the picklist
+	 * @author {@link [David Schach](https://github.com/dschach)}
+	 * @param  objectName SObject name (with __c if custom, etc)
+	 * @param  disableUnavailable Should we disable unavailable RTs in the SelectList?
+	 * @return            `List<SelectOption>` Visualforce SelectOption list
+	 */
+	global static List<SelectOption> getAllRecordTypesForSelectList(String objectName, Boolean disableUnavailable) {
 		List<SelectOption> recordTypesOptions = new List<SelectOption>();
 		if (!allRecordTypes.containsKey(objectName)) {
 			fillMapsForObject(objectName);
 		}
 		List<Schema.RecordTypeInfo> recordTypes = allRecordTypes.get(objectName);
+		Boolean hasAvailableRT = false;
+		if (recordTypes == null) {
+			return recordTypesOptions;
+		}
 		for (Schema.RecordTypeInfo rti : recordTypes) {
-			recordTypesOptions.add(new SelectOption(rti.getRecordTypeId(), rti.getName(), !rti.isAvailable()));
+			recordTypesOptions.add(new SelectOption(rti.getRecordTypeId(), rti.getName(), disableUnavailable ? !rti.isAvailable() : false));
+			if (rti.isAvailable()) {
+				hasAvailableRT = true;
+			}
 		}
-		if (recordTypesOptions.isEmpty()) {
-			recordTypesOptions.add(new SelectOption('', defaultRecordTypes?.get(objectName).getName()));
+		if (recordTypesOptions.isEmpty() || (disableUnavailable && !hasAvailableRT && gd.containsKey(objectName))) {
+			String defaultRTName = defaultRecordTypes?.get(objectName)?.getName();
+			defaultRTName = defaultRTName == null ? '' : '--' + defaultRecordTypes?.get(objectName)?.getName() + '--';
+			recordTypesOptions.add(new SelectOption('', defaultRTName, false));
 		}
+		recordTypesOptions.sort();
 		return recordTypesOptions;
 	}
 
@@ -615,11 +650,13 @@ global inherited sharing class RecordTypes {
 	global static List<SelectOption> getStringRecordTypesForSelectList(String objectName) {
 		List<SelectOption> recordTypesOptions = new List<SelectOption>();
 		Map<String, Id> availRecordTypes = getAvailableRecordTypeNameIdMap(objectName);
-
+		/* if (availRecordTypes == null) {
+			return recordTypesOptions;
+		} */
 		for (String thisRecordType : availRecordTypes.keyset()) {
 			recordTypesOptions.add(new SelectOption(thisRecordType, thisRecordType));
 		}
-
+		recordTypesOptions.sort();
 		return recordTypesOptions;
 	}
 

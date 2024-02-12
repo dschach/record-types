@@ -12,6 +12,18 @@
 @IsTest
 private class RecordTypesTest {
 	/**
+	 * Memoize global describe, as we call it multiple times in this class
+	 */
+	static Map<String, Schema.SObjectType> gd {
+		get {
+			if (gd == null) {
+				gd = Schema.getGlobalDescribe();
+			}
+			return gd;
+		}
+		set;
+	}
+	/**
 	 * @description Test various record types and names
 	 * <br>We test nonexistent object names, nonexistent record type names, null values, and existing Account record type (if available)
 	 * @author Evan Callahan
@@ -134,7 +146,7 @@ private class RecordTypesTest {
 	 */
 	@IsTest
 	private static void testAccountRecordTypes() {
-		Assert.isTrue(testSObjectRecordTypeReturns('account'));
+		Assert.isTrue(testSObjectRecordTypeReturns('Account'), 'Test failure checking Account');
 	}
 
 	/**
@@ -144,9 +156,25 @@ private class RecordTypesTest {
 	 */
 	@IsTest
 	private static void testContactRecordTypes() {
-		Assert.isTrue(testSObjectRecordTypeReturns('contact'));
+		Assert.isTrue(testSObjectRecordTypeReturns('contact'), 'Test failure checking Contact');
 	}
 
+	/**
+	 * @description Separate method for checking if we have record types for a nonexistent object, and then testing that
+	 * @author {@link [David Schach](https://github.com/dschach)}
+	 * @see testSObjectRecordTypeReturns
+	 */
+	@IsTest
+	private static void testBogusRecordTypes() {
+		Assert.isTrue(testSObjectRecordTypeReturns('bogus'), 'Test failure checking Bogus object');
+	}
+
+	/**
+	 * @description       Utility class for testing various objects against the `RecordTypes` library
+	 *
+	 * @param sobjectname Name of the object to test for record types
+	 * @return            `true` if all assertions pass
+	 */
 	private static Boolean testSObjectRecordTypeReturns(String sobjectname) {
 		List<RecordType> queriedRecordTypes = [SELECT Id, Name, DeveloperName FROM RecordType WHERE SObjectType = :sobjectname];
 
@@ -233,7 +261,7 @@ private class RecordTypesTest {
 			Assert.isTrue(queriedRecordTypes.size() >= allRtOptions.size(), 'Error - ' + sobjectname.capitalize() + ' SelectList has too many items');
 			resetTest();
 
-			List<SelectOption> rtOptions = RecordTypes.getRecordTypesForSelectList(sobjectname);
+			List<SelectOption> rtOptions = RecordTypes.getAvailableRecordTypesForSelectList(sobjectname);
 			Assert.isTrue(queriedRecordTypes.size() >= rtOptions.size(), 'Error - ' + sobjectname.capitalize() + ' SelectList has too many items');
 			Assert.isTrue(allRtOptions.size() >= rtOptions.size(), 'Error - The number of available ' + sobjectname.capitalize() + ' record types is wrong');
 			resetTest();
@@ -241,21 +269,34 @@ private class RecordTypesTest {
 			rtOptions = RecordTypes.getStringRecordTypesForSelectList(sobjectname);
 			Assert.isTrue(queriedRecordTypes.size() >= rtOptions.size(), 'Error - ' + sobjectname.capitalize() + ' SelectList has too many items');
 		} else {
-			System.debug('No' + sobjectname.capitalize() + ' Record Type found');
-
+			Integer objectExists = gd.containsKey(sobjectname) ? 1 : 0;
 			RecordTypes.getRecordTypeIdSetFromDevNames(sobjectname, new Set<String>());
 			resetTest();
 
-			List<SelectOption> allRtOptions = RecordTypes.getAllRecordTypesForSelectList(sobjectname); // 1
-			Assert.areEqual(1, allRtOptions.size(), 'Error - ' + sobjectname.capitalize() + ' SelectList should have one item');
+			List<SelectOption> allRtOptions = RecordTypes.getAllRecordTypesForSelectList(sobjectname);
+			Assert.areEqual(
+				objectExists,
+				allRtOptions.size(),
+				'Error - ' + sobjectname.capitalize() + ' SelectList should have at least ' + objectExists + ' item. We have ' + allRtOptions.size()
+			);
 			resetTest();
 
-			List<SelectOption> rtOptions = RecordTypes.getRecordTypesForSelectList(sobjectname);
-			Assert.isTrue(rtOptions.isEmpty(), 'Error - We should have zero ' + sobjectname.capitalize() + ' record types');
+			List<SelectOption> rtOptions = RecordTypes.getAvailableRecordTypesForSelectList(sobjectname);
+			Assert.areEqual(
+				objectExists,
+				rtOptions.size(),
+				'Error - We should have at least ' +
+					objectExists +
+					' ' +
+					sobjectname.capitalize() +
+					' available record types in the select list. We have ' +
+					rtOptions.size()
+			);
 			resetTest();
 
 			rtOptions = RecordTypes.getStringRecordTypesForSelectList(sobjectname);
 			Assert.isTrue(queriedRecordTypes.size() >= rtOptions.size(), 'Error - ' + sobjectname.capitalize() + ' SelectList has too many items');
+			Assert.isTrue(allRtOptions.size() >= rtOptions.size(), 'Error - We should have one ' + sobjectname.capitalize() + ' record types in the select list');
 		}
 
 		return true;

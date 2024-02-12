@@ -25,8 +25,8 @@
 		{ "type": "revert", "section": "Reverts", "hidden": false },
 		{ "type": "refactor", "section": "Code Refactoring", "hidden": false },
 		{ "type": "style", "section": "Styles", "hidden": false },
-		{ "type": "deps", "section": "Dependencies", "hidden": false },
-		{ "type": "build", "section": "Build System", "hidden": false },
-		{ "type": "ci", "section": "Continuous Integration", "hidden": false }
+		{ "type": "deps", "section": "Dependencies", "hidden": true },
+		{ "type": "build", "section": "Build System", "hidden": true },
+		{ "type": "ci", "section": "Continuous Integration", "hidden": true }
 	]
 }
