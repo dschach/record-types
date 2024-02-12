@@ -2,8 +2,8 @@
 /**
  * @description This class is allows for easy, readable access to Record Type information from other classes.
  * <br>
- * <br>Written by Evan Callahan, copyright (c) 2010 Groundwire
- * <br>Updated by David Schach, copyright (c) 2021 X-Squared on Demand
+ * <br>Written by Evan Callahan, copyright &copy; 2010 Groundwire
+ * <br>Updated by David Schach, copyright &copy; 2021 X-Squared on Demand
  * <br>
  * <br>This program is released under the GNU General Public License. http://www.gnu.org/licenses/
  * <br>
@@ -18,7 +18,7 @@
  * hard-coded in places, while the Name is actually a label and may change (especially due to user language).
  * <br>
  * An easy-to-read table with the various methods, their inputs, and their outputs is available at
- * {@link [RecordTypesHome](./RecordTypesHomt.html)}
+ * {@link [RecordTypesHome](https://dschach.github.io/record-types/index.html)}
  *
  * @author {@link [Evan Callahan](https://github.com/groundwired)}, Groundwire
  * @since 2010

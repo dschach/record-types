@@ -109,10 +109,13 @@
           <h2>Documentation</h2>
           <p><a href="https://dschach.github.io/record-types/RecordTypes.html">ApexDox</a> (generated with <a href="https://github.com/no-stack-dub-sack/apexdox-vs-code">ApexDox</a>)</p>
           <h2>Installation (via VCS)</h2>
-          <ul>
-            <li>Clone this repository and run <code>. scripts/orginit.sh</code> to set up a scratch org with the classes installed and a single Account Record Type.</li>
-            <li>To set up a scratch org without creating a Record Type, run <code>.scripts/orginit-norecordtypes.sh</code></li>
-          </ul>
+          <p>Clone this repository and run</p>
+          <pre><code class="language-bash">. scripts/orginit.sh
+</code></pre>
+          <p>to set up a scratch org with the classes installed and a single Account Record Type.</p>
+          <p>To set up a scratch org without creating a Record Type, run</p>
+          <pre><code class="language-bash">. scripts/orginit-norecordtypes.sh
+</code></pre>
           <h2>Package Installation</h2>
           <a href="https://login.salesforce.com/packaging/installPackage.apexp?p0=04tQm0000009IIfIAM">
             <img alt="Deploy to Salesforce" src="./assets/deploy-package-to-prod.png">
@@ -125,6 +128,14 @@
 
           <h2><a href="./changelog.html">Changelog</a></h2>
           <ul>
+            <li>
+              <p>2024-02</p>
+              <ul>
+                <li>Enhance SelectList methods</li>
+                <li>Update to API 60.0</li>
+                <li>Increase code coverage and test cases</li>
+              </ul>
+            </li>
             <li>
               <p>2023-09</p>
               <ul>
@@ -141,23 +152,32 @@
               </ul>
             </li>
             <li>
-              <p>2022-03 BREAKING CHANGE: Replaced &quot;DeveloperName&quot; with &quot;DevName&quot; in all method names. Update your code to refer to the new methods.</p>
+              <p>2022-03</p>
+              <ul>
+                <li>BREAKING CHANGE: Replaced &quot;DeveloperName&quot; with &quot;DevName&quot; in all method names. Update your code to refer to the new methods.</li>
+              </ul>
             </li>
             <li>
-              <p>2022-03 Add maps Id =&gt; Name and Id =&gt; DeveloperName for ease of use when wanting to refer to a record type by Id without including the object, since Id is globally unique</p>
+              <p>2022-03</p>
+              <ul>
+                <li>Add maps Id =&gt; Name and Id =&gt; DeveloperName for ease of use when wanting to refer to a record type by Id without including the object, since Id is globally unique</li>
+              </ul>
             </li>
             <li>
-              <p>2022-01 Initial Release</p>
+              <p>2022-01</p>
+              <ul>
+                <li>Initial Release</li>
+              </ul>
             </li>
           </ul>
           <h2>Code Header</h2>
-          <p>Written by Evan Callahan, copyright (c) 2010 Groundwire</p>
+          <p>Written by Evan Callahan, copyright &copy; 2010 Groundwire</p>
           <ul>
             <li>This program is released under the <a href="./LICENSE">GNU General Public License</a>. <a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a></li>
             <li>This class is meant to allow for access to Record Type information from within other classes.</li>
             <li>It is called statically, and therefore will supply the same information to all calls made from within one transaction, or set of trigger calls. This is beneficial because this info should be the same for all calls in a transaction, and by calling it statically we reduce the calls that are made, making the total transaction more efficient.</li>
           </ul>
-          <p>Updated by David Schach, copyright (c) X-Squared on Demand</p>
+          <p>Updated by David Schach, copyright &copy; X-Squared on Demand</p>
           <ul>
             <li>Usage recommendation: Always use DeveloperName instead of Name, as this is more likely to be hard-coded in places, while the Name is actually a label and may change (especially due to user language).</li>
           </ul>

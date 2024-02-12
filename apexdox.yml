@@ -10,7 +10,7 @@ engine:
   title: Record Types code documentation
   subtitle: Documentation for <a target="_blank" rel="noopener noreferrer" href="https://github.com/dschach/record-types">RecordTypes Utilities</a>
   sortOrder: alpha
-  cleanDir: false
+  cleanDir: true
   showTOCSnippets: true
   scope:
     - global
