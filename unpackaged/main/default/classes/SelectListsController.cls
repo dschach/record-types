@@ -1,7 +1,9 @@
 /**
  * @description Class for testing `RecordTypes` picklist methods
+ * <br>NOT included in the unlocked package
+ * @group SelectListTests
  *
- * @author      Daivd Schach
+ * @author      David Schach
  * @since       2024
  */
 @SuppressWarnings('PMD.ApexDoc')

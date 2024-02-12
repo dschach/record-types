@@ -2,6 +2,8 @@ engine:
   source:
     - path: '${workspaceFolder}/force-app/main/default/classes'
       sourceUrl: https://github.com/dschach/record-types/tree/main
+    - path: '${workspaceFolder}/unpackaged/main/default/classes'
+      sourceUrl: https://github.com/dschach/record-types/tree/main
   targetDirectory: '${workspaceFolder}/docs'
   #excludes:
   #  - "*Test.cls"

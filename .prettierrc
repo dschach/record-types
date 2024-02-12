@@ -27,11 +27,19 @@
 			"options": { "useTabs": false, "tabWidth": 2, "singleQuote": true }
 		},
 		{
-			"files": "*.json",
+			"files": "doc*/*.js",
 			"options": {
-				"useTabs": true,
+				"parser": "babel",
+				"singleQuote": false
+			}
+		},
+		{
+			"files": "*.{prettierrc, json}",
+			"options": {
 				"parser": "json",
-				"printWidth": 80
+				"printWidth": 80,
+				"useTabs": true,
+				"singleQuote": false
 			}
 		},
 		{

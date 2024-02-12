@@ -1,5 +1,6 @@
 /**
  * @description Test class for SelectListController
+ * @group SelectListTests
  *
  * @author      David Schach
  * @since       2024

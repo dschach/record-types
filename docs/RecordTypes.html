@@ -51,6 +51,20 @@
               </li>
             </ul>
           </details>
+          <details id="SelectListTests" class="group-name">
+            <summary id="header-SelectListTests" class="nav-header">
+              <span>SelectListTests</span>
+            </summary>
+            <ul>
+              <!-- menu items -->
+              <li title="SelectListsController" id="item-SelectListsController" class="nav-item class public" onclick="goToLocation('SelectListsController.html');">
+                <a tabindex="1" href="javascript:void(0)">SelectListsController</a>
+              </li>
+              <li title="SelectListsControllerTest" id="item-SelectListsControllerTest" class="nav-item class public" onclick="goToLocation('SelectListsControllerTest.html');">
+                <a tabindex="1" href="javascript:void(0)">SelectListsControllerTest</a>
+              </li>
+            </ul>
+          </details>
         </nav>
       </div>
     </div>
@@ -306,7 +320,7 @@
                     </a>
 
                     <div class="methods-toc__description">
-                      If we are running a test, clear sObject maps. We do this to avoid using @testVisible on the maps <br>This is private and testvisible so it cannot be called in production code context
+                      If we are running a test, clear sObject maps. We do this to avoid using @testVisible on the maps themselves <br>This is private and testvisible so it cannot be called in production code context
                     </div>
                   </li>
                   <li class="method private">
@@ -321,6 +335,15 @@
                   <li class="method global">
                     <a class="methods-toc__entry " href="#RecordTypes.getAllRecordTypesForSelectList">
                       getAllRecordTypesForSelectList (objectName)
+                    </a>
+
+                    <div class="methods-toc__description">
+                      Make a Visualforce picklist with ALL <code class="code-inline">RecordType</code> Names displayed and the <code class="code-inline">RecordType</code> Id as the value <br>Unavailable Record Types will be _disabled_ in the picklist
+                    </div>
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#RecordTypes.getAllRecordTypesForSelectList_1">
+                      getAllRecordTypesForSelectList (objectName, disableUnavailable)
                     </a>
 
                     <div class="methods-toc__description">
@@ -343,6 +366,15 @@
 
                     <div class="methods-toc__description">
                       Gives a map of all available (to the running user) <code class="code-inline">RecordTypeId</code>s by name for an sObject
+                    </div>
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#RecordTypes.getAvailableRecordTypesForSelectList">
+                      getAvailableRecordTypesForSelectList (objectName)
+                    </a>
+
+                    <div class="methods-toc__description">
+                      Make a Visualforce picklist of all available Record Types with the <code class="code-inline">RecordType</code> Name displayed and the <code class="code-inline">RecordType</code> Id as the value
                     </div>
                   </li>
                   <li class="method global">
@@ -526,15 +558,6 @@
                     </div>
                   </li>
                   <li class="method global">
-                    <a class="methods-toc__entry " href="#RecordTypes.getRecordTypesForSelectList">
-                      getRecordTypesForSelectList (objectName)
-                    </a>
-
-                    <div class="methods-toc__description">
-                      Make a Visualforce picklist of all available Record Types with the <code class="code-inline">RecordType</code> Name displayed and the <code class="code-inline">RecordType</code> Id as the value
-                    </div>
-                  </li>
-                  <li class="method global">
                     <a class="methods-toc__entry " href="#RecordTypes.getStringRecordTypesForSelectList">
                       getStringRecordTypesForSelectList (objectName)
                     </a>
@@ -547,12 +570,12 @@
                 <div class="method private">
                   <h4 class="method-title " id="RecordTypes.clearMapsInTest">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L631">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L668">
                       clearMapsInTest()
                     </a>
                   </h4>
                   <div class="method-description">
-                    If we are running a test, clear sObject maps. We do this to avoid using @testVisible on the maps <br>This is private and testvisible so it cannot be called in production code context
+                    If we are running a test, clear sObject maps. We do this to avoid using @testVisible on the maps themselves <br>This is private and testvisible so it cannot be called in production code context
                   </div>
                   <div class="method-subtitle">
                     Signature
@@ -595,12 +618,12 @@
                 <div class="method global">
                   <h4 class="method-title " id="RecordTypes.getAllRecordTypesForSelectList">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L594">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L608">
                       getAllRecordTypesForSelectList(objectName)
                     </a>
                   </h4>
                   <div class="method-description">
-                    Make a Visualforce picklist with ALL <code class="code-inline">RecordType</code> Names displayed and the <code class="code-inline">RecordType</code> Id as the value <br>Unavailable Record Types will be disabled in the picklist
+                    Make a Visualforce picklist with ALL <code class="code-inline">RecordType</code> Names displayed and the <code class="code-inline">RecordType</code> Id as the value <br>Unavailable Record Types will be _disabled_ in the picklist
                   </div>
                   <div class="method-subtitle">
                     Signature
@@ -615,6 +638,47 @@
                     Type: <code class="code-inline">String</code>
                   </div>
                   <div class="param-description">SObject name (with __c if custom, etc)</div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    <code class="code-inline">List&lt;SelectOption&gt;</code> Visualforce SelectOption list
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    <a target="_blank" rel="noopener noreferrer" href="https://github.com/dschach">David Schach</a>
+                  </div>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="RecordTypes.getAllRecordTypesForSelectList_1">
+
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L619">
+                      getAllRecordTypesForSelectList(objectName, disableUnavailable)
+                    </a>
+                  </h4>
+                  <div class="method-description">
+                    Make a Visualforce picklist with ALL <code class="code-inline">RecordType</code> Names displayed and the <code class="code-inline">RecordType</code> Id as the value <br>Unavailable Record Types will be disabled in the picklist
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global static List&lt;SelectOption&gt; getAllRecordTypesForSelectList(String objectName, Boolean disableUnavailable)
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">objectName</div>
+                  <div class="param-type">
+                    Type: <code class="code-inline">String</code>
+                  </div>
+                  <div class="param-description">SObject name (with __c if custom, etc)</div>
+                  <div class="param-name">disableUnavailable</div>
+                  <div class="param-type">
+                    Type: <code class="code-inline">Boolean</code>
+                  </div>
+                  <div class="param-description">Should we disable unavailable RTs in the SelectList?</div>
                   <div class="method-subtitle">
                     Returns
                   </div>
@@ -711,6 +775,50 @@
                   <div class="method-subtitle-description">
                     <li>2023 Use available record types map</li>
                   </div>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="RecordTypes.getAvailableRecordTypesForSelectList">
+
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L576">
+                      getAvailableRecordTypesForSelectList(objectName)
+                    </a>
+                  </h4>
+                  <div class="method-description">
+                    Make a Visualforce picklist of all available Record Types with the <code class="code-inline">RecordType</code> Name displayed and the <code class="code-inline">RecordType</code> Id as the value
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global static List&lt;SelectOption&gt; getAvailableRecordTypesForSelectList(String objectName)
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">objectName</div>
+                  <div class="param-type">
+                    Type: <code class="code-inline">String</code>
+                  </div>
+                  <div class="param-description">SObject name (with __c if custom, etc)</div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    <code class="code-inline">List&lt;SelectOption&gt;</code> Visualforce SelectOption list
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Evan Callahan
+                  </div>
+                  <div class="method-subtitle">
+                    Example
+                  </div>
+                  <pre class="code-example"><code> RecordTypes.getAvailableRecordTypesForSelectList(&#39;Account&#39;) 
+ <br><br> 
+ System.SelectOption[value=&quot;&lt;SFID&gt;&quot;, label=&quot;Available&quot;, disabled=&quot;false&quot;] 
+ System.SelectOption[value=&quot;&lt;SFID&gt;&quot;, label=&quot;Default&quot;, disabled=&quot;false&quot;] 
+ System.SelectOption[value=&quot;&lt;SFID&gt;&quot;, label=&quot;Inactive&quot;, disabled=&quot;true&quot;]</code></pre>
                 </div>
                 <div class="method global">
                   <h4 class="method-title " id="RecordTypes.getDefaultRecordType">
@@ -1508,52 +1616,9 @@
                   </div>
                 </div>
                 <div class="method global">
-                  <h4 class="method-title " id="RecordTypes.getRecordTypesForSelectList">
-
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L575">
-                      getRecordTypesForSelectList(objectName)
-                    </a>
-                  </h4>
-                  <div class="method-description">
-                    Make a Visualforce picklist of all available Record Types with the <code class="code-inline">RecordType</code> Name displayed and the <code class="code-inline">RecordType</code> Id as the value
-                  </div>
-                  <div class="method-subtitle">
-                    Signature
-                  </div>
-
-                  <div class="method-signature">
-                    global static List&lt;SelectOption&gt; getRecordTypesForSelectList(String objectName)
-                  </div>
-                  <div class="method-subtitle">Parameters</div>
-                  <div class="param-name">objectName</div>
-                  <div class="param-type">
-                    Type: <code class="code-inline">String</code>
-                  </div>
-                  <div class="param-description">SObject name (with __c if custom, etc)</div>
-                  <div class="method-subtitle">
-                    Returns
-                  </div>
-                  <div class="method-subtitle-description">
-                    <code class="code-inline">List&lt;SelectOption&gt;</code> Visualforce SelectOption list
-                  </div>
-                  <div class="method-subtitle">
-                    Author
-                  </div>
-                  <div class="method-subtitle-description">
-                    Evan Callahan
-                  </div>
-                  <div class="method-subtitle">
-                    Example
-                  </div>
-                  <pre class="code-example"><code> RecordTypes.getRecordTypesForSelectList(&#39;Account&#39;) 
- <br><br> 
- System.SelectOption[value=&quot;&lt;SFID&gt;&quot;, label=&quot;Available&quot;, disabled=&quot;false&quot;] 
- System.SelectOption[value=&quot;&lt;SFID&gt;&quot;, label=&quot;Default&quot;, disabled=&quot;false&quot;]</code></pre>
-                </div>
-                <div class="method global">
                   <h4 class="method-title " id="RecordTypes.getStringRecordTypesForSelectList">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L615">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L650">
                       getStringRecordTypesForSelectList(objectName)
                     </a>
                   </h4>
