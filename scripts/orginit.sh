@@ -7,7 +7,7 @@ echo "Creating new scratch org"
 sf org create scratch --definition-file config/project-scratch-def.json --duration-days 10 --alias RecordTypes --set-default
 
 echo "Pushing metadata"
-sf project deploy start
+sf project deploy start --source-dir force-app
 sf project deploy start --source-dir unpackaged
 
 echo "Assigning permission set"

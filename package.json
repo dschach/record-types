@@ -8,6 +8,7 @@
 		"apex:local:stop": "node node_modules/prettier-plugin-apex/bin/stop-apex-server.js",
 		"build": ". scripts/packagedev/build.sh",
 		"devhub-x2od": "sf config set target-dev-hub=x2od",
+		"docs:setup": ". doc-assets/setupApexDox.sh",
 		"initialize": ". scripts/initialize.sh",
 		"orginit": ". scripts/orginit.sh",
 		"postinstall": "husky install",
@@ -18,10 +19,10 @@
 		"prettier:verify:apex:local": "prettier --apex-standalone-parser built-in --check \"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}\"",
 		"prettier:verify": "prettier --list-different \"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}\"",
 		"prettier": "prettier --write \"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}\"",
-		"updateHighlight": ". scripts/updateHighlight.sh"
+		"updateHighlight": ". doc-assets/updateHighlight.sh"
 	},
 	"devDependencies": {
-		"@prettier/plugin-xml": "^3.3.0",
+		"@prettier/plugin-xml": "^3.3.1",
 		"highlightjs-apex": "^1.3.5",
 		"husky": "^9.0.10",
 		"lint-staged": "^15.2.2",
