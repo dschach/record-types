@@ -11,7 +11,7 @@
 		"docs:setup": ". doc-assets/setupApexDox.sh",
 		"initialize": ". scripts/initialize.sh",
 		"orginit": ". scripts/orginit.sh",
-		"postinstall": "husky install",
+		"prepare": "husky",
 		"precommit": "lint-staged",
 		"prettier:apex:local": "prettier --apex-standalone-parser built-in --write \"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}\"",
 		"prettier:apex:verify": "prettier --list-different \"force-app/**/*.{cls,trigger}\"",
