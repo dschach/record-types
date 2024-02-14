@@ -17,9 +17,9 @@ updates:
   - package-ecosystem: 'github-actions' # See documentation for possible values
     directory: '/' # Location of package manifests
     commit-message:
-      #prefix: 'ci'
-      prefix: 'ci(github-actions)'
+      prefix: 'ci'
       #include: 'scope'
+      # Scope will be handled by the auto-merge action
     rebase-strategy: 'auto'
     schedule:
       interval: 'daily'
