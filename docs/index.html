@@ -1,384 +1,449 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+	<head>
+		<title>Record Types code documentation</title>
+		<meta charset="UTF-8" />
+		<script type="module" src="./assets/index.js"></script>
+		<script type="module" src="./assets/search-idx.js"></script>
+		<script type="module" src="./assets/search.js"></script>
+		<script charset="UTF-8" src="./assets/highlight.js"></script>
+		<script charset="UTF-8" src="./assets/mark.js"></script>
+		<script charset="UTF-8" src="./assets/lunr.js"></script>
+		<link rel="stylesheet" href="./assets/highlight.css" />
+		<link rel="stylesheet" type="text/css" href="./assets/index.css" />
+		<link rel="shortcut icon" type="image/png" href="./assets/favicon.png" />
+	</head>
 
-  <head>
-    <title>Record Types code documentation</title>
-    <meta charset="UTF-8">
-    <script type="module" src="./assets/index.js"></script>
-    <script type="module" src="./assets/search-idx.js"></script>
-    <script type="module" src="./assets/search.js"></script>
-    <script charset="UTF-8" src="./assets/highlight.js"></script>
-    <script charset="UTF-8" src="./assets/mark.js"></script>
-    <script charset="UTF-8" src="./assets/lunr.js"></script>
-    <link rel="stylesheet" href="./assets/highlight.css" />
-    <link rel="stylesheet" type="text/css" href="./assets/index.css" />
-    <link rel="shortcut icon" type="image/png" href="./assets/favicon.png" />
-  </head>
+	<body>
+		<div id="side-bar">
+			<div id="logo-container">
+				<div class="title">Record Types code documentation</div>
+				<img src="assets/logo.png" />
+				<div class="subtitle">
+					Documentation for
+					<a target="_blank" rel="noopener noreferrer" href="https://github.com/dschach/record-types">RecordTypes Utilities</a>
+				</div>
+			</div>
+			<div id="search-wrapper">
+				<div class="search-icon"></div>
+				<input id="search-input" type="text" autocomplete="off" placeholder="Search..." />
+			</div>
+			<ul id="search-results" class=""></ul>
+			<div class="navbar">
+				<nav role="navigation">
+					<a class="nav-header" id="home" href="javascript:void(0)" onclick="goToLocation('index.html');">Home</a>
+					<details id="RecordTypes" class="group-name">
+						<summary id="header-RecordTypes" class="nav-header">
+							<span>RecordTypes</span>
+						</summary>
+						<ul>
+							<!-- menu items -->
+							<li title="RecordTypes" id="item-RecordTypes" class="nav-item class global" onclick="goToLocation('RecordTypes.html');">
+								<a tabindex="1" href="javascript:void(0)">RecordTypes</a>
+							</li>
+							<li title="RecordTypesTest" id="item-RecordTypesTest" class="nav-item class private" onclick="goToLocation('RecordTypesTest.html');">
+								<a tabindex="1" href="javascript:void(0)">RecordTypesTest</a>
+							</li>
+						</ul>
+					</details>
+					<details id="SelectListTests" class="group-name">
+						<summary id="header-SelectListTests" class="nav-header">
+							<span>SelectListTests</span>
+						</summary>
+						<ul>
+							<!-- menu items -->
+							<li
+								title="SelectListsController"
+								id="item-SelectListsController"
+								class="nav-item class public"
+								onclick="goToLocation('SelectListsController.html');"
+							>
+								<a tabindex="1" href="javascript:void(0)">SelectListsController</a>
+							</li>
+							<li
+								title="SelectListsControllerTest"
+								id="item-SelectListsControllerTest"
+								class="nav-item class public"
+								onclick="goToLocation('SelectListsControllerTest.html');"
+							>
+								<a tabindex="1" href="javascript:void(0)">SelectListsControllerTest</a>
+							</li>
+						</ul>
+					</details>
+				</nav>
+			</div>
+		</div>
+		<table id="content">
+			<tr>
+				<td class="scoping-panel">
+					Show:
+					<input type="checkbox" checked="true" id="cbx-all" onclick="toggleAllScopes(this.checked);" />
+					<label for="cbx-all">All</label>
+					&nbsp;&nbsp;
+					<input type="checkbox" checked="true" id="cbx-global" onclick="toggleScope('global', this.checked);" />
+					<label for="cbx-global">global</label>
+					&nbsp;&nbsp;
+					<input type="checkbox" checked="true" id="cbx-public" onclick="toggleScope('public', this.checked);" />
+					<label for="cbx-public">public</label>
+					&nbsp;&nbsp;
+					<input type="checkbox" checked="true" id="cbx-private" onclick="toggleScope('private', this.checked);" />
+					<label for="cbx-private">private</label>
+					&nbsp;&nbsp;
+					<input type="checkbox" checked="true" id="cbx-testmethod" onclick="toggleScope('testmethod', this.checked);" />
+					<label for="cbx-testmethod">testMethod</label>
+				</td>
+			</tr>
+			<tr>
+				<td class="doc-page">
+					<h2 class="section-title">Home</h2>
+					<link href="assets/styling.css" rel="stylesheet" />
 
-  <body>
-    <div id="side-bar">
+					<h1>Record Types</h1>
+					<p>
+						This is a project based on work by
+						<a href="https://github.com/groundwired">Evan Callahan</a>
+						(formerly of Groundwire, and now at Salesforce) who wrote
+						<a href="https://github.com/SalesforceFoundation/JenkinsTesting/blob/master/src/classes/RecordTypes.cls">this class</a>
+						(Repo has been deleted. Sadface.) a long time ago to reduce the number of describe calls required to work with Record Types.
+					</p>
+					<p>
+						I&#39;ve updated the project (by pulling test code out of the main class - that&#39;s how old it was!) and have added some additional
+						methods. The included test class has 100% coverage, so pull this into your org and get cracking!
+					</p>
+					<p>
+						Of note: The test code assumes that you have no record types for the Solution object. If you do, you may need to remove that test method.
+					</p>
+					<h2>Badges</h2>
+					<p>
+						<a href="https://www.gnu.org/licenses/gpl-3.0"><img src="https://img.shields.io/badge/License-GPLv3-blue.svg" alt="License: GPL v3" /></a>
+						<a href="https://codecov.io/gh/dschach/record-types">
+							<img src="https://codecov.io/gh/dschach/record-types/branch/main/graph/badge.svg?token=RVhs6ab2Md" alt="codecov" />
+						</a>
+						<a href="https://github.com/dschach/record-types/actions/workflows/ci.yml">
+							<img src="https://github.com/dschach/record-types/actions/workflows/ci.yml/badge.svg" alt="CI" />
+						</a>
+						<a href="https://github.com/dschach/record-types/actions/workflows/pr.yml">
+							<img src="https://github.com/dschach/record-types/actions/workflows/pr.yml/badge.svg" alt="Scratch Org" />
+						</a>
+						<a href="https://img.shields.io/twitter/follow/dschach.svg?style=social">
+							<img src="https://img.shields.io/twitter/follow/dschach.svg?style=social" alt="Twitter" />
+						</a>
+					</p>
+					<h2>The Code</h2>
+					<p>
+						The class and test class are found in this
+						<a href="/force-app/main/default/classes/">folder</a>
+						. Feel free to copy/paste directly into your org.
+					</p>
+					<h2>Documentation</h2>
+					<p>
+						<a href="https://dschach.github.io/record-types/RecordTypes.html">Documentation</a>
+						(generated with
+						<a href="https://github.com/no-stack-dub-sack/apexdox-vs-code">ApexDox</a>
+						)
+					</p>
+					<h2>Package Installation</h2>
+					<a href="https://login.salesforce.com/packaging/installPackage.apexp?p0=04tQm0000009IIfIAM">
+						<img alt="Deploy to Salesforce" src="./assets/deploy-package-to-prod.png" />
+					</a>
+					<a href="https://test.salesforce.com/packaging/installPackage.apexp?p0=04tQm0000009IIfIAM">
+						<img alt="Deploy to Salesforce Sandbox" src="./assets/deploy-package-to-sandbox.png" />
+					</a>
 
-      <div id="logo-container">
-        <div class="title">
-          Record Types code documentation
-        </div>
-        <img src="assets/logo.png" />
-        <div class="subtitle">
-          Documentation for <a target="_blank" rel="noopener noreferrer" href="https://github.com/dschach/record-types">RecordTypes Utilities</a>
-        </div>
-      </div>
-      <div id="search-wrapper">
-        <div class="search-icon"></div>
-        <input id="search-input" type="text" autocomplete="off" placeholder="Search...">
-      </div>
-      <ul id="search-results" class=""></ul>
-      <div class="navbar">
-        <nav role="navigation">
-          <a class="nav-header" id="home" href="javascript:void(0)" onclick="goToLocation('index.html');">
-            Home
-          </a>
-          <details id="RecordTypes" class="group-name">
-            <summary id="header-RecordTypes" class="nav-header">
-              <span>RecordTypes</span>
-            </summary>
-            <ul>
-              <!-- menu items -->
-              <li title="RecordTypes" id="item-RecordTypes" class="nav-item class global" onclick="goToLocation('RecordTypes.html');">
-                <a tabindex="1" href="javascript:void(0)">RecordTypes</a>
-              </li>
-              <li title="RecordTypesTest" id="item-RecordTypesTest" class="nav-item class private" onclick="goToLocation('RecordTypesTest.html');">
-                <a tabindex="1" href="javascript:void(0)">RecordTypesTest</a>
-              </li>
-            </ul>
-          </details>
-          <details id="SelectListTests" class="group-name">
-            <summary id="header-SelectListTests" class="nav-header">
-              <span>SelectListTests</span>
-            </summary>
-            <ul>
-              <!-- menu items -->
-              <li title="SelectListsController" id="item-SelectListsController" class="nav-item class public" onclick="goToLocation('SelectListsController.html');">
-                <a tabindex="1" href="javascript:void(0)">SelectListsController</a>
-              </li>
-              <li title="SelectListsControllerTest" id="item-SelectListsControllerTest" class="nav-item class public" onclick="goToLocation('SelectListsControllerTest.html');">
-                <a tabindex="1" href="javascript:void(0)">SelectListsControllerTest</a>
-              </li>
-            </ul>
-          </details>
-        </nav>
-      </div>
-    </div>
-    <table id="content">
-      <tr>
-        <td class="scoping-panel">
-          Show: <input type="checkbox" checked="true" id="cbx-all" onclick="toggleAllScopes(this.checked);" />
-          <label for="cbx-all">All</label>&nbsp;&nbsp;
-          <input type="checkbox" checked="true" id="cbx-global" onclick="toggleScope('global', this.checked);" />
-          <label for="cbx-global">
-            global
-          </label>&nbsp;&nbsp;<input type="checkbox" checked="true" id="cbx-public" onclick="toggleScope('public', this.checked);" />
-          <label for="cbx-public">
-            public
-          </label>&nbsp;&nbsp;<input type="checkbox" checked="true" id="cbx-private" onclick="toggleScope('private', this.checked);" />
-          <label for="cbx-private">
-            private
-          </label>&nbsp;&nbsp;<input type="checkbox" checked="true" id="cbx-testmethod" onclick="toggleScope('testmethod', this.checked);" />
-          <label for="cbx-testmethod">
-            testMethod
-          </label>
-        </td>
-      </tr>
-      <tr>
-        <td class="doc-page">
-          <h2 class='section-title'>Home</h2>
-          <link href="assets/styling.css" rel="stylesheet" />
-
-
-          <h1>Record Types</h1>
-          <p>This is a project based on work by <a href="https://github.com/groundwired">Evan Callahan</a> (formerly of Groundwire, and now at Salesforce) who wrote <a href="https://github.com/SalesforceFoundation/JenkinsTesting/blob/master/src/classes/RecordTypes.cls">this class</a> (Repo has been deleted. Sadface.) a long time ago to reduce the number of describe calls required to work with Record Types.</p>
-          <p>I&#39;ve updated the project (by pulling test code out of the main class - that&#39;s how old it was!) and have added some additional methods. The included test class has 100% coverage, so pull this into your org and get cracking!</p>
-          <p>Of note: The test code assumes that you have no record types for the Solution object. If you do, you may need to remove that test method.</p>
-          <h2>Badges</h2>
-          <p><a href="https://www.gnu.org/licenses/gpl-3.0"><img src="https://img.shields.io/badge/License-GPLv3-blue.svg" alt="License: GPL v3"></a>
-            <a href="https://codecov.io/gh/dschach/record-types"><img src="https://codecov.io/gh/dschach/record-types/branch/main/graph/badge.svg?token=RVhs6ab2Md" alt="codecov"></a>
-            <a href="https://github.com/dschach/record-types/actions/workflows/ci.yml"><img src="https://github.com/dschach/record-types/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
-            <a href="https://github.com/dschach/record-types/actions/workflows/pr.yml"><img src="https://github.com/dschach/record-types/actions/workflows/pr.yml/badge.svg" alt="Scratch Org"></a>
-            <a href="https://img.shields.io/twitter/follow/dschach.svg?style=social"><img src="https://img.shields.io/twitter/follow/dschach.svg?style=social" alt="Twitter"></a></p>
-          <h2>The Code</h2>
-          <p>The class and test class are found in this <a href="/force-app/main/default/classes/">folder</a>. Feel free to copy/paste directly into your org.</p>
-          <h2>Documentation</h2>
-          <p><a href="https://dschach.github.io/record-types/RecordTypes.html">Documentation</a> (generated with <a href="https://github.com/no-stack-dub-sack/apexdox-vs-code">ApexDox</a>)</p>
-          <h2>Package Installation</h2>
-          <a href="https://login.salesforce.com/packaging/installPackage.apexp?p0=04tQm0000009IIfIAM">
-            <img alt="Deploy to Salesforce" src="./assets/deploy-package-to-prod.png">
-          </a>
-          <a href="https://test.salesforce.com/packaging/installPackage.apexp?p0=04tQm0000009IIfIAM">
-            <img alt="Deploy to Salesforce Sandbox" src="./assets/deploy-package-to-sandbox.png">
-          </a>
-
-          <h2>Installation (via VCS)</h2>
-          <p>Clone this repository and run</p>
-          <pre><code class="language-bash">. scripts/orginit.sh
+					<h2>Installation (via VCS)</h2>
+					<p>Clone this repository and run</p>
+					<pre><code class="language-bash">. scripts/orginit.sh
 </code></pre>
-          <p>to set up a scratch org with the classes installed and a single Account Record Type.</p>
-          <p>To set up a scratch org without creating a Record Type, run</p>
-          <pre><code class="language-bash">. scripts/orginit-norecordtypes.sh
+					<p>to set up a scratch org with the classes installed and a single Account Record Type.</p>
+					<p>To set up a scratch org without creating a Record Type, run</p>
+					<pre><code class="language-bash">. scripts/orginit-norecordtypes.sh
 </code></pre>
-          <h2><a href="./changelog.html">Changelog</a></h2>
-          <ul>
-            <li>
-              <p>2024-02</p>
-              <ul>
-                <li>Enhance SelectList methods</li>
-                <li>Update to API 60.0</li>
-                <li>Increase code coverage and test cases</li>
-              </ul>
-            </li>
-            <li>
-              <p>2023-09</p>
-              <ul>
-                <li>Overload getRecordTypeFromId so it doesn&#39;t require a SobjectType string</li>
-                <li>Release unlocked package</li>
-              </ul>
-            </li>
-            <li>
-              <p>2023-08</p>
-              <ul>
-                <li>Add methods to get default RecordTypeId, handling situation where no RT is on the Profile but at least one is avaialble via Permission Set.</li>
-                <li>Add test methods against Account and Solution objects, as we assume Solution has no defined record types. (Change for your org if you have them.)</li>
-                <li>Include table of all methods on documentation site</li>
-              </ul>
-            </li>
-            <li>
-              <p>2022-03</p>
-              <ul>
-                <li>BREAKING CHANGE: Replaced &quot;DeveloperName&quot; with &quot;DevName&quot; in all method names. Update your code to refer to the new methods.</li>
-              </ul>
-            </li>
-            <li>
-              <p>2022-03</p>
-              <ul>
-                <li>Add maps Id =&gt; Name and Id =&gt; DeveloperName for ease of use when wanting to refer to a record type by Id without including the object, since Id is globally unique</li>
-              </ul>
-            </li>
-            <li>
-              <p>2022-01</p>
-              <ul>
-                <li>Initial Release</li>
-              </ul>
-            </li>
-          </ul>
-          <h2>Code Header</h2>
-          <p>Written by Evan Callahan, copyright &copy; 2010 Groundwire</p>
-          <ul>
-            <li>This program is released under the <a href="./LICENSE">GNU General Public License</a>. <a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a></li>
-            <li>This class is meant to allow for access to Record Type information from within other classes.</li>
-            <li>It is called statically, and therefore will supply the same information to all calls made from within one transaction, or set of trigger calls. This is beneficial because this info should be the same for all calls in a transaction, and by calling it statically we reduce the calls that are made, making the total transaction more efficient.</li>
-          </ul>
-          <p>Updated by David Schach, copyright &copy; X-Squared on Demand</p>
-          <ul>
-            <li>Usage recommendation: Always use DeveloperName instead of Name, as this is more likely to be hard-coded in places, while the Name is actually a label and may change (especially due to user language).</li>
-          </ul>
-          <h1>Library Methods</h1>
-          <p>(Full documentation at <a href="https://dschach.github.io/record-types/">https://dschach.github.io/record-types</a>)</p>
-          <h2>Most Common Methods</h2>
-          <p>These are the most common methods to be used. They are the fastest ways to get a Record Type Id from an object name and the developer name, for example.</p>
-          <p>There are some overloaded methods included for historical purposes (the ones that accept a Record Type Id and an object name and return the developer name).
-            While the object name is, technically, optional, that method is faster because it does not require memoizing a SOQL query.</p>
-          <table class="methodtable">
-            <thead>
-              <tr>
-                <th>Parameters / Output</th>
-                <th>Id</th>
-                <th>Name</th>
-                <th>DeveloperName</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>objectName, recordTypeName</td>
-                <td>getRecordTypeIdFromName</td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>objectName, recordTypeName</td>
-                <td></td>
-                <td></td>
-                <td>getRecordTypeDevNameFromName</td>
-              </tr>
-              <tr>
-                <td>objectName, recordTypeDevName</td>
-                <td><strong>getRecordTypeIdFromDevName</strong></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>objectName, recordTypeDevName</td>
-                <td></td>
-                <td>getRecordTypeNameFromDevName</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>objectName, recordTypeId</td>
-                <td></td>
-                <td>getRecordTypeNameFromId</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>objectName, recordTypeId</td>
-                <td></td>
-                <td></td>
-                <td>getRecordTypeDevNameFromId</td>
-              </tr>
-              <tr>
-                <td>recordTypeId</td>
-                <td></td>
-                <td>getRecordTypeNameFromId</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>recordTypeId</td>
-                <td></td>
-                <td></td>
-                <td>getRecordTypeDevNameFromId</td>
-              </tr>
-            </tbody>
-          </table>
-          <h2>Helper Methods</h2>
-          <p>These methods check record types available to the current/running user.</p>
-          <table class="methodtable">
-            <thead>
-              <tr>
-                <th>Parameters / Output</th>
-                <th>Boolean (yes/no)</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>objectName, recordTypeDevName</td>
-                <td>isRecordTypeAvailable</td>
-              </tr>
-              <tr>
-                <td>objectName, recordTypeDevName</td>
-                <td>isRecordTypeDefault</td>
-              </tr>
-            </tbody>
-          </table>
-          <h2>Less Common Methods</h2>
-          <p>The most useful of these may be the SelectList generators for Visualforce. However, if you are using LWC, you may prefer to use some of the other methods and to parse the returned list of RecordTypeInfo items yourself.</p>
-          <table class="methodtable">
-            <thead>
-              <tr>
-                <th>Parameters / Output</th>
-                <th>Schema.RecordTypeInfo</th>
-                <th>Set&lt;Id&gt;</th>
-                <th>Map&lt;String, Id&gt;</th>
-                <th>SelectList</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>recordTypeId</td>
-                <td>getRecordTypeFromId</td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>objectName, recordTypeId</td>
-                <td>getRecordTypeFromId</td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>objectName, recordTypeDevName</td>
-                <td>getRecordTypeFromDevName</td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>objectName, Set&lt;recordTypeDevName&gt;</td>
-                <td></td>
-                <td>getAvailableRecordTypesIdSet</td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>objectName, Set&lt;recordTypeDevName&gt;</td>
-                <td></td>
-                <td>getRecordTypeIdSetFromDevNames</td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>objectName</td>
-                <td></td>
-                <td></td>
-                <td>getRecordTypeDevNameIdMap</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>objectName</td>
-                <td></td>
-                <td></td>
-                <td>getRecordTypeNameIdMap</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>objectName</td>
-                <td></td>
-                <td></td>
-                <td>getAvailableRecordTypeDevNameIdMap</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>objectName</td>
-                <td></td>
-                <td></td>
-                <td>getAvailableRecordTypeNameIdMap</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>objectName</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>getAllRecordTypesForSelectList</td>
-              </tr>
-              <tr>
-                <td>objectName</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>getAvailableRecordTypesForSelectList</td>
-              </tr>
-              <tr>
-                <td>objectName</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>getStringRecordTypesForSelectList</td>
-              </tr>
-            </tbody>
-          </table>
-
-
-        </td>
-      </tr>
-      <tr>
-        <td class="footer">
-
-          <div>
-            <a href="https://github.com/no-stack-dub-sack/apexdox-vs-code" target="_blank" rel="noopener noreferrer">
-              Powered By ApexDox VS Code
-            </a>
-          </div>
-        </td>
-      </tr>
-    </table>
-  </body>
-
+					<h2><a href="./changelog.html">Changelog</a></h2>
+					<ul>
+						<li>
+							<p>2024-02</p>
+							<ul>
+								<li>Enhance SelectList methods</li>
+								<li>Update to API 60.0</li>
+								<li>Increase code coverage and test cases</li>
+							</ul>
+						</li>
+						<li>
+							<p>2023-09</p>
+							<ul>
+								<li>Overload getRecordTypeFromId so it doesn&#39;t require a SobjectType string</li>
+								<li>Release unlocked package</li>
+							</ul>
+						</li>
+						<li>
+							<p>2023-08</p>
+							<ul>
+								<li>
+									Add methods to get default RecordTypeId, handling situation where no RT is on the Profile but at least one is avaialble via
+									Permission Set.
+								</li>
+								<li>
+									Add test methods against Account and Solution objects, as we assume Solution has no defined record types. (Change for your org if
+									you have them.)
+								</li>
+								<li>Include table of all methods on documentation site</li>
+							</ul>
+						</li>
+						<li>
+							<p>2022-03</p>
+							<ul>
+								<li>
+									BREAKING CHANGE: Replaced &quot;DeveloperName&quot; with &quot;DevName&quot; in all method names. Update your code to refer to the
+									new methods.
+								</li>
+							</ul>
+						</li>
+						<li>
+							<p>2022-03</p>
+							<ul>
+								<li>
+									Add maps Id =&gt; Name and Id =&gt; DeveloperName for ease of use when wanting to refer to a record type by Id without including the
+									object, since Id is globally unique
+								</li>
+							</ul>
+						</li>
+						<li>
+							<p>2022-01</p>
+							<ul>
+								<li>Initial Release</li>
+							</ul>
+						</li>
+					</ul>
+					<h2>Code Header</h2>
+					<p>Written by Evan Callahan, copyright &copy; 2010 Groundwire</p>
+					<ul>
+						<li>
+							This program is released under the
+							<a href="./LICENSE">GNU General Public License</a>
+							.
+							<a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>
+						</li>
+						<li>This class is meant to allow for access to Record Type information from within other classes.</li>
+						<li>
+							It is called statically, and therefore will supply the same information to all calls made from within one transaction, or set of trigger
+							calls. This is beneficial because this info should be the same for all calls in a transaction, and by calling it statically we reduce
+							the calls that are made, making the total transaction more efficient.
+						</li>
+					</ul>
+					<p>Updated by David Schach, copyright &copy; X-Squared on Demand</p>
+					<ul>
+						<li>
+							Usage recommendation: Always use DeveloperName instead of Name, as this is more likely to be hard-coded in places, while the Name is
+							actually a label and may change (especially due to user language).
+						</li>
+					</ul>
+					<h1>Library Methods</h1>
+					<p>
+						(Full documentation at
+						<a href="https://dschach.github.io/record-types/">https://dschach.github.io/record-types</a>
+						)
+					</p>
+					<h2>Most Common Methods</h2>
+					<p>
+						These are the most common methods to be used. They are the fastest ways to get a Record Type Id from an object name and the developer
+						name, for example.
+					</p>
+					<p>
+						There are some overloaded methods included for historical purposes (the ones that accept a Record Type Id and an object name and return
+						the developer name). While the object name is, technically, optional, that method is faster because it does not require memoizing a SOQL
+						query.
+					</p>
+					<table class="methodtable">
+						<thead>
+							<tr>
+								<th>Parameters / Output</th>
+								<th>Id</th>
+								<th>Name</th>
+								<th>DeveloperName</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>objectName, recordTypeName</td>
+								<td>getRecordTypeIdFromName</td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>objectName, recordTypeName</td>
+								<td></td>
+								<td></td>
+								<td>getRecordTypeDevNameFromName</td>
+							</tr>
+							<tr>
+								<td>objectName, recordTypeDevName</td>
+								<td><strong>getRecordTypeIdFromDevName</strong></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>objectName, recordTypeDevName</td>
+								<td></td>
+								<td>getRecordTypeNameFromDevName</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>objectName, recordTypeId</td>
+								<td></td>
+								<td>getRecordTypeNameFromId</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>objectName, recordTypeId</td>
+								<td></td>
+								<td></td>
+								<td>getRecordTypeDevNameFromId</td>
+							</tr>
+							<tr>
+								<td>recordTypeId</td>
+								<td></td>
+								<td>getRecordTypeNameFromId</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>recordTypeId</td>
+								<td></td>
+								<td></td>
+								<td>getRecordTypeDevNameFromId</td>
+							</tr>
+						</tbody>
+					</table>
+					<h2>Helper Methods</h2>
+					<p>These methods check record types available to the current/running user.</p>
+					<table class="methodtable">
+						<thead>
+							<tr>
+								<th>Parameters / Output</th>
+								<th>Boolean (yes/no)</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>objectName, recordTypeDevName</td>
+								<td>isRecordTypeAvailable</td>
+							</tr>
+							<tr>
+								<td>objectName, recordTypeDevName</td>
+								<td>isRecordTypeDefault</td>
+							</tr>
+						</tbody>
+					</table>
+					<h2>Less Common Methods</h2>
+					<p>
+						The most useful of these may be the SelectList generators for Visualforce. However, if you are using LWC, you may prefer to use some of
+						the other methods and to parse the returned list of RecordTypeInfo items yourself.
+					</p>
+					<table class="methodtable">
+						<thead>
+							<tr>
+								<th>Parameters / Output</th>
+								<th>Schema.RecordTypeInfo</th>
+								<th>Set&lt;Id&gt;</th>
+								<th>Map&lt;String, Id&gt;</th>
+								<th>SelectList</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>recordTypeId</td>
+								<td>getRecordTypeFromId</td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>objectName, recordTypeId</td>
+								<td>getRecordTypeFromId</td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>objectName, recordTypeDevName</td>
+								<td>getRecordTypeFromDevName</td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>objectName, Set&lt;recordTypeDevName&gt;</td>
+								<td></td>
+								<td>getAvailableRecordTypesIdSet</td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>objectName, Set&lt;recordTypeDevName&gt;</td>
+								<td></td>
+								<td>getRecordTypeIdSetFromDevNames</td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>objectName</td>
+								<td></td>
+								<td></td>
+								<td>getRecordTypeDevNameIdMap</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>objectName</td>
+								<td></td>
+								<td></td>
+								<td>getRecordTypeNameIdMap</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>objectName</td>
+								<td></td>
+								<td></td>
+								<td>getAvailableRecordTypeDevNameIdMap</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>objectName</td>
+								<td></td>
+								<td></td>
+								<td>getAvailableRecordTypeNameIdMap</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>objectName</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>getAllRecordTypesForSelectList</td>
+							</tr>
+							<tr>
+								<td>objectName</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>getAvailableRecordTypesForSelectList</td>
+							</tr>
+							<tr>
+								<td>objectName</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>getStringRecordTypesForSelectList</td>
+							</tr>
+						</tbody>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td class="footer">
+					<div>
+						<a href="https://github.com/no-stack-dub-sack/apexdox-vs-code" target="_blank" rel="noopener noreferrer">Powered By ApexDox VS Code</a>
+					</div>
+				</td>
+			</tr>
+		</table>
+	</body>
 </html>

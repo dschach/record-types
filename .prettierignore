@@ -9,7 +9,7 @@
 
 coverage/
 # ApexDox website
-docs/
+docs/**/*.js
 highlight.js
 
 # Exclude project config
