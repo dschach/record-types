@@ -1,6 +1,7 @@
 {
 	"trailingComma": "none",
 	"apexInsertFinalNewline": false,
+	"endOfLine": "lf",
 	"useTabs": true,
 	"printWidth": 160,
 	"tabWidth": 2,
@@ -41,7 +42,7 @@
 				"useTabs": true,
 				"tabWidth": 2,
 				"printWidth": 150,
-				"htmlWhitespaceSensitivity": "css",
+				"htmlWhitespaceSensitivity": "ignore",
 				"singleQuote": false
 			}
 		}
