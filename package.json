@@ -3,13 +3,18 @@
 	"private": true,
 	"version": "1.4.0",
 	"description": "Salesforce Record Types Utility",
+	"author": "dschach",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/dschach/record-types.git"
+	},
+	"license": "GPL-3.0-only",
 	"scripts": {
-		"apex:local:start": "node node_modules/prettier-plugin-apex/bin/start-apex-server.js",
-		"apex:local:stop": "node node_modules/prettier-plugin-apex/bin/stop-apex-server.js",
+		"apex:local:start": "node node_modules/prettier-plugin-apex/dist/bin/start-apex-server.js",
+		"apex:local:stop": "node node_modules/prettier-plugin-apex/dist/bin/stop-apex-server.js",
 		"build": ". scripts/packagedev/build.sh",
 		"devhub-x2od": "sf config set target-dev-hub=x2od",
 		"docs:setup": ". doc-assets/setupApexDox.sh",
-		"initialize": ". scripts/initialize.sh",
 		"orginit": ". scripts/orginit.sh",
 		"prepare": "husky",
 		"precommit": "lint-staged",
@@ -24,15 +29,13 @@
 	"devDependencies": {
 		"@prettier/plugin-xml": "^3.3.1",
 		"highlightjs-apex": "^1.3.5",
-		"husky": "^9.0.10",
+		"husky": "^9.0.11",
 		"lint-staged": "^15.2.2",
 		"marked": "^12.0.0",
 		"prettier": "^3.2.5",
 		"prettier-plugin-apex": "^2.0.1"
 	},
 	"lint-staged": {
-		"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}": [
-			"prettier --write"
-		]
+		"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}": "prettier --write"
 	}
 }

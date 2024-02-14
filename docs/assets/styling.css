@@ -39,6 +39,9 @@ pre code {
     border-top: 1px solid #fff;
     border-bottom: 1px solid #ccc;
 }
+.methodtable tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
 .methodtable td {
     padding: 10px;
     border-bottom: 1px solid #ccc;

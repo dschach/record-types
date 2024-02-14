@@ -11,9 +11,7 @@
 		}
 	},
 	"$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
-	"extra-files": [
-		{ "type": "json", "path": "package.json", "jsonpath": "$.version" }
-	],
+	"extra-files": [{ "type": "json", "path": "package.json", "jsonpath": "$.version" }],
 	"plugins": [{ "type": "sentence-case" }],
 	"changelog-sections": [
 		{ "type": "feat", "section": "Features", "hidden": false },

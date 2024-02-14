@@ -8,10 +8,12 @@ echo "\n" >> "doc-assets/main.html"
 
 
 npx marked -i README.md --gfm >> "doc-assets/main.html"
-csplit -s  "doc-assets/main.html" "/<h2>Most Common Methods</h2>/"
-mv xx00 "doc-assets/main.html"
-cat doc-assets/methodstable.html >> "doc-assets/main.html"
-rm xx*
+sed -i "" "s|<table>|<table class=\"methodtable\">|" "doc-assets/main.html"
+
+#csplit -s  "doc-assets/main.html" "/<h2>Most Common Methods</h2>/"
+#mv xx00 "doc-assets/main.html"
+#cat doc-assets/methodstable.html >> "doc-assets/main.html"
+#rm xx*
 
 printf '<link href="assets/styling.css" rel="stylesheet" />' > "doc-assets/changelog.html"
 #echo >> "doc-assets/changelog.html"

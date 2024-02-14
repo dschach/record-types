@@ -50,6 +50,7 @@ private class RecordTypesTest {
 
 		Assert.isTrue(RecordTypes.getAvailableRecordTypeDevNameIdMap('Bogus').isEmpty(), 'Bogus object should not exist');
 		Assert.isTrue(RecordTypes.getAvailableRecordTypeNameIdMap('Bogus').isEmpty(), 'Bogus object should not exist');
+		Assert.isTrue(RecordTypes.getAvailableRecordTypesIdSet('Bogus').isEmpty(), 'Bogus object should not exist');
 
 		Assert.isTrue(RecordTypes.getRecordTypeDevNameIdMap('Bogus').isEmpty(), 'Bogus object should not exist');
 		Assert.isTrue(RecordTypes.getRecordTypeNameIdMap('Bogus').isEmpty(), 'Bogus object should not exist');
@@ -57,6 +58,9 @@ private class RecordTypesTest {
 		Assert.isNull(RecordTypes.getDefaultRecordTypeName('Bogus'), 'Bogus object should not have a record type');
 		Assert.isNull(RecordTypes.getDefaultRecordTypeDevName('Bogus'), 'Bogus object should not have a record type');
 		Assert.isNull(RecordTypes.getDefaultRecordTypeId('Bogus'), 'Bogus object should not have a record type');
+
+		Assert.isFalse(RecordTypes.isRecordTypeAvailable('Bogus', 'Bogus'), 'Bogus should not have an available record type');
+		Assert.isFalse(RecordTypes.isRecordTypeDefault('Bogus', 'Bogus'), 'Bogus should not have an available record type');
 	}
 
 	/**
@@ -92,6 +96,11 @@ private class RecordTypesTest {
 		Assert.isNotNull(
 			RecordTypes.getAvailableRecordTypeNameIdMap('Account'),
 			'Should return at least an empty map, and a populated one if we have record types for Account.'
+		);
+
+		Assert.isNotNull(
+			RecordTypes.getAvailableRecordTypesIdSet('Account'),
+			'Should return at least an empty map, and populated one if we have record types for Account.'
 		);
 
 		resetTest();
@@ -185,6 +194,12 @@ private class RecordTypesTest {
 		resetTest();
 
 		if (!queriedRecordTypes.isEmpty()) {
+			String defaultRTDevName = RecordTypes.getDefaultRecordType(sobjectName).getDeveloperName();
+			Assert.isTrue(
+				RecordTypes.isRecordTypeDefault(sobjectName, defaultRTDevName),
+				'We should have found ' + sobjectname.capitalize() + ' default RT DevName as ' + defaultRTDevName
+			);
+
 			RecordTypes.getDefaultRecordTypeDevName(sobjectname);
 			resetTest();
 			RecordTypes.getDefaultRecordTypeName(sobjectname);

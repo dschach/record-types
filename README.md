@@ -1,4 +1,4 @@
-# Record-Types
+# Record Types
 
 This is a project based on work by [Evan Callahan](https://github.com/groundwired) (formerly of Groundwire, and now at Salesforce) who wrote [this class](https://github.com/SalesforceFoundation/JenkinsTesting/blob/master/src/classes/RecordTypes.cls) (Repo has been deleted. Sadface.) a long time ago to reduce the number of describe calls required to work with Record Types.
 
@@ -20,7 +20,18 @@ The class and test class are found in this [folder](/force-app/main/default/clas
 
 ## Documentation
 
-[ApexDox](https://dschach.github.io/record-types/RecordTypes.html) (generated with [ApexDox](https://github.com/no-stack-dub-sack/apexdox-vs-code))
+[Documentation](https://dschach.github.io/record-types/RecordTypes.html) (generated with [ApexDox](https://github.com/no-stack-dub-sack/apexdox-vs-code))
+
+## Package Installation
+
+<a href="https://login.salesforce.com/packaging/installPackage.apexp?p0=04tQm0000009IIfIAM">
+  <img alt="Deploy to Salesforce"
+       src="./media/deploy-package-to-prod.png">
+</a>
+<a href="https://test.salesforce.com/packaging/installPackage.apexp?p0=04tQm0000009IIfIAM">
+  <img alt="Deploy to Salesforce Sandbox"
+       src="./media/deploy-package-to-sandbox.png">
+</a>
 
 ## Installation (via VCS)
 
@@ -37,19 +48,6 @@ To set up a scratch org without creating a Record Type, run
 ```bash
 . scripts/orginit-norecordtypes.sh
 ```
-
-## Package Installation
-
-<a href="https://login.salesforce.com/packaging/installPackage.apexp?p0=04tQm0000009IIfIAM">
-  <img alt="Deploy to Salesforce"
-       src="./media/deploy-package-to-prod.png">
-</a>
-<a href="https://test.salesforce.com/packaging/installPackage.apexp?p0=04tQm0000009IIfIAM">
-  <img alt="Deploy to Salesforce Sandbox"
-       src="./media/deploy-package-to-sandbox.png">
-</a>
-
-<br/>
 
 ## [Changelog](./CHANGELOG.md)
 
@@ -104,33 +102,41 @@ These are the most common methods to be used. They are the fastest ways to get a
 There are some overloaded methods included for historical purposes (the ones that accept a Record Type Id and an object name and return the developer name).
 While the object name is, technically, optional, that method is faster because it does not require memoizing a SOQL query.
 
-| Parameters / Output           | Id                         | Name                         | DeveloperName                |
-| ----------------------------- | -------------------------- | ---------------------------- | ---------------------------- |
-| objectName, recordTypeName    | getRecordTypeIdFromName    |                              |                              |
-| objectName, recordTypeName    |                            |                              | getRecordTypeDevNameFromName |
-| objectName, recordTypeDevName |                            | getRecordTypeNameFromDevName |                              |
-| objectName, recordTypeDevName | getRecordTypeIdFromDevName |                              |                              |
-| objectName, recordTypeId      |                            | getRecordTypeNameFromId      |                              |
-| objectName, recordTypeId      |                            |                              | getRecordTypeDevNameFromId   |
-| recordTypeId                  |                            | getRecordTypeNameFromId      |                              |
-| recordTypeId                  |                            |                              | getRecordTypeDevNameFromId   |
+| Parameters / Output           | Id                             | Name                         | DeveloperName                |
+| ----------------------------- | ------------------------------ | ---------------------------- | ---------------------------- |
+| objectName, recordTypeName    | getRecordTypeIdFromName        |                              |                              |
+| objectName, recordTypeName    |                                |                              | getRecordTypeDevNameFromName |
+| objectName, recordTypeDevName | **getRecordTypeIdFromDevName** |                              |                              |
+| objectName, recordTypeDevName |                                | getRecordTypeNameFromDevName |                              |
+| objectName, recordTypeId      |                                | getRecordTypeNameFromId      |                              |
+| objectName, recordTypeId      |                                |                              | getRecordTypeDevNameFromId   |
+| recordTypeId                  |                                | getRecordTypeNameFromId      |                              |
+| recordTypeId                  |                                |                              | getRecordTypeDevNameFromId   |
+
+## Helper Methods
+
+These methods check record types available to the current/running user.
+
+| Parameters / Output           | Boolean (yes/no)      |
+| ----------------------------- | --------------------- |
+| objectName, recordTypeDevName | isRecordTypeAvailable |
+| objectName, recordTypeDevName | isRecordTypeDefault   |
 
 ## Less Common Methods
 
-These methods are used less often but may be useful.
+The most useful of these may be the SelectList generators for Visualforce. However, if you are using LWC, you may prefer to use some of the other methods and to parse the returned list of RecordTypeInfo items yourself.
 
-The most useful of these are the SelectList generators for Visualforce. However, if you are using LWC, you may prefer to use some of the other methods and to parse the returned list of RecordTypeInfo items yourself.
-
-| Parameters / Output                      | Schema.RecordTypeInfo    | Map(String, Id)                    | SelectList                        | Set&lt;Id&gt;                  |
-| ---------------------------------------- | ------------------------ | ---------------------------------- | --------------------------------- | ------------------------------ |
-| recordTypeId                             | getRecordTypeFromId      |                                    |                                   |                                |
-| objectName, recordTypeId                 | getRecordTypeFromId      |                                    |                                   |                                |
-| objectName, recordTypeDevName            | getRecordTypeFromDevName |                                    |                                   |                                |
-| objectName, Set&lt;recordTypeDevName&gt; |                          |                                    |                                   | getRecordTypeIdSetFromDevNames |
-| objectName                               |                          | getRecordTypeDevNameIdMap          |                                   |                                |
-| objectName                               |                          | getRecordTypeNameIdMap             |                                   |                                |
-| objectName                               |                          | getAvailableRecordTypeDevNameIdMap |                                   |                                |
-| objectName                               |                          | getAvailableRecordTypeNameIdMap    |                                   |                                |
-| objectName                               |                          |                                    | getRecordTypesForSelectList       |                                |
-| objectName                               |                          |                                    | getAllRecordTypesForSelectList    |                                |
-| objectName                               |                          |                                    | getStringRecordTypesForSelectList |                                |
+| Parameters / Output                      | Schema.RecordTypeInfo    | Set&lt;Id&gt;                  | Map&lt;String, Id&gt;              | SelectList                           |
+| ---------------------------------------- | ------------------------ | ------------------------------ | ---------------------------------- | ------------------------------------ |
+| recordTypeId                             | getRecordTypeFromId      |                                |                                    |                                      |
+| objectName, recordTypeId                 | getRecordTypeFromId      |                                |                                    |                                      |
+| objectName, recordTypeDevName            | getRecordTypeFromDevName |                                |                                    |                                      |
+| objectName, Set&lt;recordTypeDevName&gt; |                          | getAvailableRecordTypesIdSet   |                                    |                                      |
+| objectName, Set&lt;recordTypeDevName&gt; |                          | getRecordTypeIdSetFromDevNames |                                    |                                      |
+| objectName                               |                          |                                | getRecordTypeDevNameIdMap          |                                      |
+| objectName                               |                          |                                | getRecordTypeNameIdMap             |                                      |
+| objectName                               |                          |                                | getAvailableRecordTypeDevNameIdMap |                                      |
+| objectName                               |                          |                                | getAvailableRecordTypeNameIdMap    |                                      |
+| objectName                               |                          |                                |                                    | getAllRecordTypesForSelectList       |
+| objectName                               |                          |                                |                                    | getAvailableRecordTypesForSelectList |
+| objectName                               |                          |                                |                                    | getStringRecordTypesForSelectList    |
