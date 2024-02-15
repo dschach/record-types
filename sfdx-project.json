@@ -13,7 +13,9 @@
 				"path": "unpackaged"
 			},
 			"apexTestAccess": {
-				"permissionSets": ["RecordTypes_DefaultRT_for_Testing"]
+				"permissionSets": [
+					"RecordTypes_DefaultRT_for_Testing"
+				]
 			}
 		},
 		{
