@@ -20,7 +20,7 @@
 		"precommit": "lint-staged",
 		"prettier:apex:local": "prettier --apex-standalone-parser built-in --write \"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}\"",
 		"prettier:apex:verify": "prettier --list-different \"force-app/**/*.{cls,trigger}\"",
-		"prettier:docs": "prettier --write \"doc*/*.html\"",
+		"prettier:docs": "prettier --write \"doc*/*.{html,css}\"",
 		"prettier:verify:apex:local": "prettier --apex-standalone-parser built-in --check \"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}\"",
 		"prettier:verify": "prettier --list-different \"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}\"",
 		"prettier": "prettier --write \"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}\"",
@@ -32,6 +32,7 @@
 		"husky": "^9.0.11",
 		"lint-staged": "^15.2.2",
 		"marked": "^12.0.0",
+		"node-jq": "^4.3.0",
 		"prettier": "^3.2.5",
 		"prettier-plugin-apex": "^2.0.1"
 	},

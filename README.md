@@ -24,11 +24,11 @@ The class and test class are found in this [folder](/force-app/main/default/clas
 
 ## Package Installation
 
-<a href="https://login.salesforce.com/packaging/installPackage.apexp?p0=04tQm0000009IIfIAM">
+<a href="https://login.salesforce.com/packaging/installPackage.apexp?p0=04tQm000000gf3ZIAQ">
   <img alt="Deploy to Salesforce"
        src="./media/deploy-package-to-prod.png">
 </a>
-<a href="https://test.salesforce.com/packaging/installPackage.apexp?p0=04tQm0000009IIfIAM">
+<a href="https://test.salesforce.com/packaging/installPackage.apexp?p0=04tQm000000gf3ZIAQ">
   <img alt="Deploy to Salesforce Sandbox"
        src="./media/deploy-package-to-sandbox.png">
 </a>

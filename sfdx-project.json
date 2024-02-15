@@ -4,10 +4,11 @@
 			"path": "force-app",
 			"default": true,
 			"versionNumber": "1.5.0.NEXT",
-			"definitionFile": "config/project-scratch-def.json",
+			"definitionFile": "config/no-rt-scratch-def.json",
 			"package": "Record Types",
 			"versionName": "ver 1.5",
 			"versionDescription": "Record Type library/utility class for fast code execution",
+			"releaseNotesUrl": "https://dschach.github.io/record-types/",
 			"unpackagedMetadata": {
 				"path": "unpackaged"
 			},
@@ -27,9 +28,8 @@
 	"packageAliases": {
 		"Record Types": "0HoQm00000000BJKAY",
 		"RecordTypes": "0HoQm00000000BJKAY",
-		"Record Types@1.4.0-1": "04tQm0000009IIfIAM",
-		"Record Types@1.5.0-1": "04tQm000000fcvmIAA",
-		"Record Types@1.5.0-2": "04tQm000000fgXxIAI",
-		"Record Types@1.5.0-4": "04tQm000000gK2LIAU"
+		"RecordTypes@1.4.0-1": "04tQm0000009IIfIAM",
+		"RecordTypes@1.5.0-2": "04tQm000000fgXxIAI",
+		"RecordTypes@1.5.0-7": "04tQm000000gf3ZIAQ"
 	}
 }
