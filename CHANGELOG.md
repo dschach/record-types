@@ -1,5 +1,42 @@
 # Changelog
 
+## [1.5.0](https://github.com/dschach/record-types/compare/record-types-v1.4.0...record-types-v1.5.0) (2024-02-15)
+
+
+### Features
+
+* Update SelectList methods - all and available ([f9b9812](https://github.com/dschach/record-types/commit/f9b981272bb5e8e71698873f81bc02333ebcb950))
+
+
+### Chores
+
+* Release package v1.5.0 ([#133](https://github.com/dschach/record-types/issues/133)) ([f9b9812](https://github.com/dschach/record-types/commit/f9b981272bb5e8e71698873f81bc02333ebcb950))
+* Release package version 1.4.0 ([#81](https://github.com/dschach/record-types/issues/81)) ([46463a7](https://github.com/dschach/record-types/commit/46463a7489a31bde1405def49c655d4eea1c9035))
+* Renumber to release 1.5.0 ([03f6794](https://github.com/dschach/record-types/commit/03f679466eec7873f435411d15fb38a01ceb1c6c))
+
+
+### Documentation
+
+* ApexDox css files cleanup ([f9b9812](https://github.com/dschach/record-types/commit/f9b981272bb5e8e71698873f81bc02333ebcb950))
+* Include build section in changelogs ([a9faa41](https://github.com/dschach/record-types/commit/a9faa41758172188f7ef66a06b427e5cd5015369))
+* **readme:** Fix deploy button images ([d3717fc](https://github.com/dschach/record-types/commit/d3717fc4f665a6e51f9f940d5fbe392db629f9c1))
+* **readme:** Update method tables ([8b123c3](https://github.com/dschach/record-types/commit/8b123c33e4a818f4c630e7cc6beb7a7205781386))
+* Update ApexDox ([f9b9812](https://github.com/dschach/record-types/commit/f9b981272bb5e8e71698873f81bc02333ebcb950))
+* Update method tables ([f9b9812](https://github.com/dschach/record-types/commit/f9b981272bb5e8e71698873f81bc02333ebcb950))
+
+
+### Tests
+
+* Enhance testing for with/without record types ([f9b9812](https://github.com/dschach/record-types/commit/f9b981272bb5e8e71698873f81bc02333ebcb950))
+* Include unpackaged SelectList test page ([f9b9812](https://github.com/dschach/record-types/commit/f9b981272bb5e8e71698873f81bc02333ebcb950))
+
+
+### Styles
+
+* **Prettier:** Update Prettier config file ([f9b9812](https://github.com/dschach/record-types/commit/f9b981272bb5e8e71698873f81bc02333ebcb950))
+* **prettier:** Update prettier config to single quotes ([078fe29](https://github.com/dschach/record-types/commit/078fe29d5ac7972da8e63154d7e1a72c054b73e3))
+* Run prettier on all files ([bbff33c](https://github.com/dschach/record-types/commit/bbff33cd07e1e35a44d4f6fdf668cb4c15160945))
+
 ## [1.4.0](https://github.com/dschach/record-types/compare/record-types-v1.3.0...record-types-v1.4.0) (2023-09-17)
 
 ### Features
