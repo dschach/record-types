@@ -1,6 +1,7 @@
 {
 	"trailingComma": "none",
 	"apexInsertFinalNewline": false,
+	"endOfLine": "lf",
 	"useTabs": true,
 	"printWidth": 160,
 	"tabWidth": 2,
@@ -11,27 +12,27 @@
 			"options": { "parser": "lwc" }
 		},
 		{
-			"files": ".prettierrc",
-			"options": { "parser": "json", "printWidth": 80 }
-		},
-		{
 			"files": "*.{cmp,page,component}",
 			"options": { "parser": "html" }
-		},
-		{
-			"files": ".json",
-			"options": { "parser": "json", "printWidth": 80 }
 		},
 		{
 			"files": "*.{yaml,yml}",
 			"options": { "useTabs": false, "tabWidth": 2, "singleQuote": true }
 		},
 		{
-			"files": "*.json",
+			"files": "doc*/*.js",
 			"options": {
-				"useTabs": true,
+				"parser": "babel",
+				"singleQuote": false
+			}
+		},
+		{
+			"files": "*.{prettierrc, json}",
+			"options": {
 				"parser": "json",
-				"printWidth": 80
+				"printWidth": 80,
+				"useTabs": true,
+				"singleQuote": false
 			}
 		},
 		{
@@ -41,7 +42,7 @@
 				"useTabs": true,
 				"tabWidth": 2,
 				"printWidth": 150,
-				"htmlWhitespaceSensitivity": "css",
+				"htmlWhitespaceSensitivity": "ignore",
 				"singleQuote": false
 			}
 		}

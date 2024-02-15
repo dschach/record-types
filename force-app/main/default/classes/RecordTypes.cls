@@ -2,8 +2,8 @@
 /**
  * @description This class is allows for easy, readable access to Record Type information from other classes.
  * <br>
- * <br>Written by Evan Callahan, copyright (c) 2010 Groundwire
- * <br>Updated by David Schach, copyright (c) 2021 X-Squared on Demand
+ * <br>Written by Evan Callahan, copyright &copy; 2010 Groundwire
+ * <br>Updated by David Schach, copyright &copy; 2021 X-Squared on Demand
  * <br>
  * <br>This program is released under the GNU General Public License. http://www.gnu.org/licenses/
  * <br>
@@ -18,12 +18,22 @@
  * hard-coded in places, while the Name is actually a label and may change (especially due to user language).
  * <br>
  * An easy-to-read table with the various methods, their inputs, and their outputs is available at
- * {@link [RecordTypesHome](./RecordTypesHomt.html)}
+ * {@link [RecordTypesHome](https://dschach.github.io/record-types/index.html)}
+ * <br>LICENSE
+ * <br>Copyright &copy; Evan Callahan & David Schach
+ * <br>This program is free software: you can redistribute it and/or modify it under the terms of the GNU
+ * General Public License as published by the Free Software Foundation, either version 3 of the License,
+ * or (at your option) any later version.
+ * <br>This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without
+ * even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General
+ * Public License for more details.
+ * <br>You should have received a copy of the GNU General Public License along with this program.  If not,
+ * see <https://www.gnu.org/licenses/>.
  *
  * @author {@link [Evan Callahan](https://github.com/groundwired)}, Groundwire
  * @since 2010
  * @author {@link [David Schach](https://github.com/dschach)}, X-Squared on Demand
- * @since 2021, 2023
+ * @since 2021
  * @author Nicolas Vasquez, Globant
  * @since 2022
  * @group RecordTypes
@@ -69,6 +79,20 @@ global inherited sharing class RecordTypes {
 	 * @description Map of object name to the default `Schema.RecordTypeInfo` object for that object
 	 */
 	private static Map<String, Schema.RecordTypeInfo> defaultRecordTypes = new Map<String, Schema.RecordTypeInfo>();
+
+	/**
+	 * @description Lazy-loaded, memoized map of queried `RecordType` records by Id
+	 * @return `Map<Id, RecordType>` Queried map of Record Types
+	 */
+	private static Map<Id, RecordType> recordTypesIdMap {
+		get {
+			if (recordTypesIdMap == null) {
+				recordTypesIdMap = new Map<Id, RecordType>([SELECT Id, DeveloperName, Name, SobjectType FROM RecordType]);
+			}
+			return recordTypesIdMap;
+		}
+		set;
+	}
 
 	/**
 	 * @description Gets record type maps for a new sObject
@@ -122,7 +146,7 @@ global inherited sharing class RecordTypes {
 		}
 		if (recordTypesByName.containsKey(objectName)) {
 			Schema.RecordTypeInfo defaultRT = defaultRecordTypes.get(objectName);
-			if (defaultRT.isMaster()) {
+			/* if (defaultRT.isMaster()) {
 				// fill the name to id map
 				Map<String, Schema.RecordTypeInfo> rtMap = recordTypesByName?.get(objectName);
 				for (Schema.RecordTypeInfo rti : rtMap?.values()) {
@@ -132,7 +156,7 @@ global inherited sharing class RecordTypes {
 						return rti;
 					}
 				}
-			}
+			} */
 			return defaultRT;
 		}
 		return null;
@@ -221,11 +245,13 @@ global inherited sharing class RecordTypes {
 	/**
 	 * @description Given an sObject and `RecordType` Name, return the `RecordType` object
 	 *              <br/>Note: Since `RecordType.Name` is not unique, this section could give unpredicable results
-	 *              <br/>If possible, DO NOT USE this method - use `RecordType.DeveloperName` instead
+	 *              <br/>If possible, DO NOT USE this method - use a method with `RecordType.DeveloperName` instead
 	 * @author {@link [David Schach](https://github.com/dschach)}
 	 * @param  objectName     SObject name (with __c if custom, etc)
 	 * @param  recordTypeName RecordType Name (can include spaces)
 	 * @return                `Schema.RecordTypeInfo` RecordTypeInfo object
+	 * @example
+	 * RecordTypes.getRecordTypeFromName('Account','Person Account')
 	 */
 	global static Schema.RecordTypeInfo getRecordTypeFromName(String objectName, String recordTypeName) {
 		// make sure we have this sObject's record types mapped
@@ -245,7 +271,7 @@ global inherited sharing class RecordTypes {
 	/**
 	 * @description Given an sObject and `RecordType` Name, return the `RecordType` Id
 	 *              <br/>Note: Since `RecordType.Name` is not unique, this section could give unpredicable results
-	 *              <br/>If possible, DO NOT USE this method - use `RecordType.DeveloperName` instead
+	 *              <br/>If possible, DO NOT USE this method - use a method with `RecordType.DeveloperName` instead
 	 * @author {@link [David Schach](https://github.com/dschach)}
 	 * @param  objectName     SObject name (with __c if custom, etc)
 	 * @param  recordTypeName RecordType Name (can include spaces)
@@ -260,7 +286,7 @@ global inherited sharing class RecordTypes {
 	/**
 	 * @description Given an sObject and `RecordType` Name, return the `RecordType` Id
 	 *              <br/>Note: Since `RecordType.Name` is not unique, this section could give unpredicable results
-	 *              <br/>If possible, DO NOT USE this method - use `RecordType.DeveloperName` methods instead
+	 *              <br/>If possible, DO NOT USE this method - use a method with `RecordType.DeveloperName` instead
 	 * @author {@link [David Schach](https://github.com/dschach)}
 	 * @param  objectName     SObject name (with __c if custom, etc)
 	 * @param  recordTypeName RecordType Name (can include spaces)
@@ -497,6 +523,18 @@ global inherited sharing class RecordTypes {
 	}
 
 	/**
+	 * @description Gives a set of all available (to the running user) `RecordTypeId`s for an sObject
+	 * @author Nicolas Vasquez
+	 * @author {@link [David Schach](https://github.com/dschach)}
+	 * @since 2024 Use available record types map to generate set
+	 * @param  objectName     SObject name (with __c if custom, etc)
+	 * @return                `Set<Id>` Map<RecordType Name, RecordType Id>
+	 */
+	global static Set<Id> getAvailableRecordTypesIdSet(String objectName) {
+		return new Set<Id>(getAvailableRecordTypeNameIdMap(objectName).values());
+	}
+
+	/**
 	 * @description Gives a map of all available (to the running user) `RecordTypeId`s by name for an sObject
 	 * @author Nicolas Vasquez
 	 * @author {@link [David Schach](https://github.com/dschach)}
@@ -520,20 +558,6 @@ global inherited sharing class RecordTypes {
 			}
 		}
 		return recordTypeMap;
-	}
-
-	/**
-	 * @description Lazy-loaded, memoized map of queried `RecordType` records by Id
-	 * @return `Map<Id, RecordType>` Queried map of Record Types
-	 */
-	private static Map<Id, RecordType> recordTypesIdMap {
-		get {
-			if (recordTypesIdMap == null) {
-				recordTypesIdMap = new Map<Id, RecordType>([SELECT Id, Name, SobjectType, DeveloperName FROM RecordType]);
-			}
-			return recordTypesIdMap;
-		}
-		set;
 	}
 
 	/**
@@ -561,48 +585,76 @@ global inherited sharing class RecordTypes {
 	}
 
 	/**
-	 * @description Make a Visualforce picklist of all available Record Types with the `RecordType` Name
-	 * displayed and the `RecordType` Id as the value
+	 * @description Make a Visualforce picklist of only available Record Types with the `RecordType` Name
+	 * displayed and the `RecordType` Id as the value. No options are disabled.
 	 * @author Evan Callahan
 	 * @param  objectName SObject name (with __c if custom, etc)
 	 * @return            `List<SelectOption>` Visualforce SelectOption list
 	 * @example
-	 * RecordTypes.getRecordTypesForSelectList('Account')
+	 * RecordTypes.getAvailableRecordTypesForSelectList('Account')
 	 * <br><br>
 	 * System.SelectOption[value="<SFID>", label="Available", disabled="false"]
 	 * System.SelectOption[value="<SFID>", label="Default", disabled="false"]
+	 * System.SelectOption[value="<SFID>", label="Inactive", disabled="true"]
 	 */
-	global static List<SelectOption> getRecordTypesForSelectList(String objectName) {
+	global static List<SelectOption> getAvailableRecordTypesForSelectList(String objectName) {
 		List<SelectOption> recordTypesOptions = new List<SelectOption>();
-
-		Map<String, Id> availRecordTypes = getAvailableRecordTypeNameIdMap(objectName);
-
+		Map<String, Id> availRecordTypes = getAvailableRecordTypeNameIdMap(objectName); // never null. Can be empty.
+		/* if (availRecordTypes == null) {
+			return recordTypesOptions;
+		} */
 		for (String thisRecordType : availRecordTypes.keyset()) {
 			recordTypesOptions.add(new SelectOption(availRecordTypes.get(thisRecordType), thisRecordType));
 		}
-
+		if (recordTypesOptions.isEmpty() && gd.containsKey(objectName)) {
+			String defaultRTName = defaultRecordTypes.get(objectName)?.getName();
+			defaultRTName = defaultRTName == null ? '' : '--' + defaultRecordTypes.get(objectName)?.getName() + '--';
+			recordTypesOptions.add(new SelectOption('', defaultRTName, false));
+		}
+		recordTypesOptions.sort();
 		return recordTypesOptions;
 	}
 
 	/**
 	 * @description Make a Visualforce picklist with ALL `RecordType` Names displayed and the `RecordType` Id as the value
-	 * <br>Unavailable Record Types will be disabled in the picklist
+	 * <br>Unavailable Record Types will be _disabled_ in the picklist.
 	 * @author {@link [David Schach](https://github.com/dschach)}
 	 * @param  objectName SObject name (with __c if custom, etc)
 	 * @return            `List<SelectOption>` Visualforce SelectOption list
 	 */
 	global static List<SelectOption> getAllRecordTypesForSelectList(String objectName) {
+		return getAllRecordTypesForSelectList(objectName, true);
+	}
+	/**
+	 * @description Make a Visualforce picklist with ALL `RecordType` Names displayed and the `RecordType` Id as the value
+	 * <br>Unavailable Record Types can be disabled in the picklist by setting `disableUnavailable` to `true`..
+	 * @author {@link [David Schach](https://github.com/dschach)}
+	 * @param  objectName SObject name (with __c if custom, etc)
+	 * @param  disableUnavailable Should we disable unavailable RTs in the SelectList?
+	 * @return            `List<SelectOption>` Visualforce SelectOption list
+	 */
+	global static List<SelectOption> getAllRecordTypesForSelectList(String objectName, Boolean disableUnavailable) {
 		List<SelectOption> recordTypesOptions = new List<SelectOption>();
 		if (!allRecordTypes.containsKey(objectName)) {
 			fillMapsForObject(objectName);
 		}
 		List<Schema.RecordTypeInfo> recordTypes = allRecordTypes.get(objectName);
+		Boolean hasAvailableRT = false;
+		if (recordTypes == null) {
+			return recordTypesOptions;
+		}
 		for (Schema.RecordTypeInfo rti : recordTypes) {
-			recordTypesOptions.add(new SelectOption(rti.getRecordTypeId(), rti.getName(), !rti.isAvailable()));
+			recordTypesOptions.add(new SelectOption(rti.getRecordTypeId(), rti.getName(), disableUnavailable ? !rti.isAvailable() : false));
+			if (rti.isAvailable()) {
+				hasAvailableRT = true;
+			}
 		}
-		if (recordTypesOptions.isEmpty()) {
-			recordTypesOptions.add(new SelectOption('', defaultRecordTypes?.get(objectName).getName()));
+		if (recordTypesOptions.isEmpty() || (disableUnavailable && !hasAvailableRT && gd.containsKey(objectName))) {
+			String defaultRTName = defaultRecordTypes?.get(objectName)?.getName();
+			defaultRTName = defaultRTName == null ? '' : '--' + defaultRecordTypes?.get(objectName)?.getName() + '--';
+			recordTypesOptions.add(new SelectOption('', defaultRTName, false));
 		}
+		recordTypesOptions.sort();
 		return recordTypesOptions;
 	}
 
@@ -615,16 +667,48 @@ global inherited sharing class RecordTypes {
 	global static List<SelectOption> getStringRecordTypesForSelectList(String objectName) {
 		List<SelectOption> recordTypesOptions = new List<SelectOption>();
 		Map<String, Id> availRecordTypes = getAvailableRecordTypeNameIdMap(objectName);
-
+		/* if (availRecordTypes == null) {
+			return recordTypesOptions;
+		} */
 		for (String thisRecordType : availRecordTypes.keyset()) {
 			recordTypesOptions.add(new SelectOption(thisRecordType, thisRecordType));
 		}
-
+		recordTypesOptions.sort();
 		return recordTypesOptions;
 	}
 
 	/**
-	 * @description If we are running a test, clear sObject maps. We do this to avoid using @testVisible on the maps
+	 * @description             Is this record type (identified by developer name) available (and active) for the current user?
+	 *
+	 * @param objectName        SObject name (with __c if custom, etc)
+	 * @param recordTypeDevName `RecordType.DeveloperName` (cannot include spaces)
+	 * @return                  `Boolean` Is this Record Type available to the running user?
+	 */
+	public static Boolean isRecordTypeAvailable(String objectName, String recordTypeDevName) {
+		if (!recordTypesByName.containsKey(objectName)) {
+			fillMapsForObject(objectName);
+		}
+		Boolean isAvailableRT = getRecordTypeFromDevName(objectName, recordTypeDevName)?.isAvailable();
+		return isAvailableRT == null ? false : isAvailableRT;
+	}
+
+	/**
+	 * @description             Is this record type (identified by developer name) the default record type for the current user?
+	 *
+	 * @param objectName        SObject name (with __c if custom, etc)
+	 * @param recordTypeDevName `RecordType.DeveloperName` (cannot include spaces)
+	 * @return                  `Boolean` Is this Record Type the default for the running user?
+	 */
+	public static Boolean isRecordTypeDefault(String objectName, String recordTypeDevName) {
+		if (!recordTypesByName.containsKey(objectName)) {
+			fillMapsForObject(objectName);
+		}
+		Boolean isDefultMapping = getRecordTypeFromDevName(objectName, recordTypeDevName)?.isDefaultRecordTypeMapping();
+		return isDefultMapping == null ? false : isDefultMapping;
+	}
+
+	/**
+	 * @description If we are running a test, clear sObject maps. We do this to avoid using @testVisible on the maps themselves
 	 * <br>This is private and testvisible so it cannot be called in production code context
 	 */
 	@testVisible

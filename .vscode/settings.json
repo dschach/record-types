@@ -1,25 +1,26 @@
 {
+  "apexdox.docblock.alignItems": true,
+  "apexPMD.enableCache": true,
+  "apexPMD.rulesets": [
+    "pmd/apexQuickStart.xml"
+  ],
+  "apexPMD.runOnFileChange": true,
+  "apexPMD.runOnFileOpen": true,
+  "apexPMD.showStdOut": true,
+  "editor.bracketPairColorization.enabled": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.detectIndentation": true,
+  "editor.guides.bracketPairs": "active",
+  "editor.insertSpaces": false,
+  "editor.tabSize": 2,
+  "force.showApexJavadocAuthorTag": true,
+  "force.showApexJavadocContext": true,
+  "force.showApexJavadocDescriptionTag": false,
   "search.exclude": {
-    "**/node_modules": true,
-    "**/bower_components": true,
+    "**/.sf": true,
     "**/.sfdx": true,
-		"**/.sf": true
-},
-"editor.insertSpaces": false,
-"editor.detectIndentation": true,
-"apexPMD.rulesets": [
-	"pmd/apexQuickStart.xml"
-],
-"apexPMD.runOnFileChange": true,
-"apexPMD.runOnFileOpen": true,
-"apexPMD.showStdOut": true,
-"apexPMD.enableCache": true,
-"editor.tabSize": 2,
-"editor.bracketPairColorization.enabled": true,
-"editor.guides.bracketPairs": "active",
-"editor.defaultFormatter": "esbenp.prettier-vscode",
-"force.showApexJavadocAuthorTag": true,
-"force.showApexJavadocContext": true,
-"force.showApexJavadocDescriptionTag": false,
-"apexdox.docblock.alignItems": true
+    "**/bower_components": true,
+    "**/node_modules": true
+  },
+  "visualforce.format.endWithNewline": true
 }

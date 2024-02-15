@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<title>Record Types code documentation</title>
+		<meta charset="UTF-8" />
+		<script type="module" src="./assets/index.js"></script>
+		<script type="module" src="./assets/search-idx.js"></script>
+		<script type="module" src="./assets/search.js"></script>
+		<script charset="UTF-8" src="./assets/highlight.js"></script>
+		<script charset="UTF-8" src="./assets/mark.js"></script>
+		<script charset="UTF-8" src="./assets/lunr.js"></script>
+		<link rel="stylesheet" href="./assets/highlight.css" />
+		<link rel="stylesheet" type="text/css" href="./assets/index.css" />
+		<link rel="shortcut icon" type="image/png" href="./assets/favicon.png" />
+	</head>
+
+	<body>
+		<div id="side-bar">
+			<div id="logo-container">
+				<div class="title">Record Types code documentation</div>
+				<img src="assets/logo.png" />
+				<div class="subtitle">
+					Documentation for
+					<a target="_blank" rel="noopener noreferrer" href="https://github.com/dschach/record-types">RecordTypes Utilities</a>
+				</div>
+			</div>
+			<div id="search-wrapper">
+				<div class="search-icon"></div>
+				<input id="search-input" type="text" autocomplete="off" placeholder="Search..." />
+			</div>
+			<ul id="search-results" class=""></ul>
+			<div class="navbar">
+				<nav role="navigation">
+					<a class="nav-header" id="home" href="javascript:void(0)" onclick="goToLocation('index.html');">Home</a>
+					<details id="RecordTypes" class="group-name">
+						<summary id="header-RecordTypes" class="nav-header">
+							<span>RecordTypes</span>
+						</summary>
+						<ul>
+							<!-- menu items -->
+							<li title="RecordTypes" id="item-RecordTypes" class="nav-item class global" onclick="goToLocation('RecordTypes.html');">
+								<a tabindex="1" href="javascript:void(0)">RecordTypes</a>
+							</li>
+							<li title="RecordTypesTest" id="item-RecordTypesTest" class="nav-item class private" onclick="goToLocation('RecordTypesTest.html');">
+								<a tabindex="1" href="javascript:void(0)">RecordTypesTest</a>
+							</li>
+						</ul>
+					</details>
+					<details id="SelectListTests" class="group-name">
+						<summary id="header-SelectListTests" class="nav-header">
+							<span>SelectListTests</span>
+						</summary>
+						<ul>
+							<!-- menu items -->
+							<li
+								title="SelectListsController"
+								id="item-SelectListsController"
+								class="nav-item class public"
+								onclick="goToLocation('SelectListsController.html');"
+							>
+								<a tabindex="1" href="javascript:void(0)">SelectListsController</a>
+							</li>
+							<li
+								title="SelectListsControllerTest"
+								id="item-SelectListsControllerTest"
+								class="nav-item class public"
+								onclick="goToLocation('SelectListsControllerTest.html');"
+							>
+								<a tabindex="1" href="javascript:void(0)">SelectListsControllerTest</a>
+							</li>
+						</ul>
+					</details>
+				</nav>
+			</div>
+		</div>
+		<table id="content">
+			<tr>
+				<td class="scoping-panel">
+					Show:
+					<input type="checkbox" checked="true" id="cbx-all" onclick="toggleAllScopes(this.checked);" />
+					<label for="cbx-all">All</label>
+					&nbsp;&nbsp;
+					<input type="checkbox" checked="true" id="cbx-global" onclick="toggleScope('global', this.checked);" />
+					<label for="cbx-global">global</label>
+					&nbsp;&nbsp;
+					<input type="checkbox" checked="true" id="cbx-public" onclick="toggleScope('public', this.checked);" />
+					<label for="cbx-public">public</label>
+					&nbsp;&nbsp;
+					<input type="checkbox" checked="true" id="cbx-private" onclick="toggleScope('private', this.checked);" />
+					<label for="cbx-private">private</label>
+					&nbsp;&nbsp;
+					<input type="checkbox" checked="true" id="cbx-testmethod" onclick="toggleScope('testmethod', this.checked);" />
+					<label for="cbx-testmethod">testMethod</label>
+				</td>
+			</tr>
+			<tr>
+				<td class="doc-page">
+					<div class="section">
+						<h2 class="class-title top-level-type" id="SelectListsController">
+							<a
+								target="_blank"
+								rel="noopener noreferrer"
+								title="Go to source"
+								class="source-link"
+								href="https://github.com/dschach/record-types/tree/main/unpackaged/main/default/classes/SelectListsController.cls#L10"
+							>
+								SelectListsController
+							</a>
+						</h2>
+						<div class="class-container">
+							<div class="class-description">
+								Class for testing
+								<code class="code-inline">RecordTypes</code>
+								picklist methods
+								<br />
+								NOT included in the unlocked package
+							</div>
+							<div class="class-subtitle">Signature</div>
+							<div class="class-annotations">@SuppressWarnings('PMD.ApexDoc')</div>
+							<div class="class-signature">public with sharing class SelectListsController</div>
+							<div class="class-subtitle">Author</div>
+							<div class="class-subtitle-description">David Schach</div>
+							<div class="class-subtitle">Since</div>
+							<div class="class-subtitle-description">
+								<li>2024</li>
+							</div>
+						</div>
+						<div class="subsection properties SelectListsController">
+							<h3 class="subsection-title properties">SelectListsController Properties</h3>
+							<table class="attributes-table properties">
+								<tr>
+									<th>Name</th>
+									<th>Signature</th>
+								</tr>
+								<tr class="property private">
+									<td class="attribute-name">
+										<a
+											target="_blank"
+											rel="noopener noreferrer"
+											title="Go to source"
+											class="source-link"
+											href="https://github.com/dschach/record-types/tree/main/unpackaged/main/default/classes/SelectListsController.cls#L25"
+										>
+											gd
+										</a>
+									</td>
+									<td>
+										<div class="attribute-signature">private Map&lt;String, Schema.SObjectType&gt; gd</div>
+									</td>
+								</tr>
+								<tr class="property public">
+									<td class="attribute-name">
+										<a
+											target="_blank"
+											rel="noopener noreferrer"
+											title="Go to source"
+											class="source-link"
+											href="https://github.com/dschach/record-types/tree/main/unpackaged/main/default/classes/SelectListsController.cls#L26"
+										>
+											objectPicklist
+										</a>
+									</td>
+									<td>
+										<div class="attribute-signature">public List&lt;SelectOption&gt; objectPicklist</div>
+									</td>
+								</tr>
+								<tr class="property public">
+									<td class="attribute-name">
+										<a
+											target="_blank"
+											rel="noopener noreferrer"
+											title="Go to source"
+											class="source-link"
+											href="https://github.com/dschach/record-types/tree/main/unpackaged/main/default/classes/SelectListsController.cls#L27"
+										>
+											selectedObjectName
+										</a>
+									</td>
+									<td>
+										<div class="attribute-signature">public String selectedObjectName</div>
+									</td>
+								</tr>
+							</table>
+						</div>
+						<div class="subsection methods">
+							<h3 class="subsection-title methods">SelectListsController Constructors</h3>
+							<div class="methods-container">
+								<ul class="methods-toc">
+									<li class="method public">
+										<a class="methods-toc__entry" href="#SelectListsController.SelectListsController">SelectListsController ()</a>
+									</li>
+								</ul>
+								<div class="method public">
+									<h4 class="method-title" id="SelectListsController.SelectListsController">
+										<a
+											target="_blank"
+											rel="noopener noreferrer"
+											title="Go to source"
+											class="source-link"
+											href="https://github.com/dschach/record-types/tree/main/unpackaged/main/default/classes/SelectListsController.cls#L12"
+										>
+											SelectListsController()
+										</a>
+									</h4>
+									<div class="method-subtitle">Signature</div>
+									<div class="method-annotations">@SuppressWarnings</div>
+									<div class="method-signature">public SelectListsController()</div>
+								</div>
+							</div>
+						</div>
+						<div class="subsection methods">
+							<h3 class="subsection-title methods">SelectListsController Methods</h3>
+							<div class="methods-container">
+								<ul class="methods-toc">
+									<li class="method public">
+										<a class="methods-toc__entry" href="#SelectListsController.getAllAvailableRTs">getAllAvailableRTs ()</a>
+									</li>
+									<li class="method public">
+										<a class="methods-toc__entry" href="#SelectListsController.getAllRTs">getAllRTs ()</a>
+									</li>
+								</ul>
+								<div class="method public">
+									<h4 class="method-title" id="SelectListsController.getAllAvailableRTs">
+										<a
+											target="_blank"
+											rel="noopener noreferrer"
+											title="Go to source"
+											class="source-link"
+											href="https://github.com/dschach/record-types/tree/main/unpackaged/main/default/classes/SelectListsController.cls#L32"
+										>
+											getAllAvailableRTs()
+										</a>
+									</h4>
+									<div class="method-subtitle">Signature</div>
+
+									<div class="method-signature">public List&lt;SelectOption&gt; getAllAvailableRTs()</div>
+								</div>
+								<div class="method public">
+									<h4 class="method-title" id="SelectListsController.getAllRTs">
+										<a
+											target="_blank"
+											rel="noopener noreferrer"
+											title="Go to source"
+											class="source-link"
+											href="https://github.com/dschach/record-types/tree/main/unpackaged/main/default/classes/SelectListsController.cls#L29"
+										>
+											getAllRTs()
+										</a>
+									</h4>
+									<div class="method-subtitle">Signature</div>
+
+									<div class="method-signature">public List&lt;SelectOption&gt; getAllRTs()</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td class="footer">
+					<div>
+						<a href="https://github.com/no-stack-dub-sack/apexdox-vs-code" target="_blank" rel="noopener noreferrer">Powered By ApexDox VS Code</a>
+					</div>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

@@ -14,5 +14,23 @@ package.xml
 **/__tests__/**
 
 # Unwanted org metadata to ignore
+
+# profiles
 *.profile
+*.profile-meta.xml
+Admin.*
+
+# Other permission sets
+*.permissionset-meta.xml
+!RecordTypes_DefaultRT_for_Testing.permissionset-meta.xml
+
+# Page Layouts
+#**/*.layout-meta.xml
+
+# Settings
 *.settings
+**/*.settings-meta.xml
+
+# Record Types
+#*.RecordType-meta.xml
+!Default.recordType-meta.xml

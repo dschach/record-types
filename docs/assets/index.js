@@ -8,7 +8,7 @@ const SCOPES = ['global', 'public', 'private', 'protected', 'testMethod', 'webSe
   SCOPE_STATE_KEY = 'APEXDOX_SCOPE',
   SEARCH_STATE_KEY = 'APEXDOX_SEARCH_RESULTS';
 
-const highlightJsSelectors = ['pre code', '.method-annotations', '.class-signature', '.attribute-signature', '.method-signature', '.class-annotations', '.prop-annotations'];
+const apexJsSelectors = ['.method-annotations', '.class-signature', '.attribute-signature', '.method-signature', '.class-annotations', '.prop-annotations', '.code-example'];
 
 const initializers = [initMenu, initHighlightJs, renderMenuFromState, setActiveElement, renderSearchFromState, readScope, hideAllScopes, showScopes];
 
@@ -32,17 +32,23 @@ window.onbeforeunload = () => {
 // ==================================================================
 
 function initHighlightJs() {
-  // initialize highlighting for code examples and
-  // signatures for methods, classes, props and enums
-  hljs.configure({
-    ignoreUnescapedHTML: true,
-    languages: ['xml', 'apex'],
-  });
-  highlightJsSelectors.forEach((selector) => {
+  apexJsSelectors.forEach((selector) => {
     document.querySelectorAll(selector).forEach((block) => {
-      hljs.highlightElement(block);
+      block.classList.add('language-apex');
     });
   });
+  // Alow language auto-detection in "pre code" blocks
+  apexJsSelectors.push('pre code');
+  // initialize highlighting for code examples and
+  // signatures for methods, classes, props and enums
+  // Highlight.js now contains multiple languages to aid in
+  // code highlighting for the HTML pages in documentation
+  // (BasH, CSS, JSON, YAML, Markdown, HTML/Visualforce, JavaScript, Plain Text)
+  hljs.configure({
+    cssSelector: apexJsSelectors,
+    languages: ['xml', 'apex', 'bash', 'javascript'],
+  });
+  hljs.highlightAll();
 }
 
 // create session storage object for menu state
