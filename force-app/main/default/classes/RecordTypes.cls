@@ -2,8 +2,8 @@
 /**
  * @description This class is allows for easy, readable access to Record Type information from other classes.
  * <br>
- * <br>Written by Evan Callahan, copyright &copy; 2010 Groundwire
- * <br>Updated by David Schach, copyright &copy; 2021 X-Squared on Demand
+ * <br>Written by Evan Callahan, copyright 2010 Groundwire
+ * <br>Updated by David Schach, copyright 2021 X-Squared on Demand
  * <br>
  * <br>This program is released under the GNU General Public License. http://www.gnu.org/licenses/
  * <br>
@@ -14,13 +14,13 @@
  * be the same for all calls in a transaction, and by calling it statically we reduce the calls
  * that are made, making the total transaction more efficient.
  * <br>
- * <br>Usage recommendation: Always use DeveloperName instead of Name, as this is more likely to be
+ * <br>Usage recommendation: <strong>Always use DeveloperName instead of Name</strong>, as this is more likely to be
  * hard-coded in places, while the Name is actually a label and may change (especially due to user language).
  * <br>
  * An easy-to-read table with the various methods, their inputs, and their outputs is available at
- * {@link [RecordTypesHome](https://dschach.github.io/record-types/index.html)}
+ * {@link [Record Types](https://dschach.github.io/record-types/)}
  * <br>LICENSE
- * <br>Copyright &copy; Evan Callahan & David Schach
+ * <br>Copyright Evan Callahan & David Schach
  * <br>This program is free software: you can redistribute it and/or modify it under the terms of the GNU
  * General Public License as published by the Free Software Foundation, either version 3 of the License,
  * or (at your option) any later version.
