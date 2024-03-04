@@ -8,11 +8,16 @@ Of note: The test code assumes that you have no record types for the Solution ob
 
 ## Badges
 
-[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+<!-- [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) -->
+
+![GitHub License](https://img.shields.io/github/license/dschach/record-types)
+![Salesforce API Version](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fdschach%2Frecord-types%2Fmain%2Fsfdx-project.json&query=%24.sourceApiVersion&style=flat&logo=salesforce&logoColor=0d9dda&label=Salesforce%20API&color=0d9dda)
 [![codecov](https://codecov.io/gh/dschach/record-types/branch/main/graph/badge.svg?token=RVhs6ab2Md)](https://codecov.io/gh/dschach/record-types)
 [![CI](https://github.com/dschach/record-types/actions/workflows/ci.yml/badge.svg)](https://github.com/dschach/record-types/actions/workflows/ci.yml)
 [![Scratch Org](https://github.com/dschach/record-types/actions/workflows/pr.yml/badge.svg)](https://github.com/dschach/record-types/actions/workflows/pr.yml)
 [![Twitter](https://img.shields.io/twitter/follow/dschach.svg?style=social)](https://img.shields.io/twitter/follow/dschach.svg?style=social)
+
+<!-- ![Salesforce Namespace](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fdschach%2Frecord-types%2Fmain%2Fsfdx-project.json&query=namespace&style=flat&logo=salesforce&label=namespace) -->
 
 ## The Code
 
@@ -38,7 +43,7 @@ The class and test class are found in this [folder](/force-app/main/default/clas
 Clone this repository and run
 
 ```bash
-. scripts/orginit.sh
+bash scripts/orginit.sh
 ```
 
 to set up a scratch org with the classes installed and a single Account Record Type.
@@ -46,7 +51,7 @@ to set up a scratch org with the classes installed and a single Account Record T
 To set up a scratch org without creating a Record Type, run
 
 ```bash
-. scripts/orginit-norecordtypes.sh
+bash scripts/orginit-norecordtypes.sh
 ```
 
 ## [Changelog](./CHANGELOG.md)

@@ -7,15 +7,13 @@
 			"definitionFile": "config/no-rt-scratch-def.json",
 			"package": "Record Types",
 			"versionName": "ver 1.5",
-			"versionDescription": "Record Type library/utility class for fast code execution",
+			"versionDescription": "Record Type library/utility for fast code execution",
 			"releaseNotesUrl": "https://dschach.github.io/record-types/",
 			"unpackagedMetadata": {
 				"path": "unpackaged"
 			},
 			"apexTestAccess": {
-				"permissionSets": [
-					"RecordTypes_DefaultRT_for_Testing"
-				]
+				"permissionSets": ["RecordTypes_DefaultRT_for_Testing"]
 			}
 		},
 		{
