@@ -9,6 +9,7 @@ sf org create scratch --definition-file config/project-scratch-def.json --durati
 echo "Pushing metadata"
 sf project deploy start --source-dir force-app
 sf project deploy start --source-dir unpackaged
+sf project deploy start --manifest unpackaged/manifest.xml --post-destructive-changes unpackaged/destructiveChangesPost.xml --wait 20
 
 echo "Assigning permission set"
 sf org assign permset --name RecordTypes_DefaultRT_for_Testing

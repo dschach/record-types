@@ -241,6 +241,7 @@ private class RecordTypesTest {
 	 */
 	private static Boolean testSObjectRecordTypeReturns(String sobjectname) {
 		List<RecordType> queriedRecordTypes = [SELECT Id, Name, DeveloperName FROM RecordType WHERE SObjectType = :sobjectname];
+		//System.debug(queriedRecordTypes);
 
 		RecordTypes.getRecordTypeNameIdMap(sobjectname);
 		resetTest();
@@ -250,6 +251,7 @@ private class RecordTypesTest {
 
 		if (!queriedRecordTypes.isEmpty()) {
 			String defaultRTDevName = RecordTypes.getDefaultRecordType(sobjectName).getDeveloperName();
+			//System.debug(sobjectname + ' default RT DevName = ' + defaultRTDevName);
 			Assert.isTrue(
 				RecordTypes.isRecordTypeDefault(sobjectName, defaultRTDevName),
 				'We should have found ' + sobjectname.capitalize() + ' default RT DevName as ' + defaultRTDevName
@@ -269,8 +271,8 @@ private class RecordTypesTest {
 
 			Assert.areEqual(rti.getDeveloperName(), rti2.getDeveloperName(), 'Overloaded ' + sobjectname.capitalize() + ' method failed to retrieve same RTId');
 
-			Assert.areNotEqual(null, RecordTypes.getRecordTypeDevNameFromId(activeRT.Id), 'We should have had an' + sobjectname.capitalize() + ' RecordType');
-			Assert.areNotEqual(null, RecordTypes.getRecordTypeNameFromId(activeRT.Id), 'We should have had an' + sobjectname.capitalize() + ' RecordType');
+			Assert.areNotEqual(null, RecordTypes.getRecordTypeDevNameFromId(activeRT.Id), 'We should have had ' + sobjectname.capitalize() + ' Record Type');
+			Assert.areNotEqual(null, RecordTypes.getRecordTypeNameFromId(activeRT.Id), 'We should have had ' + sobjectname.capitalize() + ' Record Type');
 
 			Assert.areEqual(
 				activeRT.Id,

@@ -44,8 +44,19 @@ private class UnpackagedRecordTypesTest {
 		Assert.isNotNull(RecordTypes.getRecordTypeIdFromDevName('Account', 'Default'), 'Default record type should exist');
 		Assert.isNotNull(RecordTypes.getRecordTypeIdFromName('Account', 'Default'), 'Default record type should exist');
 
-		Assert.areEqual('Default', RecordTypes.getDefaultRecordTypeName('Account'), 'Our default Account RT should be "Default"');
-		Assert.areEqual('Default', RecordTypes.getDefaultRecordTypeDevName('Account'), 'Our default Account RT should be "Default"');
+		//Assert.areEqual('Default', RecordTypes.getDefaultRecordTypeName('Account'), 'Our default Account RT should be "Default"');
+		//Assert.areEqual('Default', RecordTypes.getDefaultRecordTypeDevName('Account'), 'Our default Account RT should be "Default"');
+
+		Assert.areEqual(
+			'Master',
+			RecordTypes.getDefaultRecordTypeName('Account'),
+			'Our default Account RT should be "Master" because we assigned via permission set'
+		);
+		Assert.areEqual(
+			'Master',
+			RecordTypes.getDefaultRecordTypeDevName('Account'),
+			'Our default Account RT should be "Master" because we assigned via permission set'
+		);
 
 		Assert.isNotNull(RecordTypes.getRecordTypeDevNameIdMap('Account'), 'A real sobject should return at least an empty map');
 
@@ -83,24 +94,23 @@ private class UnpackagedRecordTypesTest {
 
 		Assert.isNotNull(RecordTypes.getRecordTypeIdFromDevName('Account', 'default'), 'default record type should exist');
 		Assert.isNotNull(RecordTypes.getRecordTypeIdFromName('Account', 'default'), 'default record type should exist');
+	}
 
-		Assert.isNotNull(RecordTypes.getDefaultRecordTypeName('Account'), 'A real sobject should have at least Master record type');
-		Assert.isNotNull(RecordTypes.getDefaultRecordTypeDevName('Account'), 'A real sobject should have at least Master record type');
+	/**
+	 * @description Test for running certain methods without filling maps
+	 */
+	@IsTest
+	static void testMethodsAfterReset() {
+		resetTest();
+		List<RecordType> queriedRecordTypes = [SELECT Id, Name, DeveloperName FROM RecordType WHERE SObjectType = 'Account'];
+		Assert.isNotNull(RecordTypes.getRecordTypeNameFromId(queriedRecordTypes[0].Id), 'Error');
+	}
 
-		Assert.isNotNull(RecordTypes.getRecordTypeDevNameIdMap('Account'), 'A real sobject should return at least an empty map');
-
-		Assert.isNotNull(
-			RecordTypes.getAvailableRecordTypeDevNameIdMap('Account'),
-			'Should return at least an empty map, and populated one if we have record types for Account.'
-		);
-		Assert.isNotNull(
-			RecordTypes.getAvailableRecordTypeNameIdMap('Account'),
-			'Should return at least an empty map, and a populated one if we have record types for Account.'
-		);
-
-		Assert.isNotNull(
-			RecordTypes.getAvailableRecordTypesIdSet('Account'),
-			'Should return at least an empty map, and populated one if we have record types for Account.'
-		);
+	/**
+	 * @description Clear all record type maps to enable using fewer test methods - reset within a method
+	 * @author {@link [David Schach](https://github.com/dschach)}
+	 */
+	private static void resetTest() {
+		RecordTypes.clearMapsInTest();
 	}
 }
