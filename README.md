@@ -1,27 +1,33 @@
 # Record Types
 
-This is a project based on work by [Evan Callahan](https://github.com/groundwired) (formerly of Groundwire, and now at Salesforce) who wrote [this class](https://github.com/SalesforceFoundation/JenkinsTesting/blob/master/src/classes/RecordTypes.cls) (Repo has been deleted. Sadface.) a long time ago to reduce the number of describe calls required to work with Record Types.
+This is a project based on work by [Evan Callahan](https://github.com/groundwired) (formerly of Groundwire, and now at Salesforce) who wrote [this class](https://github.com/SalesforceFoundation/JenkinsTesting/blob/master/src/classes/RecordTypes.cls) (repo has been deleted - Sadface) a long time ago to reduce the number of describe calls required to work with Record Types.
 
 I've updated the project (by pulling test code out of the main class - that's how old it was!) and have added some additional methods. The included test class has 100% coverage, so pull this into your org and get cracking!
 
 Of note: The test code assumes that you have no record types for the Solution object. If you do, you may need to remove that test method.
 
-## Badges
-
-<!-- [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) -->
-
-![GitHub License](https://img.shields.io/github/license/dschach/record-types)
-![Salesforce API Version](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fdschach%2Frecord-types%2Fmain%2Fsfdx-project.json&query=%24.sourceApiVersion&style=flat&logo=salesforce&logoColor=0d9dda&label=Salesforce%20API&color=0d9dda)
+![Dependabot](https://badgen.net/github/dependabot/dschach/record-types)
 [![codecov](https://codecov.io/gh/dschach/record-types/branch/main/graph/badge.svg?token=RVhs6ab2Md)](https://codecov.io/gh/dschach/record-types)
-[![CI](https://github.com/dschach/record-types/actions/workflows/ci.yml/badge.svg)](https://github.com/dschach/record-types/actions/workflows/ci.yml)
-[![Scratch Org](https://github.com/dschach/record-types/actions/workflows/pr.yml/badge.svg)](https://github.com/dschach/record-types/actions/workflows/pr.yml)
+[![On Push](https://github.com/dschach/record-types/actions/workflows/ci.yml/badge.svg)](https://github.com/dschach/record-types/actions/workflows/ci.yml)
+[![Scratch Org Tests](https://github.com/dschach/record-types/actions/workflows/pr.yml/badge.svg)](https://github.com/dschach/record-types/actions/workflows/pr.yml)
+![Salesforce API Version](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fdschach%2Frecord-types%2Fmain%2Fsfdx-project.json&query=%24.sourceApiVersion&style=flat&logo=salesforce&logoColor=0d9dda&label=Salesforce%20API&color=0d9dda)
+![Release](https://badgen.net/github/release/dschach/record-types)
+![GitHub License](https://img.shields.io/github/license/dschach/record-types?color=blue)
+
 [![Twitter](https://img.shields.io/twitter/follow/dschach.svg?style=social)](https://img.shields.io/twitter/follow/dschach.svg?style=social)
+[![GitHub](https://img.shields.io/badge/Author-dschach-blue?style=flat&logo=github)](https://www.github.com/dschach)
 
 <!-- ![Salesforce Namespace](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fdschach%2Frecord-types%2Fmain%2Fsfdx-project.json&query=namespace&style=flat&logo=salesforce&label=namespace) -->
 
 ## The Code
 
 The class and test class are found in this [folder](/force-app/main/default/classes/). Feel free to copy/paste directly into your org.
+
+## Features
+
+Given combinations of an sObject name, Record Type name, Record Type developer name, and Record Type Id, this class will let you return the other possible parameters. Give it an sObject name and a Record Type developer name, and get the Record Type Id.
+
+The main purpose is to minimize describe calls, which will speed up your code.
 
 ## Documentation
 
@@ -38,21 +44,11 @@ The class and test class are found in this [folder](/force-app/main/default/clas
        src="./media/deploy-package-to-sandbox.png">
 </a>
 
-## Installation (via VCS)
+## Installation (with VCS)
 
-Clone this repository and run
+Clone this repository and run `bash scripts/orginit.sh` to set up a scratch org with the classes installed and a single Account Record Type.
 
-```bash
-bash scripts/orginit.sh
-```
-
-to set up a scratch org with the classes installed and a single Account Record Type.
-
-To set up a scratch org without creating a Record Type, run
-
-```bash
-bash scripts/orginit-norecordtypes.sh
-```
+To set up a scratch org without creating a Record Type, run `bash scripts/orginit-norecordtypes.sh`
 
 ## [Changelog](./CHANGELOG.md)
 
