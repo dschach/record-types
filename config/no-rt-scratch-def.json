@@ -1,7 +1,7 @@
 {
 	"orgName": "David Schach Record Types",
 	"edition": "Developer",
-	"features": ["EnableSetPasswordInApi"],
+	"features": ["EnableSetPasswordInApi", "EinsteinGPTForDevelopers"],
 	"settings": {
 		"lightningExperienceSettings": {
 			"enableS1DesktopEnabled": true
