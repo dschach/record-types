@@ -7,7 +7,8 @@
 			"bump-patch-for-minor-pre-major": false,
 			"draft": false,
 			"prerelease": false,
-			"package-name": "record-types"
+			"package-name": "record-types",
+			"include-component-in-tag": false
 		}
 	},
 	"$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",

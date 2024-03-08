@@ -24,6 +24,7 @@
 		"prettier:verify:apex:local": "prettier --apex-standalone-parser built-in --check \"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}\"",
 		"prettier:verify": "prettier --list-different \"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}\"",
 		"prettier": "prettier --write \"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}\"",
+		"prune": "git branch | grep -v \"main\" | xargs git branch -D",
 		"updateHighlight": ". doc-assets/updateHighlight.sh"
 	},
 	"devDependencies": {
