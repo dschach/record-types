@@ -46,17 +46,22 @@ global inherited sharing class RecordTypes {
 	private static Map<String, Schema.SObjectType> gd;
 
 	/**
-	 * @description Map of Record Types by sObject name, then by Id
+	 * @description Hold Sobject describe results as we need them
+	 */
+	private static Map<String, Schema.DescribeSObjectResult> sObjectDescribes;
+
+	/**
+	 * @description Map of Record Types by sObject name (lowercase), then by Id
 	 */
 	private static Map<String, Map<Id, Schema.RecordTypeInfo>> recordTypesById = new Map<String, Map<Id, Schema.RecordTypeInfo>>();
 
 	/**
-	 * @description Map of Record Types by sObject name, then by Name
+	 * @description Map of Record Types by sObject name (lowercase), then by Name
 	 */
 	private static Map<String, Map<String, Schema.RecordTypeInfo>> recordTypesByName = new Map<String, Map<String, Schema.RecordTypeInfo>>();
 
 	/**
-	 * @description Map of Record Types by sObject name, then by DeveloperName
+	 * @description Map of Record Types by sObject name (lowercase), then by DeveloperName
 	 */
 	private static Map<String, Map<String, Schema.RecordTypeInfo>> recordTypesByDevName = new Map<String, Map<String, Schema.RecordTypeInfo>>();
 
@@ -66,7 +71,7 @@ global inherited sharing class RecordTypes {
 	private static Map<String, List<Schema.Recordtypeinfo>> availableRecordTypesMap = new Map<String, List<Schema.Recordtypeinfo>>();
 
 	/**
-	 * @description map of all Record Types by sObject name, including inactive and unavailable
+	 * @description map of all Record Types by sObject name (lowercase), including inactive and unavailable
 	 */
 	private static Map<String, List<Schema.RecordTypeInfo>> allRecordTypes = new Map<String, List<Schema.RecordTypeInfo>>();
 
@@ -102,17 +107,39 @@ global inherited sharing class RecordTypes {
 	 */
 	private static void fillMapsForObject(String objectName) {
 		// get the object map the first time
-		if (gd == null) {
+		/* if (gd == null) {
 			gd = Schema.getGlobalDescribe();
+		} */
+		if (sObjectDescribes == null) {
+			sObjectDescribes = new Map<String, Schema.DescribeSObjectResult>();
 		}
-
+		String sObjectName = objectName.toLowerCase();
+		if (!sObjectDescribes.containsKey(sObjectName)) {
+			try {
+				List<Schema.DescribeSObjectResult> describes = Schema.describeSObjects(new List<String>{ sObjectName }, SObjectDescribeOptions.DEFERRED);
+				sObjectDescribes.put(sObjectName, describes[0]);
+			} catch (InvalidParameterValueException e) {
+				return;
+			}
+		}
 		// get the sObject description
-		if (gd.containsKey(objectName)) {
+		if (sObjectDescribes.containsKey(sObjectName)) {
 			@SuppressWarnings('PMD.EagerlyLoadedDescribeSObjectResult')
-			Schema.DescribeSObjectResult d = gd.get(objectName).getDescribe();
-			recordTypesByName.put(objectName, d.getRecordTypeInfosByName());
-			recordTypesByDevName.put(objectName, d.getRecordTypeInfosByDeveloperName());
-			recordTypesById.put(objectName, d.getRecordTypeInfosById());
+			//Schema.DescribeSObjectResult d = gd.get(sObjectName).getDescribe();
+			Schema.DescribeSObjectResult d = sObjectDescribes.get(sObjectName);
+			Map<String, Schema.RecordTypeInfo> objectRTsByName = new Map<String, Schema.RecordTypeInfo>();
+			Map<String, Schema.RecordTypeInfo> objectRTsByDevName = new Map<String, Schema.RecordTypeInfo>();
+			//Map<String, Schema.RecordTypeInfo> objectRTsById = new Map<String, Schema.RecordTypeInfo>();
+			for (Schema.RecordTypeInfo rti : d.getRecordTypeInfos()) {
+				objectRTsByName.put(rti.getName().toLowerCase(), rti);
+				objectRTsByDevName.put(rti.getDeveloperName().toLowerCase(), rti);
+			}
+			recordTypesByName.put(sObjectName, objectRTsByName);
+			recordTypesByDevName.put(sObjectName, objectRTsByDevName);
+
+			//recordTypesByName.put(sObjectName, d.getRecordTypeInfosByName());
+			//recordTypesByDevName.put(sObjectName, d.getRecordTypeInfosByDeveloperName());
+			recordTypesById.put(sObjectName, d.getRecordTypeInfosById());
 			List<Schema.RecordTypeInfo> recordTypesForSObject = new List<Schema.RecordTypeInfo>();
 			List<Schema.RecordTypeInfo> availableRecordTypesList = new List<Schema.RecordTypeInfo>();
 			for (Schema.Recordtypeinfo rt : d.getRecordTypeInfos()) {
@@ -123,12 +150,12 @@ global inherited sharing class RecordTypes {
 					availableRecordTypesList.add(rt);
 				}
 				if (rt.isDefaultRecordTypeMapping()) {
-					defaultRecordTypeIds.put(objectName, rt.getRecordTypeId());
-					defaultRecordTypes.put(objectName, rt);
+					defaultRecordTypeIds.put(sObjectName, rt.getRecordTypeId());
+					defaultRecordTypes.put(sObjectName, rt);
 				}
 			}
-			allRecordTypes.put(objectName, recordTypesForSObject);
-			availableRecordTypesMap.put(objectName, availableRecordTypesList);
+			allRecordTypes.put(sObjectName, recordTypesForSObject);
+			availableRecordTypesMap.put(sObjectName, availableRecordTypesList);
 		}
 	}
 
@@ -140,19 +167,20 @@ global inherited sharing class RecordTypes {
 	 */
 	@SuppressWarnings('PMD.AvoidDeeplyNestedIfStmts')
 	global static Schema.RecordTypeInfo getDefaultRecordType(String objectName) {
+		String sObjectName = objectName.toLowerCase();
 		// make sure we have this sObject's record types mapped
-		if (!recordTypesByName.containsKey(objectName)) {
-			fillMapsForObject(objectName);
+		if (!recordTypesByName.containsKey(sObjectName)) {
+			fillMapsForObject(sObjectName);
 		}
-		if (recordTypesByName.containsKey(objectName)) {
-			Schema.RecordTypeInfo defaultRT = defaultRecordTypes.get(objectName);
+		if (recordTypesByName.containsKey(sObjectName)) {
+			Schema.RecordTypeInfo defaultRT = defaultRecordTypes.get(sObjectName);
 			/* if (defaultRT.isMaster()) {
 				// fill the name to id map
-				Map<String, Schema.RecordTypeInfo> rtMap = recordTypesByName?.get(objectName);
+				Map<String, Schema.RecordTypeInfo> rtMap = recordTypesByName?.get(sObjectName);
 				for (Schema.RecordTypeInfo rti : rtMap?.values()) {
 					if (!rti.isMaster() && rti.isAvailable() && rti.isActive()) {
-						defaultRecordTypes.put(objectName, rti);
-						defaultRecordTypeIds.put(objectName, rti.getRecordTypeId());
+						defaultRecordTypes.put(sObjectName, rti);
+						defaultRecordTypeIds.put(sObjectName, rti.getRecordTypeId());
 						return rti;
 					}
 				}
@@ -172,13 +200,14 @@ global inherited sharing class RecordTypes {
 	 * @return           `List<Schema.RecordTypeInfo>` List of all record types for the object (active and inactive)
 	 */
 	global static List<Schema.RecordTypeInfo> getRecordTypesForObject(String objectName) {
+		String sObjectName = objectName.toLowerCase();
 		// make sure we have this sObject's record types mapped
-		if (!recordTypesByName.containsKey(objectName)) {
-			fillMapsForObject(objectName);
+		if (!recordTypesByName.containsKey(sObjectName)) {
+			fillMapsForObject(sObjectName);
 		}
-		if (recordTypesByName.containsKey(objectName)) {
+		if (recordTypesByName.containsKey(sObjectName)) {
 			// get the record types for the object
-			List<Schema.RecordTypeInfo> recordTypeList = recordTypesByName?.get(objectName)?.values();
+			List<Schema.RecordTypeInfo> recordTypeList = recordTypesByName?.get(sObjectName)?.values();
 			return recordTypeList;
 		}
 		return null;
@@ -195,12 +224,13 @@ global inherited sharing class RecordTypes {
 	 * @return           `Id` Default Record Type Id for the running user for this object
 	 */
 	global static Id getDefaultRecordTypeId(String objectName) {
+		String sObjectName = objectName.toLowerCase();
 		// make sure we have this sObject's record types mapped
-		if (!recordTypesByName.containsKey(objectName)) {
-			fillMapsForObject(objectName);
+		if (!recordTypesByName.containsKey(sObjectName)) {
+			fillMapsForObject(sObjectName);
 		}
-		if (recordTypesByName.containsKey(objectName)) {
-			Schema.RecordTypeInfo defaultRT = getDefaultRecordType(objectName);
+		if (recordTypesByName.containsKey(sObjectName)) {
+			Schema.RecordTypeInfo defaultRT = getDefaultRecordType(sObjectName);
 			if (defaultRT.isMaster()) {
 				return null;
 			}
@@ -216,11 +246,12 @@ global inherited sharing class RecordTypes {
 	 * @return           `String` Default Record Type DeveloperName for the running user for this object
 	 */
 	global static String getDefaultRecordTypeDevName(String objectName) {
+		String sObjectName = objectName.toLowerCase();
 		// make sure we have this sObject's record types mapped
-		if (!recordTypesByName.containsKey(objectName)) {
-			fillMapsForObject(objectName);
+		if (!recordTypesByName.containsKey(sObjectName)) {
+			fillMapsForObject(sObjectName);
 		}
-		return getDefaultRecordType(objectName)?.getDeveloperName();
+		return getDefaultRecordType(sObjectName)?.getDeveloperName();
 	}
 
 	/**
@@ -230,10 +261,11 @@ global inherited sharing class RecordTypes {
 	 * @return           `String` Default Record Type Name for the running user for this object
 	 */
 	global static String getDefaultRecordTypeName(String objectName) {
+		//String sObjectName = objectName.toLowerCase();
 		// make sure we have this sObject's record types mapped
-		if (!recordTypesByName.containsKey(objectName)) {
-			fillMapsForObject(objectName);
-		}
+		/* if (!recordTypesByName.containsKey(sObjectName)) {
+			fillMapsForObject(sObjectName);
+		} */
 		return getDefaultRecordType(objectName)?.getName();
 	}
 
@@ -254,18 +286,24 @@ global inherited sharing class RecordTypes {
 	 * RecordTypes.getRecordTypeFromName('Account','Person Account')
 	 */
 	global static Schema.RecordTypeInfo getRecordTypeFromName(String objectName, String recordTypeName) {
+		String sObjectName = objectName.toLowerCase();
+		String rtName = recordTypeName.toLowerCase();
 		// make sure we have this sObject's record types mapped
-		if (!recordTypesByName.containsKey(objectName)) {
-			fillMapsForObject(objectName);
+		if (!recordTypesByName.containsKey(sObjectName)) {
+			fillMapsForObject(sObjectName);
 		}
 
 		// now grab and return the requested id
-		Map<String, Schema.RecordTypeInfo> rtMap = recordTypesByName.get(objectName);
-		if (rtMap != null && rtMap.containsKey(recordTypeName)) {
-			return rtMap.get(recordTypeName);
+		Map<String, Schema.RecordTypeInfo> rtMap = recordTypesByName.get(sObjectName);
+		System.debug(rtMap.keySet());
+		System.debug(rtMap);
+		return rtMap?.get(rtName);
+		/* 		if (rtMap != null && rtMap.containsKey(rtName)) {
+			return rtMap.get(rtName);
 		} else {
 			return null;
 		}
+ */
 	}
 
 	/**
@@ -280,7 +318,9 @@ global inherited sharing class RecordTypes {
 	 * RecordTypes.getRecordTypeIdFromName('Account','Person Account')
 	 */
 	global static Id getRecordTypeIdFromName(String objectName, String recordTypeName) {
-		return getRecordTypeFromName(objectName, recordTypeName)?.getRecordTypeId();
+		//String sObjectName = objectName.toLowerCase();
+
+		return getRecordTypeFromName(objectName.toLowerCase(), recordTypeName.toLowerCase())?.getRecordTypeId();
 	}
 
 	/**
@@ -295,7 +335,8 @@ global inherited sharing class RecordTypes {
 	 * RecordTypes.getRecordTypeDevNameFromName('Account','Person Account')
 	 */
 	global static String getRecordTypeDevNameFromName(String objectName, String recordTypeName) {
-		return getRecordTypeFromName(objectName, recordTypeName)?.getDeveloperName();
+		String sObjectName = objectName.toLowerCase();
+		return getRecordTypeFromName(sObjectName, recordTypeName)?.getDeveloperName();
 	}
 
 	//RecordType DeveloperName SECTION
@@ -313,13 +354,14 @@ global inherited sharing class RecordTypes {
 	 * RecordTypes.getRecordTypeFromDevName('Account','Person_Account')
 	 */
 	global static Schema.RecordTypeInfo getRecordTypeFromDevName(String objectName, String recordTypeDevName) {
+		String sObjectName = objectName.toLowerCase();
 		// make sure we have this sObject's record types mapped
-		if (!recordTypesByDevName.containsKey(objectName)) {
-			fillMapsForObject(objectName);
+		if (!recordTypesByDevName.containsKey(sObjectName)) {
+			fillMapsForObject(sObjectName);
 		}
 
 		// now grab and return the requested object
-		Map<String, Schema.RecordTypeInfo> rtMap = recordTypesByDevName.get(objectName);
+		Map<String, Schema.RecordTypeInfo> rtMap = recordTypesByDevName.get(sObjectName);
 		if (rtMap != null && rtMap.containsKey(recordTypeDevName)) {
 			return rtMap.get(recordTypeDevName);
 		} else {
@@ -337,7 +379,8 @@ global inherited sharing class RecordTypes {
 	 * RecordTypes.getRecordTypeNameFromDevName('Account','Person_Account')
 	 */
 	global static String getRecordTypeNameFromDevName(String objectName, String recordTypeDevName) {
-		return getRecordTypeFromDevName(objectName, recordTypeDevName)?.getName();
+		//String sObjectName = objectName.toLowerCase();
+		return getRecordTypeFromDevName(objectName?.toLowerCase(), recordTypeDevName?.toLowerCase())?.getName();
 	}
 
 	/**
@@ -351,7 +394,8 @@ global inherited sharing class RecordTypes {
 	 * RecordTypes.getRecordTypeIdFromDevName('Account','Person_Account')
 	 */
 	global static Id getRecordTypeIdFromDevName(String objectName, String recordTypeDevName) {
-		return getRecordTypeFromDevName(objectName, recordTypeDevName)?.getRecordTypeId();
+		String sObjectName = objectName.toLowerCase();
+		return getRecordTypeFromDevName(objectName?.toLowerCase(), recordTypeDevName?.toLowerCase())?.getRecordTypeId();
 	}
 
 	//RecordType Id SECTION
@@ -366,8 +410,8 @@ global inherited sharing class RecordTypes {
 	 * @return                `Schema.RecordTypeInfo` RecordTypeInfo object
 	 */
 	global static Schema.RecordTypeInfo getRecordTypeFromId(Id recordTypeId) {
-		String objectName = recordTypesIdMap.get(recordTypeId).SobjectType;
-		return getRecordTypeFromId(objectName, recordTypeId);
+		String sObjectName = recordTypesIdMap.get(recordTypeId).SobjectType.toLowerCase();
+		return getRecordTypeFromId(sObjectName, recordTypeId);
 	}
 
 	/**
@@ -378,13 +422,14 @@ global inherited sharing class RecordTypes {
 	 * @return                `Schema.RecordTypeInfo` RecordTypeInfo object
 	 */
 	global static Schema.RecordTypeInfo getRecordTypeFromId(String objectName, Id recordTypeId) {
+		String sObjectName = objectName.toLowerCase();
 		// make sure we have this sObject's record types mapped
-		if (!recordTypesById.containsKey(objectName)) {
-			fillMapsForObject(objectName);
+		if (!recordTypesById.containsKey(sObjectName)) {
+			fillMapsForObject(sObjectName);
 		}
 
 		// now grab and return the requested object
-		Map<Id, Schema.RecordTypeInfo> rtMap = recordTypesById.get(objectName);
+		Map<Id, Schema.RecordTypeInfo> rtMap = recordTypesById.get(sObjectName);
 		if (rtMap != null && rtMap.containsKey(recordTypeId)) {
 			return rtMap.get(recordTypeId);
 		} else {
@@ -400,7 +445,8 @@ global inherited sharing class RecordTypes {
 	 * @return                RecordType Name
 	 */
 	global static String getRecordTypeNameFromId(String objectName, Id recordTypeId) {
-		return getRecordTypeFromId(objectName, recordTypeId)?.getName();
+		String sObjectName = objectName.toLowerCase();
+		return getRecordTypeFromId(sObjectName, recordTypeId)?.getName();
 	}
 
 	/**
@@ -413,7 +459,8 @@ global inherited sharing class RecordTypes {
 	 * @see getRecordTypeDevNameFromId[1]
 	 */
 	global static String getRecordTypeDevNameFromId(String objectName, Id recordTypeId) {
-		return getRecordTypeFromId(objectName, recordTypeId)?.getDeveloperName();
+		String sObjectName = objectName.toLowerCase();
+		return getRecordTypeFromId(sObjectName, recordTypeId)?.getDeveloperName();
 	}
 
 	/**
@@ -427,19 +474,21 @@ global inherited sharing class RecordTypes {
 	 * getRecordTypeIdSetFromDevNames('Account', rtNames);
 	 */
 	global static Set<Id> getRecordTypeIdSetFromDevNames(String objectName, Set<String> recordTypeDevNameSet) {
+		String sObjectName = objectName.toLowerCase();
 		Set<Id> recordTypeIds = new Set<Id>();
+		Set<String> devNamesLowerCase = new Set<String>();
 
 		// make sure we have this sObject's record types mapped
-		if (!recordTypesByDevName.containsKey(objectName)) {
-			fillMapsForObject(objectName);
+		if (!recordTypesByDevName.containsKey(sObjectName)) {
+			fillMapsForObject(sObjectName);
 		}
 
 		// fill the id set from the name set
-		if (recordTypesByName.containsKey(objectName)) {
-			Map<String, Schema.RecordTypeInfo> rtMap = recordTypesByDevName.get(objectName);
+		if (recordTypesByName.containsKey(sObjectName)) {
+			Map<String, Schema.RecordTypeInfo> rtMap = recordTypesByDevName.get(sObjectName);
 			for (String recTypeDevName : recordTypeDevNameSet) {
-				if (rtMap.containsKey(recTypeDevName)) {
-					recordTypeIds.add(rtMap.get(recTypeDevName).getRecordTypeId());
+				if (rtMap.containsKey(recTypeDevName.toLowerCase())) {
+					recordTypeIds.add(rtMap.get(recTypeDevName.toLowerCase()).getRecordTypeId());
 				}
 			}
 		}
@@ -453,15 +502,16 @@ global inherited sharing class RecordTypes {
 	 * @return                `Map<String, Id>` Map<recordTypeDevName, RecordType Id>
 	 */
 	global static Map<String, Id> getRecordTypeDevNameIdMap(String objectName) {
+		String sObjectName = objectName.toLowerCase();
 		Map<String, Id> recordTypeMap = new Map<String, Id>();
 		// make sure we have this sObject's record types mapped
-		if (!recordTypesByName.containsKey(objectName)) {
-			fillMapsForObject(objectName);
+		if (!recordTypesByName.containsKey(sObjectName)) {
+			fillMapsForObject(sObjectName);
 		}
 
 		// fill the name to id map
-		if (recordTypesByDevName.containsKey(objectName)) {
-			Map<String, Schema.RecordTypeInfo> rtMap = recordTypesByDevName.get(objectName);
+		if (recordTypesByDevName.containsKey(sObjectName)) {
+			Map<String, Schema.RecordTypeInfo> rtMap = recordTypesByDevName.get(sObjectName);
 			for (recordTypeInfo rti : rtMap.values()) {
 				if (!rti.isMaster()) {
 					recordTypeMap.put(rti.getDeveloperName(), rti.getRecordTypeId());
@@ -478,15 +528,16 @@ global inherited sharing class RecordTypes {
 	 * @return                `Map<String, Id>` Map<RecordType Name, RecordType Id>
 	 */
 	global static Map<String, Id> getRecordTypeNameIdMap(String objectName) {
+		String sObjectName = objectName.toLowerCase();
 		Map<String, Id> recordTypeMap = new Map<String, Id>();
 		// make sure we have this sObject's record types mapped
-		if (!recordTypesByName.containsKey(objectName)) {
-			fillMapsForObject(objectName);
+		if (!recordTypesByName.containsKey(sObjectName)) {
+			fillMapsForObject(sObjectName);
 		}
 
 		// fill the name to id map
-		if (recordTypesByName.containsKey(objectName)) {
-			Map<String, Schema.RecordTypeInfo> rtMap = recordTypesByName.get(objectName);
+		if (recordTypesByName.containsKey(sObjectName)) {
+			Map<String, Schema.RecordTypeInfo> rtMap = recordTypesByName.get(sObjectName);
 			for (Schema.RecordTypeInfo rti : rtMap.values()) {
 				if (!rti.isMaster()) {
 					recordTypeMap.put(rti.getName(), rti.getRecordTypeId());
@@ -505,15 +556,16 @@ global inherited sharing class RecordTypes {
 	 * @return                `Map<String, Id>` Map<RecordType Name, RecordType Id>
 	 */
 	global static Map<String, Id> getAvailableRecordTypeDevNameIdMap(String objectName) {
+		String sObjectName = objectName.toLowerCase();
 		Map<String, Id> recordTypeMap = new Map<String, Id>();
 		// make sure we have this sObject's record types mapped
-		if (!recordTypesByName.containsKey(objectName)) {
-			fillMapsForObject(objectName);
+		if (!recordTypesByName.containsKey(sObjectName)) {
+			fillMapsForObject(sObjectName);
 		}
 
 		// fill the devname to id map
-		if (availableRecordTypesMap.containsKey(objectName)) {
-			for (Schema.RecordTypeInfo rti : availableRecordTypesMap.get(objectName)) {
+		if (availableRecordTypesMap.containsKey(sObjectName)) {
+			for (Schema.RecordTypeInfo rti : availableRecordTypesMap.get(sObjectName)) {
 				// requires permission set to cover in package tests because cannot add record type
 				// to a profile when creating a scratch org
 				recordTypeMap.put(rti.getDeveloperName(), rti.getRecordTypeId());
@@ -531,7 +583,8 @@ global inherited sharing class RecordTypes {
 	 * @return                `Set<Id>` Map<RecordType Name, RecordType Id>
 	 */
 	global static Set<Id> getAvailableRecordTypesIdSet(String objectName) {
-		return new Set<Id>(getAvailableRecordTypeNameIdMap(objectName).values());
+		String sObjectName = objectName.toLowerCase();
+		return new Set<Id>(getAvailableRecordTypeNameIdMap(sObjectName).values());
 	}
 
 	/**
@@ -543,15 +596,16 @@ global inherited sharing class RecordTypes {
 	 * @return                `Map<String, Id>` Map<RecordType Name, RecordType Id>
 	 */
 	global static Map<String, Id> getAvailableRecordTypeNameIdMap(String objectName) {
+		String sObjectName = objectName.toLowerCase();
 		Map<String, Id> recordTypeMap = new Map<String, Id>();
 		// make sure we have this sObject's record types mapped
-		if (!recordTypesByName.containsKey(objectName)) {
-			fillMapsForObject(objectName);
+		if (!recordTypesByName.containsKey(sObjectName)) {
+			fillMapsForObject(sObjectName);
 		}
 
 		// fill the name to id map
-		if (availableRecordTypesMap.containsKey(objectName)) {
-			for (Schema.RecordTypeInfo rti : availableRecordTypesMap.get(objectName)) {
+		if (availableRecordTypesMap.containsKey(sObjectName)) {
+			for (Schema.RecordTypeInfo rti : availableRecordTypesMap.get(sObjectName)) {
 				// requires permission set to cover in package tests because cannot add record type
 				// to a profile when creating a scratch org
 				recordTypeMap.put(rti.getName(), rti.getRecordTypeId());
@@ -598,17 +652,19 @@ global inherited sharing class RecordTypes {
 	 * System.SelectOption[value="<SFID>", label="Inactive", disabled="true"]
 	 */
 	global static List<SelectOption> getAvailableRecordTypesForSelectList(String objectName) {
+		String sObjectName = objectName.toLowerCase();
 		List<SelectOption> recordTypesOptions = new List<SelectOption>();
-		Map<String, Id> availRecordTypes = getAvailableRecordTypeNameIdMap(objectName); // never null. Can be empty.
+		Map<String, Id> availRecordTypes = getAvailableRecordTypeNameIdMap(sObjectName); // never null. Can be empty.
 		/* if (availRecordTypes == null) {
 			return recordTypesOptions;
 		} */
 		for (String thisRecordType : availRecordTypes.keyset()) {
 			recordTypesOptions.add(new SelectOption(availRecordTypes.get(thisRecordType), thisRecordType));
 		}
-		if (recordTypesOptions.isEmpty() && gd.containsKey(objectName)) {
-			String defaultRTName = defaultRecordTypes.get(objectName)?.getName();
-			defaultRTName = defaultRTName == null ? '' : '--' + defaultRecordTypes.get(objectName)?.getName() + '--';
+		if (recordTypesOptions.isEmpty() && sObjectDescribes.containsKey(sObjectName)) {
+			// check the object exists
+			String defaultRTName = defaultRecordTypes.get(sObjectName)?.getName();
+			defaultRTName = defaultRTName == null ? '' : '--' + defaultRecordTypes.get(sObjectName)?.getName() + '--';
 			recordTypesOptions.add(new SelectOption('', defaultRTName, false));
 		}
 		recordTypesOptions.sort();
@@ -623,7 +679,8 @@ global inherited sharing class RecordTypes {
 	 * @return            `List<SelectOption>` Visualforce SelectOption list
 	 */
 	global static List<SelectOption> getAllRecordTypesForSelectList(String objectName) {
-		return getAllRecordTypesForSelectList(objectName, true);
+		String sObjectName = objectName.toLowerCase();
+		return getAllRecordTypesForSelectList(sObjectName, true);
 	}
 	/**
 	 * @description Make a Visualforce picklist with ALL `RecordType` Names displayed and the `RecordType` Id as the value
@@ -634,11 +691,12 @@ global inherited sharing class RecordTypes {
 	 * @return            `List<SelectOption>` Visualforce SelectOption list
 	 */
 	global static List<SelectOption> getAllRecordTypesForSelectList(String objectName, Boolean disableUnavailable) {
+		String sObjectName = objectName.toLowerCase();
 		List<SelectOption> recordTypesOptions = new List<SelectOption>();
-		if (!allRecordTypes.containsKey(objectName)) {
-			fillMapsForObject(objectName);
+		if (!allRecordTypes.containsKey(sObjectName)) {
+			fillMapsForObject(sObjectName);
 		}
-		List<Schema.RecordTypeInfo> recordTypes = allRecordTypes.get(objectName);
+		List<Schema.RecordTypeInfo> recordTypes = allRecordTypes.get(sObjectName);
 		Boolean hasAvailableRT = false;
 		if (recordTypes == null) {
 			return recordTypesOptions;
@@ -649,9 +707,9 @@ global inherited sharing class RecordTypes {
 				hasAvailableRT = true;
 			}
 		}
-		if (recordTypesOptions.isEmpty() || (disableUnavailable && !hasAvailableRT && gd.containsKey(objectName))) {
-			String defaultRTName = defaultRecordTypes?.get(objectName)?.getName();
-			defaultRTName = defaultRTName == null ? '' : '--' + defaultRecordTypes?.get(objectName)?.getName() + '--';
+		if (recordTypesOptions.isEmpty() || (disableUnavailable && !hasAvailableRT && gd.containsKey(sObjectName))) {
+			String defaultRTName = defaultRecordTypes?.get(sObjectName)?.getName();
+			defaultRTName = defaultRTName == null ? '' : '--' + defaultRecordTypes?.get(sObjectName)?.getName() + '--';
 			recordTypesOptions.add(new SelectOption('', defaultRTName, false));
 		}
 		recordTypesOptions.sort();
@@ -665,8 +723,9 @@ global inherited sharing class RecordTypes {
 	 * @return            `List<SelectOption>` Visualforce SelectOption list
 	 */
 	global static List<SelectOption> getStringRecordTypesForSelectList(String objectName) {
+		String sObjectName = objectName.toLowerCase();
 		List<SelectOption> recordTypesOptions = new List<SelectOption>();
-		Map<String, Id> availRecordTypes = getAvailableRecordTypeNameIdMap(objectName);
+		Map<String, Id> availRecordTypes = getAvailableRecordTypeNameIdMap(sObjectName);
 		/* if (availRecordTypes == null) {
 			return recordTypesOptions;
 		} */
@@ -685,11 +744,13 @@ global inherited sharing class RecordTypes {
 	 * @return                  `Boolean` Is this Record Type available to the running user?
 	 */
 	public static Boolean isRecordTypeAvailable(String objectName, String recordTypeDevName) {
-		if (!recordTypesByName.containsKey(objectName)) {
-			fillMapsForObject(objectName);
+		String sObjectName = objectName.toLowerCase();
+		if (!recordTypesByName.containsKey(sObjectName)) {
+			fillMapsForObject(sObjectName);
 		}
-		Boolean isAvailableRT = getRecordTypeFromDevName(objectName, recordTypeDevName)?.isAvailable();
-		return isAvailableRT == null ? false : isAvailableRT;
+		Boolean isAvailableRT = getRecordTypeFromDevName(sObjectName, recordTypeDevName)?.isAvailable();
+		return isAvailableRT ?? false;
+		//return isAvailableRT == null ? false : isAvailableRT;
 	}
 
 	/**
@@ -700,11 +761,33 @@ global inherited sharing class RecordTypes {
 	 * @return                  `Boolean` Is this Record Type the default for the running user?
 	 */
 	public static Boolean isRecordTypeDefault(String objectName, String recordTypeDevName) {
-		if (!recordTypesByName.containsKey(objectName)) {
-			fillMapsForObject(objectName);
+		String sObjectName = objectName.toLowerCase();
+		if (!recordTypesByName.containsKey(sObjectName)) {
+			fillMapsForObject(sObjectName);
 		}
-		Boolean isDefultMapping = getRecordTypeFromDevName(objectName, recordTypeDevName)?.isDefaultRecordTypeMapping();
-		return isDefultMapping == null ? false : isDefultMapping;
+		Boolean isDefultMapping = getRecordTypeFromDevName(sObjectName, recordTypeDevName)?.isDefaultRecordTypeMapping();
+		return isDefultMapping ?? false;
+		//return isDefultMapping == null ? false : isDefultMapping;
+	}
+
+	private class RTInfoWrapper {
+		private String developerName;
+		private String name;
+		private Id recordTypeId;
+		private Boolean active;
+		private Boolean available;
+		private Boolean isDefault;
+		private Boolean master;
+
+		public RTInfoWrapper(Schema.RecordTypeInfo rti) {
+			this.developerName = rti.getDeveloperName();
+			this.name = rti.getName();
+			this.recordTypeId = rti.getRecordTypeId();
+			this.active = rti.isActive();
+			this.available = rti.isAvailable();
+			this.isDefault = rti.isDefaultRecordTypeMapping();
+			this.master = rti.isMaster();
+		}
 	}
 
 	/**

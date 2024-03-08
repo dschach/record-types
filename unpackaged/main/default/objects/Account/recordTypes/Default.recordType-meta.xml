@@ -2,6 +2,7 @@
 <RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Default</fullName>
     <active>true</active>
+    <description>Package record type for record-types testing</description>
     <label>Default</label>
     <picklistValues>
         <picklist>AccountSource</picklist>

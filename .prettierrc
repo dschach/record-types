@@ -16,6 +16,14 @@
 			"options": { "parser": "html" }
 		},
 		{
+			"files": "*.{cls,trigger}",
+			"options": { "parser": "apex", "tabWidth": 2, "useTabs": true }
+		},
+		{
+			"files": "*.{apex,soql}",
+			"options": { "parser": "anonymous-apex" }
+		},
+		{
 			"files": "*.{yaml,yml}",
 			"options": { "useTabs": false, "tabWidth": 2, "singleQuote": true }
 		},

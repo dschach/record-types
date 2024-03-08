@@ -6,6 +6,7 @@
  * @author {@link [David Schach](https://github.com/dschach)}
  * @since  2021 Various enhancements and updates to use new Apex methods
  * @since  2023 Addition of methods to handle no profile-based RT permissions with permissions via permission set
+ * @since  2024 Check for case insensitivity
  * @group RecordTypes
  * @see RecordTypes
  */
@@ -108,6 +109,50 @@ private class RecordTypesTest {
 	}
 
 	/**
+	 * @description Test against account, an object with record types in package testing
+	 * @author Evan Callahan
+	 */
+	@IsTest
+	private static void testAccountRecTypesCaseInsensitive() {
+		//Test with account
+
+		Assert.isNotNull(RecordTypes.getRecordTypesForObject('account'), 'A real sobject should have at least Master record type');
+		Assert.isNull(RecordTypes.getRecordTypeIdFromName('account', 'BogusRT'), 'BogusRT record type should not exist');
+		Assert.isNull(RecordTypes.getRecordTypeDevNameFromName('account', 'BogusRT'), 'BogusRT record type should not exist');
+
+		Assert.isNull(RecordTypes.getRecordTypeNameFromDevName('account', 'BogusRT'), 'BogusRT record type should not exist');
+		Assert.isNull(RecordTypes.getRecordTypeIdFromDevName('account', 'BogusRT'), 'BogusRT record type should not exist');
+
+		Assert.isNull(RecordTypes.getRecordTypeNameFromId('account', null), 'Null record type should not exist');
+		Assert.isNull(RecordTypes.getRecordTypeDevNameFromId('account', null), 'Null record type should not exist');
+
+		Assert.isNull(RecordTypes.getRecordTypeIdFromDevName('account', 'BogusRT'), 'BogusRT record type should not exist');
+		Assert.isNull(RecordTypes.getRecordTypeIdFromName('account', 'BogusRT'), 'BogusRT record type should not exist');
+
+		Assert.isNotNull(RecordTypes.getDefaultRecordTypeName('account'), 'A real sobject should have at least Master record type');
+		Assert.isNotNull(RecordTypes.getDefaultRecordTypeDevName('account'), 'A real sobject should have at least Master record type');
+
+		Assert.isNotNull(RecordTypes.getRecordTypeDevNameIdMap('account'), 'A real sobject should return at least an empty map');
+
+		Assert.isNotNull(
+			RecordTypes.getAvailableRecordTypeDevNameIdMap('account'),
+			'Should return at least an empty map, and populated one if we have record types for account.'
+		);
+		Assert.isNotNull(
+			RecordTypes.getAvailableRecordTypeNameIdMap('account'),
+			'Should return at least an empty map, and a populated one if we have record types for account.'
+		);
+
+		Assert.isNotNull(
+			RecordTypes.getAvailableRecordTypesIdSet('account'),
+			'Should return at least an empty map, and populated one if we have record types for account.'
+		);
+
+		resetTest();
+		Assert.isFalse(RecordTypes.getAllRecordTypesForSelectList('account').isEmpty(), 'Should return at least single item select list');
+	}
+
+	/**
 	 * @description Test against Solution, an object likely to have no record types
 	 * @author Evan Callahan
 	 * @author {@link [David Schach](https://github.com/dschach)}
@@ -156,6 +201,16 @@ private class RecordTypesTest {
 	@IsTest
 	private static void testAccountRecordTypes() {
 		Assert.isTrue(testSObjectRecordTypeReturns('Account'), 'Test failure checking Account');
+	}
+
+	/**
+	 * @description Separate method for checking if we have Account record type, and then testing that
+	 * @author {@link [David Schach](https://github.com/dschach)}
+	 * @see testSObjectRecordTypeReturns
+	 */
+	@IsTest
+	private static void testAccountRecordTypesLowercase() {
+		Assert.isTrue(testSObjectRecordTypeReturns('account'), 'Test failure checking account (object name lowercase)');
 	}
 
 	/**
