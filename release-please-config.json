@@ -2,7 +2,7 @@
 	"packages": {
 		".": {
 			"changelog-path": "CHANGELOG.md",
-			"release-type": "salesforce",
+			"release-type": "sfdx",
 			"bump-minor-pre-major": false,
 			"bump-patch-for-minor-pre-major": false,
 			"draft": false,
