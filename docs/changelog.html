@@ -38,24 +38,24 @@
 						</summary>
 						<ul>
 							<!-- menu items -->
-							<li title="RecordTypes" id="item-RecordTypes" class="nav-item class global" onclick="goToLocation('RecordTypes.html');">
+							<li title="RecordTypes" id="item-RecordTypes" class="nav-item class" onclick="goToLocation('RecordTypes.html');">
 								<a tabindex="1" href="javascript:void(0)">RecordTypes</a>
 							</li>
-							<li title="RecordTypesTest" id="item-RecordTypesTest" class="nav-item class private" onclick="goToLocation('RecordTypesTest.html');">
+							<li title="RecordTypesTest" id="item-RecordTypesTest" class="nav-item class" onclick="goToLocation('RecordTypesTest.html');">
 								<a tabindex="1" href="javascript:void(0)">RecordTypesTest</a>
 							</li>
 						</ul>
 					</details>
-					<details id="SelectListTests" class="group-name">
-						<summary id="header-SelectListTests" class="nav-header">
-							<span>SelectListTests</span>
+					<details id="Unpackaged_Tests" class="group-name">
+						<summary id="header-Unpackaged_Tests" class="nav-header">
+							<span>Unpackaged Tests</span>
 						</summary>
 						<ul>
 							<!-- menu items -->
 							<li
 								title="SelectListsController"
 								id="item-SelectListsController"
-								class="nav-item class public"
+								class="nav-item class"
 								onclick="goToLocation('SelectListsController.html');"
 							>
 								<a tabindex="1" href="javascript:void(0)">SelectListsController</a>
@@ -63,10 +63,18 @@
 							<li
 								title="SelectListsControllerTest"
 								id="item-SelectListsControllerTest"
-								class="nav-item class public"
+								class="nav-item class"
 								onclick="goToLocation('SelectListsControllerTest.html');"
 							>
 								<a tabindex="1" href="javascript:void(0)">SelectListsControllerTest</a>
+							</li>
+							<li
+								title="UnpackagedRecordTypesTest"
+								id="item-UnpackagedRecordTypesTest"
+								class="nav-item class"
+								onclick="goToLocation('UnpackagedRecordTypesTest.html');"
+							>
+								<a tabindex="1" href="javascript:void(0)">UnpackagedRecordTypesTest</a>
 							</li>
 						</ul>
 					</details>
@@ -97,6 +105,108 @@
 				<td class="doc-page">
 					<link href="assets/styling.css" rel="stylesheet" />
 					<h1>Changelog</h1>
+					<h2>
+						<a href="https://github.com/dschach/record-types/compare/record-types-v1.4.0...record-types-v1.5.0">1.5.0</a>
+						(2024-02-15)
+					</h2>
+					<h3>Features</h3>
+					<ul>
+						<li>
+							Update SelectList methods - all and available (
+							<a href="https://github.com/dschach/record-types/commit/f9b981272bb5e8e71698873f81bc02333ebcb950">f9b9812</a>
+							)
+						</li>
+					</ul>
+					<h3>Chores</h3>
+					<ul>
+						<li>
+							Release package v1.5.0 (
+							<a href="https://github.com/dschach/record-types/issues/133">#133</a>
+							) (
+							<a href="https://github.com/dschach/record-types/commit/f9b981272bb5e8e71698873f81bc02333ebcb950">f9b9812</a>
+							)
+						</li>
+						<li>
+							Release package version 1.4.0 (
+							<a href="https://github.com/dschach/record-types/issues/81">#81</a>
+							) (
+							<a href="https://github.com/dschach/record-types/commit/46463a7489a31bde1405def49c655d4eea1c9035">46463a7</a>
+							)
+						</li>
+						<li>
+							Renumber to release 1.5.0 (
+							<a href="https://github.com/dschach/record-types/commit/03f679466eec7873f435411d15fb38a01ceb1c6c">03f6794</a>
+							)
+						</li>
+					</ul>
+					<h3>Documentation</h3>
+					<ul>
+						<li>
+							ApexDox css files cleanup (
+							<a href="https://github.com/dschach/record-types/commit/f9b981272bb5e8e71698873f81bc02333ebcb950">f9b9812</a>
+							)
+						</li>
+						<li>
+							Include build section in changelogs (
+							<a href="https://github.com/dschach/record-types/commit/a9faa41758172188f7ef66a06b427e5cd5015369">a9faa41</a>
+							)
+						</li>
+						<li>
+							<strong>readme:</strong>
+							Fix deploy button images (
+							<a href="https://github.com/dschach/record-types/commit/d3717fc4f665a6e51f9f940d5fbe392db629f9c1">d3717fc</a>
+							)
+						</li>
+						<li>
+							<strong>readme:</strong>
+							Update method tables (
+							<a href="https://github.com/dschach/record-types/commit/8b123c33e4a818f4c630e7cc6beb7a7205781386">8b123c3</a>
+							)
+						</li>
+						<li>
+							Update ApexDox (
+							<a href="https://github.com/dschach/record-types/commit/f9b981272bb5e8e71698873f81bc02333ebcb950">f9b9812</a>
+							)
+						</li>
+						<li>
+							Update method tables (
+							<a href="https://github.com/dschach/record-types/commit/f9b981272bb5e8e71698873f81bc02333ebcb950">f9b9812</a>
+							)
+						</li>
+					</ul>
+					<h3>Tests</h3>
+					<ul>
+						<li>
+							Enhance testing for with/without record types (
+							<a href="https://github.com/dschach/record-types/commit/f9b981272bb5e8e71698873f81bc02333ebcb950">f9b9812</a>
+							)
+						</li>
+						<li>
+							Include unpackaged SelectList test page (
+							<a href="https://github.com/dschach/record-types/commit/f9b981272bb5e8e71698873f81bc02333ebcb950">f9b9812</a>
+							)
+						</li>
+					</ul>
+					<h3>Styles</h3>
+					<ul>
+						<li>
+							<strong>Prettier:</strong>
+							Update Prettier config file (
+							<a href="https://github.com/dschach/record-types/commit/f9b981272bb5e8e71698873f81bc02333ebcb950">f9b9812</a>
+							)
+						</li>
+						<li>
+							<strong>prettier:</strong>
+							Update prettier config to single quotes (
+							<a href="https://github.com/dschach/record-types/commit/078fe29d5ac7972da8e63154d7e1a72c054b73e3">078fe29</a>
+							)
+						</li>
+						<li>
+							Run prettier on all files (
+							<a href="https://github.com/dschach/record-types/commit/bbff33cd07e1e35a44d4f6fdf668cb4c15160945">bbff33c</a>
+							)
+						</li>
+					</ul>
 					<h2>
 						<a href="https://github.com/dschach/record-types/compare/record-types-v1.3.0...record-types-v1.4.0">1.4.0</a>
 						(2023-09-17)

@@ -1,7 +1,7 @@
 /**
  * @description Class for testing `RecordTypes` picklist methods
  * <br>NOT included in the unlocked package
- * @group SelectListTests
+ * @group Unpackaged Tests
  *
  * @author      David Schach
  * @since       2024
