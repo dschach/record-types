@@ -1,7 +1,7 @@
 /**
  * @description Test class for SelectListController
  * <br>NOT included in the unlocked package
- * @group SelectListTests
+ * @group Unpackaged Tests
  *
  * @author      David Schach
  * @since       2024

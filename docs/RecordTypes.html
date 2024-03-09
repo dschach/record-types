@@ -38,24 +38,24 @@
 						</summary>
 						<ul>
 							<!-- menu items -->
-							<li title="RecordTypes" id="item-RecordTypes" class="nav-item class global" onclick="goToLocation('RecordTypes.html');">
+							<li title="RecordTypes" id="item-RecordTypes" class="nav-item class" onclick="goToLocation('RecordTypes.html');">
 								<a tabindex="1" href="javascript:void(0)">RecordTypes</a>
 							</li>
-							<li title="RecordTypesTest" id="item-RecordTypesTest" class="nav-item class private" onclick="goToLocation('RecordTypesTest.html');">
+							<li title="RecordTypesTest" id="item-RecordTypesTest" class="nav-item class" onclick="goToLocation('RecordTypesTest.html');">
 								<a tabindex="1" href="javascript:void(0)">RecordTypesTest</a>
 							</li>
 						</ul>
 					</details>
-					<details id="SelectListTests" class="group-name">
-						<summary id="header-SelectListTests" class="nav-header">
-							<span>SelectListTests</span>
+					<details id="Unpackaged_Tests" class="group-name">
+						<summary id="header-Unpackaged_Tests" class="nav-header">
+							<span>Unpackaged Tests</span>
 						</summary>
 						<ul>
 							<!-- menu items -->
 							<li
 								title="SelectListsController"
 								id="item-SelectListsController"
-								class="nav-item class public"
+								class="nav-item class"
 								onclick="goToLocation('SelectListsController.html');"
 							>
 								<a tabindex="1" href="javascript:void(0)">SelectListsController</a>
@@ -63,10 +63,18 @@
 							<li
 								title="SelectListsControllerTest"
 								id="item-SelectListsControllerTest"
-								class="nav-item class public"
+								class="nav-item class"
 								onclick="goToLocation('SelectListsControllerTest.html');"
 							>
 								<a tabindex="1" href="javascript:void(0)">SelectListsControllerTest</a>
+							</li>
+							<li
+								title="UnpackagedRecordTypesTest"
+								id="item-UnpackagedRecordTypesTest"
+								class="nav-item class"
+								onclick="goToLocation('UnpackagedRecordTypesTest.html');"
+							>
+								<a tabindex="1" href="javascript:void(0)">UnpackagedRecordTypesTest</a>
 							</li>
 						</ul>
 					</details>
@@ -112,9 +120,9 @@
 								This class is allows for easy, readable access to Record Type information from other classes.
 								<br />
 								<br />
-								Written by Evan Callahan, copyright &amp;copy; 2010 Groundwire
+								Written by Evan Callahan, copyright 2010 Groundwire
 								<br />
-								Updated by David Schach, copyright &amp;copy; 2021 X-Squared on Demand
+								Updated by David Schach, copyright 2021-2024 X-Squared on Demand
 								<br />
 								<br />
 								This program is released under the GNU General Public License. http://www.gnu.org/licenses/
@@ -128,15 +136,17 @@
 								reduce the calls that are made, making the total transaction more efficient.
 								<br />
 								<br />
-								Usage recommendation: Always use DeveloperName instead of Name, as this is more likely to be hard-coded in places, while the Name is
-								actually a label and may change (especially due to user language).
+								Usage recommendation:
+								<strong>Always use DeveloperName instead of Name</strong>
+								, as this is more likely to be hard-coded in places, while the Name is actually a label and may change (especially due to user
+								language).
 								<br />
 								An easy-to-read table with the various methods, their inputs, and their outputs is available at
-								<a target="_blank" rel="noopener noreferrer" href="https://dschach.github.io/record-types/index.html">RecordTypesHome</a>
+								<a target="_blank" rel="noopener noreferrer" href="https://dschach.github.io/record-types/">Record Types</a>
 								<br />
 								LICENSE
 								<br />
-								Copyright &amp;copy; Evan Callahan &amp; David Schach
+								Copyright Evan Callahan &amp; David Schach
 								<br />
 								This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published
 								by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
@@ -188,7 +198,7 @@
 
 									<th>Description</th>
 								</tr>
-								<tr class="property private">
+								<tr class="property">
 									<td class="attribute-name">
 										<a
 											target="_blank"
@@ -204,9 +214,9 @@
 										<div class="attribute-signature">private static Map&lt;String, List&lt;Schema.RecordTypeInfo&gt;&gt; allRecordTypes</div>
 									</td>
 
-									<td class="attribute-description">map of all Record Types by sObject name, including inactive and unavailable</td>
+									<td class="attribute-description">map of all Record Types by sObject name (lowercase), including inactive and unavailable</td>
 								</tr>
-								<tr class="property private">
+								<tr class="property">
 									<td class="attribute-name">
 										<a
 											target="_blank"
@@ -224,7 +234,7 @@
 
 									<td class="attribute-description">List of available (to the running user) Record Type Info sObjects</td>
 								</tr>
-								<tr class="property private">
+								<tr class="property">
 									<td class="attribute-name">
 										<a
 											target="_blank"
@@ -246,7 +256,7 @@
 										Ids for the running user
 									</td>
 								</tr>
-								<tr class="property private">
+								<tr class="property">
 									<td class="attribute-name">
 										<a
 											target="_blank"
@@ -268,25 +278,7 @@
 										object for that object
 									</td>
 								</tr>
-								<tr class="property private">
-									<td class="attribute-name">
-										<a
-											target="_blank"
-											rel="noopener noreferrer"
-											title="Go to source"
-											class="source-link"
-											href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L46"
-										>
-											gd
-										</a>
-									</td>
-									<td>
-										<div class="attribute-signature">private static Map&lt;String, Schema.SObjectType&gt; gd</div>
-									</td>
-
-									<td class="attribute-description">Global schema describe</td>
-								</tr>
-								<tr class="property private">
+								<tr class="property">
 									<td class="attribute-name">
 										<a
 											target="_blank"
@@ -304,9 +296,9 @@
 										</div>
 									</td>
 
-									<td class="attribute-description">Map of Record Types by sObject name, then by DeveloperName</td>
+									<td class="attribute-description">Map of Record Types by sObject name (lowercase), then by DeveloperName</td>
 								</tr>
-								<tr class="property private">
+								<tr class="property">
 									<td class="attribute-name">
 										<a
 											target="_blank"
@@ -322,9 +314,9 @@
 										<div class="attribute-signature">private static Map&lt;String, Map&lt;Id, Schema.RecordTypeInfo&gt;&gt; recordTypesById</div>
 									</td>
 
-									<td class="attribute-description">Map of Record Types by sObject name, then by Id</td>
+									<td class="attribute-description">Map of Record Types by sObject name (lowercase), then by Id</td>
 								</tr>
-								<tr class="property private">
+								<tr class="property">
 									<td class="attribute-name">
 										<a
 											target="_blank"
@@ -342,9 +334,9 @@
 										</div>
 									</td>
 
-									<td class="attribute-description">Map of Record Types by sObject name, then by Name</td>
+									<td class="attribute-description">Map of Record Types by sObject name (lowercase), then by Name</td>
 								</tr>
-								<tr class="property private">
+								<tr class="property">
 									<td class="attribute-name">
 										<a
 											target="_blank"
@@ -365,6 +357,24 @@
 										<code class="code-inline">RecordType</code>
 										records by Id
 									</td>
+								</tr>
+								<tr class="property">
+									<td class="attribute-name">
+										<a
+											target="_blank"
+											rel="noopener noreferrer"
+											title="Go to source"
+											class="source-link"
+											href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L46"
+										>
+											sObjectDescribes
+										</a>
+									</td>
+									<td>
+										<div class="attribute-signature">private static Map&lt;String, Schema.DescribeSObjectResult&gt; sObjectDescribes</div>
+									</td>
+
+									<td class="attribute-description">Hold Sobject describe results as we need them</td>
 								</tr>
 							</table>
 						</div>
@@ -538,7 +548,11 @@
 									<li class="method global">
 										<a class="methods-toc__entry" href="#RecordTypes.getRecordTypeDevNameIdMap">getRecordTypeDevNameIdMap (objectName)</a>
 
-										<div class="methods-toc__description">Gives a map of all record type IDs by DeveloperName for an sObject</div>
+										<div class="methods-toc__description">
+											Gives a map of all record type IDs by DeveloperName for an sObject
+											<br />
+											Returns Master record type if no other RTs available
+										</div>
 									</li>
 									<li class="method global">
 										<a class="methods-toc__entry" href="#RecordTypes.getRecordTypeFromDevName">
@@ -727,7 +741,7 @@
 											rel="noopener noreferrer"
 											title="Go to source"
 											class="source-link"
-											href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L715"
+											href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L754"
 										>
 											clearMapsInTest()
 										</a>
@@ -780,7 +794,7 @@
 											rel="noopener noreferrer"
 											title="Go to source"
 											class="source-link"
-											href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L625"
+											href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L637"
 										>
 											getAllRecordTypesForSelectList(objectName)
 										</a>
@@ -821,7 +835,7 @@
 											rel="noopener noreferrer"
 											title="Go to source"
 											class="source-link"
-											href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L636"
+											href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L649"
 										>
 											getAllRecordTypesForSelectList(objectName, disableUnavailable)
 										</a>
@@ -874,7 +888,7 @@
 											rel="noopener noreferrer"
 											title="Go to source"
 											class="source-link"
-											href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L507"
+											href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L516"
 										>
 											getAvailableRecordTypeDevNameIdMap(objectName)
 										</a>
@@ -918,7 +932,7 @@
 											rel="noopener noreferrer"
 											title="Go to source"
 											class="source-link"
-											href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L545"
+											href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L556"
 										>
 											getAvailableRecordTypeNameIdMap(objectName)
 										</a>
@@ -960,7 +974,7 @@
 											rel="noopener noreferrer"
 											title="Go to source"
 											class="source-link"
-											href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L600"
+											href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L612"
 										>
 											getAvailableRecordTypesForSelectList(objectName)
 										</a>
@@ -1003,7 +1017,7 @@
 											rel="noopener noreferrer"
 											title="Go to source"
 											class="source-link"
-											href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L533"
+											href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L543"
 										>
 											getAvailableRecordTypesIdSet(objectName)
 										</a>
@@ -1045,7 +1059,7 @@
 											rel="noopener noreferrer"
 											title="Go to source"
 											class="source-link"
-											href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L142"
+											href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L154"
 										>
 											getDefaultRecordType(objectName)
 										</a>
@@ -1074,7 +1088,7 @@
 											rel="noopener noreferrer"
 											title="Go to source"
 											class="source-link"
-											href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L218"
+											href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L232"
 										>
 											getDefaultRecordTypeDevName(objectName)
 										</a>
@@ -1103,7 +1117,7 @@
 											rel="noopener noreferrer"
 											title="Go to source"
 											class="source-link"
-											href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L197"
+											href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L210"
 										>
 											getDefaultRecordTypeId(objectName)
 										</a>
@@ -1132,7 +1146,7 @@
 											rel="noopener noreferrer"
 											title="Go to source"
 											class="source-link"
-											href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L232"
+											href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L243"
 										>
 											getDefaultRecordTypeName(objectName)
 										</a>
@@ -1161,7 +1175,7 @@
 											rel="noopener noreferrer"
 											title="Go to source"
 											class="source-link"
-											href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L415"
+											href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L419"
 										>
 											getRecordTypeDevNameFromId(objectName, recordTypeId)
 										</a>
@@ -1214,7 +1228,7 @@
 											rel="noopener noreferrer"
 											title="Go to source"
 											class="source-link"
-											href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L583"
+											href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L595"
 										>
 											getRecordTypeDevNameFromId(recordTypeId)
 										</a>
@@ -1259,7 +1273,7 @@
 											rel="noopener noreferrer"
 											title="Go to source"
 											class="source-link"
-											href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L297"
+											href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L310"
 										>
 											getRecordTypeDevNameFromName(objectName, recordTypeName)
 										</a>
@@ -1313,12 +1327,16 @@
 											rel="noopener noreferrer"
 											title="Go to source"
 											class="source-link"
-											href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L455"
+											href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L462"
 										>
 											getRecordTypeDevNameIdMap(objectName)
 										</a>
 									</h4>
-									<div class="method-description">Gives a map of all record type IDs by DeveloperName for an sObject</div>
+									<div class="method-description">
+										Gives a map of all record type IDs by DeveloperName for an sObject
+										<br />
+										Returns Master record type if no other RTs available
+									</div>
 									<div class="method-subtitle">Signature</div>
 
 									<div class="method-signature">global static Map&lt;String, Id&gt; getRecordTypeDevNameIdMap(String objectName)</div>
@@ -1346,7 +1364,7 @@
 											rel="noopener noreferrer"
 											title="Go to source"
 											class="source-link"
-											href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L315"
+											href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L329"
 										>
 											getRecordTypeFromDevName(objectName, recordTypeDevName)
 										</a>
@@ -1398,7 +1416,7 @@
 											rel="noopener noreferrer"
 											title="Go to source"
 											class="source-link"
-											href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L368"
+											href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L377"
 										>
 											getRecordTypeFromId(recordTypeId)
 										</a>
@@ -1437,7 +1455,7 @@
 											rel="noopener noreferrer"
 											title="Go to source"
 											class="source-link"
-											href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L380"
+											href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L389"
 										>
 											getRecordTypeFromId(objectName, recordTypeId)
 										</a>
@@ -1482,7 +1500,7 @@
 											rel="noopener noreferrer"
 											title="Go to source"
 											class="source-link"
-											href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L256"
+											href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L263"
 										>
 											getRecordTypeFromName(objectName, recordTypeName)
 										</a>
@@ -1539,7 +1557,7 @@
 											rel="noopener noreferrer"
 											title="Go to source"
 											class="source-link"
-											href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L353"
+											href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L362"
 										>
 											getRecordTypeIdFromDevName(objectName, recordTypeDevName)
 										</a>
@@ -1588,7 +1606,7 @@
 											rel="noopener noreferrer"
 											title="Go to source"
 											class="source-link"
-											href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L282"
+											href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L293"
 										>
 											getRecordTypeIdFromName(objectName, recordTypeName)
 										</a>
@@ -1640,7 +1658,7 @@
 											rel="noopener noreferrer"
 											title="Go to source"
 											class="source-link"
-											href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L429"
+											href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L433"
 										>
 											getRecordTypeIdSetFromDevNames(objectName, recordTypeDevNameSet)
 										</a>
@@ -1692,7 +1710,7 @@
 											rel="noopener noreferrer"
 											title="Go to source"
 											class="source-link"
-											href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L339"
+											href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L348"
 										>
 											getRecordTypeNameFromDevName(objectName, recordTypeDevName)
 										</a>
@@ -1739,7 +1757,7 @@
 											rel="noopener noreferrer"
 											title="Go to source"
 											class="source-link"
-											href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L402"
+											href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L406"
 										>
 											getRecordTypeNameFromId(objectName, recordTypeId)
 										</a>
@@ -1781,7 +1799,7 @@
 											rel="noopener noreferrer"
 											title="Go to source"
 											class="source-link"
-											href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L570"
+											href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L582"
 										>
 											getRecordTypeNameFromId(recordTypeId)
 										</a>
@@ -1818,7 +1836,7 @@
 											rel="noopener noreferrer"
 											title="Go to source"
 											class="source-link"
-											href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L480"
+											href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L488"
 										>
 											getRecordTypeNameIdMap(objectName)
 										</a>
@@ -1853,7 +1871,7 @@
 											rel="noopener noreferrer"
 											title="Go to source"
 											class="source-link"
-											href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L174"
+											href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L187"
 										>
 											getRecordTypesForObject(objectName)
 										</a>
@@ -1894,7 +1912,7 @@
 											rel="noopener noreferrer"
 											title="Go to source"
 											class="source-link"
-											href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L667"
+											href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L683"
 										>
 											getStringRecordTypesForSelectList(objectName)
 										</a>
@@ -1931,7 +1949,7 @@
 											rel="noopener noreferrer"
 											title="Go to source"
 											class="source-link"
-											href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L687"
+											href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L704"
 										>
 											isRecordTypeAvailable(objectName, recordTypeDevName)
 										</a>
@@ -1971,7 +1989,7 @@
 											rel="noopener noreferrer"
 											title="Go to source"
 											class="source-link"
-											href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L702"
+											href="https://github.com/dschach/record-types/tree/main/force-app/main/default/classes/RecordTypes.cls#L720"
 										>
 											isRecordTypeDefault(objectName, recordTypeDevName)
 										</a>

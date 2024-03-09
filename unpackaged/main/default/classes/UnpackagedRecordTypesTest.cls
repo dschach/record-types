@@ -1,25 +1,12 @@
 /**
- * This class contains unit tests for validating the behavior of Apex classes
- * and triggers.
+ * @description Test unpackaged metadata to cover additional possibilities
  *
- * Unit tests are class methods that verify whether a particular piece
- * of code is working properly. Unit test methods take no arguments,
- * commit no data to the database, and are flagged with the testMethod
- * keyword in the method definition.
+ * @group Unpackaged Tests
  *
- * All test methods in an org are executed whenever Apex code is deployed
- * to a production org to confirm correctness, ensure code
- * coverage, and prevent regressions. All Apex classes are
- * required to have at least 75% code coverage in order to be deployed
- * to a production org. In addition, all triggers must have some code coverage.
- *
- * The @isTest class annotation indicates this class only contains test
- * methods. Classes defined with the @isTest annotation do not count against
- * the org size limit for all Apex scripts.
- *
- * See the Apex Language Reference for more information about Testing and Code Coverage.
+ * @author      David Schach
+ * @since       2024
  */
-@isTest
+@IsTest
 private class UnpackagedRecordTypesTest {
 	/**
 	 * @description Test against Account, an object with record types in package testing, but with lowercase RT name
@@ -94,6 +81,47 @@ private class UnpackagedRecordTypesTest {
 
 		Assert.isNotNull(RecordTypes.getRecordTypeIdFromDevName('Account', 'default'), 'default record type should exist');
 		Assert.isNotNull(RecordTypes.getRecordTypeIdFromName('Account', 'default'), 'default record type should exist');
+	}
+
+	/**
+	 * @description Test against Solution, an object likely to have no record types
+	 * @author Evan Callahan
+	 * @author {@link [David Schach](https://github.com/dschach)}
+	 */
+	@IsTest
+	private static void testSolutionRecTypes() {
+		//Test with Solution
+		Assert.isNull(RecordTypes.getRecordTypeIdFromName('Solution', 'BogusRT'), 'BogusRT record type should not exist');
+
+		Assert.isNull(RecordTypes.getRecordTypeDevNameFromName('Solution', 'BogusRT'), 'BogusRT record type should not exist');
+
+		Assert.isNull(RecordTypes.getRecordTypeNameFromDevName('Solution', 'BogusRT'), 'BogusRT record type should not exist');
+		Assert.isNull(RecordTypes.getRecordTypeIdFromDevName('Solution', 'BogusRT'), 'BogusRT record type should not exist');
+
+		Assert.isNull(RecordTypes.getRecordTypeNameFromId('Solution', null), 'Null record type should not exist');
+		Assert.isNull(RecordTypes.getRecordTypeDevNameFromId('Solution', null), 'Null record type should not exist');
+
+		Assert.isNull(RecordTypes.getRecordTypeIdFromDevName('Solution', 'BogusRT'), 'BogusRT record type should not exist');
+		Assert.isNull(RecordTypes.getRecordTypeIdFromName('Solution', 'BogusRT'), 'BogusRT record type should not exist');
+
+		Assert.isNotNull(RecordTypes.getDefaultRecordTypeName('Solution'), 'A real sobject should have at least Master record type');
+		Assert.isNotNull(RecordTypes.getDefaultRecordTypeDevName('Solution'), 'A real sobject should have at least Master record type');
+		// For coverage, we are assuming that Solution has no record types
+		RecordTypes.getDefaultRecordTypeId('Solution');
+
+		Assert.isNotNull(RecordTypes.getRecordTypeDevNameIdMap('Solution'), 'a real sobject should return at least an empty map');
+
+		Assert.isNotNull(
+			RecordTypes.getAvailableRecordTypeDevNameIdMap('Solution'),
+			'Should return at least an empty map, and populated one if we have record types for Solution.'
+		);
+		Assert.isNotNull(
+			RecordTypes.getAvailableRecordTypeNameIdMap('Solution'),
+			'Should return at least an empty map, and populated one if we have record types for Solution.'
+		);
+
+		resetTest();
+		Assert.isFalse(RecordTypes.getAllRecordTypesForSelectList('Solution').isEmpty(), 'Should return at least a single item select list');
 	}
 
 	/**

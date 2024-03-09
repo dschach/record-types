@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<title>Record Types code documentation</title>
+		<meta charset="UTF-8" />
+		<script type="module" src="./assets/index.js"></script>
+		<script type="module" src="./assets/search-idx.js"></script>
+		<script type="module" src="./assets/search.js"></script>
+		<script charset="UTF-8" src="./assets/highlight.js"></script>
+		<script charset="UTF-8" src="./assets/mark.js"></script>
+		<script charset="UTF-8" src="./assets/lunr.js"></script>
+		<link rel="stylesheet" href="./assets/highlight.css" />
+		<link rel="stylesheet" type="text/css" href="./assets/index.css" />
+		<link rel="shortcut icon" type="image/png" href="./assets/favicon.png" />
+	</head>
+
+	<body>
+		<div id="side-bar">
+			<div id="logo-container">
+				<div class="title">Record Types code documentation</div>
+				<img src="assets/logo.png" />
+				<div class="subtitle">
+					Documentation for
+					<a target="_blank" rel="noopener noreferrer" href="https://github.com/dschach/record-types">RecordTypes Utilities</a>
+				</div>
+			</div>
+			<div id="search-wrapper">
+				<div class="search-icon"></div>
+				<input id="search-input" type="text" autocomplete="off" placeholder="Search..." />
+			</div>
+			<ul id="search-results" class=""></ul>
+			<div class="navbar">
+				<nav role="navigation">
+					<a class="nav-header" id="home" href="javascript:void(0)" onclick="goToLocation('index.html');">Home</a>
+					<details id="RecordTypes" class="group-name">
+						<summary id="header-RecordTypes" class="nav-header">
+							<span>RecordTypes</span>
+						</summary>
+						<ul>
+							<!-- menu items -->
+							<li title="RecordTypes" id="item-RecordTypes" class="nav-item class" onclick="goToLocation('RecordTypes.html');">
+								<a tabindex="1" href="javascript:void(0)">RecordTypes</a>
+							</li>
+							<li title="RecordTypesTest" id="item-RecordTypesTest" class="nav-item class" onclick="goToLocation('RecordTypesTest.html');">
+								<a tabindex="1" href="javascript:void(0)">RecordTypesTest</a>
+							</li>
+						</ul>
+					</details>
+					<details id="Unpackaged_Tests" class="group-name">
+						<summary id="header-Unpackaged_Tests" class="nav-header">
+							<span>Unpackaged Tests</span>
+						</summary>
+						<ul>
+							<!-- menu items -->
+							<li
+								title="SelectListsController"
+								id="item-SelectListsController"
+								class="nav-item class"
+								onclick="goToLocation('SelectListsController.html');"
+							>
+								<a tabindex="1" href="javascript:void(0)">SelectListsController</a>
+							</li>
+							<li
+								title="SelectListsControllerTest"
+								id="item-SelectListsControllerTest"
+								class="nav-item class"
+								onclick="goToLocation('SelectListsControllerTest.html');"
+							>
+								<a tabindex="1" href="javascript:void(0)">SelectListsControllerTest</a>
+							</li>
+							<li
+								title="UnpackagedRecordTypesTest"
+								id="item-UnpackagedRecordTypesTest"
+								class="nav-item class"
+								onclick="goToLocation('UnpackagedRecordTypesTest.html');"
+							>
+								<a tabindex="1" href="javascript:void(0)">UnpackagedRecordTypesTest</a>
+							</li>
+						</ul>
+					</details>
+				</nav>
+			</div>
+		</div>
+		<table id="content">
+			<tr>
+				<td class="scoping-panel">
+					Show:
+					<input type="checkbox" checked="true" id="cbx-all" onclick="toggleAllScopes(this.checked);" />
+					<label for="cbx-all">All</label>
+					&nbsp;&nbsp;
+					<input type="checkbox" checked="true" id="cbx-global" onclick="toggleScope('global', this.checked);" />
+					<label for="cbx-global">global</label>
+					&nbsp;&nbsp;
+					<input type="checkbox" checked="true" id="cbx-public" onclick="toggleScope('public', this.checked);" />
+					<label for="cbx-public">public</label>
+					&nbsp;&nbsp;
+					<input type="checkbox" checked="true" id="cbx-private" onclick="toggleScope('private', this.checked);" />
+					<label for="cbx-private">private</label>
+					&nbsp;&nbsp;
+					<input type="checkbox" checked="true" id="cbx-testmethod" onclick="toggleScope('testmethod', this.checked);" />
+					<label for="cbx-testmethod">testMethod</label>
+				</td>
+			</tr>
+			<tr>
+				<td class="doc-page">
+					<div class="section">
+						<h2 class="class-title top-level-type" id="UnpackagedRecordTypesTest">
+							<a
+								target="_blank"
+								rel="noopener noreferrer"
+								title="Go to source"
+								class="source-link"
+								href="https://github.com/dschach/record-types/tree/main/unpackaged/main/default/classes/UnpackagedRecordTypesTest.cls#L10"
+							>
+								UnpackagedRecordTypesTest
+							</a>
+						</h2>
+						<div class="class-container">
+							<div class="class-description">Test unpackaged metadata to cover additional possibilities</div>
+							<div class="class-subtitle">Signature</div>
+							<div class="class-annotations">@IsTest</div>
+							<div class="class-signature">private class UnpackagedRecordTypesTest</div>
+							<div class="class-subtitle">Author</div>
+							<div class="class-subtitle-description">David Schach</div>
+							<div class="class-subtitle">Since</div>
+							<div class="class-subtitle-description">
+								<li>2024</li>
+							</div>
+						</div>
+						<div class="subsection methods">
+							<h3 class="subsection-title methods">UnpackagedRecordTypesTest Methods</h3>
+							<div class="methods-container">
+								<ul class="methods-toc">
+									<li class="method private">
+										<a class="methods-toc__entry" href="#UnpackagedRecordTypesTest.resetTest">resetTest ()</a>
+
+										<div class="methods-toc__description">Clear all record type maps to enable using fewer test methods - reset within a method</div>
+									</li>
+									<li class="method testmethod">
+										<a class="methods-toc__entry" href="#UnpackagedRecordTypesTest.testAccountRecTypes">testAccountRecTypes ()</a>
+
+										<div class="methods-toc__description">
+											Test against Account, an object with record types in package testing, but with lowercase RT name
+											<br />
+											Assumes we have a record type called
+											<code class="code-inline">Default</code>
+											and tests
+											<code class="code-inline">Default</code>
+										</div>
+									</li>
+									<li class="method testmethod">
+										<a class="methods-toc__entry" href="#UnpackagedRecordTypesTest.testAccountRecTypesLowercaseRT">
+											testAccountRecTypesLowercaseRT ()
+										</a>
+
+										<div class="methods-toc__description">
+											Test against Account, an object with record types in package testing, but with lowercase RT name
+											<br />
+											Assumes we have a record type called
+											<code class="code-inline">Default</code>
+											and tests
+											<code class="code-inline">default</code>
+										</div>
+									</li>
+									<li class="method testmethod">
+										<a class="methods-toc__entry" href="#UnpackagedRecordTypesTest.testMethodsAfterReset">testMethodsAfterReset ()</a>
+
+										<div class="methods-toc__description">Test for running certain methods without filling maps</div>
+									</li>
+									<li class="method testmethod">
+										<a class="methods-toc__entry" href="#UnpackagedRecordTypesTest.testSolutionRecTypes">testSolutionRecTypes ()</a>
+
+										<div class="methods-toc__description">Test against Solution, an object likely to have no record types</div>
+									</li>
+								</ul>
+								<div class="method private">
+									<h4 class="method-title" id="UnpackagedRecordTypesTest.resetTest">
+										<a
+											target="_blank"
+											rel="noopener noreferrer"
+											title="Go to source"
+											class="source-link"
+											href="https://github.com/dschach/record-types/tree/main/unpackaged/main/default/classes/UnpackagedRecordTypesTest.cls#L143"
+										>
+											resetTest()
+										</a>
+									</h4>
+									<div class="method-description">Clear all record type maps to enable using fewer test methods - reset within a method</div>
+									<div class="method-subtitle">Signature</div>
+
+									<div class="method-signature">private static void resetTest()</div>
+									<div class="method-subtitle">Author</div>
+									<div class="method-subtitle-description">
+										<a target="_blank" rel="noopener noreferrer" href="https://github.com/dschach">David Schach</a>
+									</div>
+								</div>
+								<div class="method testmethod">
+									<h4 class="method-title" id="UnpackagedRecordTypesTest.testAccountRecTypes">
+										<a
+											target="_blank"
+											rel="noopener noreferrer"
+											title="Go to source"
+											class="source-link"
+											href="https://github.com/dschach/record-types/tree/main/unpackaged/main/default/classes/UnpackagedRecordTypesTest.cls#L18"
+										>
+											testAccountRecTypes()
+										</a>
+									</h4>
+									<div class="method-description">
+										Test against Account, an object with record types in package testing, but with lowercase RT name
+										<br />
+										Assumes we have a record type called
+										<code class="code-inline">Default</code>
+										and tests
+										<code class="code-inline">Default</code>
+									</div>
+									<div class="method-subtitle">Signature</div>
+									<div class="method-annotations">@IsTest</div>
+									<div class="method-signature">private static void testAccountRecTypes()</div>
+									<div class="method-subtitle">Authors</div>
+									<div class="method-subtitle-description">Evan Callahan, David Schach</div>
+								</div>
+								<div class="method testmethod">
+									<h4 class="method-title" id="UnpackagedRecordTypesTest.testAccountRecTypesLowercaseRT">
+										<a
+											target="_blank"
+											rel="noopener noreferrer"
+											title="Go to source"
+											class="source-link"
+											href="https://github.com/dschach/record-types/tree/main/unpackaged/main/default/classes/UnpackagedRecordTypesTest.cls#L72"
+										>
+											testAccountRecTypesLowercaseRT()
+										</a>
+									</h4>
+									<div class="method-description">
+										Test against Account, an object with record types in package testing, but with lowercase RT name
+										<br />
+										Assumes we have a record type called
+										<code class="code-inline">Default</code>
+										and tests
+										<code class="code-inline">default</code>
+									</div>
+									<div class="method-subtitle">Signature</div>
+									<div class="method-annotations">@IsTest</div>
+									<div class="method-signature">private static void testAccountRecTypesLowercaseRT()</div>
+									<div class="method-subtitle">Authors</div>
+									<div class="method-subtitle-description">Evan Callahan, David Schach</div>
+								</div>
+								<div class="method testmethod">
+									<h4 class="method-title" id="UnpackagedRecordTypesTest.testMethodsAfterReset">
+										<a
+											target="_blank"
+											rel="noopener noreferrer"
+											title="Go to source"
+											class="source-link"
+											href="https://github.com/dschach/record-types/tree/main/unpackaged/main/default/classes/UnpackagedRecordTypesTest.cls#L133"
+										>
+											testMethodsAfterReset()
+										</a>
+									</h4>
+									<div class="method-description">Test for running certain methods without filling maps</div>
+									<div class="method-subtitle">Signature</div>
+									<div class="method-annotations">@IsTest</div>
+									<div class="method-signature">static void testMethodsAfterReset()</div>
+								</div>
+								<div class="method testmethod">
+									<h4 class="method-title" id="UnpackagedRecordTypesTest.testSolutionRecTypes">
+										<a
+											target="_blank"
+											rel="noopener noreferrer"
+											title="Go to source"
+											class="source-link"
+											href="https://github.com/dschach/record-types/tree/main/unpackaged/main/default/classes/UnpackagedRecordTypesTest.cls#L93"
+										>
+											testSolutionRecTypes()
+										</a>
+									</h4>
+									<div class="method-description">Test against Solution, an object likely to have no record types</div>
+									<div class="method-subtitle">Signature</div>
+									<div class="method-annotations">@IsTest</div>
+									<div class="method-signature">private static void testSolutionRecTypes()</div>
+									<div class="method-subtitle">Authors</div>
+									<div class="method-subtitle-description">
+										Evan Callahan,
+										<a target="_blank" rel="noopener noreferrer" href="https://github.com/dschach">David Schach</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td class="footer">
+					<div>
+						<a href="https://github.com/no-stack-dub-sack/apexdox-vs-code" target="_blank" rel="noopener noreferrer">Powered By ApexDox VS Code</a>
+					</div>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

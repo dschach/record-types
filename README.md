@@ -52,6 +52,12 @@ To set up a scratch org without creating a Record Type, run `bash scripts/orgini
 
 ## [Changelog](./CHANGELOG.md)
 
+- 2024-03
+
+  - All methods are now case-insensitive
+  - Dynamic describe methods remove need for global describe (faster code!)
+  - Move Solution tests - does not increase coverage - to unpackaged test class
+
 - 2024-02
 
   - Enhance SelectList methods

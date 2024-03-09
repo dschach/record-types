@@ -15,7 +15,7 @@ private class RecordTypesTest {
 	/**
 	 * Memoize global describe, as we call it multiple times in this class
 	 */
-	static Map<String, Schema.SObjectType> gd {
+	private static Map<String, Schema.SObjectType> gd {
 		get {
 			if (gd == null) {
 				gd = Schema.getGlobalDescribe();
@@ -150,47 +150,6 @@ private class RecordTypesTest {
 
 		resetTest();
 		Assert.isFalse(RecordTypes.getAllRecordTypesForSelectList('account').isEmpty(), 'Should return at least single item select list');
-	}
-
-	/**
-	 * @description Test against Solution, an object likely to have no record types
-	 * @author Evan Callahan
-	 * @author {@link [David Schach](https://github.com/dschach)}
-	 */
-	@IsTest
-	private static void testSolutionRecTypes() {
-		//Test with Solution
-		Assert.isNull(RecordTypes.getRecordTypeIdFromName('Solution', 'BogusRT'), 'BogusRT record type should not exist');
-
-		Assert.isNull(RecordTypes.getRecordTypeDevNameFromName('Solution', 'BogusRT'), 'BogusRT record type should not exist');
-
-		Assert.isNull(RecordTypes.getRecordTypeNameFromDevName('Solution', 'BogusRT'), 'BogusRT record type should not exist');
-		Assert.isNull(RecordTypes.getRecordTypeIdFromDevName('Solution', 'BogusRT'), 'BogusRT record type should not exist');
-
-		Assert.isNull(RecordTypes.getRecordTypeNameFromId('Solution', null), 'Null record type should not exist');
-		Assert.isNull(RecordTypes.getRecordTypeDevNameFromId('Solution', null), 'Null record type should not exist');
-
-		Assert.isNull(RecordTypes.getRecordTypeIdFromDevName('Solution', 'BogusRT'), 'BogusRT record type should not exist');
-		Assert.isNull(RecordTypes.getRecordTypeIdFromName('Solution', 'BogusRT'), 'BogusRT record type should not exist');
-
-		Assert.isNotNull(RecordTypes.getDefaultRecordTypeName('Solution'), 'A real sobject should have at least Master record type');
-		Assert.isNotNull(RecordTypes.getDefaultRecordTypeDevName('Solution'), 'A real sobject should have at least Master record type');
-		// For coverage, we are assuming that Solution has no record types
-		RecordTypes.getDefaultRecordTypeId('Solution');
-
-		Assert.isNotNull(RecordTypes.getRecordTypeDevNameIdMap('Solution'), 'a real sobject should return at least an empty map');
-
-		Assert.isNotNull(
-			RecordTypes.getAvailableRecordTypeDevNameIdMap('Solution'),
-			'Should return at least an empty map, and populated one if we have record types for Solution.'
-		);
-		Assert.isNotNull(
-			RecordTypes.getAvailableRecordTypeNameIdMap('Solution'),
-			'Should return at least an empty map, and populated one if we have record types for Solution.'
-		);
-
-		resetTest();
-		Assert.isFalse(RecordTypes.getAllRecordTypesForSelectList('Solution').isEmpty(), 'Should return at least a single item select list');
 	}
 
 	/**
@@ -346,17 +305,15 @@ private class RecordTypesTest {
 			resetTest();
 
 			List<SelectOption> allRtOptions = RecordTypes.getAllRecordTypesForSelectList(sobjectname);
-			Assert.areEqual(
-				objectExists,
-				allRtOptions.size(),
+			Assert.isTrue(
+				allRtOptions.size() >= objectExists,
 				'Error - ' + sobjectname.capitalize() + ' SelectList should have at least ' + objectExists + ' item. We have ' + allRtOptions.size()
 			);
 			resetTest();
 
 			List<SelectOption> rtOptions = RecordTypes.getAvailableRecordTypesForSelectList(sobjectname);
-			Assert.areEqual(
-				objectExists,
-				rtOptions.size(),
+			Assert.isTrue(
+				rtOptions.size() >= objectExists,
 				'Error - We should have at least ' +
 					objectExists +
 					' ' +
