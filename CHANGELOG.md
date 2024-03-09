@@ -1,5 +1,25 @@
 # Changelog
 
+## [1.6.0](https://github.com/dschach/record-types/compare/v1.5.0...v1.6.0) (2024-03-09)
+
+
+### Features
+
+* Enable case-insensitive uses ([3eadfcf](https://github.com/dschach/record-types/commit/3eadfcf515650a6d25123da69f6629493b449692))
+
+
+### Performance Improvements
+
+* Efficient describe calls ([#141](https://github.com/dschach/record-types/issues/141)) ([3eadfcf](https://github.com/dschach/record-types/commit/3eadfcf515650a6d25123da69f6629493b449692))
+
+
+### Documentation
+
+* Fix RecordTypes class ApexDocs ([09ac8f5](https://github.com/dschach/record-types/commit/09ac8f50699ef247992cb6e5b603c67313073e13))
+* Readme and description ([5a51375](https://github.com/dschach/record-types/commit/5a51375f1f93e543c229a127225fad67fa6e6f3d))
+* **readme:** Update readme badges ([#140](https://github.com/dschach/record-types/issues/140)) ([7fad074](https://github.com/dschach/record-types/commit/7fad074933d414eea97fd48f628871949c9d56ec))
+* Update ApexDox for v1.6 ([#142](https://github.com/dschach/record-types/issues/142)) ([5d799be](https://github.com/dschach/record-types/commit/5d799be167ae90d51a71ac5925f7c6af8105e8d0))
+
 ## [1.5.0](https://github.com/dschach/record-types/compare/record-types-v1.4.0...record-types-v1.5.0) (2024-02-15)
 
 

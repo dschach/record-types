@@ -3,7 +3,7 @@
 		{
 			"path": "force-app",
 			"default": true,
-			"versionNumber": "1.5.0.NEXT",
+			"versionNumber": "1.6.0.NEXT",
 			"definitionFile": "config/no-rt-scratch-def.json",
 			"package": "Record Types",
 			"versionName": "ver 1.5",
@@ -13,7 +13,9 @@
 				"path": "unpackaged"
 			},
 			"apexTestAccess": {
-				"permissionSets": ["RecordTypes_DefaultRT_for_Testing"]
+				"permissionSets": [
+					"RecordTypes_DefaultRT_for_Testing"
+				]
 			}
 		},
 		{
