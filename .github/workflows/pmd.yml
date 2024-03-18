@@ -23,7 +23,7 @@ jobs:
           distribution: 'temurin'
       - name: Run PMD
         id: pmd
-        uses: pmd/pmd-github-action@v1
+        uses: pmd/pmd-github-action@v2
         with:
           rulesets: 'pmd/apexQuickStart.xml'
           sourcePath: 'force-app'
