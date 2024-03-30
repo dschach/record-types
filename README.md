@@ -7,6 +7,7 @@ I've updated the project (by pulling test code out of the main class - that's ho
 Of note: The test code assumes that you have no record types for the Solution object. If you do, you may need to remove that test method.
 
 ![Dependabot](https://badgen.net/github/dependabot/dschach/record-types)
+![Known Vulnerabilities](https://snyk.io/test/github/dschach/record-types/badge.svg)
 [![codecov](https://codecov.io/gh/dschach/record-types/branch/main/graph/badge.svg?token=RVhs6ab2Md)](https://codecov.io/gh/dschach/record-types)
 [![On Push](https://github.com/dschach/record-types/actions/workflows/ci.yml/badge.svg)](https://github.com/dschach/record-types/actions/workflows/ci.yml)
 [![Scratch Org Tests](https://github.com/dschach/record-types/actions/workflows/pr.yml/badge.svg)](https://github.com/dschach/record-types/actions/workflows/pr.yml)
