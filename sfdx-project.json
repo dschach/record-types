@@ -3,7 +3,7 @@
 		{
 			"path": "force-app",
 			"default": true,
-			"versionNumber": "1.6.0.NEXT",
+			"versionNumber": "1.6.1.NEXT",
 			"definitionFile": "config/no-rt-scratch-def.json",
 			"package": "Record Types",
 			"versionName": "ver 1.5",

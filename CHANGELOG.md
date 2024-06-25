@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.1](https://github.com/dschach/record-types/compare/v1.6.0...v1.6.1) (2024-06-25)
+
+
+### Documentation
+
+* Include Snyk badge ([f9a2e99](https://github.com/dschach/record-types/commit/f9a2e99f26f2ddd9f29345cdb669f921c4fe7db7))
+
 ## [1.6.0](https://github.com/dschach/record-types/compare/v1.5.0...v1.6.0) (2024-03-09)
 
 
