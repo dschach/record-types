@@ -1,5 +1,22 @@
 # Changelog
 
+## [1.7.0](https://github.com/dschach/record-types/compare/v1.6.0...v1.7.0) (2024-07-29)
+
+
+### Features
+
+* Cleanup PMD violations ([#175](https://github.com/dschach/record-types/issues/175)) ([864a310](https://github.com/dschach/record-types/commit/864a310fe92575faa6fea75a9915014f8afd2c04))
+
+
+### Chores
+
+* Remove duplicate RT directory ([cdea740](https://github.com/dschach/record-types/commit/cdea7406de3f77f69c3cf56795934be17d3d2839))
+
+
+### Documentation
+
+* Include Snyk badge ([f9a2e99](https://github.com/dschach/record-types/commit/f9a2e99f26f2ddd9f29345cdb669f921c4fe7db7))
+
 ## [1.6.0](https://github.com/dschach/record-types/compare/v1.5.0...v1.6.0) (2024-03-09)
 
 
