@@ -104,7 +104,10 @@ global inherited sharing class RecordTypes {
 		String sObjectName = objectName.toLowerCase();
 		if (!sObjectDescribes.containsKey(sObjectName)) {
 			try {
-				List<Schema.DescribeSObjectResult> describes = Schema.describeSObjects(new List<String>{ sObjectName }, SObjectDescribeOptions.DEFERRED);
+				List<Schema.DescribeSObjectResult> describes = Schema.describeSObjects(
+					new List<String>{ sObjectName },
+					SObjectDescribeOptions.DEFERRED
+				);
 				sObjectDescribes.put(sObjectName, describes[0]);
 			} catch (InvalidParameterValueException e) {
 				return;
@@ -134,7 +137,7 @@ global inherited sharing class RecordTypes {
 					availableRecordTypesList.add(rt);
 				}
 				if (rt.isDefaultRecordTypeMapping()) {
-					System.debug('Default RT is ' + rt.getName());
+					//System.debug('Default RT is ' + rt.getName());
 					defaultRecordTypeIds.put(sObjectName, rt.getRecordTypeId());
 					defaultRecordTypes.put(sObjectName, rt);
 				}
@@ -309,7 +312,7 @@ global inherited sharing class RecordTypes {
 	 */
 	global static String getRecordTypeDevNameFromName(String objectName, String recordTypeName) {
 		String sObjectName = objectName.toLowerCase();
-		return getRecordTypeFromName(objectName.toLowerCase(), recordTypeName)?.getDeveloperName();
+		return getRecordTypeFromName(sObjectName, recordTypeName)?.getDeveloperName();
 	}
 
 	//RecordType DeveloperName SECTION
@@ -433,7 +436,6 @@ global inherited sharing class RecordTypes {
 	global static Set<Id> getRecordTypeIdSetFromDevNames(String objectName, Set<String> recordTypeDevNameSet) {
 		String sObjectName = objectName.toLowerCase();
 		Set<Id> recordTypeIds = new Set<Id>();
-		Set<String> devNamesLowerCase = new Set<String>();
 
 		// make sure we have this sObject's record types mapped
 		if (!recordTypesByDevName.containsKey(sObjectName)) {
@@ -659,7 +661,9 @@ global inherited sharing class RecordTypes {
 				return recordTypesOptions;
 			}
 			for (Schema.RecordTypeInfo rti : recordTypes) {
-				recordTypesOptions.add(new SelectOption(rti.getRecordTypeId(), rti.getName(), disableUnavailable ? !rti.isAvailable() : false));
+				recordTypesOptions.add(
+					new SelectOption(rti.getRecordTypeId(), rti.getName(), disableUnavailable ? !rti.isAvailable() : false)
+				);
 				if (rti.isAvailable()) {
 					hasAvailableRT = true;
 				}
@@ -722,7 +726,8 @@ global inherited sharing class RecordTypes {
 		if (!recordTypesByName.containsKey(sObjectName)) {
 			fillMapsForObject(sObjectName);
 		}
-		Boolean isDefaultMapping = getRecordTypeFromDevName(sObjectName, recordTypeDevName.toLowerCase())?.isDefaultRecordTypeMapping();
+		Boolean isDefaultMapping = getRecordTypeFromDevName(sObjectName, recordTypeDevName.toLowerCase())
+			?.isDefaultRecordTypeMapping();
 		return isDefaultMapping ?? false;
 	}
 
