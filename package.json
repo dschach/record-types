@@ -1,43 +1,43 @@
 {
-	"name": "recordtypes-utility",
-	"private": true,
-	"version": "1.7.0",
-	"description": "Salesforce Record Types Utility",
-	"author": "dschach",
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/dschach/record-types.git"
-	},
-	"license": "GPL-3.0-only",
-	"scripts": {
-		"apex:local:start": "node node_modules/prettier-plugin-apex/dist/bin/start-apex-server.js",
-		"apex:local:stop": "node node_modules/prettier-plugin-apex/dist/bin/stop-apex-server.js",
-		"build": ". scripts/packagedev/build.sh",
-		"devhub-x2od": "sf config set target-dev-hub=x2od",
-		"docs:setup": ". doc-assets/setupApexDox.sh",
-		"orginit": ". scripts/orginit.sh",
-		"prepare": "husky",
-		"precommit": "lint-staged",
-		"prettier:apex:local": "prettier --apex-standalone-parser built-in --write \"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}\"",
-		"prettier:apex:verify": "prettier --list-different \"force-app/**/*.{cls,trigger}\"",
-		"prettier:docs": "prettier --write \"doc*/*.{html,css}\"",
-		"prettier:verify:apex:local": "prettier --apex-standalone-parser built-in --check \"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}\"",
-		"prettier:verify": "prettier --list-different \"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}\"",
-		"prettier": "prettier --write \"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}\"",
-		"prune": "git branch | grep -v \"main\" | xargs git branch -D",
-		"updateHighlight": ". doc-assets/updateHighlight.sh"
-	},
-	"devDependencies": {
-		"@prettier/plugin-xml": "^3.4.1",
-		"highlightjs-apex": "^1.4.0",
-		"husky": "^9.1.4",
-		"lint-staged": "^15.2.9",
-		"marked": "^13.0.3",
-		"node-jq": "^6.0.1",
-		"prettier": "^3.3.3",
-		"prettier-plugin-apex": "^2.1.4"
-	},
-	"lint-staged": {
-		"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}": "prettier --write"
-	}
+  "name": "recordtypes-utility",
+  "private": true,
+  "version": "1.7.0",
+  "description": "Salesforce Record Types Utility",
+  "author": "dschach",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dschach/record-types.git"
+  },
+  "license": "GPL-3.0-only",
+  "scripts": {
+    "apex:local:start": "node node_modules/prettier-plugin-apex/dist/bin/start-apex-server.js",
+    "apex:local:stop": "node node_modules/prettier-plugin-apex/dist/bin/stop-apex-server.js",
+    "build": ". scripts/packagedev/build.sh",
+    "devhub-x2od": "sf config set target-dev-hub=x2od",
+    "docs:setup": ". doc-assets/setupApexDox.sh",
+    "orginit": ". scripts/orginit.sh",
+    "prepare": "husky",
+    "precommit": "lint-staged",
+    "prettier:apex:local": "prettier --apex-standalone-parser built-in --write \"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}\"",
+    "prettier:apex:verify": "prettier --list-different \"force-app/**/*.{cls,trigger}\"",
+    "prettier:docs": "prettier --write \"doc*/*.{html,css}\"",
+    "prettier:verify:apex:local": "prettier --apex-standalone-parser built-in --check \"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}\"",
+    "prettier:verify": "prettier --list-different \"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}\"",
+    "prettier": "prettier --write \"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}\"",
+    "prune": "git branch | grep -v \"main\" | xargs git branch -D",
+    "updateHighlight": ". doc-assets/updateHighlight.sh"
+  },
+  "devDependencies": {
+    "@prettier/plugin-xml": "^3.4.1",
+    "highlightjs-apex": "^1.4.0",
+    "husky": "^9.1.4",
+    "lint-staged": "^15.2.9",
+    "marked": "^14.0.0",
+    "node-jq": "^6.0.1",
+    "prettier": "^3.3.3",
+    "prettier-plugin-apex": "^2.1.4"
+  },
+  "lint-staged": {
+    "**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}": "prettier --write"
+  }
 }

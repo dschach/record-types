@@ -1,4 +1,4 @@
-@SuppressWarnings('PMD.AvoidGlobalModifier, PMD.CyclomaticComplexity')
+@SuppressWarnings('PMD.AvoidGlobalModifier, PMD.CyclomaticComplexity, PMD.CognitiveComplexity')
 /**
  * @description This class is allows for easy, readable access to Record Type information from other classes.
  * <br>
@@ -73,7 +73,7 @@ global inherited sharing class RecordTypes {
 	/**
 	 * @description Map of default `Record Type` Ids for the running user
 	 */
-	private static Map<String, Id> defaultRecordTypeIds = new Map<String, Id>();
+	//private static Map<String, Id> defaultRecordTypeIds = new Map<String, Id>();
 
 	/**
 	 * @description Map of object name to the default `Schema.RecordTypeInfo` object for that object
@@ -137,8 +137,7 @@ global inherited sharing class RecordTypes {
 					availableRecordTypesList.add(rt);
 				}
 				if (rt.isDefaultRecordTypeMapping()) {
-					//System.debug('Default RT is ' + rt.getName());
-					defaultRecordTypeIds.put(sObjectName, rt.getRecordTypeId());
+					//defaultRecordTypeIds.put(sObjectName, rt.getRecordTypeId());
 					defaultRecordTypes.put(sObjectName, rt);
 				}
 			}
@@ -272,14 +271,7 @@ global inherited sharing class RecordTypes {
 		}
 
 		// now grab and return the requested id
-		//Map<String, Schema.RecordTypeInfo> rtMap = recordTypesByName.get(sObjectName);
 		return recordTypesByName.get(sObjectName)?.get(rtName);
-		/* 		if (rtMap != null && rtMap.containsKey(rtName)) {
-			return rtMap.get(rtName);
-		} else {
-			return null;
-		}
- */
 	}
 
 	/**
@@ -294,8 +286,6 @@ global inherited sharing class RecordTypes {
 	 * RecordTypes.getRecordTypeIdFromName('Account','Person Account')
 	 */
 	global static Id getRecordTypeIdFromName(String objectName, String recordTypeName) {
-		//String sObjectName = objectName.toLowerCase();
-
 		return getRecordTypeFromName(objectName.toLowerCase(), recordTypeName.toLowerCase())?.getRecordTypeId();
 	}
 

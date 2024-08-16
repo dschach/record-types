@@ -1,9 +1,5 @@
 {
   "apexdox.docblock.alignItems": true,
-  "apexPMD.enableCache": true,
-  "apexPMD.rulesets": [
-    "pmd/apexQuickStart.xml"
-  ],
   "apexPMD.runOnFileChange": true,
   "apexPMD.runOnFileOpen": true,
   "apexPMD.showStdOut": true,
@@ -22,5 +18,8 @@
     "**/bower_components": true,
     "**/node_modules": true
   },
-  "visualforce.format.endWithNewline": true
+  "visualforce.format.endWithNewline": true,
+  "apexPMD.rulesets": [
+    "pmd/apexQuickStart.xml"
+  ]
 }

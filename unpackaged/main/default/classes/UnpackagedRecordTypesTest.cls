@@ -6,6 +6,7 @@
  * @author      David Schach
  * @since       2024
  */
+@SuppressWarnings('PMD.ApexUnitTestClassShouldHaveRunAs')
 @IsTest
 private class UnpackagedRecordTypesTest {
 	/**
@@ -18,11 +19,20 @@ private class UnpackagedRecordTypesTest {
 	private static void testAccountRecTypes() {
 		//Test with Account
 
-		Assert.isNotNull(RecordTypes.getRecordTypesForObject('Account'), 'A real sobject should have at least Master record type');
+		Assert.isNotNull(
+			RecordTypes.getRecordTypesForObject('Account'),
+			'A real sobject should have at least Master record type'
+		);
 		Assert.isNotNull(RecordTypes.getRecordTypeIdFromName('Account', 'Default'), 'Default record type should exist');
-		Assert.isNotNull(RecordTypes.getRecordTypeDevNameFromName('Account', 'Default'), 'Default record type should exist');
+		Assert.isNotNull(
+			RecordTypes.getRecordTypeDevNameFromName('Account', 'Default'),
+			'Default record type should exist'
+		);
 
-		Assert.isNotNull(RecordTypes.getRecordTypeNameFromDevName('Account', 'Default'), 'Default record type should exist');
+		Assert.isNotNull(
+			RecordTypes.getRecordTypeNameFromDevName('Account', 'Default'),
+			'Default record type should exist'
+		);
 		Assert.isNotNull(RecordTypes.getRecordTypeIdFromDevName('Account', 'Default'), 'Default record type should exist');
 
 		Assert.isNull(RecordTypes.getRecordTypeNameFromId('Account', null), 'Null record type should not exist');
@@ -35,17 +45,20 @@ private class UnpackagedRecordTypesTest {
 		//Assert.areEqual('Default', RecordTypes.getDefaultRecordTypeDevName('Account'), 'Our default Account RT should be "Default"');
 
 		Assert.areEqual(
-			'Master',
+			'Default',
 			RecordTypes.getDefaultRecordTypeName('Account'),
-			'Our default Account RT should be "Master" because we assigned via permission set'
+			'Our default Account RT should be "Default" because we assigned via permission set'
 		);
 		Assert.areEqual(
-			'Master',
+			'Default',
 			RecordTypes.getDefaultRecordTypeDevName('Account'),
-			'Our default Account RT should be "Master" because we assigned via permission set'
+			'Our default Account RT should be "Default" because we assigned via permission set'
 		);
 
-		Assert.isNotNull(RecordTypes.getRecordTypeDevNameIdMap('Account'), 'A real sobject should return at least an empty map');
+		Assert.isNotNull(
+			RecordTypes.getRecordTypeDevNameIdMap('Account'),
+			'A real sobject should return at least an empty map'
+		);
 
 		Assert.isNotNull(
 			RecordTypes.getAvailableRecordTypeDevNameIdMap('Account'),
@@ -72,15 +85,28 @@ private class UnpackagedRecordTypesTest {
 	private static void testAccountRecTypesLowercaseRT() {
 		//Test with Account
 
-		Assert.isNotNull(RecordTypes.getRecordTypesForObject('Account'), 'A real sobject should have at least Master record type');
+		Assert.isNotNull(
+			RecordTypes.getRecordTypesForObject('Account'),
+			'A real sobject should have at least Master record type'
+		);
 		Assert.isNotNull(RecordTypes.getRecordTypeIdFromName('Account', 'default'), 'default record type should exist');
-		Assert.isNotNull(RecordTypes.getRecordTypeDevNameFromName('Account', 'default'), 'default record type should exist');
-
-		Assert.isNotNull(RecordTypes.getRecordTypeNameFromDevName('Account', 'default'), 'default record type should exist');
+		Assert.isNotNull(
+			RecordTypes.getRecordTypeDevNameFromName('Account', 'default'),
+			'default record type should exist'
+		);
+		Assert.isNotNull(
+			RecordTypes.getRecordTypeNameFromDevName('Account', 'default'),
+			'default record type should exist'
+		);
 		Assert.isNotNull(RecordTypes.getRecordTypeIdFromDevName('Account', 'default'), 'default record type should exist');
-
 		Assert.isNotNull(RecordTypes.getRecordTypeIdFromDevName('Account', 'default'), 'default record type should exist');
 		Assert.isNotNull(RecordTypes.getRecordTypeIdFromName('Account', 'default'), 'default record type should exist');
+
+		Assert.areEqual(
+			RecordTypes.getDefaultRecordType('Account'),
+			RecordTypes.getDefaultRecordType('account'),
+			'Our check should be case insensitive'
+		);
 	}
 
 	/**
@@ -93,23 +119,44 @@ private class UnpackagedRecordTypesTest {
 		//Test with Solution
 		Assert.isNull(RecordTypes.getRecordTypeIdFromName('Solution', 'BogusRT'), 'BogusRT record type should not exist');
 
-		Assert.isNull(RecordTypes.getRecordTypeDevNameFromName('Solution', 'BogusRT'), 'BogusRT record type should not exist');
+		Assert.isNull(
+			RecordTypes.getRecordTypeDevNameFromName('Solution', 'BogusRT'),
+			'BogusRT record type should not exist'
+		);
 
-		Assert.isNull(RecordTypes.getRecordTypeNameFromDevName('Solution', 'BogusRT'), 'BogusRT record type should not exist');
-		Assert.isNull(RecordTypes.getRecordTypeIdFromDevName('Solution', 'BogusRT'), 'BogusRT record type should not exist');
+		Assert.isNull(
+			RecordTypes.getRecordTypeNameFromDevName('Solution', 'BogusRT'),
+			'BogusRT record type should not exist'
+		);
+		Assert.isNull(
+			RecordTypes.getRecordTypeIdFromDevName('Solution', 'BogusRT'),
+			'BogusRT record type should not exist'
+		);
 
 		Assert.isNull(RecordTypes.getRecordTypeNameFromId('Solution', null), 'Null record type should not exist');
 		Assert.isNull(RecordTypes.getRecordTypeDevNameFromId('Solution', null), 'Null record type should not exist');
 
-		Assert.isNull(RecordTypes.getRecordTypeIdFromDevName('Solution', 'BogusRT'), 'BogusRT record type should not exist');
+		Assert.isNull(
+			RecordTypes.getRecordTypeIdFromDevName('Solution', 'BogusRT'),
+			'BogusRT record type should not exist'
+		);
 		Assert.isNull(RecordTypes.getRecordTypeIdFromName('Solution', 'BogusRT'), 'BogusRT record type should not exist');
 
-		Assert.isNotNull(RecordTypes.getDefaultRecordTypeName('Solution'), 'A real sobject should have at least Master record type');
-		Assert.isNotNull(RecordTypes.getDefaultRecordTypeDevName('Solution'), 'A real sobject should have at least Master record type');
+		Assert.isNotNull(
+			RecordTypes.getDefaultRecordTypeName('Solution'),
+			'A real sobject should have at least Master record type'
+		);
+		Assert.isNotNull(
+			RecordTypes.getDefaultRecordTypeDevName('Solution'),
+			'A real sobject should have at least Master record type'
+		);
 		// For coverage, we are assuming that Solution has no record types
 		RecordTypes.getDefaultRecordTypeId('Solution');
 
-		Assert.isNotNull(RecordTypes.getRecordTypeDevNameIdMap('Solution'), 'a real sobject should return at least an empty map');
+		Assert.isNotNull(
+			RecordTypes.getRecordTypeDevNameIdMap('Solution'),
+			'a real sobject should return at least an empty map'
+		);
 
 		Assert.isNotNull(
 			RecordTypes.getAvailableRecordTypeDevNameIdMap('Solution'),
@@ -119,18 +166,19 @@ private class UnpackagedRecordTypesTest {
 			RecordTypes.getAvailableRecordTypeNameIdMap('Solution'),
 			'Should return at least an empty map, and populated one if we have record types for Solution.'
 		);
-
-		resetTest();
-		Assert.isFalse(RecordTypes.getAllRecordTypesForSelectList('Solution').isEmpty(), 'Should return at least a single item select list');
 	}
 
 	/**
 	 * @description Test for running certain methods without filling maps
 	 */
 	@IsTest
-	static void testMethodsAfterReset() {
+	private static void testMethodsAfterReset() {
 		resetTest();
-		List<RecordType> queriedRecordTypes = [SELECT Id, Name, DeveloperName FROM RecordType WHERE SObjectType = 'Account'];
+		List<RecordType> queriedRecordTypes = [
+			SELECT Id, Name, DeveloperName
+			FROM RecordType
+			WHERE SObjectType = 'Account'
+		];
 		Assert.isNotNull(RecordTypes.getRecordTypeNameFromId(queriedRecordTypes[0].Id), 'Error');
 	}
 
