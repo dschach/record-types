@@ -35,7 +35,7 @@
 		"marked": "^14.1.4",
 		"node-jq": "^6.0.1",
 		"prettier": "^3.3.3",
-		"prettier-plugin-apex": "^2.2.0"
+		"prettier-plugin-apex": "^2.2.1"
 	},
 	"lint-staged": {
 		"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}": "prettier --write"
