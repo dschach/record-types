@@ -74,9 +74,10 @@ jobs:
         id: auto-merge
         if: ${{ steps.check-merge.conclusion == 'success' }}
         run: |
-          gh pr edit "$PR_URL" --add-label "auto-merged"  
-          gh pr review --approve "$PR_URL"
-          gh pr merge --auto --squash "$PR_URL"
+          gh pr edit "$PR_URL" --add-label "dependabot"  
+          #gh pr edit "$PR_URL" --add-label "auto-merged"  
+          #gh pr review --approve "$PR_URL"
+          #gh pr merge --auto --squash "$PR_URL"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_URL: ${{ github.event.pull_request.html_url }}
