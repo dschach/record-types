@@ -11,7 +11,7 @@ updates:
       prefix: 'deps' # packaged dependencies
       prefix-development: 'build' # dev-dependencies
       #include: 'scope'
-    rebase-strategy: 'auto'
+    # rebase-strategy: 'auto' # use default
     schedule:
       interval: 'daily'
   - package-ecosystem: 'github-actions' # See documentation for possible values
@@ -20,6 +20,6 @@ updates:
       prefix: 'ci'
       #include: 'scope'
       # Scope will be handled by the auto-merge action
-    rebase-strategy: 'auto'
+    # rebase-strategy: 'auto' # use default
     schedule:
       interval: 'daily'
