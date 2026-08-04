@@ -13,7 +13,7 @@ jobs:
     steps:
       # Checkout the source code
       - name: 'Checkout source code'
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: 'Fetch Dependabot metadata'
         id: dependabot-fetch
@@ -81,4 +81,4 @@ jobs:
           PR_URL: ${{ github.event.pull_request.html_url }}
       - name: 'release-please'
         if: ${{ steps.auto-merge.conclusion == 'success' }}
-        uses: googleapis/release-please-action@v4
+        uses: googleapis/release-please-action@v5
