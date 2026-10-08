@@ -22,5 +22,6 @@
     "**/bower_components": true,
     "**/node_modules": true
   },
-  "visualforce.format.endWithNewline": true
+  "visualforce.format.endWithNewline": true,
+  "xml.preferences.showSchemaDocumentationType": "none"
 }

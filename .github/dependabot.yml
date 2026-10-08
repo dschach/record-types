@@ -14,6 +14,8 @@ updates:
     # rebase-strategy: 'auto' # use default
     schedule:
       interval: 'daily'
+    # This disables version updates for this package ecosystem
+    open-pull-requests-limit: 0
   - package-ecosystem: 'github-actions' # See documentation for possible values
     directory: '/' # Location of package manifests
     commit-message:
@@ -23,3 +25,5 @@ updates:
     # rebase-strategy: 'auto' # use default
     schedule:
       interval: 'daily'
+    # This disables version updates for this package ecosystem
+    open-pull-requests-limit: 0
