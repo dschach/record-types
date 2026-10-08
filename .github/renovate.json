@@ -1,0 +1,43 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "github>x2od/.github:renovate.json5"
+  ],
+  "packageRules": [
+    {
+      "matchManagers": [
+        "github-actions"
+      ],
+      "commitMessageExtra": "from {{currentVersion}} to {{#if isPinDigest}}{{{newDigestShort}}}{{else}}{{#if isMajor}}{{newVersion}}{{else}}{{#if isSingleVersion}}{{newVersion}}{{else}}{{#if newValue}}{{{newVersion}}}{{else}}{{{newDigestShort}}}{{/if}}{{/if}}{{/if}}{{/if}}"
+    }
+  ],
+  "major": {
+    "autoApprove": false,
+    "automerge": false,
+    "addLabels": [
+      "renovate",
+      "major"
+    ]
+  },
+  "minor": {
+    "autoApprove": true,
+    "automerge": false,
+    "addLabels": [
+      "renovate",
+      "minor"
+    ]
+  },
+  "patch": {
+    "autoApprove": true,
+    "automerge": false,
+    "addLabels": [
+      "renovate",
+      "patch"
+    ]
+  },
+  "dependencyDashboardAutoclose": true,
+  "lockFileMaintenance": {
+    "enabled": false
+  },
+  "configWarningReuseIssue": false
+}
