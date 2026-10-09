@@ -111,9 +111,8 @@ global inherited sharing class RecordTypes {
 					SObjectDescribeOptions.DEFERRED
 				);
 				sObjectDescribes.put(sObjectName, describes[0]);
-			} catch (RecordTypeLibraryException e) {
-				throw e;
-				//return;
+			} catch (InvalidParameterValueException e) {
+				return;
 			}
 		}
 		// get the sObject description
@@ -733,12 +732,6 @@ global inherited sharing class RecordTypes {
 		Boolean isDefaultMapping = getRecordTypeFromDevName(sObjectName, recordTypeDevName.toLowerCase())
 			?.isDefaultRecordTypeMapping();
 		return isDefaultMapping ?? false;
-	}
-
-	/**
-	 * @description Exception thrown by the Record Types library
-	 */
-	public class RecordTypeLibraryException extends Exception {
 	}
 
 	/* private class RTInfoWrapper {
