@@ -1,4 +1,3 @@
-@SuppressWarnings('PMD.AvoidGlobalModifier, PMD.CyclomaticComplexity')
 /**
  * @description This class is allows for easy, readable access to Record Type information from other classes.
  * <br>
@@ -39,6 +38,7 @@
  * @group RecordTypes
  * @see RecordTypesTest
  */
+@SuppressWarnings('PMD.NcssMethodCount, PMD.AvoidGlobalModifier, PMD.CyclomaticComplexity, PMD.CognitiveComplexity')
 global inherited sharing class RecordTypes {
 	/**
 	 * @description Hold Sobject describe results as we need them
@@ -87,7 +87,9 @@ global inherited sharing class RecordTypes {
 	private static Map<Id, RecordType> recordTypesIdMap {
 		get {
 			if (recordTypesIdMap == null) {
-				recordTypesIdMap = new Map<Id, RecordType>([SELECT Id, DeveloperName, Name, SobjectType FROM RecordType]);
+				recordTypesIdMap = new Map<Id, RecordType>(
+					[SELECT Id, DeveloperName, Name, SobjectType FROM RecordType LIMIT 2000]
+				);
 			}
 			return recordTypesIdMap;
 		}
@@ -109,7 +111,7 @@ global inherited sharing class RecordTypes {
 					SObjectDescribeOptions.DEFERRED
 				);
 				sObjectDescribes.put(sObjectName, describes[0]);
-			} catch (InvalidParameterValueException e) {
+			} catch (RecordTypeLibraryException e) {
 				return;
 			}
 		}
@@ -648,6 +650,7 @@ global inherited sharing class RecordTypes {
 	 * @param  disableUnavailable Should we disable unavailable RTs in the SelectList?
 	 * @return            `List<SelectOption>` Visualforce SelectOption list
 	 */
+	@SuppressWarnings('PMD.AvoidBooleanMethodParameters')
 	global static List<SelectOption> getAllRecordTypesForSelectList(String objectName, Boolean disableUnavailable) {
 		String sObjectName = objectName.toLowerCase();
 		List<SelectOption> recordTypesOptions = new List<SelectOption>();
@@ -731,6 +734,12 @@ global inherited sharing class RecordTypes {
 		return isDefaultMapping ?? false;
 	}
 
+	/**
+	 * @description Exception thrown by the Record Types library
+	 */
+	public class RecordTypeLibraryException extends Exception {
+	}
+
 	/* private class RTInfoWrapper {
 		private String developerName;
 		private String name;
@@ -752,10 +761,10 @@ global inherited sharing class RecordTypes {
 	} */
 
 	/**
-	 * @description If we are running a test, clear sObject maps. We do this to avoid using @testVisible on the maps themselves
-	 * <br>This is private and testvisible so it cannot be called in production code context
+	 * @description If we are running a test, clear sObject maps. We do this to avoid using @TestVisible on the maps themselves
+	 * <br>This is private and TestVisible so it cannot be called in production code context
 	 */
-	@testVisible
+	@TestVisible
 	private static void clearMapsInTest() {
 		if (Test.isRunningTest()) {
 			RecordTypes.recordTypesById.clear();

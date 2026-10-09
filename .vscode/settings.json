@@ -2,7 +2,7 @@
   "apexdox.docblock.alignItems": true,
   "apexPMD.enableCache": true,
   "apexPMD.rulesets": [
-    "pmd/apexQuickStart.xml"
+    "pmd/apexStandardRules.xml"
   ],
   "apexPMD.runOnFileChange": true,
   "apexPMD.runOnFileOpen": true,
@@ -23,5 +23,9 @@
     "**/node_modules": true
   },
   "visualforce.format.endWithNewline": true,
-  "xml.preferences.showSchemaDocumentationType": "none"
+  "xml.preferences.showSchemaDocumentationType": "none",
+  "codeAnalyzer.ruleSelectors": "pmd:(Apex,all-apex)",
+  "codeAnalyzer.severity 1": "Error",
+  "codeAnalyzer.severity 2": "Error",
+  "codeAnalyzer.severity 5": "Info"
 }

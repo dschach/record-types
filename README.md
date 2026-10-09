@@ -53,51 +53,55 @@ To set up a scratch org without creating a Record Type, run `bash scripts/orgini
 
 ## [Changelog](./CHANGELOG.md)
 
-- 2024-03
+-   2026-10
 
-  - All methods are now case-insensitive
-  - Dynamic describe methods remove need for global describe (faster code!)
-  - Move Solution tests - does not increase coverage - to unpackaged test class
+    -   Install Salesforce Code Analyzer and update PMD ruleset
 
-- 2024-02
+-   2024-03
 
-  - Enhance SelectList methods
-  - Update to API 60.0
-  - Increase code coverage and test cases
+    -   All methods are now case-insensitive
+    -   Dynamic describe methods remove need for global describe (faster code!)
+    -   Move Solution tests - does not increase coverage - to unpackaged test class
 
-- 2023-09
+-   2024-02
 
-  - Overload getRecordTypeFromId so it doesn't require a SobjectType string
-  - Release unlocked package
+    -   Enhance SelectList methods
+    -   Update to API 60.0
+    -   Increase code coverage and test cases
 
-- 2023-08
+-   2023-09
 
-  - Add methods to get default RecordTypeId, handling situation where no RT is on the Profile but at least one is avaialble via Permission Set.
-  - Add test methods against Account and Solution objects, as we assume Solution has no defined record types. (Change for your org if you have them.)
-  - Include table of all methods on documentation site
+    -   Overload getRecordTypeFromId so it doesn't require a SobjectType string
+    -   Release unlocked package
 
-- 2022-03
+-   2023-08
 
-  - BREAKING CHANGE: Replaced "DeveloperName" with "DevName" in all method names. Update your code to refer to the new methods.
+    -   Add methods to get default RecordTypeId, handling situation where no RT is on the Profile but at least one is avaialble via Permission Set.
+    -   Add test methods against Account and Solution objects, as we assume Solution has no defined record types. (Change for your org if you have them.)
+    -   Include table of all methods on documentation site
 
-- 2022-03
+-   2022-03
 
-  - Add maps Id => Name and Id => DeveloperName for ease of use when wanting to refer to a record type by Id without including the object, since Id is globally unique
+    -   BREAKING CHANGE: Replaced "DeveloperName" with "DevName" in all method names. Update your code to refer to the new methods.
 
-- 2022-01
-  - Initial Release
+-   2022-03
+
+    -   Add maps Id => Name and Id => DeveloperName for ease of use when wanting to refer to a record type by Id without including the object, since Id is globally unique
+
+-   2022-01
+    -   Initial Release
 
 ## Code Header
 
 Written by Evan Callahan, copyright &copy; 2010 Groundwire
 
-- This program is released under the [GNU General Public License](./LICENSE). http://www.gnu.org/licenses/
-- This class is meant to allow for access to Record Type information from within other classes.
-- It is called statically, and therefore will supply the same information to all calls made from within one transaction, or set of trigger calls. This is beneficial because this info should be the same for all calls in a transaction, and by calling it statically we reduce the calls that are made, making the total transaction more efficient.
+-   This program is released under the [GNU General Public License](./LICENSE). http://www.gnu.org/licenses/
+-   This class is meant to allow for access to Record Type information from within other classes.
+-   It is called statically, and therefore will supply the same information to all calls made from within one transaction, or set of trigger calls. This is beneficial because this info should be the same for all calls in a transaction, and by calling it statically we reduce the calls that are made, making the total transaction more efficient.
 
 Updated by David Schach, copyright &copy; X-Squared on Demand
 
-- Usage recommendation: Always use DeveloperName instead of Name, as this is more likely to be hard-coded in places, while the Name is actually a label and may change (especially due to user language).
+-   Usage recommendation: Always use DeveloperName instead of Name, as this is more likely to be hard-coded in places, while the Name is actually a label and may change (especially due to user language).
 
 # Library Methods
 
