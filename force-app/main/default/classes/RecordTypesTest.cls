@@ -10,7 +10,7 @@
  * @group RecordTypes
  * @see RecordTypes
  */
-@SuppressWarnings('PMD.ApexUnitTestClassShouldHaveRunAs')
+@SuppressWarnings('PMD.ApexUnitTestClassShouldHaveRunAs,PMD.NcssCount')
 @IsTest
 private class RecordTypesTest {
 	/**

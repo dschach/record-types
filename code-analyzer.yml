@@ -1,0 +1,704 @@
+# ======================================================================
+# CODE ANALYZER CONFIGURATION
+# To learn more about this configuration, visit:
+#   https://developer.salesforce.com/docs/platform/salesforce-code-analyzer/guide/config-custom.html
+# ======================================================================
+
+# The absolute folder path to which all other path values in this configuration may be relative to.
+# If unspecified, or if specified as null, then the value is automatically chosen to be the parent folder of your Code Analyzer
+# configuration file if it exists, or the current working directory otherwise.
+config_root: null # Last calculated by the config command as: "/Users/dschach/Documents/VSCode/record-types"
+
+# Folder where to store log files. May be an absolute path or a path relative to config_root.
+# If unspecified, or if specified as null, then the value is automatically chosen to be your machine's default temporary directory.
+log_folder: null # Last calculated by the config command as: "/var/folders/59/sdcp21jd4cj3q3_jjvfl7ydw0000gn/T"
+
+# Level at which to log messages to log files.
+# Possible values are:
+#   1 or 'Error' - Includes only error messages in the log.
+#   2 or 'Warn' - Includes warning and error messages in the log.
+#   3 or 'Info' - Includes informative, warning, and error messages in the log.
+#   4 or 'Debug' - Includes debug, informative, warning, and error messages in the log.
+#   5 or 'Fine' - Includes fine detail, debug, informative, warning, and error messages in the log.
+# If unspecified, or if specified as null, then the 'Debug' log level will be used.
+log_level: 4
+
+# Configuration for ignoring files during analysis.
+#   files: An array of glob patterns specifying files to exclude from scanning.
+# ---- [Example usage]: ---------------------
+# ignores:
+#   files:
+#     - "**/node_modules/**"
+#     - "**/*.test.js"
+# -------------------------------------------
+ignores:
+  files: []
+
+# Configuration for inline and bulk suppressions.
+#   disable_suppressions: Boolean to disable processing of suppression markers.
+#   {file_path}: Array of bulk suppression rules for specific files or folders.
+# ---- [Example usage]: ---------------------
+# suppressions:
+#   disable_suppressions: false
+#   "src/legacy.js":
+#     - rule_selector: "eslint:no-console"
+#       max_suppressed_violations: 5
+# -------------------------------------------
+suppressions:
+  disable_suppressions: false
+
+# Rule override settings of the format rules.{engine_name}.{rule_name}.{property_name} = {override_value} where:
+#   {engine_name} is the name of the engine containing the rule that you want to override.
+#   {rule_name} is the name of the rule that you want to override.
+#   {property_name} can either be:
+#     'severity' - [Optional] The severity level value that you want to use to override the default severity level for the rule
+#                  Possible values: 1 or 'Critical', 2 or 'High', 3 or 'Moderate', 4 or 'Low', 5 or 'Info'
+#     'tags'     - [Optional] The string array of tag values that you want to use to override the default tags for the rule
+#     'disabled' - [Optional] Boolean value to disable the rule for all files. When set to true, the rule will not run during analysis
+# ---- [Example usage]: ---------------------
+# rules:
+#   eslint:
+#     sort-vars:
+#       severity: "Info"
+#       tags: ["Recommended", "Suggestion"]
+#   regex:
+#     NoTrailingWhiteSpace:
+#       disabled: true
+# -------------------------------------------
+rules:
+  # ======================================================================
+  # PMD ENGINE RULE OVERRIDES
+  # ======================================================================
+  pmd:
+    'AnnotationsNamingConventions':
+      severity: 3 # Modified from: 4
+      tags: # Modified from: ["Recommended","CodeStyle","Apex"]
+        - Recommended
+        - CodeStyle
+        - Apex
+        - all-apex
+    'ApexAssertionsShouldIncludeMessage':
+      severity: 3
+      tags: # Modified from: ["BestPractices","Apex"]
+        - BestPractices
+        - Apex
+        - all-apex
+    'ApexBadCrypto':
+      severity: 3 # Modified from: 2
+      tags: # Modified from: ["Recommended","Security","Apex"]
+        - Recommended
+        - Security
+        - Apex
+        - all-apex
+    'ApexCRUDViolation':
+      severity: 3 # Modified from: 2
+      tags: # Modified from: ["Recommended","Security","Apex"]
+        - Recommended
+        - Security
+        - Apex
+        - all-apex
+    'ApexCSRF':
+      severity: 3 # Modified from: 1
+      tags: # Modified from: ["Recommended","Security","Apex"]
+        - Recommended
+        - Security
+        - Apex
+        - all-apex
+    'ApexDangerousMethods':
+      severity: 3
+      tags: # Modified from: ["Recommended","Security","Apex"]
+        - Recommended
+        - Security
+        - Apex
+        - all-apex
+    'ApexDoc':
+      severity: 3 # Modified from: 4
+      tags: # Modified from: ["Recommended","Documentation","Apex"]
+        - Recommended
+        - Documentation
+        - Apex
+        - all-apex
+    'ApexInsecureEndpoint':
+      severity: 3 # Modified from: 2
+      tags: # Modified from: ["Recommended","Security","Apex"]
+        - Recommended
+        - Security
+        - Apex
+        - all-apex
+    'ApexOpenRedirect':
+      severity: 3 # Modified from: 2
+      tags: # Modified from: ["Recommended","Security","Apex"]
+        - Recommended
+        - Security
+        - Apex
+        - all-apex
+    'ApexSharingViolations':
+      severity: 3
+      tags: # Modified from: ["Recommended","Security","Apex"]
+        - Recommended
+        - Security
+        - Apex
+        - all-apex
+    'ApexSOQLInjection':
+      severity: 3 # Modified from: 2
+      tags: # Modified from: ["Recommended","Security","Apex"]
+        - Recommended
+        - Security
+        - Apex
+        - all-apex
+    'ApexSuggestUsingNamedCred':
+      severity: 3 # Modified from: 2
+      tags: # Modified from: ["Recommended","Security","Apex"]
+        - Recommended
+        - Security
+        - Apex
+        - all-apex
+    'ApexUnitTestClassShouldHaveAsserts':
+      severity: 4 # Modified from: 3
+      tags: # Modified from: ["Recommended","BestPractices","Apex"]
+        - Recommended
+        - BestPractices
+        - Apex
+        - all-apex
+    'ApexUnitTestClassShouldHaveRunAs':
+      disabled: true
+      severity: 3 # Modified from: 4
+      tags: # Modified from: ["Recommended","BestPractices","Apex"]
+        - Recommended
+        - BestPractices
+        - Apex
+        - all-apex
+    'ApexUnitTestMethodShouldHaveIsTestAnnotation':
+      severity: 3 # Modified from: 2
+      tags: # Modified from: ["Recommended","BestPractices","Apex"]
+        - Recommended
+        - BestPractices
+        - Apex
+        - all-apex
+    'ApexUnitTestShouldNotUseSeeAllDataTrue':
+      severity: 3 # Modified from: 2
+      tags: # Modified from: ["Recommended","BestPractices","Apex"]
+        - Recommended
+        - BestPractices
+        - Apex
+        - all-apex
+    'ApexXSSFromEscapeFalse':
+      severity: 3 # Modified from: 2
+      tags: # Modified from: ["Recommended","Security","Apex"]
+        - Recommended
+        - Security
+        - Apex
+        - all-apex
+    'ApexXSSFromURLParam':
+      severity: 3 # Modified from: 2
+      tags: # Modified from: ["Recommended","Security","Apex"]
+        - Recommended
+        - Security
+        - Apex
+        - all-apex
+    'AvoidBooleanMethodParameters':
+      severity: 3
+      tags: # Modified from: ["Recommended","Design","Apex"]
+        - Recommended
+        - Design
+        - Apex
+        - all-apex
+    'AvoidChangeProtectionUnprotected':
+      severity: 1
+      tags:
+        - AppExchange
+        - Security
+        - Apex
+    'AvoidDebugStatements':
+      severity: 4
+      tags: # Modified from: ["Recommended","Performance","Apex"]
+        - Recommended
+        - Performance
+        - Apex
+        - all-apex
+    'AvoidDeeplyNestedIfStmts':
+      severity: 3
+      tags: # Modified from: ["Recommended","Design","Apex"]
+        - Recommended
+        - Design
+        - Apex
+        - all-apex
+    'AvoidDirectAccessTriggerMap':
+      severity: 3
+      tags: # Modified from: ["Recommended","ErrorProne","Apex"]
+        - Recommended
+        - ErrorProne
+        - Apex
+        - all-apex
+    'AvoidFutureAnnotation':
+      severity: 4
+      tags: # Modified from: ["Recommended","BestPractices","Apex"]
+        - Recommended
+        - BestPractices
+        - Apex
+        - all-apex
+    'AvoidGetInstanceWithTaint':
+      severity: 3
+      tags:
+        - AppExchange
+        - Security
+        - Apex
+    'AvoidGlobalInstallUninstallHandlers':
+      severity: 1
+      tags:
+        - AppExchange
+        - Security
+        - Apex
+    'AvoidGlobalModifier':
+      severity: 3
+      tags: # Modified from: ["Recommended","BestPractices","Apex"]
+        - Recommended
+        - BestPractices
+        - Apex
+        - all-apex
+    'AvoidHardcodedCredentialsInFieldDecls':
+      severity: 3
+      tags:
+        - AppExchange
+        - Security
+        - Apex
+    'AvoidHardcodedCredentialsInHttpHeader':
+      severity: 3
+      tags:
+        - AppExchange
+        - Security
+        - Apex
+    'AvoidHardcodedCredentialsInSetPassword':
+      severity: 1
+      tags:
+        - AppExchange
+        - Security
+        - Apex
+    'AvoidHardcodedCredentialsInVarAssign':
+      severity: 3
+      tags:
+        - AppExchange
+        - Security
+        - Apex
+    'AvoidHardcodedCredentialsInVarDecls':
+      severity: 3
+      tags:
+        - AppExchange
+        - Security
+        - Apex
+    'AvoidHardcodingId':
+      severity: 3
+      tags: # Modified from: ["Recommended","ErrorProne","Apex"]
+        - Recommended
+        - ErrorProne
+        - Apex
+        - all-apex
+    'AvoidInterfaceAsMapKey':
+      severity: 3
+      tags: # Modified from: ["Recommended","ErrorProne","Apex"]
+        - Recommended
+        - ErrorProne
+        - Apex
+        - all-apex
+    'AvoidInvalidCrudContentDistribution':
+      severity: 3
+      tags:
+        - AppExchange
+        - Security
+        - Apex
+    'AvoidLogicInTrigger':
+      severity: 3
+      tags: # Modified from: ["Recommended","BestPractices","Apex"]
+        - Recommended
+        - BestPractices
+        - Apex
+        - all-apex
+    'AvoidNonExistentAnnotations':
+      severity: 3 # Modified from: 4
+      tags: # Modified from: ["Recommended","ErrorProne","Apex"]
+        - Recommended
+        - ErrorProne
+        - Apex
+        - all-apex
+    'AvoidNonRestrictiveQueries':
+      severity: 3 # Modified from: 4
+      tags: # Modified from: ["Recommended","Performance","Apex"]
+        - Recommended
+        - Performance
+        - Apex
+        - all-apex
+    'AvoidSecurityEnforcedOldApiVersion':
+      severity: 3
+      tags:
+        - AppExchange
+        - Security
+        - Apex
+    'AvoidStatefulDatabaseResult':
+      severity: 3
+      tags: # Modified from: ["Recommended","ErrorProne","Apex"]
+        - Recommended
+        - ErrorProne
+        - Apex
+        - all-apex
+    'AvoidUnauthorizedApiSessionIdInApex':
+      severity: 3
+      tags:
+        - AppExchange
+        - Security
+        - Apex
+    'AvoidUnauthorizedGetSessionIdInApex':
+      severity: 3
+      tags:
+        - AppExchange
+        - Security
+        - Apex
+    'AvoidUnsafePasswordManagementUse':
+      severity: 1
+      tags:
+        - AppExchange
+        - Security
+        - Apex
+    'ClassNamingConventions':
+      severity: 3
+      tags: # Modified from: ["Recommended","CodeStyle","Apex"]
+        - Recommended
+        - CodeStyle
+        - Apex
+        - all-apex
+    'CognitiveComplexity':
+      disabled: true
+      severity: 3
+      tags:
+        - Recommended
+        - Design
+        - Apex
+    'CyclomaticComplexity':
+      severity: 3
+      tags: # Modified from: ["Recommended","Design","Apex"]
+        - Recommended
+        - Design
+        - Apex
+        - all-apex
+    'DebugsShouldUseLoggingLevel':
+      severity: 4
+      tags: # Modified from: ["Recommended","BestPractices","Apex"]
+        - Recommended
+        - BestPractices
+        - Apex
+        - all-apex
+    'EagerlyLoadedDescribeSObjectResult':
+      severity: 3 # Modified from: 2
+      tags: # Modified from: ["Recommended","Performance","Apex"]
+        - Recommended
+        - Performance
+        - Apex
+        - all-apex
+    'EmptyCatchBlock':
+      severity: 3 # Modified from: 2
+      tags: # Modified from: ["Recommended","ErrorProne","Apex"]
+        - Recommended
+        - ErrorProne
+        - Apex
+        - all-apex
+    'EmptyIfStmt':
+      severity: 3
+      tags: # Modified from: ["Recommended","ErrorProne","Apex"]
+        - Recommended
+        - ErrorProne
+        - Apex
+        - all-apex
+    'EmptyStatementBlock':
+      severity: 3
+      tags: # Modified from: ["Recommended","ErrorProne","Apex"]
+        - Recommended
+        - ErrorProne
+        - Apex
+        - all-apex
+    'EmptyTryOrFinallyBlock':
+      severity: 3
+      tags: # Modified from: ["Recommended","ErrorProne","Apex"]
+        - Recommended
+        - ErrorProne
+        - Apex
+        - all-apex
+    'EmptyWhileStmt':
+      severity: 3
+      tags: # Modified from: ["Recommended","ErrorProne","Apex"]
+        - Recommended
+        - ErrorProne
+        - Apex
+        - all-apex
+    'ExcessiveClassLength':
+      disabled: true
+      severity: 3
+      tags:
+        - Design
+        - Apex
+    'ExcessiveParameterList':
+      severity: 3
+      tags: # Modified from: ["Recommended","Design","Apex"]
+        - Recommended
+        - Design
+        - Apex
+        - all-apex
+    'ExcessivePublicCount':
+      severity: 3
+      tags: # Modified from: ["Recommended","Design","Apex"]
+        - Recommended
+        - Design
+        - Apex
+        - all-apex
+    'FieldDeclarationsShouldBeAtStart':
+      severity: 3
+      tags:
+        - Recommended
+        - CodeStyle
+        - Apex
+    'FieldNamingConventions':
+      severity: 3
+      tags: # Modified from: ["Recommended","CodeStyle","Apex"]
+        - Recommended
+        - CodeStyle
+        - Apex
+        - all-apex
+    'ForLoopsMustUseBraces':
+      severity: 2 # Modified from: 3
+      tags: # Modified from: ["Recommended","CodeStyle","Apex"]
+        - Recommended
+        - CodeStyle
+        - Apex
+        - all-apex
+    'FormalParameterNamingConventions':
+      severity: 3
+      tags: # Modified from: ["Recommended","CodeStyle","Apex"]
+        - Recommended
+        - CodeStyle
+        - Apex
+        - all-apex
+    'IfElseStmtsMustUseBraces':
+      severity: 2 # Modified from: 3
+      tags: # Modified from: ["Recommended","CodeStyle","Apex"]
+        - Recommended
+        - CodeStyle
+        - Apex
+        - all-apex
+    'IfStmtsMustUseBraces':
+      severity: 2 # Modified from: 3
+      tags: # Modified from: ["Recommended","CodeStyle","Apex"]
+        - Recommended
+        - CodeStyle
+        - Apex
+        - all-apex
+    'InaccessibleAuraEnabledGetter':
+      severity: 3
+      tags:
+        - Recommended
+        - ErrorProne
+        - Apex
+    'InvocableClassNoArgConstructor':
+      severity: 3
+      tags: # Modified from: ["Recommended","ErrorProne","Apex"]
+        - Recommended
+        - ErrorProne
+        - Apex
+        - all-apex
+    'LocalVariableNamingConventions':
+      severity: 3
+      tags: # Modified from: ["Recommended","CodeStyle","Apex"]
+        - Recommended
+        - CodeStyle
+        - Apex
+        - all-apex
+    'MethodNamingConventions':
+      severity: 3
+      tags: # Modified from: ["Recommended","CodeStyle","Apex"]
+        - Recommended
+        - CodeStyle
+        - Apex
+        - all-apex
+    'MethodWithSameNameAsEnclosingClass':
+      severity: 3
+      tags: # Modified from: ["Recommended","ErrorProne","Apex"]
+        - Recommended
+        - ErrorProne
+        - Apex
+        - all-apex
+    'NcssConstructorCount':
+      disabled: true
+      severity: 4
+      tags:
+        - Design
+        - Apex
+    'NcssCount':
+      severity: 3
+      tags: # Modified from: ["Recommended","Apex","Custom"]
+        - Recommended
+        - Apex
+        - Custom
+        - all-apex
+    'NcssMethodCount':
+      disabled: true
+      severity: 4
+      tags:
+        - Design
+        - Apex
+    'NcssTypeCount':
+      disabled: true
+      severity: 4
+      tags:
+        - Design
+        - Apex
+    'OneDeclarationPerLine':
+      severity: 3
+      tags: # Modified from: ["Recommended","CodeStyle","Apex"]
+        - Recommended
+        - CodeStyle
+        - Apex
+        - all-apex
+    'OperationWithHighCostInLoop':
+      severity: 3
+      tags: # Modified from: ["Recommended","Performance","Apex"]
+        - Recommended
+        - Performance
+        - Apex
+        - all-apex
+    'OperationWithLimitsInLoop':
+      severity: 2 # Modified from: 3
+      tags: # Modified from: ["Recommended","Performance","Apex"]
+        - Recommended
+        - Performance
+        - Apex
+        - all-apex
+    'OverrideBothEqualsAndHashcode':
+      severity: 2
+      tags:
+        - Recommended
+        - ErrorProne
+        - Apex
+    'PropertyNamingConventions':
+      severity: 3
+      tags: # Modified from: ["Recommended","CodeStyle","Apex"]
+        - Recommended
+        - CodeStyle
+        - Apex
+        - all-apex
+    'QueueableWithoutFinalizer':
+      severity: 4
+      tags: # Modified from: ["Recommended","BestPractices","Apex"]
+        - Recommended
+        - BestPractices
+        - Apex
+        - all-apex
+    'StdCyclomaticComplexity':
+      severity: 3
+      tags: # Modified from: ["Design","Apex"]
+        - Design
+        - Apex
+        - all-apex
+    'TestMethodsMustBeInTestClasses':
+      severity: 3
+      tags: # Modified from: ["Recommended","ErrorProne","Apex"]
+        - Recommended
+        - ErrorProne
+        - Apex
+        - all-apex
+    'TooManyFields':
+      severity: 3
+      tags: # Modified from: ["Recommended","Design","Apex"]
+        - Recommended
+        - Design
+        - Apex
+        - all-apex
+    'TypeShadowsBuiltInNamespace':
+      severity: 2
+      tags: # Modified from: ["Recommended","ErrorProne","Apex"]
+        - Recommended
+        - ErrorProne
+        - Apex
+        - all-apex
+    'UnusedLocalVariable':
+      severity: 2 # Modified from: 3
+      tags: # Modified from: ["Recommended","BestPractices","Apex"]
+        - Recommended
+        - BestPractices
+        - Apex
+        - all-apex
+    'UnusedMethod':
+      severity: 3
+      tags: # Modified from: ["Recommended","Design","Apex"]
+        - Recommended
+        - Design
+        - Apex
+        - all-apex
+    'WhileLoopsMustUseBraces':
+      severity: 2 # Modified from: 3
+      tags: # Modified from: ["Recommended","CodeStyle","Apex"]
+        - Recommended
+        - CodeStyle
+        - Apex
+        - all-apex
+
+# Engine specific custom configuration settings of the format engines.{engine_name}.{property_name} = {value} where:
+#   {engine_name} is the name of the engine containing the setting that you want to override.
+#   {property_name} is the name of a property that you would like to override.
+# Each engine may have its own set of properties available to help customize that particular engine's behavior.
+engines:
+  # ======================================================================
+  # PMD ENGINE CONFIGURATION
+  # To learn more about this configuration, visit:
+  #   https://developer.salesforce.com/docs/platform/salesforce-code-analyzer/guide/engine-pmd.html#pmd-configuration-reference
+  # ======================================================================
+  pmd:
+    # Whether to turn off the 'pmd' engine so that it is not included when running Code Analyzer commands.
+    disable_engine: false
+
+    # Indicates the specific 'java' command associated with the JRE or JDK to use for the 'pmd' engine.
+    # May be provided as the name of a command that exists on the path, or an absolute file path location.
+    # If unspecified, or specified as null, then an attempt will be made to automatically discover a 'java' command from your environment.
+    java_command: null # Last calculated by the config command as: "java"
+
+    # Specifies the list of file extensions to associate to each rule language.
+    # The rule(s) associated with a given language will run against all the files in your workspace containing one of
+    # the specified file extensions. Each file extension can only be associated to one language. If a specific language
+    # is not specified, then a set of default file extensions for that language will be used.
+    file_extensions:
+      apex:
+        - .cls
+        - .trigger
+      html:
+        - .html
+        - .htm
+        - .xhtml
+        - .xht
+        - .shtml
+        - .cmp
+      javascript:
+        - .js
+        - .cjs
+        - .mjs
+      typescript:
+        - .ts
+      visualforce:
+        - .page
+        - .component
+      xml:
+        - .xml
+
+    # List of jar files and/or folders to add the Java classpath when running PMD.
+    # Each entry may be given as an absolute path or a relative path to 'config_root'.
+    # This field is primarily used to supply custom Java based rule definitions to PMD.
+    # See https://pmd.github.io/pmd/pmd_userdocs_extending_writing_java_rules.html
+    java_classpath_entries: []
+
+    # List of xml ruleset files containing custom PMD rules to be made available for rule selection.
+    # Each ruleset must be an xml file that is either:
+    #   - on disk (provided as an absolute path or a relative path to 'config_root')
+    #   - or a relative resource found on the Java classpath.
+    # Not all custom rules can be fully defined within an xml ruleset file. For example, Java based rules may be defined in jar files.
+    # In these cases, you will need to also add your additional files to the Java classpath using the 'java_classpath_entries' field.
+    # See https://pmd.github.io/pmd/pmd_userdocs_making_rulesets.html to learn more about PMD rulesets.
+    custom_rulesets: # Modified from: []
+      - pmd/apexStandardRules.xml
+# ======================================================================
+# END OF CODE ANALYZER CONFIGURATION
+# ======================================================================
