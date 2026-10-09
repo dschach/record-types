@@ -112,7 +112,8 @@ global inherited sharing class RecordTypes {
 				);
 				sObjectDescribes.put(sObjectName, describes[0]);
 			} catch (RecordTypeLibraryException e) {
-				return;
+				throw e;
+				//return;
 			}
 		}
 		// get the sObject description
