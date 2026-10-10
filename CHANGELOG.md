@@ -1,5 +1,35 @@
 # Changelog
 
+## [1.7.1](https://github.com/dschach/record-types/compare/v1.7.0...v1.7.1) (2026-10-10)
+
+
+### Chores
+
+* **pmd:** Add allApexPMDCategories.xml ruleset ([9ebf4ba](https://github.com/dschach/record-types/commit/9ebf4ba6aa4e4c6d7675b85edd850fe4060fbb58))
+* **pmd:** Replace apexQuickStart.xml with apexStandardRules.xml ([9ebf4ba](https://github.com/dschach/record-types/commit/9ebf4ba6aa4e4c6d7675b85edd850fe4060fbb58))
+* **pmd:** Update PMD rulesets and add Salesforce Code Analyzer ([#274](https://github.com/dschach/record-types/issues/274)) ([9ebf4ba](https://github.com/dschach/record-types/commit/9ebf4ba6aa4e4c6d7675b85edd850fe4060fbb58))
+* **renovate:** Configure Renovate ([#263](https://github.com/dschach/record-types/issues/263)) ([ec57350](https://github.com/dschach/record-types/commit/ec573501702373493a3f3e35f6cb4f5b0923dc39))
+
+
+### Performance Improvements
+
+* **RecordTypes:** Add LIMIT 2000 to the RecordType query ([9ebf4ba](https://github.com/dschach/record-types/commit/9ebf4ba6aa4e4c6d7675b85edd850fe4060fbb58))
+
+
+### Documentation
+
+* **readme:** Add a changelog entry for Code Analyzer ([9ebf4ba](https://github.com/dschach/record-types/commit/9ebf4ba6aa4e4c6d7675b85edd850fe4060fbb58))
+
+
+### Tests
+
+* **unpackaged:** Format asserts and set the test class to without ([9ebf4ba](https://github.com/dschach/record-types/commit/9ebf4ba6aa4e4c6d7675b85edd850fe4060fbb58))
+
+
+### Styles
+
+* **RecordTypes:** Add PMD suppressions and fix the TestVisible case ([9ebf4ba](https://github.com/dschach/record-types/commit/9ebf4ba6aa4e4c6d7675b85edd850fe4060fbb58))
+
 ## [1.7.0](https://github.com/dschach/record-types/compare/v1.6.0...v1.7.0) (2024-07-29)
 
 
