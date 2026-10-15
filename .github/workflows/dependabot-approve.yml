@@ -1,5 +1,5 @@
 name: Dependabot Pull Request Title and Approve
-on: pull_request #_target
+on: pull_request_target
 permissions:
   pull-requests: write
   contents: write
@@ -38,7 +38,7 @@ jobs:
           parensClose="):"
           pr_title=$title_pt1$parensOpen$packagename$parensClose$title_pt2
           echo "FINAL TITLE: $pr_title"
-          gh pr edit "$PR_URL" --title "$pr_title"
+          gh pr edit "$PR_URL" --title "$pr_title" --add-label "dependabot"
 
   # Approve (but never merge) Dependabot PRs for:
   # - patch updates on prod and indirect dependencies
