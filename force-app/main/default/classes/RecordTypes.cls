@@ -87,9 +87,7 @@ global inherited sharing class RecordTypes {
 	private static Map<Id, RecordType> recordTypesIdMap {
 		get {
 			if (recordTypesIdMap == null) {
-				recordTypesIdMap = new Map<Id, RecordType>(
-					[SELECT Id, DeveloperName, Name, SobjectType FROM RecordType LIMIT 2000]
-				);
+				recordTypesIdMap = new Map<Id, RecordType>([SELECT Id, DeveloperName, Name, SobjectType FROM RecordType LIMIT 2000]);
 			}
 			return recordTypesIdMap;
 		}
@@ -106,10 +104,7 @@ global inherited sharing class RecordTypes {
 		String sObjectName = objectName.toLowerCase();
 		if (!sObjectDescribes.containsKey(sObjectName)) {
 			try {
-				List<Schema.DescribeSObjectResult> describes = Schema.describeSObjects(
-					new List<String>{ sObjectName },
-					SObjectDescribeOptions.DEFERRED
-				);
+				List<Schema.DescribeSObjectResult> describes = Schema.describeSObjects(new List<String>{ sObjectName }, SObjectDescribeOptions.DEFERRED);
 				sObjectDescribes.put(sObjectName, describes[0]);
 			} catch (InvalidParameterValueException e) {
 				return;
@@ -664,9 +659,7 @@ global inherited sharing class RecordTypes {
 				return recordTypesOptions;
 			}
 			for (Schema.RecordTypeInfo rti : recordTypes) {
-				recordTypesOptions.add(
-					new SelectOption(rti.getRecordTypeId(), rti.getName(), disableUnavailable ? !rti.isAvailable() : false)
-				);
+				recordTypesOptions.add(new SelectOption(rti.getRecordTypeId(), rti.getName(), disableUnavailable ? !rti.isAvailable() : false));
 				if (rti.isAvailable()) {
 					hasAvailableRT = true;
 				}
@@ -729,8 +722,7 @@ global inherited sharing class RecordTypes {
 		if (!recordTypesByName.containsKey(sObjectName)) {
 			fillMapsForObject(sObjectName);
 		}
-		Boolean isDefaultMapping = getRecordTypeFromDevName(sObjectName, recordTypeDevName.toLowerCase())
-			?.isDefaultRecordTypeMapping();
+		Boolean isDefaultMapping = getRecordTypeFromDevName(sObjectName, recordTypeDevName.toLowerCase())?.isDefaultRecordTypeMapping();
 		return isDefaultMapping ?? false;
 	}
 

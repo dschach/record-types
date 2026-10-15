@@ -6,7 +6,6 @@ printf '<link href="assets/styling.css" rel="stylesheet" />' > "doc-assets/main.
 echo >> "doc-assets/main.html"
 echo "\n" >> "doc-assets/main.html"
 
-
 npx marked -i README.md --gfm >> "doc-assets/main.html"
 sed -i "" "s|<table>|<table class=\"methodtable\">|" "doc-assets/main.html"
 
