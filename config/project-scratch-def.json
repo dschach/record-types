@@ -1,18 +1,23 @@
 {
-	"orgName": "David Schach Record Types",
-	"edition": "Developer",
-	"features": ["EnableSetPasswordInApi", "RecordTypes", "EinsteinGPTForDevelopers"],
-	"settings": {
-		"lightningExperienceSettings": {
-			"enableS1DesktopEnabled": true
-		},
-		"mobileSettings": {
-			"enableS1EncryptedStoragePref2": false
-		}
-	},
-	"objectSettings": {
-		"account": {
-			"defaultRecordType": "Default"
-		}
-	}
+  "orgName": "David Schach Record Types",
+  "edition": "Developer",
+  "features": [
+    "EnableSetPasswordInApi",
+    "RecordTypes",
+    "Einstein1AIPlatform",
+    "EinsteinGPTForDevelopers"
+  ],
+  "settings": {
+    "lightningExperienceSettings": {
+      "enableS1DesktopEnabled": true
+    },
+    "mobileSettings": {
+      "enableS1EncryptedStoragePref2": false
+    }
+  },
+  "objectSettings": {
+    "account": {
+      "defaultRecordType": "default"
+    }
+  }
 }
