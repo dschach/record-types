@@ -2,77 +2,66 @@
 
 ## [1.7.0](https://github.com/dschach/record-types/compare/v1.6.0...v1.7.0) (2024-07-29)
 
-
 ### Features
 
-* Cleanup PMD violations ([#175](https://github.com/dschach/record-types/issues/175)) ([864a310](https://github.com/dschach/record-types/commit/864a310fe92575faa6fea75a9915014f8afd2c04))
-
+- Cleanup PMD violations ([#175](https://github.com/dschach/record-types/issues/175)) ([864a310](https://github.com/dschach/record-types/commit/864a310fe92575faa6fea75a9915014f8afd2c04))
 
 ### Chores
 
-* Remove duplicate RT directory ([cdea740](https://github.com/dschach/record-types/commit/cdea7406de3f77f69c3cf56795934be17d3d2839))
-
+- Remove duplicate RT directory ([cdea740](https://github.com/dschach/record-types/commit/cdea7406de3f77f69c3cf56795934be17d3d2839))
 
 ### Documentation
 
-* Include Snyk badge ([f9a2e99](https://github.com/dschach/record-types/commit/f9a2e99f26f2ddd9f29345cdb669f921c4fe7db7))
+- Include Snyk badge ([f9a2e99](https://github.com/dschach/record-types/commit/f9a2e99f26f2ddd9f29345cdb669f921c4fe7db7))
 
 ## [1.6.0](https://github.com/dschach/record-types/compare/v1.5.0...v1.6.0) (2024-03-09)
 
-
 ### Features
 
-* Enable case-insensitive uses ([3eadfcf](https://github.com/dschach/record-types/commit/3eadfcf515650a6d25123da69f6629493b449692))
-
+- Enable case-insensitive uses ([3eadfcf](https://github.com/dschach/record-types/commit/3eadfcf515650a6d25123da69f6629493b449692))
 
 ### Performance Improvements
 
-* Efficient describe calls ([#141](https://github.com/dschach/record-types/issues/141)) ([3eadfcf](https://github.com/dschach/record-types/commit/3eadfcf515650a6d25123da69f6629493b449692))
-
+- Efficient describe calls ([#141](https://github.com/dschach/record-types/issues/141)) ([3eadfcf](https://github.com/dschach/record-types/commit/3eadfcf515650a6d25123da69f6629493b449692))
 
 ### Documentation
 
-* Fix RecordTypes class ApexDocs ([09ac8f5](https://github.com/dschach/record-types/commit/09ac8f50699ef247992cb6e5b603c67313073e13))
-* Readme and description ([5a51375](https://github.com/dschach/record-types/commit/5a51375f1f93e543c229a127225fad67fa6e6f3d))
-* **readme:** Update readme badges ([#140](https://github.com/dschach/record-types/issues/140)) ([7fad074](https://github.com/dschach/record-types/commit/7fad074933d414eea97fd48f628871949c9d56ec))
-* Update ApexDox for v1.6 ([#142](https://github.com/dschach/record-types/issues/142)) ([5d799be](https://github.com/dschach/record-types/commit/5d799be167ae90d51a71ac5925f7c6af8105e8d0))
+- Fix RecordTypes class ApexDocs ([09ac8f5](https://github.com/dschach/record-types/commit/09ac8f50699ef247992cb6e5b603c67313073e13))
+- Readme and description ([5a51375](https://github.com/dschach/record-types/commit/5a51375f1f93e543c229a127225fad67fa6e6f3d))
+- **readme:** Update readme badges ([#140](https://github.com/dschach/record-types/issues/140)) ([7fad074](https://github.com/dschach/record-types/commit/7fad074933d414eea97fd48f628871949c9d56ec))
+- Update ApexDox for v1.6 ([#142](https://github.com/dschach/record-types/issues/142)) ([5d799be](https://github.com/dschach/record-types/commit/5d799be167ae90d51a71ac5925f7c6af8105e8d0))
 
 ## [1.5.0](https://github.com/dschach/record-types/compare/record-types-v1.4.0...record-types-v1.5.0) (2024-02-15)
 
-
 ### Features
 
-* Update SelectList methods - all and available ([f9b9812](https://github.com/dschach/record-types/commit/f9b981272bb5e8e71698873f81bc02333ebcb950))
-
+- Update SelectList methods - all and available ([f9b9812](https://github.com/dschach/record-types/commit/f9b981272bb5e8e71698873f81bc02333ebcb950))
 
 ### Chores
 
-* Release package v1.5.0 ([#133](https://github.com/dschach/record-types/issues/133)) ([f9b9812](https://github.com/dschach/record-types/commit/f9b981272bb5e8e71698873f81bc02333ebcb950))
-* Release package version 1.4.0 ([#81](https://github.com/dschach/record-types/issues/81)) ([46463a7](https://github.com/dschach/record-types/commit/46463a7489a31bde1405def49c655d4eea1c9035))
-* Renumber to release 1.5.0 ([03f6794](https://github.com/dschach/record-types/commit/03f679466eec7873f435411d15fb38a01ceb1c6c))
-
+- Release package v1.5.0 ([#133](https://github.com/dschach/record-types/issues/133)) ([f9b9812](https://github.com/dschach/record-types/commit/f9b981272bb5e8e71698873f81bc02333ebcb950))
+- Release package version 1.4.0 ([#81](https://github.com/dschach/record-types/issues/81)) ([46463a7](https://github.com/dschach/record-types/commit/46463a7489a31bde1405def49c655d4eea1c9035))
+- Renumber to release 1.5.0 ([03f6794](https://github.com/dschach/record-types/commit/03f679466eec7873f435411d15fb38a01ceb1c6c))
 
 ### Documentation
 
-* ApexDox css files cleanup ([f9b9812](https://github.com/dschach/record-types/commit/f9b981272bb5e8e71698873f81bc02333ebcb950))
-* Include build section in changelogs ([a9faa41](https://github.com/dschach/record-types/commit/a9faa41758172188f7ef66a06b427e5cd5015369))
-* **readme:** Fix deploy button images ([d3717fc](https://github.com/dschach/record-types/commit/d3717fc4f665a6e51f9f940d5fbe392db629f9c1))
-* **readme:** Update method tables ([8b123c3](https://github.com/dschach/record-types/commit/8b123c33e4a818f4c630e7cc6beb7a7205781386))
-* Update ApexDox ([f9b9812](https://github.com/dschach/record-types/commit/f9b981272bb5e8e71698873f81bc02333ebcb950))
-* Update method tables ([f9b9812](https://github.com/dschach/record-types/commit/f9b981272bb5e8e71698873f81bc02333ebcb950))
-
+- ApexDox css files cleanup ([f9b9812](https://github.com/dschach/record-types/commit/f9b981272bb5e8e71698873f81bc02333ebcb950))
+- Include build section in changelogs ([a9faa41](https://github.com/dschach/record-types/commit/a9faa41758172188f7ef66a06b427e5cd5015369))
+- **readme:** Fix deploy button images ([d3717fc](https://github.com/dschach/record-types/commit/d3717fc4f665a6e51f9f940d5fbe392db629f9c1))
+- **readme:** Update method tables ([8b123c3](https://github.com/dschach/record-types/commit/8b123c33e4a818f4c630e7cc6beb7a7205781386))
+- Update ApexDox ([f9b9812](https://github.com/dschach/record-types/commit/f9b981272bb5e8e71698873f81bc02333ebcb950))
+- Update method tables ([f9b9812](https://github.com/dschach/record-types/commit/f9b981272bb5e8e71698873f81bc02333ebcb950))
 
 ### Tests
 
-* Enhance testing for with/without record types ([f9b9812](https://github.com/dschach/record-types/commit/f9b981272bb5e8e71698873f81bc02333ebcb950))
-* Include unpackaged SelectList test page ([f9b9812](https://github.com/dschach/record-types/commit/f9b981272bb5e8e71698873f81bc02333ebcb950))
-
+- Enhance testing for with/without record types ([f9b9812](https://github.com/dschach/record-types/commit/f9b981272bb5e8e71698873f81bc02333ebcb950))
+- Include unpackaged SelectList test page ([f9b9812](https://github.com/dschach/record-types/commit/f9b981272bb5e8e71698873f81bc02333ebcb950))
 
 ### Styles
 
-* **Prettier:** Update Prettier config file ([f9b9812](https://github.com/dschach/record-types/commit/f9b981272bb5e8e71698873f81bc02333ebcb950))
-* **prettier:** Update prettier config to single quotes ([078fe29](https://github.com/dschach/record-types/commit/078fe29d5ac7972da8e63154d7e1a72c054b73e3))
-* Run prettier on all files ([bbff33c](https://github.com/dschach/record-types/commit/bbff33cd07e1e35a44d4f6fdf668cb4c15160945))
+- **Prettier:** Update Prettier config file ([f9b9812](https://github.com/dschach/record-types/commit/f9b981272bb5e8e71698873f81bc02333ebcb950))
+- **prettier:** Update prettier config to single quotes ([078fe29](https://github.com/dschach/record-types/commit/078fe29d5ac7972da8e63154d7e1a72c054b73e3))
+- Run prettier on all files ([bbff33c](https://github.com/dschach/record-types/commit/bbff33cd07e1e35a44d4f6fdf668cb4c15160945))
 
 ## [1.4.0](https://github.com/dschach/record-types/compare/record-types-v1.3.0...record-types-v1.4.0) (2023-09-17)
 

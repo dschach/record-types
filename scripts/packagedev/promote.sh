@@ -10,4 +10,4 @@ currentPackageVersionId=$(echo $listPackageJson | jq '.result[-1].SubscriberPack
 #echo $currentPackageVersionId
 echo "New SubscriberPackageVersionId = $currentPackageVersionId"
 #sed -i  "" "s|installPackage.apexp\?p0=.{0,18}|installPackage.apexp?p0=$currentPackageVersionId|g" "README.md"
-sed -E -i "" "s|installPackage\.apexp\?p0=.{0,18}|installPackage.apexp?p0=$currentPackageVersionId|g" README.md 
+sed -E -i "" "s|installPackage\.apexp\?p0=.{0,18}|installPackage.apexp?p0=$currentPackageVersionId|g" README.md

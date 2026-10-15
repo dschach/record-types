@@ -3,15 +3,15 @@
 	<head>
 		<title>Record Types code documentation</title>
 		<meta charset="UTF-8" />
-		<script type="module" src="./assets/index.js"></script>
-		<script type="module" src="./assets/search-idx.js"></script>
-		<script type="module" src="./assets/search.js"></script>
-		<script charset="UTF-8" src="./assets/highlight.js"></script>
-		<script charset="UTF-8" src="./assets/mark.js"></script>
-		<script charset="UTF-8" src="./assets/lunr.js"></script>
-		<link rel="stylesheet" href="./assets/highlight.css" />
-		<link rel="stylesheet" type="text/css" href="./assets/index.css" />
-		<link rel="shortcut icon" type="image/png" href="./assets/favicon.png" />
+		<script src="./assets/index.js" type="module"></script>
+		<script src="./assets/search-idx.js" type="module"></script>
+		<script src="./assets/search.js" type="module"></script>
+		<script src="./assets/highlight.js" charset="UTF-8"></script>
+		<script src="./assets/mark.js" charset="UTF-8"></script>
+		<script src="./assets/lunr.js" charset="UTF-8"></script>
+		<link href="./assets/highlight.css" rel="stylesheet" />
+		<link type="text/css" href="./assets/index.css" rel="stylesheet" />
+		<link type="image/png" href="./assets/favicon.png" rel="shortcut icon" />
 	</head>
 
 	<body>
@@ -21,57 +21,57 @@
 				<img src="assets/logo.png" />
 				<div class="subtitle">
 					Documentation for
-					<a target="_blank" rel="noopener noreferrer" href="https://github.com/dschach/record-types">RecordTypes Utilities</a>
+					<a href="https://github.com/dschach/record-types" target="_blank" rel="noopener noreferrer">RecordTypes Utilities</a>
 				</div>
 			</div>
 			<div id="search-wrapper">
 				<div class="search-icon"></div>
 				<input id="search-input" type="text" autocomplete="off" placeholder="Search..." />
 			</div>
-			<ul id="search-results" class=""></ul>
+			<ul class="" id="search-results"></ul>
 			<div class="navbar">
 				<nav role="navigation">
-					<a class="nav-header" id="home" href="javascript:void(0)" onclick="goToLocation('index.html');">Home</a>
-					<details id="RecordTypes" class="group-name">
-						<summary id="header-RecordTypes" class="nav-header">
+					<a class="nav-header" id="home" href="javascript:void(0)" onclick="goToLocation('index.html')">Home</a>
+					<details class="group-name" id="RecordTypes">
+						<summary class="nav-header" id="header-RecordTypes">
 							<span>RecordTypes</span>
 						</summary>
 						<ul>
 							<!-- menu items -->
-							<li title="RecordTypes" id="item-RecordTypes" class="nav-item class global" onclick="goToLocation('RecordTypes.html');">
-								<a tabindex="1" href="javascript:void(0)">RecordTypes</a>
+							<li class="nav-item class global" id="item-RecordTypes" title="RecordTypes" onclick="goToLocation('RecordTypes.html')">
+								<a href="javascript:void(0)" tabindex="1">RecordTypes</a>
 							</li>
-							<li title="RecordTypesTest" id="item-RecordTypesTest" class="nav-item class private" onclick="goToLocation('RecordTypesTest.html');">
-								<a tabindex="1" href="javascript:void(0)">RecordTypesTest</a>
+							<li class="nav-item class private" id="item-RecordTypesTest" title="RecordTypesTest" onclick="goToLocation('RecordTypesTest.html')">
+								<a href="javascript:void(0)" tabindex="1">RecordTypesTest</a>
 							</li>
 						</ul>
 					</details>
-					<details id="Unpackaged_Tests" class="group-name">
-						<summary id="header-Unpackaged_Tests" class="nav-header">
+					<details class="group-name" id="Unpackaged_Tests">
+						<summary class="nav-header" id="header-Unpackaged_Tests">
 							<span>Unpackaged Tests</span>
 						</summary>
 						<ul>
 							<!-- menu items -->
 							<li
-								title="SelectListsController"
+								class="nav-item class public"
 								id="item-SelectListsController"
-								class="nav-item class public"
-								onclick="goToLocation('SelectListsController.html');">
-								<a tabindex="1" href="javascript:void(0)">SelectListsController</a>
+								title="SelectListsController"
+								onclick="goToLocation('SelectListsController.html')">
+								<a href="javascript:void(0)" tabindex="1">SelectListsController</a>
 							</li>
 							<li
-								title="SelectListsControllerTest"
+								class="nav-item class public"
 								id="item-SelectListsControllerTest"
-								class="nav-item class public"
-								onclick="goToLocation('SelectListsControllerTest.html');">
-								<a tabindex="1" href="javascript:void(0)">SelectListsControllerTest</a>
+								title="SelectListsControllerTest"
+								onclick="goToLocation('SelectListsControllerTest.html')">
+								<a href="javascript:void(0)" tabindex="1">SelectListsControllerTest</a>
 							</li>
 							<li
-								title="UnpackagedRecordTypesTest"
-								id="item-UnpackagedRecordTypesTest"
 								class="nav-item class private"
-								onclick="goToLocation('UnpackagedRecordTypesTest.html');">
-								<a tabindex="1" href="javascript:void(0)">UnpackagedRecordTypesTest</a>
+								id="item-UnpackagedRecordTypesTest"
+								title="UnpackagedRecordTypesTest"
+								onclick="goToLocation('UnpackagedRecordTypesTest.html')">
+								<a href="javascript:void(0)" tabindex="1">UnpackagedRecordTypesTest</a>
 							</li>
 						</ul>
 					</details>
@@ -82,19 +82,19 @@
 			<tr>
 				<td class="scoping-panel">
 					Show:
-					<input type="checkbox" checked="true" id="cbx-all" onclick="toggleAllScopes(this.checked);" />
+					<input id="cbx-all" type="checkbox" checked="true" onclick="toggleAllScopes(this.checked)" />
 					<label for="cbx-all">All</label>
 					&nbsp;&nbsp;
-					<input type="checkbox" checked="true" id="cbx-global" onclick="toggleScope('global', this.checked);" />
+					<input id="cbx-global" type="checkbox" checked="true" onclick="toggleScope('global', this.checked)" />
 					<label for="cbx-global">global</label>
 					&nbsp;&nbsp;
-					<input type="checkbox" checked="true" id="cbx-public" onclick="toggleScope('public', this.checked);" />
+					<input id="cbx-public" type="checkbox" checked="true" onclick="toggleScope('public', this.checked)" />
 					<label for="cbx-public">public</label>
 					&nbsp;&nbsp;
-					<input type="checkbox" checked="true" id="cbx-private" onclick="toggleScope('private', this.checked);" />
+					<input id="cbx-private" type="checkbox" checked="true" onclick="toggleScope('private', this.checked)" />
 					<label for="cbx-private">private</label>
 					&nbsp;&nbsp;
-					<input type="checkbox" checked="true" id="cbx-testmethod" onclick="toggleScope('testmethod', this.checked);" />
+					<input id="cbx-testmethod" type="checkbox" checked="true" onclick="toggleScope('testmethod', this.checked)" />
 					<label for="cbx-testmethod">testMethod</label>
 				</td>
 			</tr>
@@ -103,11 +103,11 @@
 					<div class="section">
 						<h2 class="class-title top-level-type" id="UnpackagedRecordTypesTest">
 							<a
-								target="_blank"
-								rel="noopener noreferrer"
-								title="Go to source"
 								class="source-link"
-								href="https://github.com/dschach/record-types/tree/main/unpackaged/main/default/classes/UnpackagedRecordTypesTest.cls#L10">
+								href="https://github.com/dschach/record-types/tree/main/unpackaged/main/default/classes/UnpackagedRecordTypesTest.cls#L10"
+								title="Go to source"
+								target="_blank"
+								rel="noopener noreferrer">
 								UnpackagedRecordTypesTest
 							</a>
 						</h2>
@@ -172,11 +172,11 @@
 								<div class="method private">
 									<h4 class="method-title" id="UnpackagedRecordTypesTest.resetTest">
 										<a
-											target="_blank"
-											rel="noopener noreferrer"
-											title="Go to source"
 											class="source-link"
-											href="https://github.com/dschach/record-types/tree/main/unpackaged/main/default/classes/UnpackagedRecordTypesTest.cls#L141">
+											href="https://github.com/dschach/record-types/tree/main/unpackaged/main/default/classes/UnpackagedRecordTypesTest.cls#L141"
+											title="Go to source"
+											target="_blank"
+											rel="noopener noreferrer">
 											resetTest()
 										</a>
 									</h4>
@@ -186,17 +186,17 @@
 									<div class="method-signature">private static void resetTest()</div>
 									<div class="method-subtitle">Author</div>
 									<div class="method-subtitle-description">
-										<a target="_blank" rel="noopener noreferrer" href="https://github.com/dschach">David Schach</a>
+										<a href="https://github.com/dschach" target="_blank" rel="noopener noreferrer">David Schach</a>
 									</div>
 								</div>
 								<div class="method testmethod">
 									<h4 class="method-title" id="UnpackagedRecordTypesTest.testAccountRecTypes">
 										<a
-											target="_blank"
-											rel="noopener noreferrer"
-											title="Go to source"
 											class="source-link"
-											href="https://github.com/dschach/record-types/tree/main/unpackaged/main/default/classes/UnpackagedRecordTypesTest.cls#L18">
+											href="https://github.com/dschach/record-types/tree/main/unpackaged/main/default/classes/UnpackagedRecordTypesTest.cls#L18"
+											title="Go to source"
+											target="_blank"
+											rel="noopener noreferrer">
 											testAccountRecTypes()
 										</a>
 									</h4>
@@ -217,11 +217,11 @@
 								<div class="method testmethod">
 									<h4 class="method-title" id="UnpackagedRecordTypesTest.testAccountRecTypesLowercaseRT">
 										<a
-											target="_blank"
-											rel="noopener noreferrer"
-											title="Go to source"
 											class="source-link"
-											href="https://github.com/dschach/record-types/tree/main/unpackaged/main/default/classes/UnpackagedRecordTypesTest.cls#L72">
+											href="https://github.com/dschach/record-types/tree/main/unpackaged/main/default/classes/UnpackagedRecordTypesTest.cls#L72"
+											title="Go to source"
+											target="_blank"
+											rel="noopener noreferrer">
 											testAccountRecTypesLowercaseRT()
 										</a>
 									</h4>
@@ -242,11 +242,11 @@
 								<div class="method testmethod">
 									<h4 class="method-title" id="UnpackagedRecordTypesTest.testMethodsAfterReset">
 										<a
-											target="_blank"
-											rel="noopener noreferrer"
-											title="Go to source"
 											class="source-link"
-											href="https://github.com/dschach/record-types/tree/main/unpackaged/main/default/classes/UnpackagedRecordTypesTest.cls#L131">
+											href="https://github.com/dschach/record-types/tree/main/unpackaged/main/default/classes/UnpackagedRecordTypesTest.cls#L131"
+											title="Go to source"
+											target="_blank"
+											rel="noopener noreferrer">
 											testMethodsAfterReset()
 										</a>
 									</h4>
@@ -258,11 +258,11 @@
 								<div class="method testmethod">
 									<h4 class="method-title" id="UnpackagedRecordTypesTest.testSolutionRecTypes">
 										<a
-											target="_blank"
-											rel="noopener noreferrer"
-											title="Go to source"
 											class="source-link"
-											href="https://github.com/dschach/record-types/tree/main/unpackaged/main/default/classes/UnpackagedRecordTypesTest.cls#L92">
+											href="https://github.com/dschach/record-types/tree/main/unpackaged/main/default/classes/UnpackagedRecordTypesTest.cls#L92"
+											title="Go to source"
+											target="_blank"
+											rel="noopener noreferrer">
 											testSolutionRecTypes()
 										</a>
 									</h4>
@@ -273,7 +273,7 @@
 									<div class="method-subtitle">Authors</div>
 									<div class="method-subtitle-description">
 										Evan Callahan,
-										<a target="_blank" rel="noopener noreferrer" href="https://github.com/dschach">David Schach</a>
+										<a href="https://github.com/dschach" target="_blank" rel="noopener noreferrer">David Schach</a>
 									</div>
 								</div>
 							</div>

@@ -7,6 +7,9 @@ versionCreateJson=$(sf package version create --code-coverage --installation-key
 # .result.Status = "Success"
 # .result.Error = [] (array of errors)
 
-versionCreateSuccess = $($versionCreateJson | jq '.result[-1].Success')
-echo $versionCreateSuccess
-if [$versionCreateSuccess == "true" ]; then 
+versionCreateStatus=$(echo "$versionCreateJson" | jq -r '.result.Status')
+echo "$versionCreateStatus"
+if [ "$versionCreateStatus" == "Success" ]; then
+  # TODO: add the steps that run after a successful package version create
+  :
+fi
