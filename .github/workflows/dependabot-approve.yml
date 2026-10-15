@@ -1,11 +1,8 @@
-name: Dependabot Pull Request Approve and Merge
-on: pull_request_target
+name: Dependabot Pull Request Title and Approve
+on: pull_request #_target
 permissions:
   pull-requests: write
   contents: write
-  statuses: read
-  checks: read
-  repository-projects: read
 jobs:
   pull-request-title-change:
     runs-on: ubuntu-latest
@@ -29,22 +26,24 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_URL: ${{github.event.pull_request.html_url}}
         run: |
-          echo "Title: $TITLE"
+          echo $TITLE
           title_pt2="${TITLE##*:}"
           title_pt1="${TITLE%%:*}"
           gh pr checkout "$PR_URL" # sets the upstream metadata for `gh pr status`
           packagename="${{ steps.dependabot-fetch.outputs.dependency-names }}"
+          #echo "packagename is $packagename"
+          #echo "$title_pt1"
+          #echo "$title_pt2"
           parensOpen="("
           parensClose="):"
           pr_title=$title_pt1$parensOpen$packagename$parensClose$title_pt2
           echo "FINAL TITLE: $pr_title"
           gh pr edit "$PR_URL" --title "$pr_title"
-          gh pr edit "$PR_URL" --add-label "dependabot" 
 
-  # Auto merge Dependabot PRs for:
-  # - patch updates on prod dependencies
-  # - minor updates on dev dependencies
-  dependabot-auto-merge:
+  # Approve (but never merge) Dependabot PRs for:
+  # - patch updates on prod and indirect dependencies
+  # - minor and patch updates on dev dependencies
+  dependabot-approve:
     needs: pull-request-title-change
     # Only run for Dependabot PRs
     if: ${{ github.actor == 'dependabot[bot]' }}
@@ -56,29 +55,21 @@ jobs:
         with:
           github-token: '${{ secrets.GITHUB_TOKEN }}'
 
-      - name: 'Check auto merge conditions'
-        id: check-merge
+      - name: 'Check approval conditions'
+        id: approval
         if: |
           (
             steps.dependabot.outputs.update-type == 'version-update:semver-patch' &&
-            contains('production', steps.dependabot.outputs.dependency-type)
+            contains(fromJSON('["direct:production", "indirect"]'), steps.dependabot.outputs.dependency-type)
           ) || (
-            contains('version-update:semver-minor,version-update:semver-patch', steps.dependabot.outputs.update-type) &&
-            contains('development', steps.dependabot.outputs.dependency-type)
+            contains(fromJSON('["version-update:semver-minor", "version-update:semver-patch"]'), steps.dependabot.outputs.update-type) &&
+            steps.dependabot.outputs.dependency-type == 'direct:development'
           )
-        run: echo "::notice ::auto-merge conditions satisfied"
+        run: echo "::notice ::approval conditions satisfied"
 
-      - name: 'Approve and merge PR'
-        id: auto-merge
-        if: ${{ steps.check-merge.conclusion == 'success' }}
-        run: |
-          gh pr edit "$PR_URL" --add-label "dependabot"  
-          #gh pr edit "$PR_URL" --add-label "auto-merged"  
-          #gh pr review --approve "$PR_URL"
-          #gh pr merge --auto --squash "$PR_URL"
+      - name: 'Approve PR'
+        if: ${{ steps.approval.conclusion == 'success' }}
+        run: gh pr review --approve "$PR_URL"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_URL: ${{ github.event.pull_request.html_url }}
-      - name: 'release-please'
-        if: ${{ steps.auto-merge.conclusion == 'success' }}
-        uses: googleapis/release-please-action@v5
