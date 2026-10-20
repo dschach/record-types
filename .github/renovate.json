@@ -1,12 +1,7 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["github>x2od/.github:renovate.jsonc"],
-  "packageRules": [
-    {
-      "matchManagers": ["github-actions"],
-      "commitMessageExtra": "from {{currentVersion}} to {{#if isPinDigest}}{{{newDigestShort}}}{{else}}{{#if isMajor}}{{newVersion}}{{else}}{{#if isSingleVersion}}{{newVersion}}{{else}}{{#if newValue}}{{{newVersion}}}{{else}}{{{newDigestShort}}}{{/if}}{{/if}}{{/if}}{{/if}}"
-    }
-  ],
+  "packageRules": [],
   "major": {
     "autoApprove": false,
     "automerge": false,
