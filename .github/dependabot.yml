@@ -7,8 +7,13 @@
 # (when "Dependabot security updates" is on in the repository settings).
 #
 # The commit-message prefixes give Conventional Commits PR titles without a scope,
-# for example "build: bump x from 1.0.0 to 1.0.1". The dependabot-update.yml workflow
-# then puts the package name in the scope: "build(x): bump x from 1.0.0 to 1.0.1".
+# for example "build: bump x from 1.0.0 to 1.0.1". The Dependabot workflow, which
+# calls dependabot-reusable.yml, then puts the package name in the scope:
+# "build(x): bump x from 1.0.0 to 1.0.1".
+#
+# Dependabot can use the production prefix "deps" for an indirect npm package, for
+# example in a security update. If only development dependencies need that package
+# ("dev": true in package-lock.json), the workflow also changes the type to "build".
 
 version: 2
 updates:
