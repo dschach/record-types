@@ -7,20 +7,20 @@
 # (when "Dependabot security updates" is on in the repository settings).
 #
 # The commit-message prefixes give Conventional Commits PR titles without a scope,
-# for example "build: bump x from 1.0.0 to 1.0.1". The dependabot-update.yml workflow
-# then puts the package name in the scope: "build(x): bump x from 1.0.0 to 1.0.1".
+# for example "build: bump x from 1.0.0 to 1.0.1". The Dependabot workflow, which
+# calls dependabot-reusable.yml, then puts the package name in the scope:
+# "build(x): bump x from 1.0.0 to 1.0.1".
 #
-# The npm packages in this repository are all tools. None of them is part of the
-# Salesforce package. Thus, both npm prefixes are "build". Dependabot can use the
-# production prefix for an indirect dependency, for example in a security update.
-# If package.json gets production dependencies, change "prefix" to "deps".
+# Dependabot can use the production prefix "deps" for an indirect npm package, for
+# example in a security update. If only development dependencies need that package
+# ("dev": true in package-lock.json), the workflow also changes the type to "build".
 
 version: 2
 updates:
   - package-ecosystem: 'npm'
     directory: '/' # Location of package.json
     commit-message:
-      prefix: 'build' # production and indirect dependencies
+      prefix: 'deps' # production dependencies
       prefix-development: 'build' # development dependencies
     rebase-strategy: 'auto'
     schedule:
