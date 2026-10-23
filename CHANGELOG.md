@@ -1,5 +1,45 @@
 # Changelog
 
+## [1.8.0](https://github.com/dschach/record-types/compare/v1.7.0...v1.8.0) (2026-10-23)
+
+
+### Features
+
+* **scratch org:** enable Agentforce Vibes, lowercase RT in scratch orgs ([7b167be](https://github.com/dschach/record-types/commit/7b167be97c6bae2b89b40602eda08fdfe4e2a0ee))
+
+
+### Chores
+
+* **pmd:** add allApexPMDCategories.xml ruleset ([9ebf4ba](https://github.com/dschach/record-types/commit/9ebf4ba6aa4e4c6d7675b85edd850fe4060fbb58))
+* **pmd:** replace apexQuickStart.xml with apexStandardRules.xml ([9ebf4ba](https://github.com/dschach/record-types/commit/9ebf4ba6aa4e4c6d7675b85edd850fe4060fbb58))
+* **pmd:** update PMD rulesets and add Salesforce Code Analyzer ([#274](https://github.com/dschach/record-types/issues/274)) ([9ebf4ba](https://github.com/dschach/record-types/commit/9ebf4ba6aa4e4c6d7675b85edd850fe4060fbb58))
+* **renovate:** Configure Renovate ([#263](https://github.com/dschach/record-types/issues/263)) ([ec57350](https://github.com/dschach/record-types/commit/ec573501702373493a3f3e35f6cb4f5b0923dc39))
+* **renovate:** follow the shared x2od/.github Renovate preset ([#286](https://github.com/dschach/record-types/issues/286)) ([21ba8b3](https://github.com/dschach/record-types/commit/21ba8b3460585ac8e6b4299f1d4ac2a619cc6f69))
+* **renovate:** use renovate.jsonc shared preset from x2od/.github ([6f1ffc4](https://github.com/dschach/record-types/commit/6f1ffc41393836053464b4a5110938853c4d3b3e))
+
+
+### Performance Improvements
+
+* **RecordTypes:** add LIMIT 2000 to the RecordType query ([9ebf4ba](https://github.com/dschach/record-types/commit/9ebf4ba6aa4e4c6d7675b85edd850fe4060fbb58))
+
+
+### Documentation
+
+* **readme:** add a changelog entry for Code Analyzer ([9ebf4ba](https://github.com/dschach/record-types/commit/9ebf4ba6aa4e4c6d7675b85edd850fe4060fbb58))
+* **release please:** remove sentence case plugin ([4c5d0b3](https://github.com/dschach/record-types/commit/4c5d0b3d379e8d6a168c423d6756149ccde534fd))
+
+
+### Tests
+
+* **unpackaged:** format asserts and set the test class to without ([9ebf4ba](https://github.com/dschach/record-types/commit/9ebf4ba6aa4e4c6d7675b85edd850fe4060fbb58))
+
+
+### Styles
+
+* **format:** run shared prettier config ([#281](https://github.com/dschach/record-types/issues/281)) ([b880bf2](https://github.com/dschach/record-types/commit/b880bf2758daa8b356d71a11cdac82f659798c8a))
+* **prettier:** use x2od shared Prettier config ([#280](https://github.com/dschach/record-types/issues/280)) ([2e5f84f](https://github.com/dschach/record-types/commit/2e5f84f3483ee00ffedc6d033ba39ad75f36cb1d))
+* **RecordTypes:** add PMD suppressions and fix the TestVisible case ([9ebf4ba](https://github.com/dschach/record-types/commit/9ebf4ba6aa4e4c6d7675b85edd850fe4060fbb58))
+
 ## [1.7.0](https://github.com/dschach/record-types/compare/v1.6.0...v1.7.0) (2024-07-29)
 
 ### Features
