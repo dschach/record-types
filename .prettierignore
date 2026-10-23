@@ -15,3 +15,5 @@ highlight.js
 # Exclude project config
 #sfdx-project.json
 dependencies.json
+
+package-lock.json
