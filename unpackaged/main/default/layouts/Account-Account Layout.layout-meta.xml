@@ -190,6 +190,6 @@
         <masterLabel>00hO3000001bqTr</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
-        <summaryLayoutStyle>Default</summaryLayoutStyle>
+        <summaryLayoutStyle>default</summaryLayoutStyle>
     </summaryLayout>
 </Layout>
