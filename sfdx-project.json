@@ -25,7 +25,7 @@
   "name": "record-types",
   "namespace": "",
   "sfdcLoginUrl": "https://login.salesforce.com",
-  "sourceApiVersion": "61.0",
+  "sourceApiVersion": "68.0",
   "packageAliases": {
     "Record Types": "0HoQm00000000BJKAY",
     "RecordTypes": "0HoQm00000000BJKAY",

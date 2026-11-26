@@ -2,29 +2,17 @@
  * @description Test class for RecordTypes.cls
  *
  * @author Evan Callahan
- * @since  2010
  * @author {@link [David Schach](https://github.com/dschach)}
  * @since  2021 Various enhancements and updates to use new Apex methods
  * @since  2023 Addition of methods to handle no profile-based RT permissions with permissions via permission set
  * @since  2024 Check for case insensitivity
+ * @since  2026 Test efficiency increased
  * @group RecordTypes
  * @see RecordTypes
  */
 @SuppressWarnings('PMD.ApexUnitTestClassShouldHaveRunAs,PMD.NcssCount')
-@IsTest
+@IsTest(testFor='ApexClass:RecordTypes')
 private class RecordTypesTest {
-	/**
-	 * @description Memoize global describe, as we call it multiple times in this class
-	 */
-	private static Map<String, Schema.SObjectType> gd {
-		get {
-			if (gd == null) {
-				gd = Schema.getGlobalDescribe();
-			}
-			return gd;
-		}
-		set;
-	}
 	/**
 	 * @description Test various record types and names
 	 * <br>We test nonexistent object names, nonexistent record type names, null values, and existing Account record type (if available)
@@ -71,64 +59,49 @@ private class RecordTypesTest {
 	 */
 	@IsTest
 	private static void testAccountRecTypes() {
-		Assert.isNotNull(RecordTypes.getRecordTypesForObject('Account'), 'A real sobject should have at least Master record type');
-		Assert.isNull(RecordTypes.getRecordTypeIdFromName('Account', 'BogusRT'), 'BogusRT record type should not exist');
-		Assert.isNull(RecordTypes.getRecordTypeDevNameFromName('Account', 'BogusRT'), 'BogusRT record type should not exist');
-
-		Assert.isNull(RecordTypes.getRecordTypeNameFromDevName('Account', 'BogusRT'), 'BogusRT record type should not exist');
-		Assert.isNull(RecordTypes.getRecordTypeIdFromDevName('Account', 'BogusRT'), 'BogusRT record type should not exist');
-
-		Assert.isNull(RecordTypes.getRecordTypeNameFromId('Account', null), 'Null record type should not exist');
-		Assert.isNull(RecordTypes.getRecordTypeDevNameFromId('Account', null), 'Null record type should not exist');
-
-		Assert.isNull(RecordTypes.getRecordTypeIdFromDevName('Account', 'BogusRT'), 'BogusRT record type should not exist');
-		Assert.isNull(RecordTypes.getRecordTypeIdFromName('Account', 'BogusRT'), 'BogusRT record type should not exist');
-
-		Assert.isNotNull(RecordTypes.getDefaultRecordTypeName('Account'), 'A real sobject should have at least Master record type');
-		Assert.isNotNull(RecordTypes.getDefaultRecordTypeDevName('Account'), 'A real sobject should have at least Master record type');
-
-		Assert.isNotNull(RecordTypes.getRecordTypeDevNameIdMap('Account'), 'A real sobject should return at least an empty map');
-
-		Assert.isNotNull(RecordTypes.getAvailableRecordTypeDevNameIdMap('Account'), 'Should return at least an empty map, and populated one if we have record types for Account.');
-		Assert.isNotNull(RecordTypes.getAvailableRecordTypeNameIdMap('Account'), 'Should return at least an empty map, and a populated one if we have record types for Account.');
-
-		Assert.isNotNull(RecordTypes.getAvailableRecordTypesIdSet('Account'), 'Should return at least an empty map, and populated one if we have record types for Account.');
-
-		resetTest();
-		Assert.isFalse(RecordTypes.getAllRecordTypesForSelectList('Account').isEmpty(), 'Should return at least single item select list');
+		assertAccountReturns('Account');
 	}
 
 	/**
-	 * @description Test against account, an object with record types in package testing
+	 * @description Test against account (lowercase object name) to check case insensitivity
 	 * @author Evan Callahan
 	 */
 	@IsTest
 	private static void testAccountRecTypesCaseInsensitive() {
-		Assert.isNotNull(RecordTypes.getRecordTypesForObject('account'), 'A real sobject should have at least Master record type');
-		Assert.isNull(RecordTypes.getRecordTypeIdFromName('account', 'BogusRT'), 'BogusRT record type should not exist');
-		Assert.isNull(RecordTypes.getRecordTypeDevNameFromName('account', 'BogusRT'), 'BogusRT record type should not exist');
+		assertAccountReturns('account');
+	}
 
-		Assert.isNull(RecordTypes.getRecordTypeNameFromDevName('account', 'BogusRT'), 'BogusRT record type should not exist');
-		Assert.isNull(RecordTypes.getRecordTypeIdFromDevName('account', 'BogusRT'), 'BogusRT record type should not exist');
+	/**
+	 * @description Shared assertions for Account tests, run once with the proper-case name and once with lowercase
+	 *
+	 * @param objectName Name of the object to test, in any case
+	 */
+	private static void assertAccountReturns(String objectName) {
+		Assert.isNotNull(RecordTypes.getRecordTypesForObject(objectName), 'A real sobject should have at least Master record type');
+		Assert.isNull(RecordTypes.getRecordTypeIdFromName(objectName, 'BogusRT'), 'BogusRT record type should not exist');
+		Assert.isNull(RecordTypes.getRecordTypeDevNameFromName(objectName, 'BogusRT'), 'BogusRT record type should not exist');
 
-		Assert.isNull(RecordTypes.getRecordTypeNameFromId('account', null), 'Null record type should not exist');
-		Assert.isNull(RecordTypes.getRecordTypeDevNameFromId('account', null), 'Null record type should not exist');
+		Assert.isNull(RecordTypes.getRecordTypeNameFromDevName(objectName, 'BogusRT'), 'BogusRT record type should not exist');
+		Assert.isNull(RecordTypes.getRecordTypeIdFromDevName(objectName, 'BogusRT'), 'BogusRT record type should not exist');
 
-		Assert.isNull(RecordTypes.getRecordTypeIdFromDevName('account', 'BogusRT'), 'BogusRT record type should not exist');
-		Assert.isNull(RecordTypes.getRecordTypeIdFromName('account', 'BogusRT'), 'BogusRT record type should not exist');
+		Assert.isNull(RecordTypes.getRecordTypeNameFromId(objectName, null), 'Null record type should not exist');
+		Assert.isNull(RecordTypes.getRecordTypeDevNameFromId(objectName, null), 'Null record type should not exist');
 
-		Assert.isNotNull(RecordTypes.getDefaultRecordTypeName('account'), 'A real sobject should have at least Master record type');
-		Assert.isNotNull(RecordTypes.getDefaultRecordTypeDevName('account'), 'A real sobject should have at least Master record type');
+		Assert.isNotNull(RecordTypes.getDefaultRecordTypeName(objectName), 'A real sobject should have at least Master record type');
+		Assert.isNotNull(RecordTypes.getDefaultRecordTypeDevName(objectName), 'A real sobject should have at least Master record type');
 
-		Assert.isNotNull(RecordTypes.getRecordTypeDevNameIdMap('account'), 'A real sobject should return at least an empty map');
+		Assert.isNotNull(RecordTypes.getRecordTypeDevNameIdMap(objectName), 'A real sobject should return at least an empty map');
 
-		Assert.isNotNull(RecordTypes.getAvailableRecordTypeDevNameIdMap('account'), 'Should return at least an empty map, and populated one if we have record types for account.');
-		Assert.isNotNull(RecordTypes.getAvailableRecordTypeNameIdMap('account'), 'Should return at least an empty map, and a populated one if we have record types for account.');
+		Assert.isNotNull(
+			RecordTypes.getAvailableRecordTypeDevNameIdMap(objectName),
+			'Should return at least an empty map, and populated one if we have record types for ' + objectName
+		);
+		Assert.isNotNull(RecordTypes.getAvailableRecordTypeNameIdMap(objectName), 'Should return at least an empty map, and a populated one if we have record types for ' + objectName);
 
-		Assert.isNotNull(RecordTypes.getAvailableRecordTypesIdSet('account'), 'Should return at least an empty map, and populated one if we have record types for account.');
+		Assert.isNotNull(RecordTypes.getAvailableRecordTypesIdSet(objectName), 'Should return at least an empty set, and populated one if we have record types for ' + objectName);
 
 		resetTest();
-		Assert.isFalse(RecordTypes.getAllRecordTypesForSelectList('account').isEmpty(), 'Should return at least single item select list');
+		Assert.isFalse(RecordTypes.getAllRecordTypesForSelectList(objectName).isEmpty(), 'Should return at least single item select list');
 	}
 
 	/**
@@ -215,16 +188,9 @@ private class RecordTypesTest {
 			Assert.areNotEqual(null, RecordTypes.getRecordTypeDevNameFromId(activeRT.Id), 'We should have had ' + sobjectname.capitalize() + ' Record Type');
 			Assert.areNotEqual(null, RecordTypes.getRecordTypeNameFromId(activeRT.Id), 'We should have had ' + sobjectname.capitalize() + ' Record Type');
 
-			Assert.areEqual(
-				activeRT.Id,
-				RecordTypes.getRecordTypeIdFromName(sobjectname, activeRt.Name),
-				'Submitted ' + activeRT.Name + ' and expected an Id to be returned: ' + activeRT.Id
-			);
-			Assert.areEqual(
-				rti.getRecordTypeId(),
-				RecordTypes.getRecordTypeIdFromName(sobjectname, activeRt.Name),
-				'Submitted ' + activeRT.Name + ' and expected an Id: ' + rti.getRecordTypeId()
-			);
+			Id idFromName = RecordTypes.getRecordTypeIdFromName(sobjectname, activeRt.Name);
+			Assert.areEqual(activeRT.Id, idFromName, 'Submitted ' + activeRT.Name + ' and expected an Id to be returned: ' + activeRT.Id);
+			Assert.areEqual(rti.getRecordTypeId(), idFromName, 'Submitted ' + activeRT.Name + ' and expected an Id: ' + rti.getRecordTypeId());
 			resetTest();
 
 			Assert.areEqual(
@@ -274,21 +240,21 @@ private class RecordTypesTest {
 			rtOptions = RecordTypes.getStringRecordTypesForSelectList(sobjectname);
 			Assert.isTrue(queriedRecordTypes.size() >= rtOptions.size(), 'Error - ' + sobjectname.capitalize() + ' SelectList has too many items');
 		} else {
-			Integer objectExists = gd.containsKey(sobjectname) ? 1 : 0;
+			Integer minimumItems = objectExists(sobjectname) ? 1 : 0;
 			RecordTypes.getRecordTypeIdSetFromDevNames(sobjectname, new Set<String>());
 			resetTest();
 
 			List<SelectOption> allRtOptions = RecordTypes.getAllRecordTypesForSelectList(sobjectname);
 			Assert.isTrue(
-				allRtOptions.size() >= objectExists,
-				'Error - ' + sobjectname.capitalize() + ' SelectList should have at least ' + objectExists + ' item. We have ' + allRtOptions.size()
+				allRtOptions.size() >= minimumItems,
+				'Error - ' + sobjectname.capitalize() + ' SelectList should have at least ' + minimumItems + ' item. We have ' + allRtOptions.size()
 			);
 			resetTest();
 
 			List<SelectOption> rtOptions = RecordTypes.getAvailableRecordTypesForSelectList(sobjectname);
 			Assert.isTrue(
-				rtOptions.size() >= objectExists,
-				'Error - We should have at least ' + objectExists + ' ' + sobjectname.capitalize() + ' available record types in the select list. We have ' + rtOptions.size()
+				rtOptions.size() >= minimumItems,
+				'Error - We should have at least ' + minimumItems + ' ' + sobjectname.capitalize() + ' available record types in the select list. We have ' + rtOptions.size()
 			);
 			resetTest();
 
@@ -298,6 +264,21 @@ private class RecordTypesTest {
 		}
 
 		return true;
+	}
+
+	/**
+	 * @description Check that an object exists with a single deferred describe, avoiding the cost of a global describe
+	 *
+	 * @param sobjectname Name of the object to look for
+	 * @return            `true` if the object exists
+	 */
+	private static Boolean objectExists(String sobjectname) {
+		try {
+			Schema.describeSObjects(new List<String>{ sobjectname }, SObjectDescribeOptions.DEFERRED);
+			return true;
+		} catch (InvalidParameterValueException e) {
+			return false;
+		}
 	}
 
 	/**

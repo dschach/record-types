@@ -19,6 +19,7 @@ package.xml
 *.profile
 *.profile-meta.xml
 Admin.*
+!RecordTypes_DefaultRT_Profile.profile-meta.xml
 
 # Other permission sets
 *.permissionset-meta.xml

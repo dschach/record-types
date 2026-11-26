@@ -19,6 +19,10 @@
         <name>PermissionSet</name>
     </types>
     <types>
+        <members>RecordTypes_DefaultRT_Profile</members>
+        <name>Profile</name>
+    </types>
+    <types>
         <members>Account.Default</members>
         <name>RecordType</name>
     </types>

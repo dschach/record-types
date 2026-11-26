@@ -6,7 +6,8 @@
  * @author      David Schach
  * @since       2024
  */
-@IsTest
+@SuppressWarnings('PMD.ApexUnitTestClassShouldHaveRunAs')
+@IsTest(testFor='ApexClass:RecordTypes')
 private without sharing class UnpackagedRecordTypesTest {
 	/**
 	 * @description Test against Account, an object with record types in package testing, but with lowercase RT name
@@ -27,9 +28,6 @@ private without sharing class UnpackagedRecordTypesTest {
 
 		Assert.isNull(RecordTypes.getRecordTypeNameFromId('Account', null), 'Null record type should not exist');
 		Assert.isNull(RecordTypes.getRecordTypeDevNameFromId('Account', null), 'Null record type should not exist');
-
-		Assert.isNotNull(RecordTypes.getRecordTypeIdFromDevName('Account', 'Default'), 'Default record type should exist');
-		Assert.isNotNull(RecordTypes.getRecordTypeIdFromName('Account', 'Default'), 'Default record type should exist');
 
 		//Assert.areEqual('Default', RecordTypes.getDefaultRecordTypeName('Account'), 'Our default Account RT should be "Default"');
 		//Assert.areEqual('Default', RecordTypes.getDefaultRecordTypeDevName('Account'), 'Our default Account RT should be "Default"');
@@ -61,9 +59,6 @@ private without sharing class UnpackagedRecordTypesTest {
 
 		Assert.isNotNull(RecordTypes.getRecordTypeNameFromDevName('Account', 'DEFAULT'), 'default record type should exist, case-insensitively');
 		Assert.isNotNull(RecordTypes.getRecordTypeIdFromDevName('Account', 'DEFAULT'), 'default record type should exist, case-insensitively');
-
-		Assert.isNotNull(RecordTypes.getRecordTypeIdFromDevName('Account', 'DEFAULT'), 'default record type should exist, case-insensitively');
-		Assert.isNotNull(RecordTypes.getRecordTypeIdFromName('Account', 'DEFAULT'), 'default record type should exist, case-insensitively');
 	}
 
 	/**
@@ -99,6 +94,46 @@ private without sharing class UnpackagedRecordTypesTest {
 
 		resetTest();
 		Assert.isFalse(RecordTypes.getAllRecordTypesForSelectList('Solution').isEmpty(), 'Should return at least a single item select list');
+	}
+
+	/**
+	 * @description Cover the paths that need a non-Master default record type and available record types.
+	 * Only a profile can make a record type the default, so we run as a user with the test-only profile instead of
+	 * relying on the org setup to assign anything to the running user.
+	 */
+	@IsTest
+	private static void testRecordTypesForUserWithDefaultRecordType() {
+		Profile testProfile = [SELECT Id FROM Profile WHERE Name = 'RecordTypes_DefaultRT_Profile' LIMIT 1];
+		User testUser = new User(
+			Alias = 'rttest',
+			Email = 'record.types.test@example.com',
+			EmailEncodingKey = 'UTF-8',
+			LanguageLocaleKey = 'en_US',
+			LastName = 'RecordTypesTest',
+			LocaleSidKey = 'en_US',
+			ProfileId = testProfile.Id,
+			TimeZoneSidKey = 'America/New_York',
+			Username = 'record.types.test.' + Crypto.getRandomInteger() + '@example.com'
+		);
+		insert testUser;
+
+		System.runAs(testUser) {
+			resetTest();
+			Id defaultId = RecordTypes.getDefaultRecordTypeId('Account');
+			Assert.isNotNull(defaultId, 'The profile should make a non-Master record type the default');
+			Assert.areEqual(RecordTypes.getRecordTypeIdFromDevName('Account', 'Default'), defaultId, 'The default record type should be Default');
+			Assert.areEqual('Default', RecordTypes.getDefaultRecordTypeDevName('Account'), 'The default record type DeveloperName should be Default');
+			Assert.isTrue(RecordTypes.isRecordTypeDefault('Account', 'Default'), 'Default should be the default record type');
+
+			// A visible record type is also available, which fills the available record type maps
+			resetTest();
+			Map<String, Id> availableByDevName = RecordTypes.getAvailableRecordTypeDevNameIdMap('Account');
+			resetTest();
+			Map<String, Id> availableByName = RecordTypes.getAvailableRecordTypeNameIdMap('Account');
+			Assert.isTrue(availableByDevName.containsKey('Default'), 'Default should be available by DeveloperName');
+			Assert.isTrue(availableByName.containsKey('Default'), 'Default should be available by Name');
+			Assert.areEqual(availableByDevName.get('Default'), availableByName.get('Default'), 'Both maps should return the same Id');
+		}
 	}
 
 	/**

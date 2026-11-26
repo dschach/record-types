@@ -2,7 +2,7 @@
  * @description This class is allows for easy, readable access to Record Type information from other classes.
  * <br>
  * <br>Written by Evan Callahan, copyright 2010 Groundwire
- * <br>Updated by David Schach, copyright 2021-2024 X-Squared on Demand
+ * <br>Updated by David Schach, copyright 2021-2026 X-Squared on Demand
  * <br>
  * <br>This program is released under the GNU General Public License. http://www.gnu.org/licenses/
  * <br>
@@ -29,12 +29,9 @@
  * <br>You should have received a copy of the GNU General Public License along with this program.  If not,
  * see <https://www.gnu.org/licenses/>.
  *
- * @author {@link [Evan Callahan](https://github.com/groundwired)}, Groundwire
- * @since 2010
- * @author {@link [David Schach](https://github.com/dschach)}, X-Squared on Demand
- * @since 2021
- * @author Nicolas Vasquez, Globant
- * @since 2022
+ * @author {@link [Evan Callahan](https://github.com/groundwired)}, Groundwire 2010
+ * @author {@link [David Schach](https://github.com/dschach)}, X-Squared on Demand 2021
+ * @author Nicolas Vasquez, Globant 2022
  * @group RecordTypes
  * @see RecordTypesTest
  */
@@ -655,9 +652,6 @@ global inherited sharing class RecordTypes {
 		if (allRecordTypes.containsKey(sObjectName)) {
 			List<Schema.RecordTypeInfo> recordTypes = allRecordTypes.get(sObjectName);
 			Boolean hasAvailableRT = false;
-			if (recordTypes == null) {
-				return recordTypesOptions;
-			}
 			for (Schema.RecordTypeInfo rti : recordTypes) {
 				recordTypesOptions.add(new SelectOption(rti.getRecordTypeId(), rti.getName(), disableUnavailable ? !rti.isAvailable() : false));
 				if (rti.isAvailable()) {
@@ -734,7 +728,7 @@ global inherited sharing class RecordTypes {
 		private Boolean available;
 		private Boolean isDefault;
 		private Boolean master;
-		
+
 		public RTInfoWrapper(Schema.RecordTypeInfo rti){
 			this.developerName = rti.getDeveloperName();
 			this.name = rti.getName();
