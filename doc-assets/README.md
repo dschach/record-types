@@ -31,8 +31,9 @@ source assets it consumes; the generated site lands in [`docs/`](../docs/).
    [`apexdox.yml`](../apexdox.yml) against `${workspaceFolder}`, so it fails or documents the wrong
    files if you run it from a parent folder or a multi-root workspace.
 
-> **Platform note:** `setupApexDox.sh` uses BSD `sed -i ""`, which works on macOS as written. On
-> Linux, GNU `sed` needs `sed -i` with no empty argument, so the script must be edited to run there.
+> **Platform note:** Both scripts are POSIX `sh` and use `sed -i.bak`, which BSD (macOS) and GNU
+> (Linux) `sed` both accept, so they avoid options that work on only one of them. They have only been
+> tested on macOS. Run them from the repository root, as `npm run` does.
 
 ## Generating
 
@@ -48,10 +49,13 @@ This runs [`setupApexDox.sh`](./setupApexDox.sh), which:
 
 - converts [`README.md`](../README.md) to `doc-assets/main.html` (the site home page)
 - converts [`CHANGELOG.md`](../CHANGELOG.md) to `doc-assets/changelog.html`
-- rewrites `media/` links to `assets/` and `CHANGELOG.md` links to `changelog.html` in
-  `main.html` only, so they resolve on the generated site
+- rewrites `media/` links and images to `assets/` and `CHANGELOG.md` links to `changelog.html` in
+  `main.html` only, so they resolve on the generated site. Only `src` and `href` attributes are
+  rewritten, so the same text in a paragraph is left alone
 - tags the method tables with `class="methodtable"` for styling
 - refreshes `highlight.js` via `npm run updateHighlight`
+
+Both scripts run with `set -eu`, so they stop at the first error instead of leaving a half-written page.
 
 ### 2. Run ApexDox
 
@@ -92,7 +96,7 @@ committed** for the published site to update.
 | File                                           | Role                                                                 |
 | ---------------------------------------------- | -------------------------------------------------------------------- |
 | `setupApexDox.sh`                              | Pre-generation script (`npm run docs:setup`)                         |
-| `updateHighlight.sh`                           | Rebuilds `highlight.js` from `node_modules`, falling back to CDN     |
+| `updateHighlight.sh`                           | Rebuilds `highlight.js` from `node_modules`, falling back to the CDN |
 | `main.html`                                    | **Generated** from `README.md` — do not edit by hand                 |
 | `changelog.html`                               | **Generated** from `CHANGELOG.md` — do not edit by hand              |
 | `index.css`, `styling.css`                     | Site styling; copied to `docs/assets/` by ApexDox                    |
@@ -109,7 +113,7 @@ committed** for the published site to update.
 - **Edit `README.md`, not `main.html`.** The home page is generated from the root README on every
   `npm run docs:setup`, so hand edits to `main.html` are overwritten.
 - **Relative links in the README must survive the rewrite.** `setupApexDox.sh` only rewrites
-  `media/` → `assets/` and `CHANGELOG.md` → `changelog.html`, and only in `main.html`. A link to any
+  `media/` → `assets/` and `CHANGELOG.md` → `changelog.html` in `src` and `href` attributes, and only in `main.html`. A link to any
   other repo path (for example `/force-app/main/default/classes/`) will 404 on the published site, so
   use an absolute GitHub URL for those. `changelog.html` gets no rewrites at all, so check its links
   by hand after each run.
