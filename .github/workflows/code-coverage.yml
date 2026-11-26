@@ -9,7 +9,7 @@ jobs:
   code-coverage:
     runs-on: ubuntu-latest
     steps:
-      - name: 'Checkout source code'
+      - name: "Checkout source code"
         uses: actions/checkout@v7
       - name: Install Dependencies
         run: npm install @salesforce/cli --global
@@ -27,7 +27,7 @@ jobs:
         run: sf apex run test --code-coverage --result-format human --output-dir ./ --test-level RunLocalTests --wait 20
       #- name: Delete coverage file (temporary fix)
       #  run: rm ./test-result-707*-codecoverage.json
-      - name: 'Upload code coverage for Apex to Codecov.io'
+      - name: "Upload code coverage for Apex to Codecov.io"
         uses: codecov/codecov-action@v7
         with:
           flags: Apex

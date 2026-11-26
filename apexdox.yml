@@ -1,10 +1,10 @@
 engine:
   source:
-    - path: '${workspaceFolder}/force-app/main/default/classes'
+    - path: "${workspaceFolder}/force-app/main/default/classes"
       sourceUrl: https://github.com/dschach/record-types/tree/main
-    - path: '${workspaceFolder}/unpackaged/main/default/classes'
+    - path: "${workspaceFolder}/unpackaged/main/default/classes"
       sourceUrl: https://github.com/dschach/record-types/tree/main
-  targetDirectory: '${workspaceFolder}/docs'
+  targetDirectory: "${workspaceFolder}/docs"
   #excludes:
   #  - "*Test.cls"
   title: Record Types code documentation
@@ -19,21 +19,21 @@ engine:
     - private
     #- webService
     - testMethod
-  homePagePath: '${workspaceFolder}/doc-assets/main.html'
+  homePagePath: "${workspaceFolder}/doc-assets/main.html"
   pages:
-    - '${workspaceFolder}/doc-assets/changelog.html'
+    - "${workspaceFolder}/doc-assets/changelog.html"
     #- "${workspaceFolder}/doc-assets/RecordTypesHome.html"
   assets:
-    - '${workspaceFolder}/doc-assets/logo.png'
-    - '${workspaceFolder}/doc-assets/favicon.png'
-    - '${workspaceFolder}/doc-assets/icon.png'
-    - '${workspaceFolder}/doc-assets/highlight.css'
-    - '${workspaceFolder}/doc-assets/styling.css'
-    - '${workspaceFolder}/doc-assets/index.css'
-    - '${workspaceFolder}/doc-assets/highlight.js'
-    - '${workspaceFolder}/doc-assets/index.js'
-    - '${workspaceFolder}/media/deploy-package-to-prod.png'
-    - '${workspaceFolder}/media/deploy-package-to-sandbox.png'
+    - "${workspaceFolder}/doc-assets/logo.png"
+    - "${workspaceFolder}/doc-assets/favicon.png"
+    - "${workspaceFolder}/doc-assets/icon.png"
+    - "${workspaceFolder}/doc-assets/highlight.css"
+    - "${workspaceFolder}/doc-assets/styling.css"
+    - "${workspaceFolder}/doc-assets/index.css"
+    - "${workspaceFolder}/doc-assets/highlight.js"
+    - "${workspaceFolder}/doc-assets/index.js"
+    - "${workspaceFolder}/media/deploy-package-to-prod.png"
+    - "${workspaceFolder}/media/deploy-package-to-sandbox.png"
 
   port: 8080
 docblock:
