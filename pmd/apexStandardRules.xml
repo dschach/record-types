@@ -168,9 +168,9 @@
 		<priority>3</priority>
 	</rule>
 
-	<!-- <rule ref="category/apex/bestpractices.xml/ApexUnitTestClassShouldHaveRunRelevantTestsAnnotation">
-		<priority>3</priority>
-	</rule> -->
+	<rule ref="category/apex/bestpractices.xml/ApexUnitTestClassShouldHaveRunRelevantTestsAnnotation">
+		<priority>2</priority>
+	</rule>
 
 	<rule ref="category/apex/bestpractices.xml/ApexUnitTestMethodShouldHaveIsTestAnnotation">
 		<priority>3</priority>
