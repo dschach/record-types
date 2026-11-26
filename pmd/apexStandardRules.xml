@@ -7,6 +7,23 @@
 	<description>All standard rules for Salesforce Apex. Adapted for David Schach.</description>
 
 	<!-- COMPLEXITY -->
+	<rule ref="category/apex/design.xml/AvoidDeeplyNestedIfStmts">
+		<priority>3</priority>
+		<properties>
+			<property name="problemDepth" value="3" />
+		</properties>
+	</rule>
+
+	<!-- <rule ref="category/apex/design.xml/CognitiveComplexity"/> -->
+
+	<rule ref="category/apex/design.xml/CyclomaticComplexity">
+		<priority>3</priority>
+		<properties>
+			<property name="classReportLevel" value="40" />
+			<property name="methodReportLevel" value="10" />
+		</properties>
+	</rule>
+
 	<rule ref="category/apex/design.xml/ExcessiveParameterList">
 		<priority>3</priority>
 		<properties>
@@ -21,25 +38,11 @@
 		</properties>
 	</rule>
 
-	<rule ref="category/apex/design.xml/TooManyFields">
+	<rule ref="category/apex/design.xml/NcssCount">
 		<priority>3</priority>
 		<properties>
-			<property name="maxfields" value="20" />
-		</properties>
-	</rule>
-
-	<rule ref="category/apex/design.xml/AvoidDeeplyNestedIfStmts">
-		<priority>3</priority>
-		<properties>
-			<property name="problemDepth" value="3" />
-		</properties>
-	</rule>
-
-	<rule ref="category/apex/design.xml/CyclomaticComplexity">
-		<priority>3</priority>
-		<properties>
-			<property name="classReportLevel" value="40" />
-			<property name="methodReportLevel" value="10" />
+			<property name="methodReportLevel" value="40" />
+			<property name="classReportLevel" value="500" />
 		</properties>
 	</rule>
 
@@ -52,23 +55,16 @@
 		</properties>
 	</rule>
 
-	<rule ref="category/apex/design.xml/NcssCount">
+	<rule ref="category/apex/design.xml/TooManyFields">
 		<priority>3</priority>
 		<properties>
-			<property name="methodReportLevel" value="40" />
-			<property name="classReportLevel" value="500" />
+			<property name="maxfields" value="20" />
 		</properties>
 	</rule>
 
-	<!-- <rule ref="category/apex/design.xml/CognitiveComplexity"/> -->
-
 	<!-- PERFORMANCE -->
-	<rule ref="category/apex/performance.xml/OperationWithLimitsInLoop">
-		<priority>1</priority>
-	</rule>
-
-	<rule ref="category/apex/performance.xml/OperationWithHighCostInLoop">
-		<priority>3</priority>
+	<rule ref="category/apex/performance.xml/AvoidDebugStatements">
+		<priority>5</priority>
 	</rule>
 
 	<rule ref="category/apex/performance.xml/AvoidNonRestrictiveQueries">
@@ -82,19 +78,19 @@
 		</properties>
 	</rule>
 
-	<rule ref="category/apex/performance.xml/AvoidDebugStatements">
-		<priority>5</priority>
+	<rule ref="category/apex/performance.xml/OperationWithHighCostInLoop">
+		<priority>3</priority>
 	</rule>
 
-	<rule ref="category/apex/bestpractices.xml/AvoidFutureAnnotation">
-		<priority>4</priority>
-	</rule>
-
-	<rule ref="category/apex/bestpractices.xml/QueueableWithoutFinalizer">
-		<priority>5</priority>
+	<rule ref="category/apex/performance.xml/OperationWithLimitsInLoop">
+		<priority>1</priority>
 	</rule>
 
 	<!-- NAMING -->
+	<rule ref="category/apex/codestyle.xml/AnnotationsNamingConventions">
+		<priority>3</priority>
+	</rule>
+
 	<rule ref="category/apex/codestyle.xml/ClassNamingConventions">
 		<priority>3</priority>
 		<properties>
@@ -105,15 +101,6 @@
 			<property name="innerInterfacePattern" value="[A-Z][a-zA-Z0-9_]*" />
 			<property name="enumPattern" value="[A-Z][a-zA-Z0-9_]*" />
 			<property name="classPattern" value="[A-Z][a-zA-Z0-9_]*" />
-		</properties>
-	</rule>
-
-	<rule ref="category/apex/codestyle.xml/MethodNamingConventions">
-		<priority>3</priority>
-		<properties>
-			<property name="testPattern" value="[a-z][a-zA-Z0-9]*" />
-			<property name="staticPattern" value="[a-z][a-zA-Z0-9]*" />
-			<property name="instancePattern" value="[a-z][a-zA-Z0-9]*" />
 		</properties>
 	</rule>
 
@@ -144,6 +131,19 @@
 		</properties>
 	</rule>
 
+	<rule ref="category/apex/codestyle.xml/MethodNamingConventions">
+		<priority>3</priority>
+		<properties>
+			<property name="testPattern" value="[a-z][a-zA-Z0-9]*" />
+			<property name="staticPattern" value="[a-z][a-zA-Z0-9]*" />
+			<property name="instancePattern" value="[a-z][a-zA-Z0-9]*" />
+		</properties>
+	</rule>
+
+	<rule ref="category/apex/errorprone.xml/MethodWithSameNameAsEnclosingClass">
+		<priority>2</priority>
+	</rule>
+
 	<rule ref="category/apex/codestyle.xml/PropertyNamingConventions">
 		<priority>3</priority>
 		<properties>
@@ -152,15 +152,11 @@
 		</properties>
 	</rule>
 
-	<rule ref="category/apex/codestyle.xml/AnnotationsNamingConventions">
+	<!-- TESTS -->
+	<rule ref="category/apex/bestpractices.xml/ApexAssertionsShouldIncludeMessage">
 		<priority>3</priority>
 	</rule>
 
-	<rule ref="category/apex/errorprone.xml/MethodWithSameNameAsEnclosingClass">
-		<priority>2</priority>
-	</rule>
-
-	<!-- TESTS -->
 	<rule ref="category/apex/bestpractices.xml/ApexUnitTestClassShouldHaveAsserts">
 		<priority>4</priority>
 		<properties>
@@ -168,15 +164,19 @@
 		</properties>
 	</rule>
 
-	<rule ref="category/apex/bestpractices.xml/ApexUnitTestShouldNotUseSeeAllDataTrue">
+	<rule ref="category/apex/bestpractices.xml/ApexUnitTestClassShouldHaveRunAs">
 		<priority>3</priority>
 	</rule>
 
-	<rule ref="category/apex/bestpractices.xml/ApexAssertionsShouldIncludeMessage">
-		<priority>3</priority>
+	<rule ref="category/apex/bestpractices.xml/ApexUnitTestClassShouldHaveRunRelevantTestsAnnotation">
+		<priority>2</priority>
 	</rule>
 
 	<rule ref="category/apex/bestpractices.xml/ApexUnitTestMethodShouldHaveIsTestAnnotation">
+		<priority>3</priority>
+	</rule>
+
+	<rule ref="category/apex/bestpractices.xml/ApexUnitTestShouldNotUseSeeAllDataTrue">
 		<priority>3</priority>
 	</rule>
 
@@ -184,43 +184,7 @@
 		<priority>3</priority>
 	</rule>
 
-	<rule ref="category/apex/bestpractices.xml/ApexUnitTestClassShouldHaveRunAs">
-		<priority>3</priority>
-	</rule>
-
-	<!-- <rule ref="category/apex/bestpractices.xml/ApexUnitTestClassShouldHaveRunRelevantTestsAnnotation">
-		<priority>3</priority>
-	</rule> -->
-
 	<!-- SECURITY -->
-	<rule ref="category/apex/security.xml/ApexSharingViolations">
-		<priority>3</priority>
-	</rule>
-
-	<rule ref="category/apex/security.xml/ApexInsecureEndpoint">
-		<priority>3</priority>
-	</rule>
-
-	<rule ref="category/apex/errorprone.xml/ApexCSRF">
-		<priority>3</priority>
-	</rule>
-
-	<rule ref="category/apex/security.xml/ApexOpenRedirect">
-		<priority>3</priority>
-	</rule>
-
-	<rule ref="category/apex/security.xml/ApexSOQLInjection">
-		<priority>3</priority>
-	</rule>
-
-	<rule ref="category/apex/security.xml/ApexXSSFromURLParam">
-		<priority>3</priority>
-	</rule>
-
-	<rule ref="category/apex/security.xml/ApexXSSFromEscapeFalse">
-		<priority>3</priority>
-	</rule>
-
 	<rule ref="category/apex/security.xml/ApexBadCrypto">
 		<priority>3</priority>
 	</rule>
@@ -243,7 +207,27 @@
 		</properties>
 	</rule>
 
+	<rule ref="category/apex/errorprone.xml/ApexCSRF">
+		<priority>3</priority>
+	</rule>
+
 	<rule ref="category/apex/security.xml/ApexDangerousMethods">
+		<priority>3</priority>
+	</rule>
+
+	<rule ref="category/apex/security.xml/ApexInsecureEndpoint">
+		<priority>3</priority>
+	</rule>
+
+	<rule ref="category/apex/security.xml/ApexOpenRedirect">
+		<priority>3</priority>
+	</rule>
+
+	<rule ref="category/apex/security.xml/ApexSharingViolations">
+		<priority>3</priority>
+	</rule>
+
+	<rule ref="category/apex/security.xml/ApexSOQLInjection">
 		<priority>3</priority>
 	</rule>
 
@@ -251,12 +235,16 @@
 		<priority>3</priority>
 	</rule>
 
-	<!-- BRACES -->
-	<rule ref="category/apex/codestyle.xml/IfStmtsMustUseBraces">
-		<priority>1</priority>
+	<rule ref="category/apex/security.xml/ApexXSSFromEscapeFalse">
+		<priority>3</priority>
 	</rule>
 
-	<rule ref="category/apex/codestyle.xml/WhileLoopsMustUseBraces">
+	<rule ref="category/apex/security.xml/ApexXSSFromURLParam">
+		<priority>3</priority>
+	</rule>
+
+	<!-- BRACES -->
+	<rule ref="category/apex/codestyle.xml/ForLoopsMustUseBraces">
 		<priority>1</priority>
 	</rule>
 
@@ -264,7 +252,11 @@
 		<priority>1</priority>
 	</rule>
 
-	<rule ref="category/apex/codestyle.xml/ForLoopsMustUseBraces">
+	<rule ref="category/apex/codestyle.xml/IfStmtsMustUseBraces">
+		<priority>1</priority>
+	</rule>
+
+	<rule ref="category/apex/codestyle.xml/WhileLoopsMustUseBraces">
 		<priority>1</priority>
 	</rule>
 
@@ -281,14 +273,6 @@
 		<priority>2</priority>
 	</rule>
 
-	<rule ref="category/apex/errorprone.xml/EmptyWhileStmt">
-		<priority>2</priority>
-	</rule>
-
-	<rule ref="category/apex/errorprone.xml/EmptyTryOrFinallyBlock">
-		<priority>3</priority>
-	</rule>
-
 	<rule ref="category/apex/errorprone.xml/EmptyStatementBlock">
 		<priority>3</priority>
 		<properties>
@@ -297,17 +281,25 @@
 		</properties>
 	</rule>
 
+	<rule ref="category/apex/errorprone.xml/EmptyTryOrFinallyBlock">
+		<priority>3</priority>
+	</rule>
+
+	<rule ref="category/apex/errorprone.xml/EmptyWhileStmt">
+		<priority>2</priority>
+	</rule>
+
 	<!-- STYLE -->
+	<rule ref="category/apex/codestyle.xml/FieldDeclarationsShouldBeAtStart">
+		<priority>3</priority>
+	</rule>
+
 	<rule ref="category/apex/codestyle.xml/OneDeclarationPerLine">
 		<priority>3</priority>
 		<properties>
 			<property name="strictMode" value="false" />
 			<property name="reportInForLoopInitializer" value="true" />
 		</properties>
-	</rule>
-
-	<rule ref="category/apex/codestyle.xml/FieldDeclarationsShouldBeAtStart">
-		<priority>3</priority>
 	</rule>
 
 	<!-- DOCUMENTATION -->
@@ -326,10 +318,6 @@
 		<priority>3</priority>
 	</rule>
 
-	<rule ref="category/apex/errorprone.xml/AvoidNonExistentAnnotations">
-		<priority>2</priority>
-	</rule>
-
 	<rule ref="category/apex/errorprone.xml/AvoidHardcodingId">
 		<priority>3</priority>
 	</rule>
@@ -338,11 +326,23 @@
 		<priority>3</priority>
 	</rule>
 
+	<rule ref="category/apex/errorprone.xml/AvoidNonExistentAnnotations">
+		<priority>2</priority>
+	</rule>
+
 	<rule ref="category/apex/errorprone.xml/AvoidStatefulDatabaseResult">
 		<priority>2</priority>
 	</rule>
 
+	<rule ref="category/apex/errorprone.xml/InaccessibleAuraEnabledGetter">
+		<priority>3</priority>
+	</rule>
+
 	<rule ref="category/apex/errorprone.xml/InvocableClassNoArgConstructor">
+		<priority>3</priority>
+	</rule>
+
+	<rule ref="category/apex/errorprone.xml/OverrideBothEqualsAndHashcode">
 		<priority>3</priority>
 	</rule>
 
@@ -350,20 +350,20 @@
 		<priority>1</priority>
 	</rule>
 
-	<rule ref="category/apex/errorprone.xml/OverrideBothEqualsAndHashcode">
-		<priority>3</priority>
-	</rule>
-
-	<rule ref="category/apex/errorprone.xml/InaccessibleAuraEnabledGetter">
-		<priority>3</priority>
-	</rule>
-
 	<!-- BEST PRACTICES -->
-	<rule ref="category/apex/bestpractices.xml/AvoidLogicInTrigger">
-		<priority>3</priority>
+	<rule ref="category/apex/design.xml/AvoidBooleanMethodParameters">
+		<priority>2</priority>
+	</rule>
+
+	<rule ref="category/apex/bestpractices.xml/AvoidFutureAnnotation">
+		<priority>4</priority>
 	</rule>
 
 	<rule ref="category/apex/bestpractices.xml/AvoidGlobalModifier">
+		<priority>3</priority>
+	</rule>
+
+	<rule ref="category/apex/bestpractices.xml/AvoidLogicInTrigger">
 		<priority>3</priority>
 	</rule>
 
@@ -374,15 +374,15 @@
 		</properties>
 	</rule>
 
+	<rule ref="category/apex/bestpractices.xml/QueueableWithoutFinalizer">
+		<priority>5</priority>
+	</rule>
+
 	<rule ref="category/apex/bestpractices.xml/UnusedLocalVariable">
 		<priority>1</priority>
 	</rule>
 
 	<rule ref="category/apex/design.xml/UnusedMethod">
 		<priority>3</priority>
-	</rule>
-
-	<rule ref="category/apex/design.xml/AvoidBooleanMethodParameters">
-		<priority>2</priority>
 	</rule>
 </ruleset>
