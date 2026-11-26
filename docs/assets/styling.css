@@ -16,20 +16,24 @@ pre code {
 	background: #f6f8fa;
 }
 
+/* Method tables on the home page. The tables are written as HTML in README.md. */
+.methodtable-wrap {
+	overflow-x: auto;
+	margin: 30px 0;
+	border-radius: 10px;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
 .methodtable {
 	border-collapse: collapse;
+	table-layout: fixed;
 	width: 100%;
 	color: #333;
 	font-family: Arial, sans-serif;
 	font-size: 14px;
 	text-align: left;
-	border-radius: 10px;
-	overflow: hidden;
-	box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-	margin: auto;
-	margin-top: 50px;
-	margin-bottom: 50px;
 }
+
 .methodtable th {
 	color: #000;
 	font-weight: bold;
@@ -37,13 +41,62 @@ pre code {
 	text-transform: uppercase;
 	letter-spacing: 1px;
 	border-top: 1px solid #fff;
-	border-bottom: 1px solid #ccc;
+	border-bottom: 2px solid #ccc;
+	background: #f6f8fa;
 }
-.methodtable tr:nth-child(even) {
-	background-color: #f2f2f2;
+
+/* Same column widths in every table, so the layout does not jump between them */
+.methodtable th:nth-child(1) {
+	width: 30%;
 }
+.methodtable th:nth-child(2) {
+	width: 33%;
+}
+.methodtable th:nth-child(3) {
+	width: 37%;
+}
+
 .methodtable td {
 	padding: 10px;
+	border-bottom: 1px solid #e1e4e8;
+	vertical-align: top;
+}
+
+/* Section rows inside a table, such as "Maps of Ids" */
+.methodtable tr.group th {
+	text-transform: none;
+	letter-spacing: normal;
+	background: #eef1f4;
+	border-top: 1px solid #ccc;
 	border-bottom: 1px solid #ccc;
+}
+
+.methodtable tr:hover td {
+	background: #fafbfc;
+}
+
+.methodtable code {
+	white-space: nowrap;
+}
+
+.methodtable td:last-child code {
 	font-weight: bold;
+}
+
+/* The method most people want */
+.methodtable tr.recommended td {
+	background: #eaf4ff;
+}
+
+.methodtable .badge {
+	display: inline-block;
+	margin-left: 6px;
+	padding: 1px 8px;
+	border-radius: 10px;
+	background: #0d6efd;
+	color: #fff;
+	font-size: 11px;
+	font-weight: bold;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
 }
