@@ -4,7 +4,7 @@
     <hasActivationRequired>false</hasActivationRequired>
     <label>RecordTypes DefaultRT for Testing</label>
     <recordTypeVisibilities>
-        <recordType>Account.default</recordType>
+        <recordType>Account.Default</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
 </PermissionSet>
