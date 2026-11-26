@@ -9,6 +9,12 @@ on:
     paths:
       - "force-app/**"
       - "unpackaged/**"
+
+# Only one run per pull request: a newer run cancels the one in progress, so a push does not leave an older scratch org run going
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 # Jobs to be executed
 jobs:
   # Formatting and linting only runs on human-submitted PRs
