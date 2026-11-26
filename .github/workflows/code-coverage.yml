@@ -1,36 +1,16 @@
 name: code-coverage
 on:
   workflow_dispatch:
-  #pull_request:
-  #types: [opened, edited, synchronize, reopened]
-  #paths:
-  #- "force-app/**"
+  push:
+    branches:
+      - main
+    paths:
+      - "force-app/**"
+      - "unpackaged/**"
+      - ".github/workflows/apex-tests.yml"
+      - ".github/workflows/code-coverage.yml"
 jobs:
+  # Upload coverage for every commit on main so Codecov has a current baseline for pull requests
   code-coverage:
-    runs-on: ubuntu-latest
-    steps:
-      - name: "Checkout source code"
-        uses: actions/checkout@v7
-      - name: Install Dependencies
-        run: npm install @salesforce/cli --global
-      - name: Populate auth file
-        run: echo "${{ secrets.SALESFORCE_AUTH_URL }}" > ./SALESFORCE_AUTH_URL.txt
-      - name: Authenticate Dev Hub
-        run: sf org login sfdx-url --sfdx-url-file ./SALESFORCE_AUTH_URL.txt --alias devhub --set-default-dev-hub
-      - name: Create Scratch Org
-        run: sf org create scratch --set-default --definition-file config/project-scratch-def.json --setalias ciorg --duration-days 1
-      - name: Deploy source
-        run: |
-          sf project deploy start
-          sf project deploy start --source-dir unpackaged
-      - name: Run Apex tests
-        run: sf apex run test --code-coverage --result-format human --output-dir ./ --test-level RunLocalTests --wait 20
-      #- name: Delete coverage file (temporary fix)
-      #  run: rm ./test-result-707*-codecoverage.json
-      - name: "Upload code coverage for Apex to Codecov.io"
-        uses: codecov/codecov-action@v7
-        with:
-          flags: Apex
-          token: ${{ secrets.CODECOV_TOKEN }}
-      - name: Delete Scratch Org
-        run: sf org delete scratch --no-prompt --target-org ciorg
+    uses: ./.github/workflows/apex-tests.yml
+    secrets: inherit
