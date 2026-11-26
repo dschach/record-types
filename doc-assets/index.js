@@ -59,9 +59,9 @@ function initMenu() {
   let state = !hasState ? {} : JSON.parse(hasState);
 
   if (!hasState) {
-    // initialize menu state
+    // initialize menu state: every class group starts open. (ApexDox starts them closed.)
     console.log('ApexDox: initializing menu state');
-    items.forEach((item) => (state[item.id] = false));
+    items.forEach((item) => (state[item.id] = true));
   } else {
     // If already init, add any new class groups since last load.
     // should really only happen when docs are under development
@@ -97,7 +97,8 @@ function updateMenuModel(items, state) {
   }
 
   if (newKeys.length > 0) {
-    newKeys.forEach((item) => (state[item.id] = item.isOpen === '' && true));
+    // a class group added since the last load also starts open
+    newKeys.forEach((item) => (state[item.id] = true));
     console.log('ApexDox: New menu keys found, adding to session storage:');
     console.log(
       newKeys.map(function (g) {
