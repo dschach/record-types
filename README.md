@@ -4,7 +4,7 @@ This is a project based on work by [Evan Callahan](https://github.com/groundwire
 
 I've updated the project (by pulling test code out of the main class - that's how old it was!) and have added some additional methods. The included test class has 100% coverage, so pull this into your org and get cracking!
 
-Of note: The test code assumes that you have no record types for the Solution object. If you do, you may need to remove that test method.
+Of note: The unpackaged test class assumes that you have no record types for the Solution object. If you do, you may need to remove that test method.
 
 ![Dependabot](https://badgen.net/github/dependabot/dschach/record-types)
 ![Known Vulnerabilities](https://snyk.io/test/github/dschach/record-types/badge.svg)
@@ -22,7 +22,7 @@ Of note: The test code assumes that you have no record types for the Solution ob
 
 ## The Code
 
-The class and test class are found in this [folder](/force-app/main/default/classes/). Feel free to copy/paste directly into your org.
+The class and test class are found in this [folder](https://github.com/dschach/record-types/tree/main/force-app/main/default/classes). Feel free to copy/paste directly into your org.
 
 ## Features
 
@@ -52,6 +52,14 @@ Clone this repository and run `bash scripts/orginit.sh` to set up a scratch org 
 To set up a scratch org without creating a Record Type, run `bash scripts/orginit-norecordtypes.sh`
 
 ## [Changelog](./CHANGELOG.md)
+
+- 2026-11
+
+  - Update to API 68.0
+  - Faster tests: no global describe, and shared assertions instead of duplicated test methods
+  - Test classes declare the class they test with `@IsTest(testFor=...)`
+  - Cover the default and available Record Type paths with a test-only profile that makes the `Default` Account Record Type the default
+  - Run PMD from one reusable workflow on pull requests and on every push to `main`, and upload code coverage on every push to `main`
 
 - 2026-10
 
@@ -95,7 +103,7 @@ To set up a scratch org without creating a Record Type, run `bash scripts/orgini
 
 Written by Evan Callahan, copyright &copy; 2010 Groundwire
 
-- This program is released under the [GNU General Public License](./LICENSE). http://www.gnu.org/licenses/
+- This program is released under the [GNU General Public License](https://github.com/dschach/record-types/blob/main/LICENSE). http://www.gnu.org/licenses/
 - This class is meant to allow for access to Record Type information from within other classes.
 - It is called statically, and therefore will supply the same information to all calls made from within one transaction, or set of trigger calls. This is beneficial because this info should be the same for all calls in a transaction, and by calling it statically we reduce the calls that are made, making the total transaction more efficient.
 
@@ -114,41 +122,85 @@ These are the most common methods to be used. They are the fastest ways to get a
 There are some overloaded methods included for historical purposes (the ones that accept a Record Type Id and an object name and return the developer name).
 While the object name is, technically, optional, that method is faster because it does not require memoizing a SOQL query.
 
-| Parameters / Output           | Id                             | Name                         | DeveloperName                |
-| ----------------------------- | ------------------------------ | ---------------------------- | ---------------------------- |
-| objectName, recordTypeName    | getRecordTypeIdFromName        |                              |                              |
-| objectName, recordTypeName    |                                |                              | getRecordTypeDevNameFromName |
-| objectName, recordTypeDevName | **getRecordTypeIdFromDevName** |                              |                              |
-| objectName, recordTypeDevName |                                | getRecordTypeNameFromDevName |                              |
-| objectName, recordTypeId      |                                | getRecordTypeNameFromId      |                              |
-| objectName, recordTypeId      |                                |                              | getRecordTypeDevNameFromId   |
-| recordTypeId                  |                                | getRecordTypeNameFromId      |                              |
-| recordTypeId                  |                                |                              | getRecordTypeDevNameFromId   |
+<div class="methodtable-wrap">
+  <table class="methodtable">
+    <thead><tr><th scope="col">Given</th><th scope="col">Returns</th><th scope="col">Method</th></tr></thead>
+    <tbody>
+      <tr><td><code>objectName</code>, <code>recordTypeName</code></td><td>Id</td><td><a href="https://dschach.github.io/record-types/RecordTypes.html#RecordTypes.getRecordTypeIdFromName"><code>getRecordTypeIdFromName</code></a></td></tr>
+      <tr><td><code>objectName</code>, <code>recordTypeName</code></td><td>DeveloperName</td><td><a href="https://dschach.github.io/record-types/RecordTypes.html#RecordTypes.getRecordTypeDevNameFromName"><code>getRecordTypeDevNameFromName</code></a></td></tr>
+      <tr class="recommended"><td><code>objectName</code>, <code>recordTypeDevName</code></td><td>Id</td><td><a href="https://dschach.github.io/record-types/RecordTypes.html#RecordTypes.getRecordTypeIdFromDevName"><code>getRecordTypeIdFromDevName</code></a> <span class="badge">most used</span></td></tr>
+      <tr><td><code>objectName</code>, <code>recordTypeDevName</code></td><td>Name</td><td><a href="https://dschach.github.io/record-types/RecordTypes.html#RecordTypes.getRecordTypeNameFromDevName"><code>getRecordTypeNameFromDevName</code></a></td></tr>
+      <tr><td><code>objectName</code>, <code>recordTypeId</code></td><td>Name</td><td><a href="https://dschach.github.io/record-types/RecordTypes.html#RecordTypes.getRecordTypeNameFromId"><code>getRecordTypeNameFromId</code></a></td></tr>
+      <tr><td><code>objectName</code>, <code>recordTypeId</code></td><td>DeveloperName</td><td><a href="https://dschach.github.io/record-types/RecordTypes.html#RecordTypes.getRecordTypeDevNameFromId"><code>getRecordTypeDevNameFromId</code></a></td></tr>
+      <tr><td><code>recordTypeId</code></td><td>Name</td><td><a href="https://dschach.github.io/record-types/RecordTypes.html#RecordTypes.getRecordTypeNameFromId_1"><code>getRecordTypeNameFromId</code></a></td></tr>
+      <tr><td><code>recordTypeId</code></td><td>DeveloperName</td><td><a href="https://dschach.github.io/record-types/RecordTypes.html#RecordTypes.getRecordTypeDevNameFromId_1"><code>getRecordTypeDevNameFromId</code></a></td></tr>
+    </tbody>
+  </table>
+</div>
 
 ## Helper Methods
 
 These methods check record types available to the current/running user.
 
-| Parameters / Output           | Boolean (yes/no)      |
-| ----------------------------- | --------------------- |
-| objectName, recordTypeDevName | isRecordTypeAvailable |
-| objectName, recordTypeDevName | isRecordTypeDefault   |
+<div class="methodtable-wrap">
+  <table class="methodtable">
+    <thead><tr><th scope="col">Given</th><th scope="col">Returns</th><th scope="col">Method</th></tr></thead>
+    <tbody>
+      <tr><td><code>objectName</code>, <code>recordTypeDevName</code></td><td>Boolean</td><td><a href="https://dschach.github.io/record-types/RecordTypes.html#RecordTypes.isRecordTypeAvailable"><code>isRecordTypeAvailable</code></a></td></tr>
+      <tr><td><code>objectName</code>, <code>recordTypeDevName</code></td><td>Boolean</td><td><a href="https://dschach.github.io/record-types/RecordTypes.html#RecordTypes.isRecordTypeDefault"><code>isRecordTypeDefault</code></a></td></tr>
+    </tbody>
+  </table>
+</div>
+
+## Default Record Type Methods
+
+These methods return the default Record Type for the current/running user.
+
+<div class="methodtable-wrap">
+  <table class="methodtable">
+    <thead><tr><th scope="col">Given</th><th scope="col">Returns</th><th scope="col">Method</th></tr></thead>
+    <tbody>
+      <tr><td><code>objectName</code></td><td><code>Schema.RecordTypeInfo</code></td><td><a href="https://dschach.github.io/record-types/RecordTypes.html#RecordTypes.getDefaultRecordType"><code>getDefaultRecordType</code></a></td></tr>
+      <tr><td><code>objectName</code></td><td>Id (<code>null</code> if the default is Master)</td><td><a href="https://dschach.github.io/record-types/RecordTypes.html#RecordTypes.getDefaultRecordTypeId"><code>getDefaultRecordTypeId</code></a></td></tr>
+      <tr><td><code>objectName</code></td><td>Name (<code>Master</code> if the default is Master)</td><td><a href="https://dschach.github.io/record-types/RecordTypes.html#RecordTypes.getDefaultRecordTypeName"><code>getDefaultRecordTypeName</code></a></td></tr>
+      <tr><td><code>objectName</code></td><td>DeveloperName (<code>Master</code> if the default is Master)</td><td><a href="https://dschach.github.io/record-types/RecordTypes.html#RecordTypes.getDefaultRecordTypeDevName"><code>getDefaultRecordTypeDevName</code></a></td></tr>
+    </tbody>
+  </table>
+</div>
 
 ## Less Common Methods
 
 The most useful of these may be the SelectList generators for Visualforce. However, if you are using LWC, you may prefer to use some of the other methods and to parse the returned list of RecordTypeInfo items yourself.
 
-| Parameters / Output                      | Schema.RecordTypeInfo    | Set&lt;Id&gt;                  | Map&lt;String, Id&gt;              | SelectList                           |
-| ---------------------------------------- | ------------------------ | ------------------------------ | ---------------------------------- | ------------------------------------ |
-| recordTypeId                             | getRecordTypeFromId      |                                |                                    |                                      |
-| objectName, recordTypeId                 | getRecordTypeFromId      |                                |                                    |                                      |
-| objectName, recordTypeDevName            | getRecordTypeFromDevName |                                |                                    |                                      |
-| objectName, Set&lt;recordTypeDevName&gt; |                          | getAvailableRecordTypesIdSet   |                                    |                                      |
-| objectName, Set&lt;recordTypeDevName&gt; |                          | getRecordTypeIdSetFromDevNames |                                    |                                      |
-| objectName                               |                          |                                | getRecordTypeDevNameIdMap          |                                      |
-| objectName                               |                          |                                | getRecordTypeNameIdMap             |                                      |
-| objectName                               |                          |                                | getAvailableRecordTypeDevNameIdMap |                                      |
-| objectName                               |                          |                                | getAvailableRecordTypeNameIdMap    |                                      |
-| objectName                               |                          |                                |                                    | getAllRecordTypesForSelectList       |
-| objectName                               |                          |                                |                                    | getAvailableRecordTypesForSelectList |
-| objectName                               |                          |                                |                                    | getStringRecordTypesForSelectList    |
+<div class="methodtable-wrap">
+  <table class="methodtable">
+    <thead><tr><th scope="col">Given</th><th scope="col">Returns</th><th scope="col">Method</th></tr></thead>
+    <tbody>
+      <tr class="group"><th scope="colgroup" colspan="3">RecordTypeInfo</th></tr>
+      <tr><td><code>recordTypeId</code></td><td><code>Schema.RecordTypeInfo</code></td><td><a href="https://dschach.github.io/record-types/RecordTypes.html#RecordTypes.getRecordTypeFromId"><code>getRecordTypeFromId</code></a></td></tr>
+      <tr><td><code>objectName</code>, <code>recordTypeId</code></td><td><code>Schema.RecordTypeInfo</code></td><td><a href="https://dschach.github.io/record-types/RecordTypes.html#RecordTypes.getRecordTypeFromId_1"><code>getRecordTypeFromId</code></a></td></tr>
+      <tr><td><code>objectName</code>, <code>recordTypeName</code></td><td><code>Schema.RecordTypeInfo</code></td><td><a href="https://dschach.github.io/record-types/RecordTypes.html#RecordTypes.getRecordTypeFromName"><code>getRecordTypeFromName</code></a></td></tr>
+      <tr><td><code>objectName</code>, <code>recordTypeDevName</code></td><td><code>Schema.RecordTypeInfo</code></td><td><a href="https://dschach.github.io/record-types/RecordTypes.html#RecordTypes.getRecordTypeFromDevName"><code>getRecordTypeFromDevName</code></a></td></tr>
+      <tr><td><code>objectName</code></td><td><code>List&lt;Schema.RecordTypeInfo&gt;</code></td><td><a href="https://dschach.github.io/record-types/RecordTypes.html#RecordTypes.getRecordTypesForObject"><code>getRecordTypesForObject</code></a></td></tr>
+    </tbody>
+    <tbody>
+      <tr class="group"><th scope="colgroup" colspan="3">Sets of Ids</th></tr>
+      <tr><td><code>objectName</code></td><td><code>Set&lt;Id&gt;</code> of the available Record Types</td><td><a href="https://dschach.github.io/record-types/RecordTypes.html#RecordTypes.getAvailableRecordTypesIdSet"><code>getAvailableRecordTypesIdSet</code></a></td></tr>
+      <tr><td><code>objectName</code>, <code>Set&lt;recordTypeDevName&gt;</code></td><td><code>Set&lt;Id&gt;</code></td><td><a href="https://dschach.github.io/record-types/RecordTypes.html#RecordTypes.getRecordTypeIdSetFromDevNames"><code>getRecordTypeIdSetFromDevNames</code></a></td></tr>
+    </tbody>
+    <tbody>
+      <tr class="group"><th scope="colgroup" colspan="3">Maps of Ids</th></tr>
+      <tr><td><code>objectName</code></td><td><code>Map&lt;String, Id&gt;</code> by DeveloperName</td><td><a href="https://dschach.github.io/record-types/RecordTypes.html#RecordTypes.getRecordTypeDevNameIdMap"><code>getRecordTypeDevNameIdMap</code></a></td></tr>
+      <tr><td><code>objectName</code></td><td><code>Map&lt;String, Id&gt;</code> by Name</td><td><a href="https://dschach.github.io/record-types/RecordTypes.html#RecordTypes.getRecordTypeNameIdMap"><code>getRecordTypeNameIdMap</code></a></td></tr>
+      <tr><td><code>objectName</code></td><td><code>Map&lt;String, Id&gt;</code> by DeveloperName, available Record Types only</td><td><a href="https://dschach.github.io/record-types/RecordTypes.html#RecordTypes.getAvailableRecordTypeDevNameIdMap"><code>getAvailableRecordTypeDevNameIdMap</code></a></td></tr>
+      <tr><td><code>objectName</code></td><td><code>Map&lt;String, Id&gt;</code> by Name, available Record Types only</td><td><a href="https://dschach.github.io/record-types/RecordTypes.html#RecordTypes.getAvailableRecordTypeNameIdMap"><code>getAvailableRecordTypeNameIdMap</code></a></td></tr>
+    </tbody>
+    <tbody>
+      <tr class="group"><th scope="colgroup" colspan="3">Visualforce select lists</th></tr>
+      <tr><td><code>objectName</code></td><td><code>List&lt;SelectOption&gt;</code> of all Record Types, unavailable ones disabled</td><td><a href="https://dschach.github.io/record-types/RecordTypes.html#RecordTypes.getAllRecordTypesForSelectList"><code>getAllRecordTypesForSelectList</code></a></td></tr>
+      <tr><td><code>objectName</code>, <code>disableUnavailable</code></td><td><code>List&lt;SelectOption&gt;</code> of all Record Types, disabling the unavailable ones only if <code>true</code></td><td><a href="https://dschach.github.io/record-types/RecordTypes.html#RecordTypes.getAllRecordTypesForSelectList_1"><code>getAllRecordTypesForSelectList</code></a></td></tr>
+      <tr><td><code>objectName</code></td><td><code>List&lt;SelectOption&gt;</code> of the available Record Types</td><td><a href="https://dschach.github.io/record-types/RecordTypes.html#RecordTypes.getAvailableRecordTypesForSelectList"><code>getAvailableRecordTypesForSelectList</code></a></td></tr>
+      <tr><td><code>objectName</code></td><td><code>List&lt;SelectOption&gt;</code> with the Name as the value</td><td><a href="https://dschach.github.io/record-types/RecordTypes.html#RecordTypes.getStringRecordTypesForSelectList"><code>getStringRecordTypesForSelectList</code></a></td></tr>
+    </tbody>
+  </table>
+</div>
