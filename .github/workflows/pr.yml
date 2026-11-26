@@ -70,7 +70,7 @@ jobs:
           DEVHUB_SERVER_KEY: ${{ secrets.DEVHUB_SERVER_KEY }}
           DEVHUB_CLIENT_ID: ${{ secrets.DEVHUB_CLIENT_ID }}
           DEVHUB_USERNAME: ${{ secrets.DEVHUB_USERNAME }}
-          DEVHUB_DOMAIN: ${{ secrets.DEVHUB_DOMAIN }}
+          DEVHUB_DOMAIN: ${{ vars.DEVHUB_URL }}
         run: |
           trap 'rm -f server.key' EXIT
           printf '%s\n' "$DEVHUB_SERVER_KEY" > server.key
