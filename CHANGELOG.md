@@ -1,5 +1,75 @@
 # Changelog
 
+## [1.8.0](https://github.com/dschach/record-types/compare/v1.7.0...v1.8.0) (2026-11-26)
+
+
+### Features
+
+* **doc-assets:** start the sidebar groups open on the docs site ([6707f80](https://github.com/dschach/record-types/commit/6707f80dd87548101aea31e3dca39428670dae02))
+* **scratch org:** enable Agentforce Vibes, lowercase RT in scratch orgs ([7b167be](https://github.com/dschach/record-types/commit/7b167be97c6bae2b89b40602eda08fdfe4e2a0ee))
+
+
+### Bug Fixes
+
+* **doc-assets:** make the ApexDox build portable and stop on errors ([#304](https://github.com/dschach/record-types/issues/304)) ([6707f80](https://github.com/dschach/record-types/commit/6707f80dd87548101aea31e3dca39428670dae02))
+* **record-types:** use consistent casing for the default record type ([f76cf9b](https://github.com/dschach/record-types/commit/f76cf9bbf74820fa80c6982ae6c16498c71b30eb))
+
+
+### Chores
+
+* **api:** raise the source API version to match the metadata ([82b25bf](https://github.com/dschach/record-types/commit/82b25bf42a18b4db861d06c38b7ac566de0dce52))
+* **api:** update the Salesforce API version ([#300](https://github.com/dschach/record-types/issues/300)) ([f76cf9b](https://github.com/dschach/record-types/commit/f76cf9bbf74820fa80c6982ae6c16498c71b30eb))
+* **config:** migrate Renovate config ([#297](https://github.com/dschach/record-types/issues/297)) ([f5319cc](https://github.com/dschach/record-types/commit/f5319cca5e6703026ec711b0b53a2a7482c25b9d))
+* **npm-scripts:** remove the unused local Apex server scripts ([6707f80](https://github.com/dschach/record-types/commit/6707f80dd87548101aea31e3dca39428670dae02))
+* **pmd:** add allApexPMDCategories.xml ruleset ([9ebf4ba](https://github.com/dschach/record-types/commit/9ebf4ba6aa4e4c6d7675b85edd850fe4060fbb58))
+* **pmd:** enable the relevant tests annotation rule ([0b05590](https://github.com/dschach/record-types/commit/0b055908b7c7d8bde0f9b14bcbd77de93a3edcce))
+* **pmd:** replace apexQuickStart.xml with apexStandardRules.xml ([9ebf4ba](https://github.com/dschach/record-types/commit/9ebf4ba6aa4e4c6d7675b85edd850fe4060fbb58))
+* **pmd:** update PMD rulesets and add Salesforce Code Analyzer ([#274](https://github.com/dschach/record-types/issues/274)) ([9ebf4ba](https://github.com/dschach/record-types/commit/9ebf4ba6aa4e4c6d7675b85edd850fe4060fbb58))
+* **renovate:** Configure Renovate ([#263](https://github.com/dschach/record-types/issues/263)) ([ec57350](https://github.com/dschach/record-types/commit/ec573501702373493a3f3e35f6cb4f5b0923dc39))
+* **renovate:** follow the shared x2od/.github Renovate preset ([#286](https://github.com/dschach/record-types/issues/286)) ([21ba8b3](https://github.com/dschach/record-types/commit/21ba8b3460585ac8e6b4299f1d4ac2a619cc6f69))
+* **renovate:** use renovate.jsonc shared preset from x2od/.github ([6f1ffc4](https://github.com/dschach/record-types/commit/6f1ffc41393836053464b4a5110938853c4d3b3e))
+* **scripts:** relax deploy checks and ignore permission set groups ([f76cf9b](https://github.com/dschach/record-types/commit/f76cf9bbf74820fa80c6982ae6c16498c71b30eb))
+* **unpackaged:** remove quick actions from the Account layout ([f76cf9b](https://github.com/dschach/record-types/commit/f76cf9bbf74820fa80c6982ae6c16498c71b30eb))
+* **vscode:** set the Apex PMD root directory to automatic ([0b05590](https://github.com/dschach/record-types/commit/0b055908b7c7d8bde0f9b14bcbd77de93a3edcce))
+
+
+### Performance Improvements
+
+* **RecordTypes:** add LIMIT 2000 to the RecordType query ([9ebf4ba](https://github.com/dschach/record-types/commit/9ebf4ba6aa4e4c6d7675b85edd850fe4060fbb58))
+
+
+### Documentation
+
+* **doc-assets:** document how to generate the ApexDox site ([8d32a2f](https://github.com/dschach/record-types/commit/8d32a2f7ff22f4895295d10804cbdbbe9f882b43))
+* **readme:** add a changelog entry for Code Analyzer ([9ebf4ba](https://github.com/dschach/record-types/commit/9ebf4ba6aa4e4c6d7675b85edd850fe4060fbb58))
+* **readme:** build the method tables as HTML and fix README details ([6707f80](https://github.com/dschach/record-types/commit/6707f80dd87548101aea31e3dca39428670dae02))
+* **record-types:** update the class header copyright and author years ([82b25bf](https://github.com/dschach/record-types/commit/82b25bf42a18b4db861d06c38b7ac566de0dce52))
+* **release please:** remove sentence case plugin ([4c5d0b3](https://github.com/dschach/record-types/commit/4c5d0b3d379e8d6a168c423d6756149ccde534fd))
+* **site:** regenerate the documentation site ([6707f80](https://github.com/dschach/record-types/commit/6707f80dd87548101aea31e3dca39428670dae02))
+
+
+### Tests
+
+* **record-types:** add the relevant tests annotation to test classes ([82b25bf](https://github.com/dschach/record-types/commit/82b25bf42a18b4db861d06c38b7ac566de0dce52))
+* **record-types:** improve test efficiency and cover the missed lines ([#302](https://github.com/dschach/record-types/issues/302)) ([82b25bf](https://github.com/dschach/record-types/commit/82b25bf42a18b4db861d06c38b7ac566de0dce52))
+* **unpackaged:** format asserts and set the test class to without ([9ebf4ba](https://github.com/dschach/record-types/commit/9ebf4ba6aa4e4c6d7675b85edd850fe4060fbb58))
+
+
+### Code Refactoring
+
+* **record-types:** remove an unreachable null check ([82b25bf](https://github.com/dschach/record-types/commit/82b25bf42a18b4db861d06c38b7ac566de0dce52))
+
+
+### Styles
+
+* **doc-assets:** style the method tables on the home page ([6707f80](https://github.com/dschach/record-types/commit/6707f80dd87548101aea31e3dca39428670dae02))
+* **format:** run shared prettier config ([#281](https://github.com/dschach/record-types/issues/281)) ([b880bf2](https://github.com/dschach/record-types/commit/b880bf2758daa8b356d71a11cdac82f659798c8a))
+* **pmd:** group the Apex rules by use and sort them by name ([0b05590](https://github.com/dschach/record-types/commit/0b055908b7c7d8bde0f9b14bcbd77de93a3edcce))
+* **prettier:** format files with the shared Prettier config ([c8ef849](https://github.com/dschach/record-types/commit/c8ef849b8d89f4b83f3d828672b39745d2633120))
+* **prettier:** format Salesforce XML files with the xml parser ([f76cf9b](https://github.com/dschach/record-types/commit/f76cf9bbf74820fa80c6982ae6c16498c71b30eb))
+* **prettier:** use x2od shared Prettier config ([#280](https://github.com/dschach/record-types/issues/280)) ([2e5f84f](https://github.com/dschach/record-types/commit/2e5f84f3483ee00ffedc6d033ba39ad75f36cb1d))
+* **RecordTypes:** add PMD suppressions and fix the TestVisible case ([9ebf4ba](https://github.com/dschach/record-types/commit/9ebf4ba6aa4e4c6d7675b85edd850fe4060fbb58))
+
 ## [1.7.0](https://github.com/dschach/record-types/compare/v1.6.0...v1.7.0) (2024-07-29)
 
 ### Features
