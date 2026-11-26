@@ -1,34 +1,60 @@
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-
+# Reusable workflow: scan the Apex source with the latest PMD and upload the report to code scanning
+# Called by pr.yml and ci.yml. It can also be started by hand.
 name: pmd
 
 on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
+  workflow_call:
+    inputs:
+      source-path:
+        description: "Directory to scan. Separate several directories with commas, for example force-app,unpackaged"
+        type: string
+        default: force-app
+      fail-on-violations:
+        description: "Fail the job when PMD reports any violation. The PMD action itself never fails on violations."
+        type: boolean
+        default: false
+    outputs:
+      violations:
+        description: "Number of violations PMD found"
+        value: ${{ jobs.pmd-code-scan.outputs.violations }}
+  workflow_dispatch:
 
 jobs:
   pmd-code-scan:
     runs-on: ubuntu-latest
+    # A calling job must grant at least these permissions, because a called workflow cannot raise them
+    permissions:
+      contents: read
+      security-events: write
+    outputs:
+      violations: ${{ steps.pmd.outputs.violations }}
     steps:
-      - uses: actions/checkout@v7
-      - name: Set up JDK
+      - name: "Checkout source code"
+        uses: actions/checkout@v7
+
+      - name: "Set up JDK"
         uses: actions/setup-java@v6
         with:
           java-version: "latest"
           distribution: temurin
-      - name: Run PMD
+
+      # The action downloads the latest PMD release by default (its version input is "latest")
+      - name: "Run PMD"
         id: pmd
         uses: pmd/pmd-github-action@v2
         with:
           rulesets: "pmd/apexStandardRules.xml"
-          sourcePath: "force-app"
+          sourcePath: ${{ inputs.source-path || 'force-app' }}
           analyzeModifiedFilesOnly: false
-      - name: Upload SARIF file
+
+      - name: "Upload SARIF file"
+        if: ${{ always() }}
         uses: github/codeql-action/upload-sarif@v4
         with:
           sarif_file: pmd-report.sarif
+
+      - name: "Fail when PMD found violations"
+        if: ${{ inputs.fail-on-violations && steps.pmd.outputs.violations != '0' }}
+        run: |
+          echo "PMD found ${{ steps.pmd.outputs.violations }} violations"
+          exit 1

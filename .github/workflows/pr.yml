@@ -33,6 +33,14 @@ jobs:
       - name: "Code formatting verification with Prettier"
         run: npm run prettier:apex:verify
 
+  # PMD runs in a reusable workflow shared with ci.yml, in parallel with the formatting check
+  pmd-analysis:
+    if: ${{ github.actor != 'dependabot[bot]' }}
+    permissions:
+      contents: read
+      security-events: write
+    uses: ./.github/workflows/pmd.yml
+
   # Scratch org tests and the Codecov upload live in a reusable workflow shared with code-coverage.yml
   scratch-org-test:
     needs: format-tests

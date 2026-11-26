@@ -8,7 +8,7 @@ on:
     branches:
       - main
     paths:
-      - "sfdx-source/**"
+      - "force-app/**"
       - "pmd/**"
 
 # Jobs to be executed
@@ -33,24 +33,10 @@ jobs:
       - name: "Code formatting verification with Prettier"
         run: npm run prettier:apex:verify
 
+  # PMD runs in a reusable workflow so that it is defined in one place
   pmd-analysis:
-    runs-on: ubuntu-latest
-    #needs: format-lint-apex-lwc
     if: ${{ github.actor != 'dependabot[bot]' }}
-    steps:
-      # Checkout the source code
-      - name: "Checkout source code"
-        uses: actions/checkout@v7
-
-      # Install PMD
-      - name: "Install PMD"
-        run: |
-          PMD_VERSION=$(curl -s https://api.github.com/repos/pmd/pmd/releases/latest | grep '.tag_name' | sed 's:.*/::' | sed 's:",::')
-          echo $PMD_VERSION
-          wget https://github.com/pmd/pmd/releases/download/pmd_releases%2F$PMD_VERSION/pmd-dist-$PMD_VERSION-bin.zip
-          unzip pmd-dist-$PMD_VERSION-bin.zip -d ~
-          mv ~/pmd-bin-$PMD_VERSION ~/pmd
-          ~/pmd/bin/pmd --version
-      # Run PMD scan
-      - name: "Run PMD scan"
-        run: ~/pmd/bin/pmd check --dir force-app --rulesets pmd/apexStandardRules.xml --format text --no-cache --no-progress --minimum-priority "Medium High"
+    permissions:
+      contents: read
+      security-events: write
+    uses: ./.github/workflows/pmd.yml
