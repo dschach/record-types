@@ -1,5 +1,8 @@
 {
   "apexdox.docblock.alignItems": true,
+  "apexPMD.apexRootDirectory": {
+    "mode": "automatic"
+  },
   "apexPMD.enableCache": true,
   "apexPMD.rulesets": [
     "pmd/apexStandardRules.xml"
@@ -7,6 +10,10 @@
   "apexPMD.runOnFileChange": true,
   "apexPMD.runOnFileOpen": true,
   "apexPMD.showStdOut": true,
+  "codeAnalyzer.ruleSelectors": "pmd:(Apex,all-apex)",
+  "codeAnalyzer.severity 1": "Error",
+  "codeAnalyzer.severity 2": "Error",
+  "codeAnalyzer.severity 5": "Info",
   "editor.bracketPairColorization.enabled": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.detectIndentation": true,
@@ -23,9 +30,5 @@
     "**/node_modules": true
   },
   "visualforce.format.endWithNewline": true,
-  "xml.preferences.showSchemaDocumentationType": "none",
-  "codeAnalyzer.ruleSelectors": "pmd:(Apex,all-apex)",
-  "codeAnalyzer.severity 1": "Error",
-  "codeAnalyzer.severity 2": "Error",
-  "codeAnalyzer.severity 5": "Info"
+  "xml.preferences.showSchemaDocumentationType": "all"
 }
