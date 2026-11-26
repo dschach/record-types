@@ -19,14 +19,14 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v6
         with:
-          java-version: 'latest'
+          java-version: "latest"
           distribution: temurin
       - name: Run PMD
         id: pmd
         uses: pmd/pmd-github-action@v2
         with:
-          rulesets: 'pmd/apexStandardRules.xml'
-          sourcePath: 'force-app'
+          rulesets: "pmd/apexStandardRules.xml"
+          sourcePath: "force-app"
           analyzeModifiedFilesOnly: false
       - name: Upload SARIF file
         uses: github/codeql-action/upload-sarif@v4

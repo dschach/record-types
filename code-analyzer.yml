@@ -70,97 +70,97 @@ rules:
   # PMD ENGINE RULE OVERRIDES
   # ======================================================================
   pmd:
-    'AnnotationsNamingConventions':
+    "AnnotationsNamingConventions":
       severity: 3 # Modified from: 4
       tags: # Modified from: ["Recommended","CodeStyle","Apex"]
         - Recommended
         - CodeStyle
         - Apex
         - all-apex
-    'ApexAssertionsShouldIncludeMessage':
+    "ApexAssertionsShouldIncludeMessage":
       severity: 3
       tags: # Modified from: ["BestPractices","Apex"]
         - BestPractices
         - Apex
         - all-apex
-    'ApexBadCrypto':
+    "ApexBadCrypto":
       severity: 3 # Modified from: 2
       tags: # Modified from: ["Recommended","Security","Apex"]
         - Recommended
         - Security
         - Apex
         - all-apex
-    'ApexCRUDViolation':
+    "ApexCRUDViolation":
       severity: 3 # Modified from: 2
       tags: # Modified from: ["Recommended","Security","Apex"]
         - Recommended
         - Security
         - Apex
         - all-apex
-    'ApexCSRF':
+    "ApexCSRF":
       severity: 3 # Modified from: 1
       tags: # Modified from: ["Recommended","Security","Apex"]
         - Recommended
         - Security
         - Apex
         - all-apex
-    'ApexDangerousMethods':
+    "ApexDangerousMethods":
       severity: 3
       tags: # Modified from: ["Recommended","Security","Apex"]
         - Recommended
         - Security
         - Apex
         - all-apex
-    'ApexDoc':
+    "ApexDoc":
       severity: 3 # Modified from: 4
       tags: # Modified from: ["Recommended","Documentation","Apex"]
         - Recommended
         - Documentation
         - Apex
         - all-apex
-    'ApexInsecureEndpoint':
+    "ApexInsecureEndpoint":
       severity: 3 # Modified from: 2
       tags: # Modified from: ["Recommended","Security","Apex"]
         - Recommended
         - Security
         - Apex
         - all-apex
-    'ApexOpenRedirect':
+    "ApexOpenRedirect":
       severity: 3 # Modified from: 2
       tags: # Modified from: ["Recommended","Security","Apex"]
         - Recommended
         - Security
         - Apex
         - all-apex
-    'ApexSharingViolations':
+    "ApexSharingViolations":
       severity: 3
       tags: # Modified from: ["Recommended","Security","Apex"]
         - Recommended
         - Security
         - Apex
         - all-apex
-    'ApexSOQLInjection':
+    "ApexSOQLInjection":
       severity: 3 # Modified from: 2
       tags: # Modified from: ["Recommended","Security","Apex"]
         - Recommended
         - Security
         - Apex
         - all-apex
-    'ApexSuggestUsingNamedCred':
+    "ApexSuggestUsingNamedCred":
       severity: 3 # Modified from: 2
       tags: # Modified from: ["Recommended","Security","Apex"]
         - Recommended
         - Security
         - Apex
         - all-apex
-    'ApexUnitTestClassShouldHaveAsserts':
+    "ApexUnitTestClassShouldHaveAsserts":
       severity: 4 # Modified from: 3
       tags: # Modified from: ["Recommended","BestPractices","Apex"]
         - Recommended
         - BestPractices
         - Apex
         - all-apex
-    'ApexUnitTestClassShouldHaveRunAs':
+    "ApexUnitTestClassShouldHaveRunAs":
       disabled: true
       severity: 3 # Modified from: 4
       tags: # Modified from: ["Recommended","BestPractices","Apex"]
@@ -168,469 +168,469 @@ rules:
         - BestPractices
         - Apex
         - all-apex
-    'ApexUnitTestMethodShouldHaveIsTestAnnotation':
+    "ApexUnitTestMethodShouldHaveIsTestAnnotation":
       severity: 3 # Modified from: 2
       tags: # Modified from: ["Recommended","BestPractices","Apex"]
         - Recommended
         - BestPractices
         - Apex
         - all-apex
-    'ApexUnitTestShouldNotUseSeeAllDataTrue':
+    "ApexUnitTestShouldNotUseSeeAllDataTrue":
       severity: 3 # Modified from: 2
       tags: # Modified from: ["Recommended","BestPractices","Apex"]
         - Recommended
         - BestPractices
         - Apex
         - all-apex
-    'ApexXSSFromEscapeFalse':
+    "ApexXSSFromEscapeFalse":
       severity: 3 # Modified from: 2
       tags: # Modified from: ["Recommended","Security","Apex"]
         - Recommended
         - Security
         - Apex
         - all-apex
-    'ApexXSSFromURLParam':
+    "ApexXSSFromURLParam":
       severity: 3 # Modified from: 2
       tags: # Modified from: ["Recommended","Security","Apex"]
         - Recommended
         - Security
         - Apex
         - all-apex
-    'AvoidBooleanMethodParameters':
+    "AvoidBooleanMethodParameters":
       severity: 3
       tags: # Modified from: ["Recommended","Design","Apex"]
         - Recommended
         - Design
         - Apex
         - all-apex
-    'AvoidChangeProtectionUnprotected':
+    "AvoidChangeProtectionUnprotected":
       severity: 1
       tags:
         - AppExchange
         - Security
         - Apex
-    'AvoidDebugStatements':
+    "AvoidDebugStatements":
       severity: 4
       tags: # Modified from: ["Recommended","Performance","Apex"]
         - Recommended
         - Performance
         - Apex
         - all-apex
-    'AvoidDeeplyNestedIfStmts':
+    "AvoidDeeplyNestedIfStmts":
       severity: 3
       tags: # Modified from: ["Recommended","Design","Apex"]
         - Recommended
         - Design
         - Apex
         - all-apex
-    'AvoidDirectAccessTriggerMap':
+    "AvoidDirectAccessTriggerMap":
       severity: 3
       tags: # Modified from: ["Recommended","ErrorProne","Apex"]
         - Recommended
         - ErrorProne
         - Apex
         - all-apex
-    'AvoidFutureAnnotation':
+    "AvoidFutureAnnotation":
       severity: 4
       tags: # Modified from: ["Recommended","BestPractices","Apex"]
         - Recommended
         - BestPractices
         - Apex
         - all-apex
-    'AvoidGetInstanceWithTaint':
+    "AvoidGetInstanceWithTaint":
       severity: 3
       tags:
         - AppExchange
         - Security
         - Apex
-    'AvoidGlobalInstallUninstallHandlers':
+    "AvoidGlobalInstallUninstallHandlers":
       severity: 1
       tags:
         - AppExchange
         - Security
         - Apex
-    'AvoidGlobalModifier':
+    "AvoidGlobalModifier":
       severity: 3
       tags: # Modified from: ["Recommended","BestPractices","Apex"]
         - Recommended
         - BestPractices
         - Apex
         - all-apex
-    'AvoidHardcodedCredentialsInFieldDecls':
+    "AvoidHardcodedCredentialsInFieldDecls":
       severity: 3
       tags:
         - AppExchange
         - Security
         - Apex
-    'AvoidHardcodedCredentialsInHttpHeader':
+    "AvoidHardcodedCredentialsInHttpHeader":
       severity: 3
       tags:
         - AppExchange
         - Security
         - Apex
-    'AvoidHardcodedCredentialsInSetPassword':
+    "AvoidHardcodedCredentialsInSetPassword":
       severity: 1
       tags:
         - AppExchange
         - Security
         - Apex
-    'AvoidHardcodedCredentialsInVarAssign':
+    "AvoidHardcodedCredentialsInVarAssign":
       severity: 3
       tags:
         - AppExchange
         - Security
         - Apex
-    'AvoidHardcodedCredentialsInVarDecls':
+    "AvoidHardcodedCredentialsInVarDecls":
       severity: 3
       tags:
         - AppExchange
         - Security
         - Apex
-    'AvoidHardcodingId':
+    "AvoidHardcodingId":
       severity: 3
       tags: # Modified from: ["Recommended","ErrorProne","Apex"]
         - Recommended
         - ErrorProne
         - Apex
         - all-apex
-    'AvoidInterfaceAsMapKey':
+    "AvoidInterfaceAsMapKey":
       severity: 3
       tags: # Modified from: ["Recommended","ErrorProne","Apex"]
         - Recommended
         - ErrorProne
         - Apex
         - all-apex
-    'AvoidInvalidCrudContentDistribution':
+    "AvoidInvalidCrudContentDistribution":
       severity: 3
       tags:
         - AppExchange
         - Security
         - Apex
-    'AvoidLogicInTrigger':
+    "AvoidLogicInTrigger":
       severity: 3
       tags: # Modified from: ["Recommended","BestPractices","Apex"]
         - Recommended
         - BestPractices
         - Apex
         - all-apex
-    'AvoidNonExistentAnnotations':
+    "AvoidNonExistentAnnotations":
       severity: 3 # Modified from: 4
       tags: # Modified from: ["Recommended","ErrorProne","Apex"]
         - Recommended
         - ErrorProne
         - Apex
         - all-apex
-    'AvoidNonRestrictiveQueries':
+    "AvoidNonRestrictiveQueries":
       severity: 3 # Modified from: 4
       tags: # Modified from: ["Recommended","Performance","Apex"]
         - Recommended
         - Performance
         - Apex
         - all-apex
-    'AvoidSecurityEnforcedOldApiVersion':
+    "AvoidSecurityEnforcedOldApiVersion":
       severity: 3
       tags:
         - AppExchange
         - Security
         - Apex
-    'AvoidStatefulDatabaseResult':
+    "AvoidStatefulDatabaseResult":
       severity: 3
       tags: # Modified from: ["Recommended","ErrorProne","Apex"]
         - Recommended
         - ErrorProne
         - Apex
         - all-apex
-    'AvoidUnauthorizedApiSessionIdInApex':
+    "AvoidUnauthorizedApiSessionIdInApex":
       severity: 3
       tags:
         - AppExchange
         - Security
         - Apex
-    'AvoidUnauthorizedGetSessionIdInApex':
+    "AvoidUnauthorizedGetSessionIdInApex":
       severity: 3
       tags:
         - AppExchange
         - Security
         - Apex
-    'AvoidUnsafePasswordManagementUse':
+    "AvoidUnsafePasswordManagementUse":
       severity: 1
       tags:
         - AppExchange
         - Security
         - Apex
-    'ClassNamingConventions':
+    "ClassNamingConventions":
       severity: 3
       tags: # Modified from: ["Recommended","CodeStyle","Apex"]
         - Recommended
         - CodeStyle
         - Apex
         - all-apex
-    'CognitiveComplexity':
+    "CognitiveComplexity":
       disabled: true
       severity: 3
       tags:
         - Recommended
         - Design
         - Apex
-    'CyclomaticComplexity':
+    "CyclomaticComplexity":
       severity: 3
       tags: # Modified from: ["Recommended","Design","Apex"]
         - Recommended
         - Design
         - Apex
         - all-apex
-    'DebugsShouldUseLoggingLevel':
+    "DebugsShouldUseLoggingLevel":
       severity: 4
       tags: # Modified from: ["Recommended","BestPractices","Apex"]
         - Recommended
         - BestPractices
         - Apex
         - all-apex
-    'EagerlyLoadedDescribeSObjectResult':
+    "EagerlyLoadedDescribeSObjectResult":
       severity: 3 # Modified from: 2
       tags: # Modified from: ["Recommended","Performance","Apex"]
         - Recommended
         - Performance
         - Apex
         - all-apex
-    'EmptyCatchBlock':
+    "EmptyCatchBlock":
       severity: 3 # Modified from: 2
       tags: # Modified from: ["Recommended","ErrorProne","Apex"]
         - Recommended
         - ErrorProne
         - Apex
         - all-apex
-    'EmptyIfStmt':
+    "EmptyIfStmt":
       severity: 3
       tags: # Modified from: ["Recommended","ErrorProne","Apex"]
         - Recommended
         - ErrorProne
         - Apex
         - all-apex
-    'EmptyStatementBlock':
+    "EmptyStatementBlock":
       severity: 3
       tags: # Modified from: ["Recommended","ErrorProne","Apex"]
         - Recommended
         - ErrorProne
         - Apex
         - all-apex
-    'EmptyTryOrFinallyBlock':
+    "EmptyTryOrFinallyBlock":
       severity: 3
       tags: # Modified from: ["Recommended","ErrorProne","Apex"]
         - Recommended
         - ErrorProne
         - Apex
         - all-apex
-    'EmptyWhileStmt':
+    "EmptyWhileStmt":
       severity: 3
       tags: # Modified from: ["Recommended","ErrorProne","Apex"]
         - Recommended
         - ErrorProne
         - Apex
         - all-apex
-    'ExcessiveClassLength':
+    "ExcessiveClassLength":
       disabled: true
       severity: 3
       tags:
         - Design
         - Apex
-    'ExcessiveParameterList':
+    "ExcessiveParameterList":
       severity: 3
       tags: # Modified from: ["Recommended","Design","Apex"]
         - Recommended
         - Design
         - Apex
         - all-apex
-    'ExcessivePublicCount':
+    "ExcessivePublicCount":
       severity: 3
       tags: # Modified from: ["Recommended","Design","Apex"]
         - Recommended
         - Design
         - Apex
         - all-apex
-    'FieldDeclarationsShouldBeAtStart':
+    "FieldDeclarationsShouldBeAtStart":
       severity: 3
       tags:
         - Recommended
         - CodeStyle
         - Apex
-    'FieldNamingConventions':
+    "FieldNamingConventions":
       severity: 3
       tags: # Modified from: ["Recommended","CodeStyle","Apex"]
         - Recommended
         - CodeStyle
         - Apex
         - all-apex
-    'ForLoopsMustUseBraces':
+    "ForLoopsMustUseBraces":
       severity: 2 # Modified from: 3
       tags: # Modified from: ["Recommended","CodeStyle","Apex"]
         - Recommended
         - CodeStyle
         - Apex
         - all-apex
-    'FormalParameterNamingConventions':
+    "FormalParameterNamingConventions":
       severity: 3
       tags: # Modified from: ["Recommended","CodeStyle","Apex"]
         - Recommended
         - CodeStyle
         - Apex
         - all-apex
-    'IfElseStmtsMustUseBraces':
+    "IfElseStmtsMustUseBraces":
       severity: 2 # Modified from: 3
       tags: # Modified from: ["Recommended","CodeStyle","Apex"]
         - Recommended
         - CodeStyle
         - Apex
         - all-apex
-    'IfStmtsMustUseBraces':
+    "IfStmtsMustUseBraces":
       severity: 2 # Modified from: 3
       tags: # Modified from: ["Recommended","CodeStyle","Apex"]
         - Recommended
         - CodeStyle
         - Apex
         - all-apex
-    'InaccessibleAuraEnabledGetter':
+    "InaccessibleAuraEnabledGetter":
       severity: 3
       tags:
         - Recommended
         - ErrorProne
         - Apex
-    'InvocableClassNoArgConstructor':
+    "InvocableClassNoArgConstructor":
       severity: 3
       tags: # Modified from: ["Recommended","ErrorProne","Apex"]
         - Recommended
         - ErrorProne
         - Apex
         - all-apex
-    'LocalVariableNamingConventions':
+    "LocalVariableNamingConventions":
       severity: 3
       tags: # Modified from: ["Recommended","CodeStyle","Apex"]
         - Recommended
         - CodeStyle
         - Apex
         - all-apex
-    'MethodNamingConventions':
+    "MethodNamingConventions":
       severity: 3
       tags: # Modified from: ["Recommended","CodeStyle","Apex"]
         - Recommended
         - CodeStyle
         - Apex
         - all-apex
-    'MethodWithSameNameAsEnclosingClass':
+    "MethodWithSameNameAsEnclosingClass":
       severity: 3
       tags: # Modified from: ["Recommended","ErrorProne","Apex"]
         - Recommended
         - ErrorProne
         - Apex
         - all-apex
-    'NcssConstructorCount':
+    "NcssConstructorCount":
       disabled: true
       severity: 4
       tags:
         - Design
         - Apex
-    'NcssCount':
+    "NcssCount":
       severity: 3
       tags: # Modified from: ["Recommended","Apex","Custom"]
         - Recommended
         - Apex
         - Custom
         - all-apex
-    'NcssMethodCount':
+    "NcssMethodCount":
       disabled: true
       severity: 4
       tags:
         - Design
         - Apex
-    'NcssTypeCount':
+    "NcssTypeCount":
       disabled: true
       severity: 4
       tags:
         - Design
         - Apex
-    'OneDeclarationPerLine':
+    "OneDeclarationPerLine":
       severity: 3
       tags: # Modified from: ["Recommended","CodeStyle","Apex"]
         - Recommended
         - CodeStyle
         - Apex
         - all-apex
-    'OperationWithHighCostInLoop':
+    "OperationWithHighCostInLoop":
       severity: 3
       tags: # Modified from: ["Recommended","Performance","Apex"]
         - Recommended
         - Performance
         - Apex
         - all-apex
-    'OperationWithLimitsInLoop':
+    "OperationWithLimitsInLoop":
       severity: 2 # Modified from: 3
       tags: # Modified from: ["Recommended","Performance","Apex"]
         - Recommended
         - Performance
         - Apex
         - all-apex
-    'OverrideBothEqualsAndHashcode':
+    "OverrideBothEqualsAndHashcode":
       severity: 2
       tags:
         - Recommended
         - ErrorProne
         - Apex
-    'PropertyNamingConventions':
+    "PropertyNamingConventions":
       severity: 3
       tags: # Modified from: ["Recommended","CodeStyle","Apex"]
         - Recommended
         - CodeStyle
         - Apex
         - all-apex
-    'QueueableWithoutFinalizer':
+    "QueueableWithoutFinalizer":
       severity: 4
       tags: # Modified from: ["Recommended","BestPractices","Apex"]
         - Recommended
         - BestPractices
         - Apex
         - all-apex
-    'StdCyclomaticComplexity':
+    "StdCyclomaticComplexity":
       severity: 3
       tags: # Modified from: ["Design","Apex"]
         - Design
         - Apex
         - all-apex
-    'TestMethodsMustBeInTestClasses':
+    "TestMethodsMustBeInTestClasses":
       severity: 3
       tags: # Modified from: ["Recommended","ErrorProne","Apex"]
         - Recommended
         - ErrorProne
         - Apex
         - all-apex
-    'TooManyFields':
+    "TooManyFields":
       severity: 3
       tags: # Modified from: ["Recommended","Design","Apex"]
         - Recommended
         - Design
         - Apex
         - all-apex
-    'TypeShadowsBuiltInNamespace':
+    "TypeShadowsBuiltInNamespace":
       severity: 2
       tags: # Modified from: ["Recommended","ErrorProne","Apex"]
         - Recommended
         - ErrorProne
         - Apex
         - all-apex
-    'UnusedLocalVariable':
+    "UnusedLocalVariable":
       severity: 2 # Modified from: 3
       tags: # Modified from: ["Recommended","BestPractices","Apex"]
         - Recommended
         - BestPractices
         - Apex
         - all-apex
-    'UnusedMethod':
+    "UnusedMethod":
       severity: 3
       tags: # Modified from: ["Recommended","Design","Apex"]
         - Recommended
         - Design
         - Apex
         - all-apex
-    'WhileLoopsMustUseBraces':
+    "WhileLoopsMustUseBraces":
       severity: 2 # Modified from: 3
       tags: # Modified from: ["Recommended","CodeStyle","Apex"]
         - Recommended
