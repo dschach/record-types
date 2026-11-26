@@ -46,24 +46,24 @@ private without sharing class UnpackagedRecordTypesTest {
 	}
 
 	/**
-	 * @description Test against Account, an object with record types in package testing, but with lowercase RT name
-	 * <br>Assumes we have a record type called `Default` and tests `default`
+	 * @description Test against Account, an object with record types in package testing, but with UPPERCASE RT name
+	 * <br>Assumes we have a record type called `default` and tests `DEFAULT`
 	 * @author Evan Callahan
 	 * @author David Schach
 	 */
 	@IsTest
-	private static void testAccountRecTypesLowercaseRT() {
+	private static void testAccountRecTypesUppercaseRT() {
 		//Test with Account
 
 		Assert.isNotNull(RecordTypes.getRecordTypesForObject('Account'), 'A real sobject should have at least Master record type');
-		Assert.isNotNull(RecordTypes.getRecordTypeIdFromName('Account', 'default'), 'default record type should exist');
-		Assert.isNotNull(RecordTypes.getRecordTypeDevNameFromName('Account', 'default'), 'default record type should exist');
+		Assert.isNotNull(RecordTypes.getRecordTypeIdFromName('Account', 'DEFAULT'), 'default record type should exist, case-insensitively');
+		Assert.isNotNull(RecordTypes.getRecordTypeDevNameFromName('Account', 'DEFAULT'), 'default record type should exist, case-insensitively');
 
-		Assert.isNotNull(RecordTypes.getRecordTypeNameFromDevName('Account', 'default'), 'default record type should exist');
-		Assert.isNotNull(RecordTypes.getRecordTypeIdFromDevName('Account', 'default'), 'default record type should exist');
+		Assert.isNotNull(RecordTypes.getRecordTypeNameFromDevName('Account', 'DEFAULT'), 'default record type should exist, case-insensitively');
+		Assert.isNotNull(RecordTypes.getRecordTypeIdFromDevName('Account', 'DEFAULT'), 'default record type should exist, case-insensitively');
 
-		Assert.isNotNull(RecordTypes.getRecordTypeIdFromDevName('Account', 'default'), 'default record type should exist');
-		Assert.isNotNull(RecordTypes.getRecordTypeIdFromName('Account', 'default'), 'default record type should exist');
+		Assert.isNotNull(RecordTypes.getRecordTypeIdFromDevName('Account', 'DEFAULT'), 'default record type should exist, case-insensitively');
+		Assert.isNotNull(RecordTypes.getRecordTypeIdFromName('Account', 'DEFAULT'), 'default record type should exist, case-insensitively');
 	}
 
 	/**
