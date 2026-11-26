@@ -11,7 +11,7 @@
  * @see RecordTypes
  */
 @SuppressWarnings('PMD.ApexUnitTestClassShouldHaveRunAs,PMD.NcssCount')
-@IsTest
+@IsTest(testFor='ApexClass:RecordTypes')
 private class RecordTypesTest {
 	/**
 	 * @description Test various record types and names

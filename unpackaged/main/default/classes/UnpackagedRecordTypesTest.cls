@@ -6,7 +6,8 @@
  * @author      David Schach
  * @since       2024
  */
-@IsTest
+@SuppressWarnings('PMD.ApexUnitTestClassShouldHaveRunAs')
+@IsTest(testFor='ApexClass:RecordTypes')
 private without sharing class UnpackagedRecordTypesTest {
 	/**
 	 * @description Test against Account, an object with record types in package testing, but with lowercase RT name

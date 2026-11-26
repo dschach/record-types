@@ -6,8 +6,9 @@
  * @author      David Schach
  * @since       2024
  */
-@IsTest
+@IsTest(testFor='ApexClass:SelectListsController')
 public with sharing class SelectListsControllerTest {
+	@SuppressWarnings('PMD.ApexUnitTestClassShouldHaveRunAs')
 	@IsTest
 	static void testController() {
 		SelectListsController slc = new SelectListsController();
