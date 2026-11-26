@@ -652,9 +652,6 @@ global inherited sharing class RecordTypes {
 		if (allRecordTypes.containsKey(sObjectName)) {
 			List<Schema.RecordTypeInfo> recordTypes = allRecordTypes.get(sObjectName);
 			Boolean hasAvailableRT = false;
-			if (recordTypes == null) {
-				return recordTypesOptions;
-			}
 			for (Schema.RecordTypeInfo rti : recordTypes) {
 				recordTypesOptions.add(new SelectOption(rti.getRecordTypeId(), rti.getName(), disableUnavailable ? !rti.isAvailable() : false));
 				if (rti.isAvailable()) {
