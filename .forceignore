@@ -24,6 +24,9 @@ Admin.*
 *.permissionset-meta.xml
 !RecordTypes_DefaultRT_for_Testing.permissionset-meta.xml
 
+# Permission Set Groups
+**/*.permissionsetgroup-meta.xml
+
 # Page Layouts
 #**/*.layout-meta.xml
 
