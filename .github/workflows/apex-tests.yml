@@ -1,0 +1,67 @@
+# Reusable workflow: run the Apex tests in a scratch org and upload the coverage to Codecov
+# Called by pr.yml and code-coverage.yml with `secrets: inherit`
+name: apex-tests
+on:
+  workflow_call:
+jobs:
+  apex-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Checkout source code"
+        uses: actions/checkout@v7
+
+      - name: "Install Salesforce CLI"
+        run: |
+          npm install @salesforce/cli --global
+          nodeInstallPath=$(npm config get prefix)
+          echo "$nodeInstallPath/bin" >> "$GITHUB_PATH"
+          sf --version
+
+      # Authenticate dev hub
+      - name: "Authenticate Dev Hub"
+        env:
+          DEVHUB_SERVER_KEY: ${{ secrets.DEVHUB_SERVER_KEY }}
+          DEVHUB_CLIENT_ID: ${{ secrets.DEVHUB_CLIENT_ID }}
+          DEVHUB_USERNAME: ${{ secrets.DEVHUB_USERNAME }}
+          DEVHUB_DOMAIN: ${{ vars.DEVHUB_URL }}
+        # The sf CLI stores the PATH of the key file, not its contents, and signs a new JWT each time it needs an access token. Keep the file for the whole job and delete it in the last step.
+        run: |
+          printf '%s\n' "$DEVHUB_SERVER_KEY" > "$RUNNER_TEMP/server.key"
+          chmod 600 "$RUNNER_TEMP/server.key"
+          sf org login jwt \
+            --client-id "$DEVHUB_CLIENT_ID" \
+            --jwt-key-file "$RUNNER_TEMP/server.key" \
+            --username "$DEVHUB_USERNAME" \
+            --instance-url "$DEVHUB_DOMAIN" \
+            --alias devhub --set-default-dev-hub
+
+      - name: "Create scratch org"
+        run: sf org create scratch --definition-file config/project-scratch-def.json --alias RecordTypes --set-default --duration-days 1 --no-track-source
+
+      - name: "Deploy source"
+        run: |
+          sf project deploy start
+          sf project deploy start --source-dir unpackaged
+
+      # The available record type methods only return data for a user with the testing permission set
+      - name: "Assign permission set"
+        run: sf org assign permset --name RecordTypes_DefaultRT_for_Testing
+
+      - name: "Run Apex tests"
+        run: sf apex run test --code-coverage --result-format human --output-dir ./tests/apex --test-level RunLocalTests --wait 20
+
+      - name: "Upload code coverage for Apex to Codecov.io"
+        uses: codecov/codecov-action@v7
+        with:
+          flags: Apex
+          token: ${{ secrets.CODECOV_TOKEN }}
+
+      # Housekeeping
+      - name: "Delete scratch org"
+        if: always()
+        run: sf org delete scratch --no-prompt --target-org RecordTypes
+
+      # The scratch org delete above still needs the key, so remove it last
+      - name: "Remove dev hub key"
+        if: always()
+        run: rm -f "$RUNNER_TEMP/server.key"
