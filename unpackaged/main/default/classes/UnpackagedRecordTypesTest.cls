@@ -47,7 +47,7 @@ private without sharing class UnpackagedRecordTypesTest {
 
 	/**
 	 * @description Test against Account, an object with record types in package testing, but with UPPERCASE RT name
-	 * <br>Assumes we have a record type called `default` and tests `DEFAULT`
+	 * <br>Assumes we have a record type called `Default` and tests `DEFAULT`
 	 * @author Evan Callahan
 	 * @author David Schach
 	 */
