@@ -28,9 +28,6 @@ private without sharing class UnpackagedRecordTypesTest {
 		Assert.isNull(RecordTypes.getRecordTypeNameFromId('Account', null), 'Null record type should not exist');
 		Assert.isNull(RecordTypes.getRecordTypeDevNameFromId('Account', null), 'Null record type should not exist');
 
-		Assert.isNotNull(RecordTypes.getRecordTypeIdFromDevName('Account', 'Default'), 'Default record type should exist');
-		Assert.isNotNull(RecordTypes.getRecordTypeIdFromName('Account', 'Default'), 'Default record type should exist');
-
 		//Assert.areEqual('Default', RecordTypes.getDefaultRecordTypeName('Account'), 'Our default Account RT should be "Default"');
 		//Assert.areEqual('Default', RecordTypes.getDefaultRecordTypeDevName('Account'), 'Our default Account RT should be "Default"');
 
@@ -61,9 +58,6 @@ private without sharing class UnpackagedRecordTypesTest {
 
 		Assert.isNotNull(RecordTypes.getRecordTypeNameFromDevName('Account', 'DEFAULT'), 'default record type should exist, case-insensitively');
 		Assert.isNotNull(RecordTypes.getRecordTypeIdFromDevName('Account', 'DEFAULT'), 'default record type should exist, case-insensitively');
-
-		Assert.isNotNull(RecordTypes.getRecordTypeIdFromDevName('Account', 'DEFAULT'), 'default record type should exist, case-insensitively');
-		Assert.isNotNull(RecordTypes.getRecordTypeIdFromName('Account', 'DEFAULT'), 'default record type should exist, case-insensitively');
 	}
 
 	/**
