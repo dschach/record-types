@@ -19,7 +19,7 @@
         <name>PermissionSet</name>
     </types>
     <types>
-        <members>Account.default</members>
+        <members>Account.Default</members>
         <name>RecordType</name>
     </types>
     <version>68.0</version>

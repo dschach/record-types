@@ -36,4 +36,4 @@ Admin.*
 
 # Record Types
 #*.RecordType-meta.xml
-!Default.recordType-meta.xml
+!default.recordType-meta.xml
